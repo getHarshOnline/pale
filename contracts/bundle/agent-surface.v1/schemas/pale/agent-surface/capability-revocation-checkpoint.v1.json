@@ -1,0 +1,126 @@
+{
+  "$defs": {
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "CapabilityRevocationCheckpointEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "CapabilityRevocationCheckpointIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "CoveredGrantCountV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "SigningKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/capability-revocation-checkpoint.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "dependentRequired": {
+    "previous_checkpoint_ref": [
+      "previous_checkpoint_sha256"
+    ],
+    "previous_checkpoint_sha256": [
+      "previous_checkpoint_ref"
+    ]
+  },
+  "properties": {
+    "authority_heads_root_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "authority_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "canonical_checkpoint_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "checkpoint_epoch": {
+      "$ref": "#/$defs/CapabilityRevocationCheckpointEpochV1"
+    },
+    "checkpoint_id": {
+      "$ref": "#/$defs/CapabilityRevocationCheckpointIdV1"
+    },
+    "covered_grant_count": {
+      "$ref": "#/$defs/CoveredGrantCountV1"
+    },
+    "generated_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "issuer_key_epoch": {
+      "$ref": "#/$defs/SigningKeyEpochV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "previous_checkpoint_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "previous_checkpoint_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/capability-revocation-checkpoint.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "checkpoint_id",
+    "checkpoint_epoch",
+    "authority_principal_id",
+    "authority_heads_root_sha256",
+    "covered_grant_count",
+    "generated_at",
+    "issuer_key_id",
+    "issuer_key_epoch",
+    "canonical_checkpoint_sha256",
+    "signature"
+  ],
+  "title": "capability-revocation-checkpoint.v1",
+  "type": "object"
+}

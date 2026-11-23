@@ -1,0 +1,150 @@
+{
+  "$defs": {
+    "DataClassificationV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "DeploymentEnvironmentV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "DeploymentIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "DistributionReleaseV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "PermittedPurposeV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "RelationshipScopeV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentControllerIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "WorkspaceCommitV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "WorkspaceId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/deployment-terms.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "canonical_deployment_terms_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "confidentiality_policy_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "confidentiality_policy_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "controller_scope": {
+      "$ref": "#/$defs/ResidentControllerIdV1"
+    },
+    "data_classification": {
+      "$ref": "#/$defs/DataClassificationV1"
+    },
+    "deployment_id": {
+      "$ref": "#/$defs/DeploymentIdV1"
+    },
+    "distribution_release": {
+      "$ref": "#/$defs/DistributionReleaseV1"
+    },
+    "distribution_release_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "environment": {
+      "$ref": "#/$defs/DeploymentEnvironmentV1"
+    },
+    "environment_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "permitted_purposes": {
+      "items": {
+        "$ref": "#/$defs/PermittedPurposeV1"
+      },
+      "maxItems": 1024,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "principal_scope": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "processing_role_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "processing_role_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "relationship_scope": {
+      "$ref": "#/$defs/RelationshipScopeV1"
+    },
+    "schema_id": {
+      "const": "pale/deployment-terms.v1",
+      "type": "string"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "workspace_commit": {
+      "$ref": "#/$defs/WorkspaceCommitV1"
+    },
+    "workspace_id": {
+      "$ref": "#/$defs/WorkspaceId"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "workspace_id",
+    "workspace_commit",
+    "deployment_id",
+    "distribution_release",
+    "distribution_release_sha256",
+    "principal_scope",
+    "controller_scope",
+    "environment",
+    "environment_sha256",
+    "processing_role_ref",
+    "processing_role_sha256",
+    "confidentiality_policy_ref",
+    "confidentiality_policy_sha256",
+    "data_classification",
+    "permitted_purposes",
+    "canonical_deployment_terms_sha256"
+  ],
+  "title": "deployment-terms.v1",
+  "type": "object"
+}

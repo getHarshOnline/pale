@@ -1,0 +1,529 @@
+{
+  "$defs": {
+    "DiagnosticDispositionV1": {
+      "oneOf": [
+        {
+          "const": "operational_failure",
+          "type": "string"
+        },
+        {
+          "const": "invalid_input",
+          "type": "string"
+        },
+        {
+          "const": "blocked",
+          "type": "string"
+        },
+        {
+          "const": "internal_failure",
+          "type": "string"
+        },
+        {
+          "const": "effect_outcome_unknown",
+          "type": "string"
+        }
+      ]
+    },
+    "DiagnosticEffectCertaintyV1": {
+      "oneOf": [
+        {
+          "const": "not_applicable",
+          "type": "string"
+        },
+        {
+          "const": "not_started",
+          "type": "string"
+        },
+        {
+          "const": "confirmed",
+          "type": "string"
+        },
+        {
+          "const": "outcome_unknown",
+          "type": "string"
+        }
+      ]
+    },
+    "DiagnosticFactV1Wire": {
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_]*$",
+          "type": "string"
+        },
+        "value": {
+          "maxLength": 1024,
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "value"
+      ],
+      "type": "object"
+    },
+    "DiagnosticGenerationCorrelationV1Wire": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "kind": {
+          "maxLength": 128,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "id"
+      ],
+      "type": "object"
+    },
+    "DiagnosticReceiptCorrelationV1Wire": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "kind": {
+          "maxLength": 128,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "id"
+      ],
+      "type": "object"
+    },
+    "DiagnosticRequestCorrelationV1Wire": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "kind": {
+          "maxLength": 128,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "id"
+      ],
+      "type": "object"
+    },
+    "DiagnosticRetryV1": {
+      "oneOf": [
+        {
+          "const": "not_indicated",
+          "type": "string"
+        },
+        {
+          "const": "after_correction",
+          "type": "string"
+        },
+        {
+          "const": "after_state_change",
+          "type": "string"
+        },
+        {
+          "const": "reconcile_first",
+          "type": "string"
+        }
+      ]
+    },
+    "DiagnosticSchemaCoordinateV1Wire": {
+      "additionalProperties": false,
+      "properties": {
+        "registry_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema_path": {
+          "maxLength": 1024,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "schema_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "wire_schema_id": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SchemaId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "registry_id",
+        "schema_sha256"
+      ],
+      "type": "object"
+    },
+    "DiagnosticSeverityV1": {
+      "oneOf": [
+        {
+          "const": "error",
+          "type": "string"
+        }
+      ]
+    },
+    "DiagnosticSourceV1Wire": {
+      "additionalProperties": false,
+      "properties": {
+        "byte_end": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "byte_start": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "column": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "label": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "line": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "value_path": {
+          "maxLength": 1024,
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "label"
+      ],
+      "type": "object"
+    },
+    "DiagnosticStageV1": {
+      "oneOf": [
+        {
+          "const": "input_admission",
+          "type": "string"
+        },
+        {
+          "const": "contract_validation",
+          "type": "string"
+        },
+        {
+          "const": "semantic_admission",
+          "type": "string"
+        },
+        {
+          "const": "package_loading",
+          "type": "string"
+        },
+        {
+          "const": "workspace_loading",
+          "type": "string"
+        },
+        {
+          "const": "compilation",
+          "type": "string"
+        },
+        {
+          "const": "rendering",
+          "type": "string"
+        },
+        {
+          "const": "operation_admission",
+          "type": "string"
+        },
+        {
+          "const": "resident_admission",
+          "type": "string"
+        },
+        {
+          "const": "resident_recovery",
+          "type": "string"
+        },
+        {
+          "const": "planning",
+          "type": "string"
+        },
+        {
+          "const": "materialization",
+          "type": "string"
+        },
+        {
+          "const": "native_action",
+          "type": "string"
+        },
+        {
+          "const": "host_observation",
+          "type": "string"
+        },
+        {
+          "const": "internal",
+          "type": "string"
+        }
+      ]
+    },
+    "DiagnosticSubjectV1Wire": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "kind": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_]*$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "id"
+      ],
+      "type": "object"
+    },
+    "DiagnosticTruncationV1Wire": {
+      "additionalProperties": false,
+      "properties": {
+        "omitted_causes": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "omitted_facts": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "omitted_help": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "omitted_notes": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "shortened_fields": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "shortened_fields",
+        "omitted_causes",
+        "omitted_notes",
+        "omitted_help",
+        "omitted_facts"
+      ],
+      "type": "object"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/diagnostic.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "causes": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 16,
+      "type": "array"
+    },
+    "code": {
+      "maxLength": 128,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+      "type": "string"
+    },
+    "disposition": {
+      "$ref": "#/$defs/DiagnosticDispositionV1"
+    },
+    "effect": {
+      "$ref": "#/$defs/DiagnosticEffectCertaintyV1"
+    },
+    "facts": {
+      "items": {
+        "$ref": "#/$defs/DiagnosticFactV1Wire"
+      },
+      "maxItems": 16,
+      "type": "array"
+    },
+    "generation": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/DiagnosticGenerationCorrelationV1Wire"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "help": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 16,
+      "type": "array"
+    },
+    "notes": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 16,
+      "type": "array"
+    },
+    "receipt": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/DiagnosticReceiptCorrelationV1Wire"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "request": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/DiagnosticRequestCorrelationV1Wire"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "retry": {
+      "$ref": "#/$defs/DiagnosticRetryV1"
+    },
+    "schema": {
+      "const": "pale/diagnostic.v1",
+      "type": "string"
+    },
+    "schema_coordinate": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/DiagnosticSchemaCoordinateV1Wire"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "severity": {
+      "$ref": "#/$defs/DiagnosticSeverityV1"
+    },
+    "source": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/DiagnosticSourceV1Wire"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "stage": {
+      "$ref": "#/$defs/DiagnosticStageV1"
+    },
+    "subject": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/DiagnosticSubjectV1Wire"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "summary": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "type": "string"
+    },
+    "truncation": {
+      "$ref": "#/$defs/DiagnosticTruncationV1Wire"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_sha256",
+    "schema_version",
+    "code",
+    "stage",
+    "severity",
+    "disposition",
+    "summary",
+    "retry",
+    "effect",
+    "truncation"
+  ],
+  "title": "diagnostic.v1",
+  "type": "object"
+}

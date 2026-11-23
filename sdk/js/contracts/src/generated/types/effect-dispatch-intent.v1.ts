@@ -1,0 +1,79 @@
+/* Generated from the canonical Pale initial-v1 schema bundle. Do not edit. */
+
+export type Sha256DigestV1 = string;
+export type ActionIdV1 = string;
+export type CapabilityAttemptIdV1 = string;
+export type ResidentRecordRefV1 = string;
+export type EffectDispatchIntentIdV1 = string;
+export type BoundedResidentTextV1 = string;
+export type UnixTimeV1 = number;
+export type SigningKeyEpochV1 = number;
+export type ResidentKeyIdV1 = string;
+export type ResidentPrincipalIdV1 = string;
+export type TypedDigestCanonicalizationV1 = "rfc8785_json" | "raw_bytes";
+export type TypedDigestContentBindingV1 =
+  | {
+      inline_json: any;
+      kind: "inline_json";
+    }
+  | {
+      inline_bytes_base64: string;
+      kind: "inline_bytes_base64";
+    }
+  | {
+      content_ref: ResidentRecordRefV1;
+      content_ref_sha256: Sha256DigestV1;
+      kind: "immutable_content";
+    };
+export type SchemaId = string;
+export type TypedDigestAlgorithmV1 = "sha256";
+export type ReconciliationCaseIdV1 = string;
+export type ReconciliationCustodyIdV1 = string;
+export type RouteGenerationV1 = number;
+export type CanonicalSignatureV1 = string;
+
+export interface EffectDispatchIntentV1 {
+  action_body_sha256: Sha256DigestV1;
+  action_id: ActionIdV1;
+  attempt_id: CapabilityAttemptIdV1;
+  canonical_dispatch_intent_sha256: Sha256DigestV1;
+  canonical_request_sha256: Sha256DigestV1;
+  conflict_claim_ref: ResidentRecordRefV1;
+  conflict_claim_sha256: Sha256DigestV1;
+  contract_set_ref: ResidentRecordRefV1;
+  contract_set_sha256: Sha256DigestV1;
+  deployment_runtime_authority_ref: ResidentRecordRefV1;
+  deployment_runtime_authority_sha256: Sha256DigestV1;
+  effect_admission_ref: ResidentRecordRefV1;
+  effect_admission_sha256: Sha256DigestV1;
+  effect_dispatch_intent_id: EffectDispatchIntentIdV1;
+  execution_owner_fence_ref?: ResidentRecordRefV1;
+  execution_owner_fence_sha256?: Sha256DigestV1;
+  implementation_kind: BoundedResidentTextV1;
+  implementation_version: BoundedResidentTextV1;
+  intended_at: UnixTimeV1;
+  issuer_key_epoch: SigningKeyEpochV1;
+  issuer_key_id: ResidentKeyIdV1;
+  issuer_principal_id: ResidentPrincipalIdV1;
+  provider_request_digest?: TypedDigestV1;
+  request_ref: ResidentRecordRefV1;
+  reserved_reconciliation_case_id: ReconciliationCaseIdV1;
+  reserved_reconciliation_custody_id: ReconciliationCustodyIdV1;
+  route_binding_ref: ResidentRecordRefV1;
+  route_binding_schema_id: SchemaId;
+  route_binding_schema_sha256: Sha256DigestV1;
+  route_binding_sha256: Sha256DigestV1;
+  route_generation: RouteGenerationV1;
+  schema_id: "pale/effect-dispatch-intent.v1";
+  schema_sha256: Sha256DigestV1;
+  signature: CanonicalSignatureV1;
+}
+export interface TypedDigestV1 {
+  canonicalization: TypedDigestCanonicalizationV1;
+  content_binding: TypedDigestContentBindingV1;
+  content_schema_id: SchemaId;
+  content_schema_sha256: Sha256DigestV1;
+  digest: Sha256DigestV1;
+  digest_algorithm: TypedDigestAlgorithmV1;
+  kind: BoundedResidentTextV1;
+}

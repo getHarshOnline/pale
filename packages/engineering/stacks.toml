@@ -1,0 +1,164 @@
+[stacks]
+schema_version = 1
+
+[[stacks.stack]]
+id = "rust"
+description = "Write and review Rust code built with Cargo."
+doctrine_refs = [{ scope = "local", resource_id = "rust-judgment" }]
+role_doctrine_refs = [{ scope = "local", resource_id = "rust-judgment" }]
+
+[[stacks.stack.official_sources]]
+label = "The Rust Programming Language"
+url = "https://doc.rust-lang.org/book/"
+
+[[stacks.stack.official_sources]]
+label = "Cargo Reference"
+url = "https://doc.rust-lang.org/cargo/reference/"
+
+[[stacks.stack]]
+id = "zola"
+description = "Build and review Zola sites with the template engine version they use."
+doctrine_refs = [{ scope = "local", resource_id = "zola-site-patterns-judgment" }]
+role_doctrine_refs = [{ scope = "local", resource_id = "zola-site-patterns-judgment" }]
+
+[[stacks.stack.official_sources]]
+label = "Zola documentation"
+url = "https://www.getzola.org/documentation/"
+
+[[stacks.stack.official_sources]]
+label = "Zola template documentation"
+url = "https://www.getzola.org/documentation/templates/overview/"
+
+[[stacks.stack.official_sources]]
+label = "Tera v1 documentation used by Zola"
+url = "https://github.com/Keats/tera/blob/v1/docs/content/docs/_index.md"
+
+[[stacks.stack]]
+id = "go"
+description = "Write and review Go code using modules."
+doctrine_refs = [{ scope = "local", resource_id = "golang-judgment" }]
+role_doctrine_refs = [{ scope = "local", resource_id = "golang-judgment" }]
+
+[[stacks.stack.official_sources]]
+label = "Go documentation"
+url = "https://go.dev/doc/"
+
+[[stacks.stack]]
+id = "web"
+description = "Build and review browser interfaces and content."
+doctrine_refs = [{ scope = "local", resource_id = "web-judgment" }]
+role_doctrine_refs = [{ scope = "local", resource_id = "web-judgment" }]
+
+[[stacks.stack.official_sources]]
+label = "MDN Web Docs"
+url = "https://developer.mozilla.org/en-US/docs/Web"
+
+[[stacks.stack]]
+id = "python"
+description = "Write and review Python code and its packaging."
+doctrine_refs = [{ scope = "local", resource_id = "python-judgment" }]
+role_doctrine_refs = [{ scope = "local", resource_id = "python-judgment" }]
+
+[[stacks.stack.official_sources]]
+label = "Python documentation"
+url = "https://docs.python.org/3/"
+
+[[stacks.stack]]
+id = "cpp"
+description = "Write and review C and C++ code."
+doctrine_refs = [{ scope = "local", resource_id = "cpp-judgment" }]
+role_doctrine_refs = [{ scope = "local", resource_id = "cpp-judgment" }]
+
+[[stacks.stack.official_sources]]
+label = "C++ Core Guidelines"
+url = "https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines"
+
+[[stacks.stack]]
+id = "java"
+description = "Write and review Java code built with Maven or Gradle."
+doctrine_refs = [{ scope = "local", resource_id = "java-judgment" }]
+role_doctrine_refs = [{ scope = "local", resource_id = "java-judgment" }]
+
+[[stacks.stack.official_sources]]
+label = "Java SE documentation"
+url = "https://docs.oracle.com/en/java/javase/"
+
+[[stacks.stack]]
+id = "typescript"
+description = "Check TypeScript code, compiler settings and project configuration."
+doctrine_refs = [{ scope = "local", resource_id = "typescript-judgment" }]
+role_doctrine_refs = [{ scope = "local", resource_id = "typescript-judgment" }]
+
+[[stacks.stack.official_sources]]
+label = "TypeScript documentation"
+url = "https://www.typescriptlang.org/docs/"
+
+[[stacks.stack]]
+id = "react"
+description = "Review React behavior when React is a dependency or is selected in project configuration."
+extends = [{ scope = "local", resource_id = "web" }]
+doctrine_refs = [{ scope = "local", resource_id = "react-judgment" }]
+role_doctrine_refs = [{ scope = "local", resource_id = "react-judgment" }]
+
+[[stacks.stack.official_sources]]
+label = "React reference"
+url = "https://react.dev/reference/react"
+
+[[stacks.stack]]
+id = "vue"
+description = "Review Vue behavior on the web platform. Add TypeScript guidance when the project separately selects TypeScript."
+extends = [{ scope = "local", resource_id = "web" }]
+doctrine_refs = [{ scope = "local", resource_id = "vue-judgment" }]
+role_doctrine_refs = [{ scope = "local", resource_id = "vue-judgment" }]
+
+[[stacks.stack.official_sources]]
+label = "Vue guide"
+url = "https://vuejs.org/guide/introduction.html"
+
+[[stacks.stack]]
+id = "pytorch"
+description = "Review PyTorch training when PyTorch is a dependency or is selected in project configuration."
+extends = [{ scope = "local", resource_id = "python" }]
+doctrine_refs = [{ scope = "local", resource_id = "pytorch-patterns-judgment" }]
+role_doctrine_refs = [{ scope = "local", resource_id = "pytorch-patterns-judgment" }]
+
+[[stacks.stack.official_sources]]
+label = "PyTorch documentation"
+url = "https://docs.pytorch.org/docs/stable/index.html"
+
+[[stacks.stack]]
+id = "spring"
+description = "Review a Spring Framework or Spring Boot service using its actual dependencies and configuration."
+extends = [{ scope = "local", resource_id = "java" }]
+doctrine_refs = [{ scope = "local", resource_id = "spring-judgment" }]
+role_doctrine_refs = [{ scope = "local", resource_id = "spring-judgment" }]
+
+[[stacks.stack.official_sources]]
+label = "Spring Framework reference; resolve the consuming version"
+url = "https://docs.spring.io/spring-framework/reference/"
+
+[[stacks.stack.official_sources]]
+label = "Spring Boot reference; resolve the consuming version"
+url = "https://docs.spring.io/spring-boot/reference/"
+[[stacks.stack]]
+id = "spring-data-jpa"
+description = "Review Spring Data JPA where the project uses it for persistence."
+extends = [{ scope = "local", resource_id = "spring" }]
+doctrine_refs = [{ scope = "local", resource_id = "spring-data-jpa-judgment" }]
+role_doctrine_refs = [{ scope = "local", resource_id = "spring-data-jpa-judgment" }]
+
+[[stacks.stack.official_sources]]
+label = "Spring Data JPA reference; resolve the consuming version"
+url = "https://docs.spring.io/spring-data/jpa/reference/"
+
+[[stacks.stack]]
+id = "spring-statemachine"
+description = "Review Spring Statemachine where the project uses its state graph and dependencies. Select persistence guidance separately."
+extends = [{ scope = "local", resource_id = "spring" }]
+doctrine_refs = [{ scope = "local", resource_id = "spring-statemachine-judgment" }]
+role_doctrine_refs = [{ scope = "local", resource_id = "spring-statemachine-judgment" }]
+
+[[stacks.stack.official_sources]]
+label = "Spring Statemachine reference; resolve the consuming version"
+url = "https://docs.spring.io/spring-statemachine/docs/4.0.1/reference/"
+

@@ -1,0 +1,45 @@
+{
+  "name": "@rtepl/pale-wasm",
+  "version": "0.0.1",
+  "private": true,
+  "author": "Harsh Joshi",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/getHarshOnline/pale.git",
+    "directory": "sdk/wasm"
+  },
+  "description": "WebAssembly package that compiles, inspects and reviews Pale Workspace documents without reading files or running tools.",
+  "type": "module",
+  "types": "./index.d.ts",
+  "main": "./index.js",
+  "files": [
+    "dist",
+    "index.d.ts",
+    "index.js",
+    "LICENSE",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js"
+    }
+  },
+  "scripts": {
+    "build": "node scripts/wasm-pack.mjs build --release --target bundler --out-dir dist --out-name pale_wasm --no-pack -- --locked && node scripts/finalize-dist.mjs",
+    "bench:build": "node scripts/wasm-pack.mjs build --release --target nodejs --out-dir target/wasm-pack-bench-node --out-name pale_wasm --no-pack -- --locked",
+    "bench:smoke": "npm run bench:build && node benches/native_ffi.mjs ./target/wasm-pack-bench-node/pale_wasm.js ./tests/fixtures/cross-leaf.v1 --smoke",
+    "prepack": "node scripts/finalize-dist.mjs",
+    "test:wasm": "node scripts/wasm-pack.mjs test --node --release . --locked",
+    "test:abi": "node scripts/wasm-pack.mjs build --release --target nodejs --out-dir target/wasm-pack-node --out-name pale_wasm -- --locked && node tests/native_abi.mjs ./target/wasm-pack-node/pale_wasm.js ./tests/fixtures/cross-leaf.v1",
+    "test:package": "npm run build && node tests/package_consumer.mjs",
+    "test": "npm run test:wasm && npm run test:abi && npm run test:package --"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@rtepl/pale-contracts": "0.0.1"
+  }
+}

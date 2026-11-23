@@ -1,0 +1,6 @@
+schema = "pale/workspace-universe-lock.v1"
+schema_version = 1
+workspace_id = "empty-adopter"
+resolution_digest = "945db2ec1686d74bc476a920c073a6d9bbb69ea34ab78cda178d6177ce2b855c"
+adopted_releases = []
+universe_digest = "b468dd9087987d0e58f55dbe69fa4f1587270497e205150a1622d35dd69734f5"

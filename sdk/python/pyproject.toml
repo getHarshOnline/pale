@@ -1,0 +1,40 @@
+[build-system]
+requires = ["maturin==1.15.0", "wheel==0.45.1"]
+build-backend = "build_backend"
+backend-path = ["."]
+
+[project]
+name = "pypale"
+version = "0.0.1"
+description = "Python package that lets Python programs compile, inspect and review Pale configuration."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = ["pydantic>=2.12,<3"]
+license = "Apache-2.0"
+authors = [{ name = "Harsh Joshi" }]
+
+[project.urls]
+Repository = "https://github.com/getHarshOnline/pale"
+
+[dependency-groups]
+dev = [
+    "maturin==1.15.0",
+    "wheel==0.45.1",
+]
+
+[tool.maturin]
+bindings = "pyo3"
+module-name = "pypale._native"
+python-source = "python"
+features = ["extension-module"]
+include = [
+    { path = "build_backend.py", format = "sdist" },
+    { path = "tools/stubgen/Cargo.toml", format = "sdist" },
+    { path = "tools/stubgen/Cargo.lock", format = "sdist" },
+    { path = "tools/stubgen/src/main.rs", format = "sdist" },
+    { path = "tools/stubgen/tests/internal/model.rs", format = "sdist" },
+]
+# The editable stub is generated state, not an authored package input.
+# Exclude its source-tree copy; the backend regenerates the native stub.
+# Maturin's optional binary-generated stub remains its own forced output.
+exclude = ["python/pypale/_native.pyi"]

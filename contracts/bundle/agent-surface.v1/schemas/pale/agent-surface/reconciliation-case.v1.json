@@ -1,0 +1,318 @@
+{
+  "$defs": {
+    "ActionIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "ObservationKindV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ReconciliationCaseIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ReconciliationCaseOriginV1": {
+      "oneOf": [
+        {
+          "const": "initial",
+          "type": "string"
+        },
+        {
+          "const": "reopened",
+          "type": "string"
+        }
+      ]
+    },
+    "ReconciliationCaseRevisionV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "ReconciliationCustodyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ReconciliationOpeningEvidenceV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence_ref": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            "evidence_schema_id": {
+              "$ref": "#/$defs/SchemaId"
+            },
+            "evidence_schema_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "evidence_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "kind": {
+              "const": "effect_receipt",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "evidence_ref",
+            "evidence_sha256",
+            "evidence_schema_id",
+            "evidence_schema_sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence_ref": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            "evidence_schema_id": {
+              "$ref": "#/$defs/SchemaId"
+            },
+            "evidence_schema_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "evidence_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "kind": {
+              "const": "observation",
+              "type": "string"
+            },
+            "observation_kind": {
+              "$ref": "#/$defs/ObservationKindV1"
+            }
+          },
+          "required": [
+            "kind",
+            "evidence_ref",
+            "evidence_sha256",
+            "evidence_schema_id",
+            "evidence_schema_sha256",
+            "observation_kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence_ref": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            "evidence_schema_id": {
+              "$ref": "#/$defs/SchemaId"
+            },
+            "evidence_schema_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "evidence_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "kind": {
+              "const": "reviewer_evidence",
+              "type": "string"
+            },
+            "reviewer_or_policy_ref": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            "reviewer_or_policy_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            }
+          },
+          "required": [
+            "kind",
+            "evidence_ref",
+            "evidence_sha256",
+            "evidence_schema_id",
+            "evidence_schema_sha256",
+            "reviewer_or_policy_ref",
+            "reviewer_or_policy_sha256"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentReasonV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "SigningKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/reconciliation-case.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "action_id": {
+      "$ref": "#/$defs/ActionIdV1"
+    },
+    "canonical_case_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "case_id": {
+      "$ref": "#/$defs/ReconciliationCaseIdV1"
+    },
+    "case_origin": {
+      "$ref": "#/$defs/ReconciliationCaseOriginV1"
+    },
+    "case_revision": {
+      "$ref": "#/$defs/ReconciliationCaseRevisionV1"
+    },
+    "conflict_resource_key": true,
+    "conflict_resource_key_schema_id": {
+      "$ref": "#/$defs/SchemaId"
+    },
+    "conflict_resource_key_schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "deployment_runtime_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "deployment_runtime_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "effect_admission_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "effect_admission_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "expected_state_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/typed-digest.v1.json"
+    },
+    "issuer_key_epoch": {
+      "$ref": "#/$defs/SigningKeyEpochV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "issuer_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "opened_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "opening_evidence": {
+      "items": {
+        "$ref": "#/$defs/ReconciliationOpeningEvidenceV1"
+      },
+      "type": "array"
+    },
+    "predecessor_case_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "predecessor_case_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "predecessor_terminal_result_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "predecessor_terminal_result_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "reconciliation_policy_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "reconciliation_policy_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "reopen_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "reopen_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "reopen_policy_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "reopen_policy_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "reopen_reason_code": {
+      "$ref": "#/$defs/ResidentReasonV1"
+    },
+    "reserved_custody_id": {
+      "$ref": "#/$defs/ReconciliationCustodyIdV1"
+    },
+    "schema_id": {
+      "const": "pale/reconciliation-case.v1",
+      "type": "string"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "case_id",
+    "action_id",
+    "effect_admission_ref",
+    "effect_admission_sha256",
+    "conflict_resource_key_schema_id",
+    "conflict_resource_key_schema_sha256",
+    "conflict_resource_key",
+    "reserved_custody_id",
+    "case_origin",
+    "opening_evidence",
+    "expected_state_digest",
+    "reconciliation_policy_ref",
+    "reconciliation_policy_sha256",
+    "case_revision",
+    "opened_at",
+    "deployment_runtime_authority_ref",
+    "deployment_runtime_authority_sha256",
+    "issuer_principal_id",
+    "issuer_key_id",
+    "issuer_key_epoch",
+    "canonical_case_sha256",
+    "signature"
+  ],
+  "title": "reconciliation-case.v1",
+  "type": "object"
+}

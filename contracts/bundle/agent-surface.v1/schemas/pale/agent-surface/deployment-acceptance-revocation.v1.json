@@ -1,0 +1,143 @@
+{
+  "$defs": {
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "DeploymentAcceptanceRevocationEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "DeploymentAcceptanceRevocationIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentReasonV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "SigningKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/deployment-acceptance-revocation.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "dependentRequired": {
+    "previous_revocation_epoch": [
+      "previous_revocation_ref",
+      "previous_revocation_sha256"
+    ],
+    "previous_revocation_ref": [
+      "previous_revocation_sha256",
+      "previous_revocation_epoch"
+    ],
+    "previous_revocation_sha256": [
+      "previous_revocation_ref",
+      "previous_revocation_epoch"
+    ]
+  },
+  "properties": {
+    "canonical_deployment_acceptance_revocation_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "deployment_acceptance_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "deployment_acceptance_revocation_id": {
+      "$ref": "#/$defs/DeploymentAcceptanceRevocationIdV1"
+    },
+    "deployment_acceptance_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "deployment_terms_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "effective_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "issuer_key_epoch": {
+      "$ref": "#/$defs/SigningKeyEpochV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "issuer_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "previous_revocation_epoch": {
+      "$ref": "#/$defs/DeploymentAcceptanceRevocationEpochV1"
+    },
+    "previous_revocation_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "previous_revocation_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "reason_code": {
+      "$ref": "#/$defs/ResidentReasonV1"
+    },
+    "revocation_epoch": {
+      "$ref": "#/$defs/DeploymentAcceptanceRevocationEpochV1"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/deployment-acceptance-revocation.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "deployment_acceptance_revocation_id",
+    "deployment_acceptance_ref",
+    "deployment_acceptance_sha256",
+    "deployment_terms_sha256",
+    "revocation_epoch",
+    "effective_at",
+    "reason_code",
+    "issuer_principal_id",
+    "issuer_key_id",
+    "issuer_key_epoch",
+    "canonical_deployment_acceptance_revocation_sha256",
+    "signature"
+  ],
+  "title": "deployment-acceptance-revocation.v1",
+  "type": "object"
+}

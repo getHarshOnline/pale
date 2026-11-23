@@ -1,0 +1,1707 @@
+{
+  "$defs": {
+    "CommunicationActorBindingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "handle": {
+          "$ref": "#/$defs/CommunicationActorHandleId"
+        },
+        "interval": {
+          "$ref": "#/$defs/EffectiveIntervalV1"
+        },
+        "issuer": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "local_resolutions": {
+          "items": {
+            "$ref": "#/$defs/CommunicationActorLocalResolutionV1"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "provider": {
+          "$ref": "#/$defs/OrganizationalProviderId"
+        },
+        "state": {
+          "$ref": "#/$defs/EffectiveFactStateV1"
+        }
+      },
+      "required": [
+        "provider",
+        "handle",
+        "local_resolutions",
+        "issuer",
+        "state",
+        "interval"
+      ],
+      "type": "object"
+    },
+    "CommunicationActorHandleId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "CommunicationActorLocalResolutionV1": {
+      "additionalProperties": false,
+      "properties": {
+        "authorized_closure": {
+          "items": {
+            "$ref": "#/$defs/OrganizationalNodeRefV1"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "local_node": {
+          "$ref": "#/$defs/OrganizationalNodeRefV1"
+        }
+      },
+      "required": [
+        "local_node",
+        "authorized_closure"
+      ],
+      "type": "object"
+    },
+    "ConsumerAcceptanceRequirementV1": {
+      "additionalProperties": false,
+      "properties": {
+        "requirement": {
+          "$ref": "#/$defs/ResponsibilityEvidenceRequirementV1"
+        }
+      },
+      "required": [
+        "requirement"
+      ],
+      "type": "object"
+    },
+    "DirectionalServiceContractId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "DirectionalServiceContractV1": {
+      "additionalProperties": false,
+      "properties": {
+        "assignments": {
+          "items": {
+            "$ref": "#/$defs/ServiceAssignmentV1"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "ceiling": {
+          "$ref": "#/$defs/WorkspacePolicyCeilingV1"
+        },
+        "consumer_acceptance": {
+          "$ref": "#/$defs/ConsumerAcceptanceRequirementV1"
+        },
+        "consumer_scope": {
+          "$ref": "#/$defs/LogicalScopeRefV1"
+        },
+        "contract_id": {
+          "$ref": "#/$defs/DirectionalServiceContractId"
+        },
+        "contract_owner": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "interval": {
+          "$ref": "#/$defs/EffectiveIntervalV1"
+        },
+        "namespace": {
+          "$ref": "#/$defs/WorkspaceNamespaceId"
+        },
+        "native_read_back": {
+          "$ref": "#/$defs/NativeReadBackRequirementV1"
+        },
+        "pale_settlement": {
+          "$ref": "#/$defs/PaleSettlementRequirementV1"
+        },
+        "provider_acceptance": {
+          "$ref": "#/$defs/ProviderAcceptanceRequirementV1"
+        },
+        "provider_completion": {
+          "$ref": "#/$defs/ProviderCompletionRequirementV1"
+        },
+        "provider_scope": {
+          "$ref": "#/$defs/LogicalScopeRefV1"
+        },
+        "state": {
+          "$ref": "#/$defs/EffectiveFactStateV1"
+        }
+      },
+      "required": [
+        "contract_id",
+        "namespace",
+        "contract_owner",
+        "provider_scope",
+        "consumer_scope",
+        "provider_completion",
+        "provider_acceptance",
+        "consumer_acceptance",
+        "native_read_back",
+        "pale_settlement",
+        "assignments",
+        "ceiling",
+        "state",
+        "interval"
+      ],
+      "type": "object"
+    },
+    "DisciplineTreeId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "DisciplineTreeRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "namespace": {
+          "$ref": "#/$defs/WorkspaceNamespaceId"
+        },
+        "tree_id": {
+          "$ref": "#/$defs/DisciplineTreeId"
+        }
+      },
+      "required": [
+        "namespace",
+        "tree_id"
+      ],
+      "type": "object"
+    },
+    "DisciplineTreeV1": {
+      "additionalProperties": false,
+      "properties": {
+        "axes": {
+          "$ref": "#/$defs/OrganizationalAuthorityAxesV1"
+        },
+        "interval": {
+          "$ref": "#/$defs/EffectiveIntervalV1"
+        },
+        "organization": {
+          "$ref": "#/$defs/LogicalOrganizationRefV1"
+        },
+        "state": {
+          "$ref": "#/$defs/EffectiveFactStateV1"
+        },
+        "tree": {
+          "$ref": "#/$defs/DisciplineTreeRefV1"
+        }
+      },
+      "required": [
+        "tree",
+        "organization",
+        "axes",
+        "state",
+        "interval"
+      ],
+      "type": "object"
+    },
+    "DisclosureCeilingV1": {
+      "oneOf": [
+        {
+          "const": "private",
+          "type": "string"
+        },
+        {
+          "const": "protected",
+          "type": "string"
+        },
+        {
+          "const": "public",
+          "type": "string"
+        }
+      ]
+    },
+    "EffectiveFactStateV1": {
+      "oneOf": [
+        {
+          "const": "present",
+          "type": "string"
+        },
+        {
+          "const": "absent",
+          "type": "string"
+        },
+        {
+          "const": "denied",
+          "type": "string"
+        },
+        {
+          "const": "unknown",
+          "type": "string"
+        },
+        {
+          "const": "stale",
+          "type": "string"
+        },
+        {
+          "const": "superseded",
+          "type": "string"
+        },
+        {
+          "const": "revoked",
+          "type": "string"
+        }
+      ]
+    },
+    "EffectiveIntervalV1": {
+      "additionalProperties": false,
+      "properties": {
+        "end_exclusive": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "start": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "start",
+        "end_exclusive"
+      ],
+      "type": "object"
+    },
+    "GroupLensAuthorityProfileV1": {
+      "additionalProperties": false,
+      "properties": {
+        "alignment_relation": {
+          "$ref": "#/$defs/OrganizationalRelationId"
+        },
+        "block_conditions": {
+          "items": {
+            "$ref": "#/$defs/OrganizationalConditionId"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "escalation_resolver": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/OrganizationalRoleRefV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "holder": {
+          "$ref": "#/$defs/OrganizationalRoleRefV1"
+        },
+        "interval": {
+          "$ref": "#/$defs/EffectiveIntervalV1"
+        },
+        "issuer": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "lens": {
+          "$ref": "#/$defs/OrganizationalLensId"
+        },
+        "profile_id": {
+          "$ref": "#/$defs/GroupLensProfileId"
+        },
+        "review_owner": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/OrganizationalRoleRefV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rights": {
+          "items": {
+            "$ref": "#/$defs/GroupLensRightV1"
+          },
+          "maxItems": 4,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "standards": {
+          "items": {
+            "$ref": "#/$defs/WorkspaceResourceId"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "state": {
+          "$ref": "#/$defs/EffectiveFactStateV1"
+        }
+      },
+      "required": [
+        "profile_id",
+        "holder",
+        "alignment_relation",
+        "lens",
+        "standards",
+        "block_conditions",
+        "rights",
+        "issuer",
+        "state",
+        "interval"
+      ],
+      "type": "object"
+    },
+    "GroupLensProfileId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "GroupLensRightV1": {
+      "oneOf": [
+        {
+          "const": "standards",
+          "type": "string"
+        },
+        {
+          "const": "review",
+          "type": "string"
+        },
+        {
+          "const": "bounded_block",
+          "type": "string"
+        },
+        {
+          "const": "escalation",
+          "type": "string"
+        }
+      ]
+    },
+    "InspectionCoordinateClassV1": {
+      "oneOf": [
+        {
+          "const": "scope_organization",
+          "type": "string"
+        },
+        {
+          "const": "group_tree",
+          "type": "string"
+        },
+        {
+          "const": "role_binding",
+          "type": "string"
+        },
+        {
+          "const": "atomic_object",
+          "type": "string"
+        },
+        {
+          "const": "group_lens",
+          "type": "string"
+        },
+        {
+          "const": "directional_service",
+          "type": "string"
+        },
+        {
+          "const": "acceptance_frontier",
+          "type": "string"
+        },
+        {
+          "const": "native_projection",
+          "type": "string"
+        },
+        {
+          "const": "effective_state",
+          "type": "string"
+        }
+      ]
+    },
+    "LeadershipParticipationV1": {
+      "additionalProperties": false,
+      "properties": {
+        "affected_scopes": {
+          "items": {
+            "$ref": "#/$defs/LogicalScopeRefV1"
+          },
+          "maxItems": 1024,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "disclosure": {
+          "$ref": "#/$defs/DisclosureCeilingV1"
+        },
+        "interval": {
+          "$ref": "#/$defs/EffectiveIntervalV1"
+        },
+        "issuer": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "participants": {
+          "items": {
+            "$ref": "#/$defs/OrganizationalRoleRefV1"
+          },
+          "maxItems": 1024,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "state": {
+          "$ref": "#/$defs/EffectiveFactStateV1"
+        },
+        "topic": {
+          "$ref": "#/$defs/LeadershipTopicId"
+        }
+      },
+      "required": [
+        "topic",
+        "participants",
+        "affected_scopes",
+        "issuer",
+        "disclosure",
+        "state",
+        "interval"
+      ],
+      "type": "object"
+    },
+    "LeadershipTopicId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "LogicalOrganizationId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "LogicalOrganizationRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "namespace": {
+          "$ref": "#/$defs/WorkspaceNamespaceId"
+        },
+        "organization_id": {
+          "$ref": "#/$defs/LogicalOrganizationId"
+        }
+      },
+      "required": [
+        "namespace",
+        "organization_id"
+      ],
+      "type": "object"
+    },
+    "LogicalOrganizationV1": {
+      "additionalProperties": false,
+      "properties": {
+        "axes": {
+          "$ref": "#/$defs/OrganizationalAuthorityAxesV1"
+        },
+        "interval": {
+          "$ref": "#/$defs/EffectiveIntervalV1"
+        },
+        "organization": {
+          "$ref": "#/$defs/LogicalOrganizationRefV1"
+        },
+        "scope": {
+          "$ref": "#/$defs/LogicalScopeRefV1"
+        },
+        "state": {
+          "$ref": "#/$defs/EffectiveFactStateV1"
+        }
+      },
+      "required": [
+        "organization",
+        "scope",
+        "axes",
+        "state",
+        "interval"
+      ],
+      "type": "object"
+    },
+    "LogicalScopeId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "LogicalScopeRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "namespace": {
+          "$ref": "#/$defs/WorkspaceNamespaceId"
+        },
+        "scope_id": {
+          "$ref": "#/$defs/LogicalScopeId"
+        }
+      },
+      "required": [
+        "namespace",
+        "scope_id"
+      ],
+      "type": "object"
+    },
+    "LogicalScopeV1": {
+      "additionalProperties": false,
+      "properties": {
+        "axes": {
+          "$ref": "#/$defs/OrganizationalAuthorityAxesV1"
+        },
+        "interval": {
+          "$ref": "#/$defs/EffectiveIntervalV1"
+        },
+        "scope": {
+          "$ref": "#/$defs/LogicalScopeRefV1"
+        },
+        "state": {
+          "$ref": "#/$defs/EffectiveFactStateV1"
+        }
+      },
+      "required": [
+        "scope",
+        "axes",
+        "state",
+        "interval"
+      ],
+      "type": "object"
+    },
+    "NativeReadBackRequirementV1": {
+      "additionalProperties": false,
+      "properties": {
+        "requirement": {
+          "$ref": "#/$defs/ResponsibilityEvidenceRequirementV1"
+        }
+      },
+      "required": [
+        "requirement"
+      ],
+      "type": "object"
+    },
+    "ObjectRolePopulationRuleV1": {
+      "additionalProperties": false,
+      "properties": {
+        "accountable_role_class": {
+          "$ref": "#/$defs/OrganizationalRoleClassId"
+        },
+        "interval": {
+          "$ref": "#/$defs/EffectiveIntervalV1"
+        },
+        "issuer": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "object_class": {
+          "$ref": "#/$defs/OrganizationalObjectClassId"
+        },
+        "state": {
+          "$ref": "#/$defs/EffectiveFactStateV1"
+        }
+      },
+      "required": [
+        "object_class",
+        "accountable_role_class",
+        "issuer",
+        "state",
+        "interval"
+      ],
+      "type": "object"
+    },
+    "OrganizationalAuthorityAxesV1": {
+      "additionalProperties": false,
+      "properties": {
+        "authority": {
+          "$ref": "#/$defs/WorkspaceAuthorityScopeId"
+        },
+        "controller": {
+          "$ref": "#/$defs/WorkspaceControllerScopeId"
+        },
+        "disclosure": {
+          "$ref": "#/$defs/DisclosureCeilingV1"
+        },
+        "owner": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "resources": {
+          "items": {
+            "$ref": "#/$defs/WorkspaceResourceId"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "owner",
+        "controller",
+        "authority",
+        "resources",
+        "disclosure"
+      ],
+      "type": "object"
+    },
+    "OrganizationalConditionId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "OrganizationalGroupId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "OrganizationalGroupRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "group_id": {
+          "$ref": "#/$defs/OrganizationalGroupId"
+        },
+        "namespace": {
+          "$ref": "#/$defs/WorkspaceNamespaceId"
+        }
+      },
+      "required": [
+        "namespace",
+        "group_id"
+      ],
+      "type": "object"
+    },
+    "OrganizationalGroupV1": {
+      "additionalProperties": false,
+      "properties": {
+        "axes": {
+          "$ref": "#/$defs/OrganizationalAuthorityAxesV1"
+        },
+        "group": {
+          "$ref": "#/$defs/OrganizationalGroupRefV1"
+        },
+        "interval": {
+          "$ref": "#/$defs/EffectiveIntervalV1"
+        },
+        "organization": {
+          "$ref": "#/$defs/LogicalOrganizationRefV1"
+        },
+        "state": {
+          "$ref": "#/$defs/EffectiveFactStateV1"
+        }
+      },
+      "required": [
+        "group",
+        "organization",
+        "axes",
+        "state",
+        "interval"
+      ],
+      "type": "object"
+    },
+    "OrganizationalInspectionId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "OrganizationalInspectionV1": {
+      "additionalProperties": false,
+      "properties": {
+        "coordinates": {
+          "items": {
+            "$ref": "#/$defs/InspectionCoordinateClassV1"
+          },
+          "maxItems": 9,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "disclosure": {
+          "$ref": "#/$defs/DisclosureCeilingV1"
+        },
+        "inspection_id": {
+          "$ref": "#/$defs/OrganizationalInspectionId"
+        },
+        "principal": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "states": {
+          "items": {
+            "$ref": "#/$defs/EffectiveFactStateV1"
+          },
+          "maxItems": 7,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "view_provider": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/WorkspaceResourceId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "inspection_id",
+        "principal",
+        "disclosure",
+        "coordinates",
+        "states"
+      ],
+      "type": "object"
+    },
+    "OrganizationalLensId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "OrganizationalNativeProjectionV1": {
+      "additionalProperties": false,
+      "properties": {
+        "class": {
+          "$ref": "#/$defs/ResponsibilityProjectionClassV1"
+        },
+        "disclosure": {
+          "$ref": "#/$defs/DisclosureCeilingV1"
+        },
+        "interval": {
+          "$ref": "#/$defs/EffectiveIntervalV1"
+        },
+        "native_owner": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "native_refs": {
+          "items": {
+            "$ref": "#/$defs/WorkspaceResourceId"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "projection_id": {
+          "$ref": "#/$defs/OrganizationalProjectionId"
+        },
+        "state": {
+          "$ref": "#/$defs/EffectiveFactStateV1"
+        },
+        "subject": {
+          "$ref": "#/$defs/OrganizationalNodeRefV1"
+        }
+      },
+      "required": [
+        "projection_id",
+        "subject",
+        "class",
+        "native_owner",
+        "native_refs",
+        "disclosure",
+        "state",
+        "interval"
+      ],
+      "type": "object"
+    },
+    "OrganizationalNodeRefV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "scope",
+              "type": "string"
+            },
+            "scope": {
+              "$ref": "#/$defs/LogicalScopeRefV1"
+            }
+          },
+          "required": [
+            "kind",
+            "scope"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "organization",
+              "type": "string"
+            },
+            "organization": {
+              "$ref": "#/$defs/LogicalOrganizationRefV1"
+            }
+          },
+          "required": [
+            "kind",
+            "organization"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "group": {
+              "$ref": "#/$defs/OrganizationalGroupRefV1"
+            },
+            "kind": {
+              "const": "group",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "group"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "discipline_tree",
+              "type": "string"
+            },
+            "tree": {
+              "$ref": "#/$defs/DisciplineTreeRefV1"
+            }
+          },
+          "required": [
+            "kind",
+            "tree"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "role",
+              "type": "string"
+            },
+            "role": {
+              "$ref": "#/$defs/OrganizationalRoleRefV1"
+            }
+          },
+          "required": [
+            "kind",
+            "role"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "occupant",
+              "type": "string"
+            },
+            "occupant": {
+              "$ref": "#/$defs/OrganizationalOccupantId"
+            }
+          },
+          "required": [
+            "kind",
+            "occupant"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "provider",
+              "type": "string"
+            },
+            "provider": {
+              "$ref": "#/$defs/OrganizationalProviderId"
+            }
+          },
+          "required": [
+            "kind",
+            "provider"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "native_resource",
+              "type": "string"
+            },
+            "resource": {
+              "$ref": "#/$defs/WorkspaceResourceId"
+            }
+          },
+          "required": [
+            "kind",
+            "resource"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "object",
+              "type": "string"
+            },
+            "object": {
+              "$ref": "#/$defs/OrganizationalObjectId"
+            }
+          },
+          "required": [
+            "kind",
+            "object"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "OrganizationalObjectClassId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "OrganizationalObjectId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "OrganizationalObjectV1": {
+      "additionalProperties": false,
+      "properties": {
+        "axes": {
+          "$ref": "#/$defs/OrganizationalAuthorityAxesV1"
+        },
+        "interval": {
+          "$ref": "#/$defs/EffectiveIntervalV1"
+        },
+        "namespace": {
+          "$ref": "#/$defs/WorkspaceNamespaceId"
+        },
+        "object_class": {
+          "$ref": "#/$defs/OrganizationalObjectClassId"
+        },
+        "object_id": {
+          "$ref": "#/$defs/OrganizationalObjectId"
+        },
+        "organization": {
+          "$ref": "#/$defs/LogicalOrganizationRefV1"
+        },
+        "scope": {
+          "$ref": "#/$defs/LogicalScopeRefV1"
+        },
+        "state": {
+          "$ref": "#/$defs/EffectiveFactStateV1"
+        }
+      },
+      "required": [
+        "object_id",
+        "namespace",
+        "scope",
+        "organization",
+        "object_class",
+        "axes",
+        "state",
+        "interval"
+      ],
+      "type": "object"
+    },
+    "OrganizationalOccupantBindingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "interval": {
+          "$ref": "#/$defs/EffectiveIntervalV1"
+        },
+        "issuer": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "occupant": {
+          "$ref": "#/$defs/OrganizationalOccupantId"
+        },
+        "role": {
+          "$ref": "#/$defs/OrganizationalRoleRefV1"
+        },
+        "state": {
+          "$ref": "#/$defs/EffectiveFactStateV1"
+        }
+      },
+      "required": [
+        "role",
+        "occupant",
+        "issuer",
+        "state",
+        "interval"
+      ],
+      "type": "object"
+    },
+    "OrganizationalOccupantId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "OrganizationalProjectionId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "OrganizationalProviderBindingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "interval": {
+          "$ref": "#/$defs/EffectiveIntervalV1"
+        },
+        "issuer": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "provider": {
+          "$ref": "#/$defs/OrganizationalProviderId"
+        },
+        "role": {
+          "$ref": "#/$defs/OrganizationalRoleRefV1"
+        },
+        "state": {
+          "$ref": "#/$defs/EffectiveFactStateV1"
+        }
+      },
+      "required": [
+        "role",
+        "provider",
+        "issuer",
+        "state",
+        "interval"
+      ],
+      "type": "object"
+    },
+    "OrganizationalProviderId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "OrganizationalRelationClassV1": {
+      "oneOf": [
+        {
+          "const": "coordinates",
+          "type": "string"
+        },
+        {
+          "const": "primary",
+          "type": "string"
+        },
+        {
+          "const": "leader",
+          "type": "string"
+        },
+        {
+          "const": "supporting",
+          "type": "string"
+        },
+        {
+          "const": "people_management",
+          "type": "string"
+        },
+        {
+          "const": "roadmap_coordination",
+          "type": "string"
+        },
+        {
+          "const": "discipline_judgment",
+          "type": "string"
+        },
+        {
+          "const": "standards",
+          "type": "string"
+        },
+        {
+          "const": "review",
+          "type": "string"
+        },
+        {
+          "const": "bounded_block",
+          "type": "string"
+        },
+        {
+          "const": "escalation",
+          "type": "string"
+        },
+        {
+          "const": "acceptance",
+          "type": "string"
+        },
+        {
+          "const": "native_presence",
+          "type": "string"
+        },
+        {
+          "const": "collaboration",
+          "type": "string"
+        }
+      ]
+    },
+    "OrganizationalRelationId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "OrganizationalRelationV1": {
+      "additionalProperties": false,
+      "properties": {
+        "class": {
+          "$ref": "#/$defs/OrganizationalRelationClassV1"
+        },
+        "from": {
+          "$ref": "#/$defs/OrganizationalNodeRefV1"
+        },
+        "interval": {
+          "$ref": "#/$defs/EffectiveIntervalV1"
+        },
+        "issuer": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "relation_id": {
+          "$ref": "#/$defs/OrganizationalRelationId"
+        },
+        "state": {
+          "$ref": "#/$defs/EffectiveFactStateV1"
+        },
+        "to": {
+          "$ref": "#/$defs/OrganizationalNodeRefV1"
+        }
+      },
+      "required": [
+        "relation_id",
+        "class",
+        "from",
+        "to",
+        "issuer",
+        "state",
+        "interval"
+      ],
+      "type": "object"
+    },
+    "OrganizationalRoleClassId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "OrganizationalRoleId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "OrganizationalRoleRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "namespace": {
+          "$ref": "#/$defs/WorkspaceNamespaceId"
+        },
+        "role_id": {
+          "$ref": "#/$defs/OrganizationalRoleId"
+        }
+      },
+      "required": [
+        "namespace",
+        "role_id"
+      ],
+      "type": "object"
+    },
+    "OrganizationalRoleV1": {
+      "additionalProperties": false,
+      "properties": {
+        "axes": {
+          "$ref": "#/$defs/OrganizationalAuthorityAxesV1"
+        },
+        "discipline_tree": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DisciplineTreeRefV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "group": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/OrganizationalGroupRefV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "interval": {
+          "$ref": "#/$defs/EffectiveIntervalV1"
+        },
+        "organization": {
+          "$ref": "#/$defs/LogicalOrganizationRefV1"
+        },
+        "role": {
+          "$ref": "#/$defs/OrganizationalRoleRefV1"
+        },
+        "role_class": {
+          "$ref": "#/$defs/OrganizationalRoleClassId"
+        },
+        "state": {
+          "$ref": "#/$defs/EffectiveFactStateV1"
+        }
+      },
+      "required": [
+        "role",
+        "organization",
+        "role_class",
+        "axes",
+        "state",
+        "interval"
+      ],
+      "type": "object"
+    },
+    "PaleSettlementRequirementV1": {
+      "additionalProperties": false,
+      "properties": {
+        "requirement": {
+          "$ref": "#/$defs/ResponsibilityEvidenceRequirementV1"
+        }
+      },
+      "required": [
+        "requirement"
+      ],
+      "type": "object"
+    },
+    "ProviderAcceptanceRequirementV1": {
+      "additionalProperties": false,
+      "properties": {
+        "requirement": {
+          "$ref": "#/$defs/ResponsibilityEvidenceRequirementV1"
+        }
+      },
+      "required": [
+        "requirement"
+      ],
+      "type": "object"
+    },
+    "ProviderCompletionRequirementV1": {
+      "additionalProperties": false,
+      "properties": {
+        "requirement": {
+          "$ref": "#/$defs/ResponsibilityEvidenceRequirementV1"
+        }
+      },
+      "required": [
+        "requirement"
+      ],
+      "type": "object"
+    },
+    "ResponsibilityEvidenceRequirementV1": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_ref": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "owner": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        }
+      },
+      "required": [
+        "owner",
+        "evidence_ref"
+      ],
+      "type": "object"
+    },
+    "ResponsibilityProjectionClassV1": {
+      "oneOf": [
+        {
+          "const": "accountable_work",
+          "type": "string"
+        },
+        {
+          "const": "communication",
+          "type": "string"
+        },
+        {
+          "const": "relationship",
+          "type": "string"
+        },
+        {
+          "const": "native_application",
+          "type": "string"
+        },
+        {
+          "const": "derived_view",
+          "type": "string"
+        },
+        {
+          "const": "context",
+          "type": "string"
+        },
+        {
+          "const": "genealogy",
+          "type": "string"
+        }
+      ]
+    },
+    "ServiceAccountId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "ServiceAssignmentV1": {
+      "additionalProperties": false,
+      "properties": {
+        "account": {
+          "$ref": "#/$defs/ServiceAccountId"
+        },
+        "interval": {
+          "$ref": "#/$defs/EffectiveIntervalV1"
+        },
+        "mandate": {
+          "$ref": "#/$defs/ServiceMandateId"
+        },
+        "pods": {
+          "items": {
+            "$ref": "#/$defs/ServicePodId"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "state": {
+          "$ref": "#/$defs/EffectiveFactStateV1"
+        },
+        "stewards": {
+          "items": {
+            "$ref": "#/$defs/ServiceStewardId"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "account",
+        "mandate",
+        "stewards",
+        "pods",
+        "state",
+        "interval"
+      ],
+      "type": "object"
+    },
+    "ServiceMandateId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "ServicePodId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "ServiceStewardId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceAuthorityCeilingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "permitted": {
+          "items": {
+            "$ref": "#/$defs/WorkspaceAuthorityScopeId"
+          },
+          "maxItems": 1024,
+          "minItems": 0,
+          "type": "array"
+        }
+      },
+      "required": [
+        "permitted"
+      ],
+      "type": "object"
+    },
+    "WorkspaceAuthorityScopeId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceControllerCeilingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "permitted": {
+          "items": {
+            "$ref": "#/$defs/WorkspaceControllerScopeId"
+          },
+          "maxItems": 1024,
+          "minItems": 0,
+          "type": "array"
+        }
+      },
+      "required": [
+        "permitted"
+      ],
+      "type": "object"
+    },
+    "WorkspaceControllerScopeId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceEffectCeilingV1": {
+      "oneOf": [
+        {
+          "const": "none",
+          "type": "string"
+        },
+        {
+          "const": "read",
+          "type": "string"
+        },
+        {
+          "const": "mutate",
+          "type": "string"
+        }
+      ]
+    },
+    "WorkspaceNamespaceId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspacePolicyCeilingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "authorities": {
+          "$ref": "#/$defs/WorkspaceAuthorityCeilingV1"
+        },
+        "controllers": {
+          "$ref": "#/$defs/WorkspaceControllerCeilingV1"
+        },
+        "disclosure": {
+          "$ref": "#/$defs/DisclosureCeilingV1"
+        },
+        "effect": {
+          "$ref": "#/$defs/WorkspaceEffectCeilingV1"
+        },
+        "model_use_permitted": {
+          "type": "boolean"
+        },
+        "retention_seconds": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "rights": {
+          "$ref": "#/$defs/WorkspaceRightsCeilingV1"
+        }
+      },
+      "required": [
+        "disclosure",
+        "effect",
+        "model_use_permitted",
+        "retention_seconds",
+        "rights",
+        "controllers",
+        "authorities"
+      ],
+      "type": "object"
+    },
+    "WorkspaceResourceId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceRightId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceRightsCeilingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "permitted": {
+          "items": {
+            "$ref": "#/$defs/WorkspaceRightId"
+          },
+          "maxItems": 1024,
+          "minItems": 0,
+          "type": "array"
+        }
+      },
+      "required": [
+        "permitted"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/organizational-translation.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "communication_actor_bindings": {
+      "items": {
+        "$ref": "#/$defs/CommunicationActorBindingV1"
+      },
+      "maxItems": 1024,
+      "type": "array"
+    },
+    "discipline_trees": {
+      "items": {
+        "$ref": "#/$defs/DisciplineTreeV1"
+      },
+      "maxItems": 1024,
+      "type": "array"
+    },
+    "group_lenses": {
+      "items": {
+        "$ref": "#/$defs/GroupLensAuthorityProfileV1"
+      },
+      "maxItems": 1024,
+      "type": "array"
+    },
+    "groups": {
+      "items": {
+        "$ref": "#/$defs/OrganizationalGroupV1"
+      },
+      "maxItems": 1024,
+      "type": "array"
+    },
+    "inspection": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/OrganizationalInspectionV1"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "leadership": {
+      "items": {
+        "$ref": "#/$defs/LeadershipParticipationV1"
+      },
+      "maxItems": 1024,
+      "type": "array"
+    },
+    "native_projections": {
+      "items": {
+        "$ref": "#/$defs/OrganizationalNativeProjectionV1"
+      },
+      "maxItems": 1024,
+      "type": "array"
+    },
+    "objects": {
+      "items": {
+        "$ref": "#/$defs/OrganizationalObjectV1"
+      },
+      "maxItems": 1024,
+      "type": "array"
+    },
+    "occupant_bindings": {
+      "items": {
+        "$ref": "#/$defs/OrganizationalOccupantBindingV1"
+      },
+      "maxItems": 1024,
+      "type": "array"
+    },
+    "organizations": {
+      "items": {
+        "$ref": "#/$defs/LogicalOrganizationV1"
+      },
+      "maxItems": 1024,
+      "type": "array"
+    },
+    "population_rules": {
+      "items": {
+        "$ref": "#/$defs/ObjectRolePopulationRuleV1"
+      },
+      "maxItems": 1024,
+      "type": "array"
+    },
+    "provider_bindings": {
+      "items": {
+        "$ref": "#/$defs/OrganizationalProviderBindingV1"
+      },
+      "maxItems": 1024,
+      "type": "array"
+    },
+    "relations": {
+      "items": {
+        "$ref": "#/$defs/OrganizationalRelationV1"
+      },
+      "maxItems": 4096,
+      "type": "array"
+    },
+    "roles": {
+      "items": {
+        "$ref": "#/$defs/OrganizationalRoleV1"
+      },
+      "maxItems": 1024,
+      "type": "array"
+    },
+    "schema": {
+      "const": "pale/organizational-translation.v1",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "scopes": {
+      "items": {
+        "$ref": "#/$defs/LogicalScopeV1"
+      },
+      "maxItems": 1024,
+      "type": "array"
+    },
+    "services": {
+      "items": {
+        "$ref": "#/$defs/DirectionalServiceContractV1"
+      },
+      "maxItems": 1024,
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_version",
+    "scopes",
+    "organizations",
+    "groups",
+    "discipline_trees",
+    "roles",
+    "occupant_bindings",
+    "provider_bindings",
+    "communication_actor_bindings",
+    "leadership",
+    "relations",
+    "objects",
+    "population_rules",
+    "group_lenses",
+    "services",
+    "native_projections"
+  ],
+  "title": "organizational-translation.v1",
+  "type": "object"
+}

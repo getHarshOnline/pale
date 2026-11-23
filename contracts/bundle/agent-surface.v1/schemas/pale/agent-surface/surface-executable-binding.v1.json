@@ -1,0 +1,30 @@
+{
+  "$id": "https://www.rawthoughts.in/pale/schemas/surface-executable-binding.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "exec": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "protocol": {
+      "const": "pale.agent-surface-interface.v1",
+      "type": "string"
+    },
+    "version": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "exec",
+    "digest",
+    "version",
+    "protocol"
+  ],
+  "title": "surface-executable-binding.v1",
+  "type": "object"
+}

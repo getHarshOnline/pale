@@ -1,0 +1,7 @@
+[roles]
+schema_version = 1
+
+[[roles.role]]
+id = "docs-lookup"
+description = "Answer a technical question from current supplied official documentation without guessing across versions."
+doctrine = "docs-lookup.md"

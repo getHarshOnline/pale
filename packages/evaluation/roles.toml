@@ -1,0 +1,19 @@
+[roles]
+schema_version = 1
+
+[[roles.archetype]]
+id = "candidate-evaluation-specialist"
+description = "Keep candidate production separate from independent evaluation of its evidence."
+doctrine = "candidate-evaluation-specialist.md"
+
+[[roles.role]]
+id = "candidate-generator"
+description = "Propose the next candidate within scope and answer review findings without treating its rationale as evidence."
+doctrine = "candidate-generator.md"
+extends = [{ scope = "local", resource_id = "candidate-evaluation-specialist" }]
+
+[[roles.role]]
+id = "independent-evaluator"
+description = "Review a fixed candidate independently against the agreed rubric, examples and evidence."
+doctrine = "independent-evaluator.md"
+extends = [{ scope = "local", resource_id = "candidate-evaluation-specialist" }]

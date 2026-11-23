@@ -1,0 +1,14 @@
+kind = "tool_recipe"
+
+[recipe]
+description = "Open supplied rendered URLs in Chromium and record captures and measurements from the requested profile."
+capability = "rendered-design-capture"
+tool_contract = "rendered-design-capture.v1"
+tool_operation = "capture"
+effect_class = "execute"
+input_mapping.urls = "$.urls"
+input_mapping.profile = "$.profile"
+input_mapping.output = "$.output"
+input_mapping.build = "$.build"
+evidence.required_fields = ["/status", "/manifest", "/cells", "/problems"]
+evidence.proof_ceiling = "browser-capture-and-measurements"

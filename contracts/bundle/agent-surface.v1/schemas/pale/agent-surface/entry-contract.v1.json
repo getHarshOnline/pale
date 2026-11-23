@@ -1,0 +1,33 @@
+{
+  "$id": "https://www.rawthoughts.in/pale/schemas/entry-contract.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "entry": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/ParticipantRefV1"
+    },
+    "id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._/-]+$",
+      "type": "string"
+    },
+    "origin": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/EntryOriginRefV1"
+    },
+    "responsibility_contract_id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._/-]+$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "entry",
+    "origin",
+    "responsibility_contract_id"
+  ],
+  "title": "entry-contract.v1",
+  "type": "object"
+}

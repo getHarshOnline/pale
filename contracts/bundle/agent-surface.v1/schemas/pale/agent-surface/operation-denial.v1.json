@@ -1,0 +1,74 @@
+{
+  "$id": "https://www.rawthoughts.in/pale/schemas/operation-denial.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "code": {
+      "maxLength": 128,
+      "minLength": 1,
+      "type": "string"
+    },
+    "detail": {
+      "maxLength": 256,
+      "minLength": 1,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "message": {
+      "maxLength": 1024,
+      "minLength": 1,
+      "type": "string"
+    },
+    "operation": {
+      "maxLength": 256,
+      "minLength": 1,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "requirement": {
+      "maxLength": 256,
+      "minLength": 1,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "schema": {
+      "const": "pale/operation-denial.v1",
+      "type": "string"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "scope_digest": {
+      "anyOf": [
+        {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "tool": {
+      "maxLength": 256,
+      "minLength": 1,
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "schema",
+    "schema_sha256",
+    "code",
+    "message"
+  ],
+  "title": "operation-denial.v1",
+  "type": "object"
+}

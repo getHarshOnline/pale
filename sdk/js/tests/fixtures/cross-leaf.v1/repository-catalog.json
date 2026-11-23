@@ -1,0 +1,142 @@
+{
+  "contracts": [
+    {
+      "boundary": "pure",
+      "contract_digest": "59f8e81715d14644afd460380439c834e0c392c3fc8da3fe8dd0fdf8871d53d9",
+      "description": "Grade caller-classified trace events against bounded temporal rules.",
+      "effect": "compute",
+      "id": "pale.compute.compliance-trace-grade",
+      "input_kind": "compliance_trace_grade",
+      "output_kind": "compliance_trace_grade",
+      "schema": "pale/action-contract.v1",
+      "schema_version": 1,
+      "version": 1
+    },
+    {
+      "boundary": "pure",
+      "contract_digest": "04d20038682ab243999182f62d79d34e8a02e2899d5d7e68858be13af3b9c049",
+      "description": "Evaluate bounded lexical invariant leads over caller-supplied configuration text.",
+      "effect": "compute",
+      "id": "pale.compute.config-invariant-scan",
+      "input_kind": "config_invariant_scan",
+      "output_kind": "config_invariant_scan",
+      "schema": "pale/action-contract.v1",
+      "schema_version": 1,
+      "version": 1
+    },
+    {
+      "boundary": "pure",
+      "contract_digest": "66d1865a5e6da1f35d1d78901718c9bb02079d7866b937e41846805761064c24",
+      "description": "Select latest cumulative session snapshots and aggregate integer micro-USD costs.",
+      "effect": "compute",
+      "id": "pale.compute.cost-aggregate",
+      "input_kind": "cost_aggregate",
+      "output_kind": "cost_aggregate",
+      "schema": "pale/action-contract.v1",
+      "schema_version": 1,
+      "version": 1
+    },
+    {
+      "boundary": "pure",
+      "contract_digest": "fd21335c52e5626198101749b7f9146b605720c1159bcc37ea4f756bbe76ed24",
+      "description": "Select caller-declared rules from caller-supplied evidence in explicit precedence order.",
+      "effect": "compute",
+      "id": "pale.compute.evidence-selection",
+      "input_kind": "evidence_selection",
+      "output_kind": "evidence_selection",
+      "schema": "pale/action-contract.v1",
+      "schema_version": 1,
+      "version": 1
+    },
+    {
+      "boundary": "pure",
+      "contract_digest": "17259bcd9d1f31ed113f38c49760ca17f5a7efd22af07cdb699f2ce12310bddf",
+      "description": "Reduce normalized loop events into deterministic fail-closed intervention signals.",
+      "effect": "compute",
+      "id": "pale.compute.loop-status-reduce",
+      "input_kind": "loop_status_reduce",
+      "output_kind": "loop_status_reduce",
+      "schema": "pale/action-contract.v1",
+      "schema_version": 1,
+      "version": 1
+    },
+    {
+      "boundary": "pure",
+      "contract_digest": "df46ee629720fdeac9fa914c399d8efd6e66be75e00808fb4504ed976aa11700",
+      "description": "Normalize and inventory caller-supplied POSIX paths without filesystem access.",
+      "effect": "compute",
+      "id": "pale.compute.path-inventory",
+      "input_kind": "path_inventory",
+      "output_kind": "path_inventory",
+      "schema": "pale/action-contract.v1",
+      "schema_version": 1,
+      "version": 1
+    },
+    {
+      "boundary": "pure",
+      "contract_digest": "2d5f5e7f21b2a4100ffc21e448903e71e0e9e85af4ebf48e192013c2dc78db67",
+      "description": "Deduplicate supplied review findings and converge verifier evidence deterministically.",
+      "effect": "compute",
+      "id": "pale.compute.review-convergence-reduce",
+      "input_kind": "review_convergence_reduce",
+      "output_kind": "review_convergence_reduce",
+      "schema": "pale/action-contract.v1",
+      "schema_version": 1,
+      "version": 1
+    },
+    {
+      "boundary": "pure",
+      "contract_digest": "693fa467874b25f7822a8f9f9bac23fb028848660b681dd8681c8a2e22792f5e",
+      "description": "Normalize supplied integer rubric results and rank failures deterministically.",
+      "effect": "compute",
+      "id": "pale.compute.rubric-evaluation",
+      "input_kind": "rubric_evaluation",
+      "output_kind": "rubric_evaluation",
+      "schema": "pale/action-contract.v1",
+      "schema_version": 1,
+      "version": 1
+    },
+    {
+      "boundary": "pure",
+      "contract_digest": "4cd414cd2d8055197d7acf242ef2e6d7742848dd138bf7ba201708c6d5446b1a",
+      "description": "Validate and order provider-neutral service definitions without host access.",
+      "effect": "compute",
+      "id": "pale.compute.service-definition-normalize",
+      "input_kind": "service_definition_normalize",
+      "output_kind": "service_definition_normalize",
+      "schema": "pale/action-contract.v1",
+      "schema_version": 1,
+      "version": 1
+    },
+    {
+      "boundary": "pure",
+      "contract_digest": "733e83a7683293a012321fe93f18051fa3d226a0ebdc89ba307b1e9057147537",
+      "description": "Aggregate supplied skill observations over caller-defined time windows.",
+      "effect": "compute",
+      "id": "pale.compute.skill-health-aggregate",
+      "input_kind": "skill_health_aggregate",
+      "output_kind": "skill_health_aggregate",
+      "schema": "pale/action-contract.v1",
+      "schema_version": 1,
+      "version": 1
+    },
+    {
+      "boundary": "pure",
+      "contract_digest": "b1fac965a59aad0a00d071e92de070fdf7d33231386929356673786a636afa12",
+      "description": "Rank structured candidates with checked fixed-point arithmetic.",
+      "effect": "compute",
+      "id": "pale.compute.weighted-ranking",
+      "input_kind": "weighted_ranking",
+      "output_kind": "weighted_ranking",
+      "schema": "pale/action-contract.v1",
+      "schema_version": 1,
+      "version": 1
+    }
+  ],
+  "instance_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "profile_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "repository_id": "pale",
+  "schema": "pale/repository-native-action-catalog.v1",
+  "schema_sha256": "c6abfda313261e68e571365c982f206661f15c2649dc74a6f94f8e07557860b0",
+  "schema_version": 1
+}

@@ -1,0 +1,70 @@
+[package]
+id = "pale.research"
+version = "0.2.0"
+schema_version = 1
+title = "Research"
+description = "Find and assess sources, investigate markets and literature, work with notebooks and explain what the evidence supports."
+compatible_compilers = ["pale-surface@1"]
+dependencies = []
+sources = [
+  { path = "audience.md", role = "declaration" },
+  { path = "documentation.md", role = "declaration" },
+  { path = "evidence.md", role = "declaration" },
+  { path = "extraction.md", role = "declaration" },
+  { path = "literature.md", role = "declaration" },
+  { path = "market.md", role = "declaration" },
+  { path = "methods.md", role = "declaration" },
+  { path = "proofs.md", role = "declaration" },
+  { path = "reuse.md", role = "declaration" },
+  { path = "scholarship.md", role = "declaration" },
+  { path = "source-expression.md", role = "declaration" },
+  { path = "source-rights.md", role = "declaration" },
+  { path = "sources.md", role = "declaration" },
+  { path = "updates.md", role = "declaration" },
+  { path = "INDEX.md", role = "documentation" },
+  { path = "doctrine.toml", role = "documentation" },
+  { path = "evidence-judgment.md", role = "documentation" },
+  { path = "retrieval.md", role = "documentation" },
+  { path = "extraction-routing.md", role = "documentation" },
+  { path = "literature-method.md", role = "documentation" },
+  { path = "established-method.md", role = "documentation" },
+  { path = "scholar-evaluation.md", role = "documentation" },
+  { path = "proof-correspondence.md", role = "documentation" },
+  { path = "expression-assessment.md", role = "documentation" },
+  { path = "rights-assessment.md", role = "documentation" },
+  { path = "market-method.md", role = "documentation" },
+  { path = "audience-discovery.md", role = "documentation" },
+  { path = "roles.toml", role = "documentation" },
+  { path = "docs-lookup.md", role = "documentation" },
+  { path = "operations.toml", role = "documentation" },
+  { path = "evidence-bound-knowledge.md", role = "documentation" },
+  { path = "research.md", role = "documentation" },
+  { path = "market-study.md", role = "documentation" },
+  { path = "literature-review.md", role = "documentation" },
+  { path = "source-use.md", role = "documentation" },
+  { path = "review-update.md", role = "documentation" },
+  { path = "update-method.md", role = "documentation" },
+]
+resources = [
+  { id = "audience", kind = "doctrine", definition_source = "audience.md", exposure = "exported" },
+  { id = "documentation", kind = "role", definition_source = "documentation.md", exposure = "exported" },
+  { id = "evidence", kind = "doctrine", definition_source = "evidence.md", exposure = "exported" },
+  { id = "evidence", kind = "operation", definition_source = "evidence.md", exposure = "exported" },
+  { id = "extraction", kind = "doctrine", definition_source = "extraction.md", exposure = "exported" },
+  { id = "literature", kind = "doctrine", definition_source = "literature.md", exposure = "exported" },
+  { id = "literature", kind = "operation", definition_source = "literature.md", exposure = "exported" },
+  { id = "market", kind = "doctrine", definition_source = "market.md", exposure = "exported" },
+  { id = "market", kind = "operation", definition_source = "market.md", exposure = "exported" },
+  { id = "methods", kind = "doctrine", definition_source = "methods.md", exposure = "exported" },
+  { id = "proofs", kind = "operation", definition_source = "proofs.md", exposure = "exported" },
+  { id = "reuse", kind = "operation", definition_source = "reuse.md", exposure = "exported" },
+  { id = "scholarship", kind = "doctrine", definition_source = "scholarship.md", exposure = "exported" },
+  { id = "source-expression", kind = "doctrine", definition_source = "source-expression.md", exposure = "exported" },
+  { id = "source-rights", kind = "doctrine", definition_source = "source-rights.md", exposure = "exported" },
+  { id = "sources", kind = "doctrine", definition_source = "sources.md", exposure = "exported" },
+  { id = "updates", kind = "doctrine", definition_source = "updates.md", exposure = "exported" },
+  { id = "updates", kind = "operation", definition_source = "updates.md", exposure = "exported" },
+]
+
+[license]
+spdx = "AGPL-3.0-or-later"

@@ -1,0 +1,43 @@
+[package]
+id = "pale.business"
+version = "0.2.1"
+schema_version = 1
+title = "Business"
+description = "Compare customer alternatives, make group decisions, assess releases and commerce launches, and check engagement scope."
+compatible_compilers = ["pale-surface@1"]
+dependencies = [{ id = "pale.research", version = "0.2.0" }]
+sources = [
+  { path = "review.md", role = "declaration" },
+  { path = "competition.md", role = "declaration" },
+  { path = "group-decision.md", role = "declaration" },
+  { path = "release.md", role = "declaration" },
+  { path = "release/commerce.md", role = "declaration" },
+  { path = "engagement.md", role = "declaration" },
+  { path = "INDEX.md", role = "documentation" },
+  { path = "doctrine.toml", role = "documentation" },
+  { path = "council.md", role = "documentation" },
+  { path = "readiness.md", role = "documentation" },
+  { path = "competitive-set.md", role = "documentation" },
+  { path = "competitive-synthesis.md", role = "documentation" },
+  { path = "operations.toml", role = "documentation" },
+  { path = "decision-boundary.md", role = "documentation" },
+  { path = "competitive-analysis.md", role = "documentation" },
+  { path = "decision-council.md", role = "documentation" },
+  { path = "production-audit.md", role = "documentation" },
+  { path = "commerce-launch.md", role = "documentation" },
+  { path = "review-engagement-boundary.md", role = "documentation" },
+]
+resources = [
+  { id = "review", kind = "doctrine", definition_source = "review.md", exposure = "internal" },
+  { id = "competition", kind = "doctrine", definition_source = "competition.md", exposure = "exported" },
+  { id = "competition", kind = "operation", definition_source = "competition.md", exposure = "exported" },
+  { id = "group-decision", kind = "doctrine", definition_source = "group-decision.md", exposure = "exported" },
+  { id = "group-decision", kind = "operation", definition_source = "group-decision.md", exposure = "exported" },
+  { id = "release", kind = "doctrine", definition_source = "release.md", exposure = "exported" },
+  { id = "release", kind = "operation", definition_source = "release.md", exposure = "exported" },
+  { id = "release/commerce", kind = "operation", definition_source = "release/commerce.md", exposure = "exported" },
+  { id = "engagement", kind = "operation", definition_source = "engagement.md", exposure = "exported" },
+]
+
+[license]
+spdx = "AGPL-3.0-or-later"

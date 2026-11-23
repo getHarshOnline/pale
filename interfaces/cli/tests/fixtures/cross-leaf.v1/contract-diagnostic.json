@@ -1,0 +1,25 @@
+{
+  "canonical_diagnostic": "{\"code\":\"cross_leaf_probe\",\"disposition\":\"invalid_input\",\"effect\":\"not_applicable\",\"retry\":\"after_correction\",\"schema\":\"pale/diagnostic.v1\",\"schema_sha256\":\"5ac9e7778f1d452f985422347e5f8f4015a7711ab12fcb9e39d188d2b5e9e759\",\"schema_version\":1,\"severity\":\"error\",\"stage\":\"input_admission\",\"summary\":\"cross-leaf probe\",\"truncation\":{\"omitted_causes\":0,\"omitted_facts\":0,\"omitted_help\":0,\"omitted_notes\":0,\"shortened_fields\":0}}",
+  "capability_ids": [
+    "contract.schema-lookup",
+    "contract.document-validation",
+    "diagnostic.projection",
+    "diagnostic.admission"
+  ],
+  "outcome_unknown": {
+    "canonical_diagnostic": "{\"code\":\"cross_leaf_effect_outcome_unknown\",\"disposition\":\"effect_outcome_unknown\",\"effect\":\"outcome_unknown\",\"retry\":\"reconcile_first\",\"schema\":\"pale/diagnostic.v1\",\"schema_sha256\":\"5ac9e7778f1d452f985422347e5f8f4015a7711ab12fcb9e39d188d2b5e9e759\",\"schema_version\":1,\"severity\":\"error\",\"stage\":\"materialization\",\"summary\":\"available evidence cannot establish whether the external effect occurred\",\"truncation\":{\"omitted_causes\":0,\"omitted_facts\":0,\"omitted_help\":0,\"omitted_notes\":0,\"shortened_fields\":0}}",
+    "code": "cross_leaf_effect_outcome_unknown",
+    "summary": "available evidence cannot establish whether the external effect occurred"
+  },
+  "projection": {
+    "code": "cross_leaf_probe",
+    "summary": "cross-leaf probe"
+  },
+  "schema": {
+    "byte_length": 10927,
+    "registry_id": "diagnostic.v1",
+    "schema_sha256": "5ac9e7778f1d452f985422347e5f8f4015a7711ab12fcb9e39d188d2b5e9e759",
+    "schema_uri": "https://www.rawthoughts.in/pale/schemas/diagnostic.v1.json",
+    "wire_schema_id": "pale/diagnostic.v1"
+  }
+}

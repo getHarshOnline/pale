@@ -1,0 +1,18 @@
+[package]
+name = "pale-ports"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Outbound ports through which the Pale application reaches files, processes, time, storage, anchors, local IPC and A2A."
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+pale-core = { path = "../pale-core" }
+schemars = { workspace = true }
+serde = { workspace = true }
+thiserror = { workspace = true }

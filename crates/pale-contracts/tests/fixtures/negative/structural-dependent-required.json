@@ -1,0 +1,15 @@
+{
+  "checked_at": 1,
+  "checked_revocation_checkpoint_ref": "checkpoint",
+  "checked_revocation_checkpoint_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "checked_revocation_epoch": 1,
+  "checked_revocation_ref": "revocation",
+  "deployment_binding_ref": "deployment",
+  "deployment_binding_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "grant_issuer_key_epoch": 1,
+  "grant_issuer_key_id": "key",
+  "grant_issuer_principal_id": "principal",
+  "session_floor_epoch": 1,
+  "session_grant_id": "grant",
+  "session_grant_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+}

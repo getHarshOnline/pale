@@ -1,0 +1,611 @@
+{
+  "$defs": {
+    "AdapterPluginRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter_plugin_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "adapter_plugin_id"
+      ],
+      "type": "object"
+    },
+    "CapabilityEvidenceCoordinateV1": {
+      "additionalProperties": false,
+      "properties": {
+        "capability_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "evidence_contract_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "capability_id",
+        "evidence_contract_id"
+      ],
+      "type": "object"
+    },
+    "CommunicationActorHandleV1": {
+      "additionalProperties": false,
+      "properties": {
+        "canonical_opaque_handle": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "display_form": {
+          "oneOf": [
+            {
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "equality_scope": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "lifecycle_evidence_contract_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "namespace_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "native_authorship_verifier_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "reference_mapping_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "succession_evidence_contract_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "namespace_id",
+        "canonical_opaque_handle",
+        "equality_scope",
+        "display_form",
+        "native_authorship_verifier_id",
+        "reference_mapping_id",
+        "lifecycle_evidence_contract_id",
+        "succession_evidence_contract_id"
+      ],
+      "type": "object"
+    },
+    "ContractSchemaIdentityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_id": {
+          "$ref": "#/$defs/SchemaId"
+        },
+        "schema_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "schema_id",
+        "schema_sha256"
+      ],
+      "type": "object"
+    },
+    "DeploymentActivationIdentityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "deployment_activation_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "deployment_activation_sha256"
+      ],
+      "type": "object"
+    },
+    "LogicalProviderInstanceRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "logical_provider_instance_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "logical_provider_instance_id"
+      ],
+      "type": "object"
+    },
+    "NativeAuthorityOriginRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "native_authority_origin_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "native_authority_origin_id"
+      ],
+      "type": "object"
+    },
+    "NativeDataGenerationIdentityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "native_data_generation_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "native_data_generation_sha256"
+      ],
+      "type": "object"
+    },
+    "PaleAdmissionGenerationIdentityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "pale_admission_generation_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "pale_admission_generation_sha256"
+      ],
+      "type": "object"
+    },
+    "PhysicalDeploymentRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "physical_deployment_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "physical_deployment_id"
+      ],
+      "type": "object"
+    },
+    "ProviderArtifactCoordinatesV1": {
+      "additionalProperties": false,
+      "properties": {
+        "build": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "executable": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "image": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "package": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "source": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "build",
+        "package",
+        "image",
+        "executable"
+      ],
+      "type": "object"
+    },
+    "ProviderAuthorityCoordinatesV1": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "native": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "field",
+        "native"
+      ],
+      "type": "object"
+    },
+    "ProviderBehaviorCoordinatesV1": {
+      "additionalProperties": false,
+      "properties": {
+        "degraded": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "removal": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "degraded",
+        "removal"
+      ],
+      "type": "object"
+    },
+    "ProviderBindingIdentityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_binding_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "provider_binding_sha256"
+      ],
+      "type": "object"
+    },
+    "ProviderConformanceCoordinatesV1": {
+      "additionalProperties": false,
+      "properties": {
+        "conformance": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "evidence": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "per_capability_evidence": {
+          "items": {
+            "$ref": "#/$defs/CapabilityEvidenceCoordinateV1"
+          },
+          "maxItems": 256,
+          "type": "array"
+        }
+      },
+      "required": [
+        "conformance",
+        "evidence",
+        "per_capability_evidence"
+      ],
+      "type": "object"
+    },
+    "ProviderExchangeCoordinatesV1": {
+      "additionalProperties": false,
+      "properties": {
+        "cancel": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "cursor": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "drain": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "outbox": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "request": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "result": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "outbox",
+        "cursor",
+        "request",
+        "result",
+        "cancel",
+        "drain"
+      ],
+      "type": "object"
+    },
+    "ProviderFamilyRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_family_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider_family_id"
+      ],
+      "type": "object"
+    },
+    "ProviderGenerationCoordinatesV1": {
+      "additionalProperties": false,
+      "properties": {
+        "deployment_activation_identity": {
+          "$ref": "#/$defs/DeploymentActivationIdentityV1"
+        },
+        "native_data_generation_identity": {
+          "$ref": "#/$defs/NativeDataGenerationIdentityV1"
+        },
+        "pale_admission_generation_identity": {
+          "$ref": "#/$defs/PaleAdmissionGenerationIdentityV1"
+        }
+      },
+      "required": [
+        "deployment_activation_identity",
+        "native_data_generation_identity",
+        "pale_admission_generation_identity"
+      ],
+      "type": "object"
+    },
+    "ProviderLifecycleCoordinatesV1": {
+      "additionalProperties": false,
+      "properties": {
+        "failure": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "lifecycle": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "lifecycle",
+        "failure"
+      ],
+      "type": "object"
+    },
+    "ProviderMappingCoordinatesV1": {
+      "additionalProperties": false,
+      "properties": {
+        "entity": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "event": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "field": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "terminology": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "terminology",
+        "entity",
+        "field",
+        "event"
+      ],
+      "type": "object"
+    },
+    "ProviderProtocolCoordinatesV1": {
+      "additionalProperties": false,
+      "properties": {
+        "configuration": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "extensions": {
+          "items": {
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9._/-]+$",
+            "type": "string"
+          },
+          "maxItems": 256,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "protocol": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "protocol",
+        "configuration",
+        "extensions"
+      ],
+      "type": "object"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/provider-binding.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "adapter_plugin": {
+      "$ref": "#/$defs/AdapterPluginRefV1"
+    },
+    "artifact_coordinates": {
+      "$ref": "#/$defs/ProviderArtifactCoordinatesV1"
+    },
+    "authority_coordinates": {
+      "$ref": "#/$defs/ProviderAuthorityCoordinatesV1"
+    },
+    "behavior_coordinates": {
+      "$ref": "#/$defs/ProviderBehaviorCoordinatesV1"
+    },
+    "binding_identity": {
+      "$ref": "#/$defs/ProviderBindingIdentityV1"
+    },
+    "communication_actor_handle": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CommunicationActorHandleV1"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "conformance_coordinates": {
+      "$ref": "#/$defs/ProviderConformanceCoordinatesV1"
+    },
+    "exchange_coordinates": {
+      "$ref": "#/$defs/ProviderExchangeCoordinatesV1"
+    },
+    "generation_coordinates": {
+      "$ref": "#/$defs/ProviderGenerationCoordinatesV1"
+    },
+    "id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._/-]+$",
+      "type": "string"
+    },
+    "lifecycle_coordinates": {
+      "$ref": "#/$defs/ProviderLifecycleCoordinatesV1"
+    },
+    "logical_provider_instance": {
+      "$ref": "#/$defs/LogicalProviderInstanceRefV1"
+    },
+    "mapping_coordinates": {
+      "$ref": "#/$defs/ProviderMappingCoordinatesV1"
+    },
+    "native_authority_origin": {
+      "$ref": "#/$defs/NativeAuthorityOriginRefV1"
+    },
+    "participant": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/ParticipantRefV1"
+    },
+    "physical_deployment": {
+      "$ref": "#/$defs/PhysicalDeploymentRefV1"
+    },
+    "protocol_coordinates": {
+      "$ref": "#/$defs/ProviderProtocolCoordinatesV1"
+    },
+    "provider_family": {
+      "$ref": "#/$defs/ProviderFamilyRefV1"
+    },
+    "responsibility": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/ResponsibilityV1"
+    },
+    "responsibility_contract_ids": {
+      "items": {
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9._/-]+$",
+        "type": "string"
+      },
+      "maxItems": 256,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "responsibility_schema_identities": {
+      "items": {
+        "$ref": "#/$defs/ContractSchemaIdentityV1"
+      },
+      "maxItems": 256,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "id",
+    "participant",
+    "responsibility",
+    "responsibility_contract_ids",
+    "responsibility_schema_identities",
+    "communication_actor_handle",
+    "binding_identity",
+    "provider_family",
+    "logical_provider_instance",
+    "native_authority_origin",
+    "physical_deployment",
+    "adapter_plugin",
+    "artifact_coordinates",
+    "protocol_coordinates",
+    "mapping_coordinates",
+    "authority_coordinates",
+    "lifecycle_coordinates",
+    "exchange_coordinates",
+    "behavior_coordinates",
+    "conformance_coordinates",
+    "generation_coordinates"
+  ],
+  "title": "provider-binding.v1",
+  "type": "object"
+}

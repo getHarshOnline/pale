@@ -1,0 +1,85 @@
+schema = "pale/workspace-module.v1"
+schema_version = 1
+module_digest = "906472744d729c6145fcec6de552cf4835087437042d27dd96311f2a33e15fb1"
+
+[module]
+module_id = "candidate"
+release_id = "release-1"
+imports = []
+extensions = []
+resources = []
+
+[module.publisher]
+publisher_id = "candidate-publisher"
+root_key_id = "candidate-publisher-root"
+recovery_authority_id = "candidate-publisher-recovery"
+delegated_release_key_id = "candidate-publisher-release"
+
+[[module.source_components]]
+component_id = "alpha-source"
+component_digest = "b57339f4f8b20da5d820ff66f095ffb80f9b278c99c065e17943a1c3a63601c2"
+
+[[module.source_components]]
+component_id = "beta-source"
+component_digest = "485e6e2eb29893388b74c749bdfaf7aeab678191e442cda28e320f394121f983"
+
+[[module.exports]]
+export_id = "public-api"
+visibility = "public"
+delivery = "interface"
+propagation = "transitive"
+obligations = ["retain-attribution"]
+exclusive_authority = []
+
+[[module.exports.declarations]]
+owner_module = "candidate"
+
+[module.exports.declarations.local_ref]
+namespace = "alpha"
+declaration_id = "common"
+
+[module.exports.declarations.declaration]
+kind = "trait"
+id = "common"
+namespace = "alpha"
+
+[[module.exports.declarations.declaration.dependencies]]
+kind = "positive"
+
+[module.exports.declarations.declaration.dependencies.target]
+namespace = "beta"
+declaration_id = "common"
+
+[[module.exports.declarations]]
+owner_module = "candidate"
+
+[module.exports.declarations.local_ref]
+namespace = "beta"
+declaration_id = "common"
+
+[module.exports.declarations.declaration]
+kind = "trait"
+id = "common"
+namespace = "beta"
+
+[[module.exports.declarations.declaration.dependencies]]
+kind = "positive"
+
+[module.exports.declarations.declaration.dependencies.target]
+namespace = "alpha"
+declaration_id = "common"
+
+[module.exports.ceiling]
+disclosure = "public"
+effect = "read"
+model_use_permitted = false
+retention_seconds = 3600
+
+[module.exports.ceiling.rights]
+permitted = ["read"]
+
+[module.exports.ceiling.controllers]
+permitted = ["principal"]
+
+[module.exports.ceiling.authorities]
+permitted = ["principal"]

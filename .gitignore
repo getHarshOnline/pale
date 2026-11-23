@@ -1,0 +1,24 @@
+# Rust build output — never part of the review/source state.
+/target
+**/target
+
+# Language-extension build and cache output.
+**/node_modules/
+**/.venv/
+**/__pycache__/
+**/.pytest_cache/
+**/*.py[cod]
+**/*.node
+
+# fs-adapter staging files (should never persist).
+.pale-stage-*
+
+# Local CodeGraph index — derived from the exact worktree, never source authority.
+.codegraph/
+
+# OS noise.
+.DS_Store
+
+# Dependency inventory written by tools/generate_sbom.py for a release; never committed.
+/SBOM.spdx.json
+/THIRD_PARTY_NOTICES.md

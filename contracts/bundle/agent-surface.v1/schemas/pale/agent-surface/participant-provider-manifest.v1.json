@@ -1,0 +1,80 @@
+{
+  "$defs": {
+    "ProviderCompatibilityDeclarationV1": {
+      "additionalProperties": false,
+      "properties": {
+        "capability_ids": {
+          "items": {
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9._/-]+$",
+            "type": "string"
+          },
+          "maxItems": 256,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "compatible_provider_ids": {
+          "items": {
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9._/-]+$",
+            "type": "string"
+          },
+          "maxItems": 256,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "participant": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/ParticipantRefV1"
+        }
+      },
+      "required": [
+        "id",
+        "participant",
+        "capability_ids",
+        "compatible_provider_ids"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/participant-provider-manifest.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._/-]+$",
+      "type": "string"
+    },
+    "participants": {
+      "items": {
+        "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/ParticipantRefV1"
+      },
+      "maxItems": 1024,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "providers": {
+      "items": {
+        "$ref": "#/$defs/ProviderCompatibilityDeclarationV1"
+      },
+      "maxItems": 1024,
+      "type": "array"
+    }
+  },
+  "required": [
+    "id",
+    "participants",
+    "providers"
+  ],
+  "title": "participant-provider-manifest.v1",
+  "type": "object"
+}

@@ -1,0 +1,493 @@
+{
+  "$defs": {
+    "BaselineEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "observation": {
+          "$ref": "#/$defs/BaselineStateV1"
+        },
+        "rel_path": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "rel_path",
+        "observation"
+      ],
+      "type": "object"
+    },
+    "BaselineStateV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "const": "absent",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "mode": {
+              "$ref": "#/$defs/UnixFileMode"
+            },
+            "sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "state": {
+              "const": "present",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state",
+            "sha256",
+            "mode"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "LogicalRepositoryIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "MaterializationStateTransitionV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "initialize",
+              "type": "string"
+            },
+            "next_state": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/materialization-state.v1.json"
+            }
+          },
+          "required": [
+            "kind",
+            "next_state"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "advance",
+              "type": "string"
+            },
+            "next_state": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/materialization-state.v1.json"
+            },
+            "prior": {
+              "$ref": "#/$defs/PriorMaterializationStateV1"
+            }
+          },
+          "required": [
+            "kind",
+            "prior",
+            "next_state"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "remove",
+              "type": "string"
+            },
+            "prior": {
+              "$ref": "#/$defs/PriorMaterializationStateV1"
+            }
+          },
+          "required": [
+            "kind",
+            "prior"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "remove_unowned",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "NormativePackAttestorV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "NormativePackIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "NormativePackReleaseV1": {
+      "additionalProperties": false,
+      "properties": {
+        "attestor": {
+          "$ref": "#/$defs/NormativePackAttestorV1"
+        },
+        "content_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "id": {
+          "$ref": "#/$defs/NormativePackIdV1"
+        },
+        "version": {
+          "$ref": "#/$defs/NormativePackVersionV1"
+        }
+      },
+      "required": [
+        "id",
+        "attestor",
+        "version",
+        "content_digest"
+      ],
+      "type": "object"
+    },
+    "NormativePackVersionV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$",
+      "type": "string"
+    },
+    "Operation": {
+      "additionalProperties": false,
+      "properties": {
+        "committable": {
+          "type": "boolean"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "mode": {
+          "$ref": "#/$defs/UnixFileMode"
+        },
+        "rel_path": {
+          "type": "string"
+        },
+        "transition": {
+          "$ref": "#/$defs/SurfaceOperationTransitionV1"
+        }
+      },
+      "required": [
+        "rel_path",
+        "kind",
+        "transition",
+        "mode",
+        "committable"
+      ],
+      "type": "object"
+    },
+    "PackageIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageReleaseV1": {
+      "additionalProperties": false,
+      "properties": {
+        "content_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "id": {
+          "$ref": "#/$defs/PackageIdV1"
+        },
+        "version": {
+          "$ref": "#/$defs/PackageVersionV1"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "content_digest"
+      ],
+      "type": "object"
+    },
+    "PackageVersionV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$",
+      "type": "string"
+    },
+    "PriorMaterializationStateV1": {
+      "additionalProperties": false,
+      "properties": {
+        "one_shot_compilation_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "state_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "state_digest",
+        "one_shot_compilation_digest"
+      ],
+      "type": "object"
+    },
+    "SurfaceOperationTransitionV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "action": {
+              "const": "create",
+              "type": "string"
+            },
+            "desired_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "ownership": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/surface-ownership.v1.json"
+            }
+          },
+          "required": [
+            "action",
+            "ownership",
+            "desired_sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "action": {
+              "const": "adopt",
+              "type": "string"
+            },
+            "desired_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "ownership": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/surface-ownership.v1.json"
+            }
+          },
+          "required": [
+            "action",
+            "ownership",
+            "desired_sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "action": {
+              "const": "update",
+              "type": "string"
+            },
+            "desired_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "ownership": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/surface-ownership.v1.json"
+            }
+          },
+          "required": [
+            "action",
+            "ownership",
+            "desired_sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "action": {
+              "const": "unchanged",
+              "type": "string"
+            },
+            "owned_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "ownership": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/surface-ownership.v1.json"
+            }
+          },
+          "required": [
+            "action",
+            "ownership",
+            "owned_sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "action": {
+              "const": "delete",
+              "type": "string"
+            },
+            "prior_owned_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            }
+          },
+          "required": [
+            "action",
+            "prior_owned_sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "action": {
+              "const": "splice",
+              "type": "string"
+            },
+            "prior_owned_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            }
+          },
+          "required": [
+            "action",
+            "prior_owned_sha256"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "UnixFileMode": {
+      "format": "uint32",
+      "maximum": 4095,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/agent-surface-plan.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "admission": {
+      "type": "string"
+    },
+    "compiler_version": {
+      "type": "string"
+    },
+    "deferred_effects": {
+      "items": {
+        "$ref": "https://www.rawthoughts.in/pale/schemas/deferred-effect.v1.json"
+      },
+      "type": "array"
+    },
+    "instance_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "manifest_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "normative_pack_closure": {
+      "items": {
+        "$ref": "#/$defs/NormativePackReleaseV1"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "one_shot_compilation_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "operation_marker": {
+      "type": "string"
+    },
+    "operations": {
+      "items": {
+        "$ref": "#/$defs/Operation"
+      },
+      "type": "array"
+    },
+    "package_closure": {
+      "items": {
+        "$ref": "#/$defs/PackageReleaseV1"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "package_semantic_ir_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "plan_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "profile_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "renderer_version": {
+      "type": "string"
+    },
+    "repository_id": {
+      "$ref": "#/$defs/LogicalRepositoryIdV1"
+    },
+    "schema": {
+      "const": "pale.agent-surface-plan.v1",
+      "type": "string"
+    },
+    "schema_manifest_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_set_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "target_baseline": {
+      "items": {
+        "$ref": "#/$defs/BaselineEntry"
+      },
+      "type": "array"
+    },
+    "transition": {
+      "$ref": "#/$defs/MaterializationStateTransitionV1"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_sha256",
+    "schema_manifest_sha256",
+    "schema_set_sha256",
+    "one_shot_compilation_digest",
+    "transition",
+    "operation_marker",
+    "admission",
+    "compiler_version",
+    "renderer_version",
+    "package_closure",
+    "normative_pack_closure",
+    "profile_digest",
+    "instance_digest",
+    "manifest_digest",
+    "package_semantic_ir_digest",
+    "repository_id",
+    "target_baseline",
+    "operations",
+    "deferred_effects",
+    "plan_digest"
+  ],
+  "title": "agent-surface-plan.v1",
+  "type": "object"
+}

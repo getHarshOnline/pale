@@ -1,0 +1,21 @@
+[package]
+name = "pale-contract-codegen"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Private deterministic generator for Pale portable contract bundles."
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+pale-core = { path = "../pale-core" }
+schemars = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+[dev-dependencies]
+tempfile = { workspace = true }

@@ -1,0 +1,32 @@
+[doctrine]
+schema_version = 1
+
+[[doctrine.entry]]
+id = "normative-applicability"
+description = "Establish which rules apply to a proposed act by checking authority, roles, events, jurisdiction, time, exceptions and private facts, without calculating or acting."
+doctrine = "applicability.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "normative-proposal"
+description = "Trace proposed rules to their sources and check meaning, history, boundaries, examples, rights and reasons to stop before the owner attests or accepts them."
+doctrine = "proposal-verification.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "finance-invocation"
+description = "Check a calculation request against its purpose, authority, exact accepted rules, private snapshot, implementation, numerical conventions, validation and permitted actions."
+doctrine = "finance-invocation.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "personal-data-operation"
+description = "Assess one personal-data operation: people and roles, sources and data paths, purpose and authority, minimization, lifecycle, controls, remaining copies and evidence."
+doctrine = "data-operation.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "consent-and-withdrawal"
+description = "Check consent evidence for the exact proposed use and trace withdrawal through affected operations and remaining copies, without inferring permission or erasure."
+doctrine = "consent.md"
+placement = "standalone_judgment"

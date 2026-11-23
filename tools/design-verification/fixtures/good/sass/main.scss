@@ -1,0 +1,19 @@
+/* colours such as #ff0000 in a block comment are ignored */
+// and rgb(1 2 3) in a line comment
+@use "../tokens/world";
+.card {
+  color: var(--color-ink);
+  background: color-mix(in oklch, var(--color-paper) 90%, var(--color-sheet));
+  border-color: oklch(from var(--color-critical) l c h / 0.5);
+  box-shadow: 0 1px 2px rgb(var(--shadow-rgb) / 0.2);
+  background-image: url("icons.svg#abc"), url(#fade);
+  content: "#1 on the list";
+  transition: opacity var(--duration-feedback) var(--easing-productive);
+  transition-duration: calc(var(--world-motion-expressive-scale) * 1s);
+  animation: none;
+  transition-delay: 0s;
+  grid-template-areas: "a b";
+  a:hover { color: currentColor; }
+  &:not(#deadbe) { color: transparent; }
+}
+@media (prefers-reduced-motion: reduce) { .card { transition: none; } }

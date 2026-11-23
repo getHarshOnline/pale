@@ -1,0 +1,46 @@
+{
+  "$defs": {
+    "ExecutionPathSelectionIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/surface-digest.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "committable": {
+      "type": "boolean"
+    },
+    "execution_path_consumers": {
+      "items": {
+        "$ref": "#/$defs/ExecutionPathSelectionIdV1"
+      },
+      "type": "array"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "ownership": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/surface-ownership.v1.json"
+    },
+    "rel_path": {
+      "type": "string"
+    },
+    "sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    }
+  },
+  "required": [
+    "rel_path",
+    "kind",
+    "ownership",
+    "execution_path_consumers",
+    "committable",
+    "sha256"
+  ],
+  "title": "surface-digest.v1",
+  "type": "object"
+}

@@ -1,0 +1,108 @@
+[doctrine]
+schema_version = 1
+
+[[doctrine.entry]]
+id = "decision-semantics"
+description = "Choose the decision type, check calibration and define when to defer."
+doctrine = "decisions.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "evaluation-lineage"
+description = "Keep replay inputs comparable and trace each result to its run."
+doctrine = "lineage.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "local", resource_id = "lineage-identify-the-run" }, { scope = "local", resource_id = "lineage-compare-decision-time-inputs" }, { scope = "local", resource_id = "lineage-trace-coverage-and-cost" }]
+
+[[doctrine.entry]]
+id = "reproducible-notebook"
+description = "Run a notebook from clean state and check for leaked information."
+doctrine = "notebooks.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "local", resource_id = "jupyter-practice" }, { scope = "local", resource_id = "evaluation-lineage" }]
+
+[[doctrine.entry]]
+id = "langfuse-practice"
+description = "Check trace identities, dataset membership and score targets."
+doctrine = "langfuse-practice.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "local", resource_id = "evaluation-lineage" }, { scope = "local", resource_id = "langfuse-tooling" }]
+
+[[doctrine.entry]]
+id = "langfuse-tooling"
+description = "Use Langfuse's official skill and available CLI or MCP for the selected task, checking versions, permissions and the relevant workflow."
+doctrine = "langfuse-tooling.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "local", resource_id = "langfuse-practice" }]
+
+[[doctrine.entry]]
+id = "jupyter-practice"
+description = "Check notebook execution and exported results."
+doctrine = "jupyter-practice.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "local", resource_id = "reproducible-notebook" }]
+
+[[doctrine.entry]]
+id = "typesafe-decision-practice"
+description = "Check how the selected provider returns decisions and confidence."
+doctrine = "typesafe-decision-practice.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "local", resource_id = "decision-semantics" }]
+
+[[doctrine.entry]]
+id = "evaluation-instrument"
+description = "Test evaluation controls, thresholds and rubric examples, and state what comparisons they support."
+doctrine = "instrument-calibration.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "evaluation-lineage" }]
+
+[[doctrine.entry]]
+id = "candidate-lineage"
+description = "Fix the candidate and brief, separate production from review, and preserve findings, responses and stopping reasons."
+doctrine = "candidate-lineage.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "candidate-comparison"
+description = "Compare changes separately and together under matched conditions, with independent acceptance evidence."
+doctrine = "candidate-comparison.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "numerical-conformance"
+description = "Check numerical results against independent references, boundary cases and justified tolerances."
+doctrine = "numerical-conformance.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "reference-admission"
+description = "Check reference answers, acceptance, eligibility for each split and fixed dataset membership."
+doctrine = "reference-admission.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "analytical-grain"
+description = "Check what an analysis counts, how rows join and how totals and denominators reconcile."
+doctrine = "analytical-grain.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "lineage-identify-the-run"
+description = "Identify which release, method and run support the claim."
+doctrine = "lineage/identify-the-run.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "evaluation-lineage" }]
+
+[[doctrine.entry]]
+id = "lineage-compare-decision-time-inputs"
+description = "Fix the inputs available at decision time for a fair replay."
+doctrine = "lineage/compare-decision-time-inputs.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "evaluation-lineage" }]
+
+[[doctrine.entry]]
+id = "lineage-trace-coverage-and-cost"
+description = "Check trace coverage, sampling and review costs."
+doctrine = "lineage/trace-coverage-and-cost.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "evaluation-lineage" }]

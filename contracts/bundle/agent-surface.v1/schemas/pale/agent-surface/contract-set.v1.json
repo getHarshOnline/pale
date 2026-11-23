@@ -1,0 +1,83 @@
+{
+  "$defs": {
+    "ContractSetEntryV1": {
+      "additionalProperties": false,
+      "properties": {
+        "contract_id": {
+          "$ref": "#/$defs/SchemaId"
+        },
+        "contract_schema_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "contract_schema_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "contract_id",
+        "contract_schema_ref",
+        "contract_schema_sha256"
+      ],
+      "type": "object"
+    },
+    "ContractSetIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/contract-set.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "canonical_contract_set_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "compatibility_profile_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "compatibility_profile_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "contract_set_id": {
+      "$ref": "#/$defs/ContractSetIdV1"
+    },
+    "entries": {
+      "items": {
+        "$ref": "#/$defs/ContractSetEntryV1"
+      },
+      "maxItems": 1024,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "schema_id": {
+      "const": "pale/contract-set.v1",
+      "type": "string"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "contract_set_id",
+    "entries",
+    "compatibility_profile_ref",
+    "compatibility_profile_sha256",
+    "canonical_contract_set_sha256"
+  ],
+  "title": "contract-set.v1",
+  "type": "object"
+}

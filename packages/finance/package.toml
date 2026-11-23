@@ -1,0 +1,34 @@
+[package]
+id = "pale.finance"
+version = "0.1.0"
+schema_version = 1
+title = "Finance"
+description = "Frame a money question, project an owner's books to see what fails first, and close each owner's books for review."
+compatible_compilers = ["pale-surface@1"]
+dependencies = [
+  { id = "pale.assurance", version = "0.2.0" },
+  { id = "pale.evaluation", version = "0.2.3" },
+  { id = "pale.research", version = "0.2.0" },
+]
+sources = [
+  { path = "question.md", role = "declaration" },
+  { path = "project.md", role = "declaration" },
+  { path = "close.md", role = "declaration" },
+  { path = "check-run.toml", role = "declaration" },
+  { path = "project-run.toml", role = "declaration" },
+  { path = "close-run.toml", role = "declaration" },
+  { path = "run-policy.toml", role = "declaration" },
+  { path = "INDEX.md", role = "documentation" },
+]
+resources = [
+  { id = "question", kind = "operation", definition_source = "question.md", exposure = "exported" },
+  { id = "project", kind = "operation", definition_source = "project.md", exposure = "exported" },
+  { id = "close", kind = "operation", definition_source = "close.md", exposure = "exported" },
+  { id = "check-run", kind = "tool_recipe", definition_source = "check-run.toml", exposure = "exported" },
+  { id = "project-run", kind = "tool_recipe", definition_source = "project-run.toml", exposure = "exported" },
+  { id = "close-run", kind = "tool_recipe", definition_source = "close-run.toml", exposure = "exported" },
+  { id = "run-policy", kind = "capability_policy", definition_source = "run-policy.toml", exposure = "exported" },
+]
+
+[license]
+spdx = "AGPL-3.0-or-later"

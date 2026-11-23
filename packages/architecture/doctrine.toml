@@ -1,0 +1,255 @@
+[doctrine]
+schema_version = 1
+
+[[doctrine.entry]]
+id = "contract-first"
+description = "Change a shared interface while checking old and new producers, consumers and migration paths."
+doctrine = "contract-evolution.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "local", resource_id = "contracts-identity-and-binding" }, { scope = "local", resource_id = "contracts-definitions-and-validation" }, { scope = "local", resource_id = "contracts-meaning-and-writes" }, { scope = "local", resource_id = "contracts-profile-behavior" }]
+
+[[doctrine.entry]]
+id = "command-retry"
+description = "Test command retries, saved outcomes, concurrent writes and lease takeover without duplicating effects."
+doctrine = "command-retry.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "api-design"
+description = "Design HTTP resources, requests, pagination, errors, access controls and compatible changes."
+doctrine = "http-interfaces.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "local", resource_id = "contract-first" }]
+
+[[doctrine.entry]]
+id = "hexagonal-architecture"
+description = "Keep application rules independent of storage, frameworks and delivery adapters."
+doctrine = "boundaries.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "database-migrations"
+description = "Plan schema and data changes around running readers, writers, backfills and recovery."
+doctrine = "migration.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "local", resource_id = "data-migration-history" }, { scope = "local", resource_id = "data-legacy-reads" }]
+
+[[doctrine.entry]]
+id = "persistence-recovery"
+description = "Check that a restore really works: from a known backup, to a known checkpoint, on the real system."
+doctrine = "recovery.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "recovery-verified-input" }]
+see_also = [{ scope = "local", resource_id = "recovery-restore-components" }, { scope = "local", resource_id = "recovery-restore-history" }, { scope = "local", resource_id = "recovery-rebuild-containers" }, { scope = "local", resource_id = "recovery-advance-or-retire" }]
+
+[[doctrine.entry]]
+id = "deployment-patterns"
+description = "Choose release topology from failure containment, traffic control, observability, rollback time, state compatibility, and the evidence required before widening exposure."
+doctrine = "release-topology.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "local", resource_id = "release-process-ownership" }, { scope = "local", resource_id = "release-integrated-profiles" }, { scope = "local", resource_id = "release-observe-and-recover" }, { scope = "local", resource_id = "release-field-devices" }]
+
+[[doctrine.entry]]
+id = "release-provenance"
+description = "Compare release contents with source records, licence notices and required source delivery."
+doctrine = "release-provenance.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "architecture-decision-records"
+description = "Write down a lasting design decision on the repository’s decisions page: the question, what pushed on it at the time, the real alternatives, the evidence, why this one, what it costs and which earlier decision it replaces."
+doctrine = "decision-records.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "codebase-onboarding"
+description = "Trace a task through real code and verify the source, index, entry points and checks used."
+doctrine = "onboarding.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "worktree-frontier"
+description = "Identify the source, staged files and local dependencies a build, review or restore actually used."
+doctrine = "worktree-frontier.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "git-workflow"
+description = "Choose how to commit, integrate, publish or pin work from the repository’s actual state and permissions."
+doctrine = "version-control.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "local", resource_id = "repo-choose-a-strategy" }, { scope = "local", resource_id = "repo-stage-and-review" }, { scope = "local", resource_id = "repo-fork-and-delivery" }]
+
+[[doctrine.entry]]
+id = "postgres-patterns"
+description = "Review PostgreSQL queries, constraints, transactions, access controls and migration behaviour."
+doctrine = "postgresql.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "redis-patterns"
+description = "Choose and test Redis caches, leases, counters and event streams for their required guarantees."
+doctrine = "redis.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "vite-patterns"
+description = "Check Vite build inputs, plugins, browser-visible settings and production output."
+doctrine = "vite.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "data-erasure-method"
+description = "Check deletion across copies, dependent views and backups without reviving removed data."
+doctrine = "erasure-method.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "snapshot-import-method"
+description = "Check snapshot coverage, permitted removals and the generation consumers actually see."
+doctrine = "snapshot-import.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "data-transformation"
+description = "Check record meaning, keys, incremental coverage and every write or delivery a pipeline performs."
+doctrine = "data-transformation.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "dbt-transformation"
+description = "Review a dbt model’s actual target, hooks, incremental logic and tests."
+doctrine = "dbt.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "contract-identity-binding"
+description = "Check identity mappings, current permissions, role reassignment and revocation."
+doctrine = "contract-identity-binding.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "local", resource_id = "contracts-identity-and-binding" }]
+
+[[doctrine.entry]]
+id = "recovery-verified-input"
+description = "Ensure the reader consumes the bytes it verified, even when paths or nested references change."
+doctrine = "recovery-verified-input.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "recovery-restore-components"
+description = "To identify the backup, the restore destination and each component that must be recovered independently."
+doctrine = "recovery/restore-components.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "persistence-recovery" }]
+
+[[doctrine.entry]]
+id = "recovery-restore-history"
+description = "Use it to find an earlier record and what it actually linked to, and to choose the check for the recovered record, its location, its links or its metadata."
+doctrine = "recovery/restore-history.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "persistence-recovery" }]
+
+[[doctrine.entry]]
+id = "recovery-rebuild-containers"
+description = "When recovering archives, ordered streams or records that share physical storage."
+doctrine = "recovery/rebuild-containers.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "persistence-recovery" }]
+
+[[doctrine.entry]]
+id = "recovery-advance-or-retire"
+description = "Before accepting recovered state, moving a recovery marker or retiring a copy."
+doctrine = "recovery/advance-or-retire.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "persistence-recovery" }]
+
+[[doctrine.entry]]
+id = "contracts-identity-and-binding"
+description = "When you change a name, location, pinned contract version or identity binding, to check that identity and permissions survive."
+doctrine = "contracts/identity-and-binding.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "contract-first" }]
+
+[[doctrine.entry]]
+id = "contracts-definitions-and-validation"
+description = "When a consumer imports definitions or generated contracts, to check which validation actually covers them."
+doctrine = "contracts/definitions-and-validation.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "contract-first" }]
+
+[[doctrine.entry]]
+id = "contracts-meaning-and-writes"
+description = "When consumers interpret a contract, intermediaries rewrite records or an export takes part of a source, to check that meaning and effects survive."
+doctrine = "contracts/meaning-and-writes.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "contract-first" }]
+
+[[doctrine.entry]]
+id = "contracts-profile-behavior"
+description = "For protocol adapters, inherited behaviour or operator settings that make one contract behave differently by profile."
+doctrine = "contracts/profile-behavior.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "contract-first" }]
+
+[[doctrine.entry]]
+id = "release-process-ownership"
+description = "Use it before startup or cleanup, to identify the executable, instance, supervisor and process identity before signalling anything."
+doctrine = "release/process-ownership.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "deployment-patterns" }]
+
+[[doctrine.entry]]
+id = "release-integrated-profiles"
+description = "Use it to check each claimed operating profile, standalone from a clean installation and integrated through a permitted provider binding."
+doctrine = "release/integrated-profiles.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "deployment-patterns" }]
+
+[[doctrine.entry]]
+id = "release-observe-and-recover"
+description = "Use it to keep the accepted starting state, intended release and independent inspection together, and to define before dispatch how recovery will be told apart."
+doctrine = "release/observe-and-recover.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "deployment-patterns" }]
+
+[[doctrine.entry]]
+id = "release-field-devices"
+description = "Use it to identify the device, firmware, site, gateway and consumer revision, and to observe reachability, event capture, buffering and delivery separately."
+doctrine = "release/field-devices.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "deployment-patterns" }]
+
+[[doctrine.entry]]
+id = "data-migration-history"
+description = "Use it to read the configured includes, execution order and applicable profile, and to compare the migration ledger with the actual database state before changing a migration."
+doctrine = "data/migration-history.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "database-migrations" }]
+
+[[doctrine.entry]]
+id = "data-legacy-reads"
+description = "Use it when an adapter serves old records, to identify the permitted sources and their precedence and to check that reading never backfills, mutates or merges originals."
+doctrine = "data/legacy-reads.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "database-migrations" }]
+
+[[doctrine.entry]]
+id = "repo-choose-a-strategy"
+description = "Use it before recommending Git commands, to identify the owner, worktree, branch, upstreams, protections and consumers and to keep the decisions separate."
+doctrine = "repo/choose-a-strategy.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "git-workflow" }]
+
+[[doctrine.entry]]
+id = "repo-stage-and-review"
+description = "Use it before staging, to identify the repository root, index, baseline tree and permitted paths and to read machine-readable path records."
+doctrine = "repo/stage-and-review.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "git-workflow" }]
+
+[[doctrine.entry]]
+id = "repo-fork-and-delivery"
+description = "Use it to identify the canonical upstream, local mirror, maintained branch and consumer pin separately and to verify ancestry before advancing a mirror."
+doctrine = "repo/fork-and-delivery.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "git-workflow" }]

@@ -1,0 +1,4 @@
+id = "engineering.impact_analysis"
+title = "Understand the change and what depends on it"
+purpose = "Trace the current behaviour from its entry to its result, find the cause or the right place for a new capability, and check which users and guarantees the change affects before choosing a solution."
+body = "families/impact_analysis/body.md"

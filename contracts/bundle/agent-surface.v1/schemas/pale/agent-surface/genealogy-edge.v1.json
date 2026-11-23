@@ -1,0 +1,307 @@
+{
+  "$defs": {
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "GenealogyConfidenceBasisPointsV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "GenealogyEdgeIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "GenealogyProofV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "native_owner_evidence": {
+              "$ref": "#/$defs/OwnerRecordCoordinateV1"
+            },
+            "relation": {
+              "$ref": "#/$defs/GenealogyRelationV1"
+            },
+            "truth_class": {
+              "const": "native_structural",
+              "type": "string"
+            }
+          },
+          "required": [
+            "truth_class",
+            "relation",
+            "native_owner_evidence"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "admission_ref": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            "admission_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "destination_owner_receipt_ref": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            "destination_owner_receipt_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "relation": {
+              "$ref": "#/$defs/GenealogyRelationV1"
+            },
+            "truth_class": {
+              "const": "pale_consequence_lineage",
+              "type": "string"
+            }
+          },
+          "required": [
+            "truth_class",
+            "relation",
+            "admission_ref",
+            "admission_sha256",
+            "destination_owner_receipt_ref",
+            "destination_owner_receipt_sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "confidence_basis_points": {
+              "$ref": "#/$defs/GenealogyConfidenceBasisPointsV1"
+            },
+            "evidence_root_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "occupant_ref": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            "occupant_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "profile_ref": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            "profile_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "relation": {
+              "$ref": "#/$defs/GenealogyRelationV1"
+            },
+            "scope_transaction_ref": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            "scope_transaction_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "truth_class": {
+              "const": "semantic_inferred",
+              "type": "string"
+            },
+            "uncertainty": {
+              "$ref": "#/$defs/SemanticUncertaintyV1"
+            }
+          },
+          "required": [
+            "truth_class",
+            "relation",
+            "scope_transaction_ref",
+            "scope_transaction_sha256",
+            "evidence_root_sha256",
+            "profile_ref",
+            "profile_sha256",
+            "occupant_ref",
+            "occupant_sha256",
+            "confidence_basis_points",
+            "uncertainty"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "GenealogyRelationV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "NativeRevisionOwnerV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "NativeRevisionTokenV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "NativeRevisionV1": {
+      "additionalProperties": false,
+      "properties": {
+        "native_revision_owner": {
+          "$ref": "#/$defs/NativeRevisionOwnerV1"
+        },
+        "native_revision_token": {
+          "$ref": "#/$defs/NativeRevisionTokenV1"
+        }
+      },
+      "required": [
+        "native_revision_owner",
+        "native_revision_token"
+      ],
+      "type": "object"
+    },
+    "OwnerRecordCoordinateV1": {
+      "additionalProperties": false,
+      "properties": {
+        "native_revision": {
+          "$ref": "#/$defs/NativeRevisionV1"
+        },
+        "owner_system_id": {
+          "$ref": "#/$defs/OwnerSystemIdV1"
+        },
+        "record_content_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "record_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "record_schema_id": {
+          "$ref": "#/$defs/SchemaId"
+        },
+        "record_schema_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "owner_system_id",
+        "record_ref",
+        "record_schema_id",
+        "record_schema_sha256",
+        "record_content_sha256",
+        "native_revision"
+      ],
+      "type": "object"
+    },
+    "OwnerSystemIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "SemanticUncertaintyV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SigningKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/genealogy-edge.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "admitted_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "canonical_genealogy_edge_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "deployment_runtime_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "deployment_runtime_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "destination_occurrence_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "destination_occurrence_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "edge_id": {
+      "$ref": "#/$defs/GenealogyEdgeIdV1"
+    },
+    "issuer_key_epoch": {
+      "$ref": "#/$defs/SigningKeyEpochV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "issuer_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "proof": {
+      "$ref": "#/$defs/GenealogyProofV1"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/genealogy-edge.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    },
+    "source_occurrence_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "source_occurrence_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "edge_id",
+    "source_occurrence_ref",
+    "source_occurrence_sha256",
+    "destination_occurrence_ref",
+    "destination_occurrence_sha256",
+    "proof",
+    "admitted_at",
+    "deployment_runtime_authority_ref",
+    "deployment_runtime_authority_sha256",
+    "issuer_principal_id",
+    "issuer_key_id",
+    "issuer_key_epoch",
+    "canonical_genealogy_edge_sha256",
+    "signature"
+  ],
+  "title": "genealogy-edge.v1",
+  "type": "object"
+}

@@ -1,0 +1,103 @@
+{
+  "$defs": {
+    "DeferredArtifactV1": {
+      "additionalProperties": false,
+      "properties": {
+        "activation": {
+          "maxLength": 4096,
+          "type": "string"
+        },
+        "content_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "inert_path": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "type": "string"
+        },
+        "kind": {
+          "maxLength": 128,
+          "minLength": 1,
+          "type": "string"
+        },
+        "target": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "target",
+        "content_sha256",
+        "inert_path",
+        "activation"
+      ],
+      "type": "object"
+    },
+    "LogicalRepositoryIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/deferred-surface-manifest.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifacts": {
+      "items": {
+        "$ref": "#/$defs/DeferredArtifactV1"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "compilation_input_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "one_shot_compilation_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "repository_id": {
+      "$ref": "#/$defs/LogicalRepositoryIdV1"
+    },
+    "repository_manifest_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema": {
+      "const": "pale.deferred-surface-manifest.v1",
+      "type": "string"
+    },
+    "schema_manifest_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_set_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_sha256",
+    "schema_version",
+    "schema_manifest_sha256",
+    "schema_set_sha256",
+    "compilation_input_digest",
+    "one_shot_compilation_digest",
+    "repository_id",
+    "repository_manifest_digest",
+    "artifacts"
+  ],
+  "title": "deferred-surface-manifest.v1",
+  "type": "object"
+}

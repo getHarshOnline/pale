@@ -1,0 +1,8 @@
+pale-a2a
+Copyright © 2026 RawThoughts Enterprises Private Limited.
+Author and originator: Harsh Joshi.
+Distributed under AGPL-3.0-or-later; see LICENSE.
+
+Uses a2a-lf 0.3.0, the A2A v1 protocol-types crate, under Apache-2.0.
+Cargo.lock records its transitive dependencies. Their licences and notices
+remain applicable to the files included in a distribution.

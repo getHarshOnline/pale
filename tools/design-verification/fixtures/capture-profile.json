@@ -1,0 +1,18 @@
+{
+  "widths": {
+    "phone": 390,
+    "desktop": 1280
+  },
+  "compactWidth": 800,
+  "targetMin": 24,
+  "targetProject": 44,
+  "preferences": {
+    "colorKey": "color-mode",
+    "motionKey": "motion-preference",
+    "modeAttribute": "data-mode",
+    "motionAttribute": "data-motion",
+    "system": "system",
+    "reduce": "reduce",
+    "allow": "allow"
+  }
+}

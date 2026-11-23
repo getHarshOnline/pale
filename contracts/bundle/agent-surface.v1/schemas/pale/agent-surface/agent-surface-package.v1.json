@@ -1,0 +1,268 @@
+{
+  "$defs": {
+    "OwnedConfinedRelativePath": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "type": "string"
+    },
+    "PackageDependencyV1": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/PackageIdV1"
+        },
+        "version": {
+          "$ref": "#/$defs/PackageVersionV1"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "type": "object"
+    },
+    "PackageIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageLicense": {
+      "additionalProperties": false,
+      "properties": {
+        "note": {
+          "default": null,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "spdx": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "spdx"
+      ],
+      "type": "object"
+    },
+    "PackageMeta": {
+      "additionalProperties": false,
+      "properties": {
+        "compatible_compilers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "dependencies": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageDependencyV1"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "$ref": "#/$defs/PackageIdV1"
+        },
+        "resources": {
+          "items": {
+            "$ref": "#/$defs/PackageResourceV1"
+          },
+          "maxItems": 4096,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "schema_version": {
+          "const": 1,
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/PackageSourceV1"
+          },
+          "maxItems": 4096,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "title": {
+          "type": "string"
+        },
+        "version": {
+          "$ref": "#/$defs/PackageVersionV1"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "schema_version",
+        "title",
+        "description",
+        "compatible_compilers"
+      ],
+      "type": "object"
+    },
+    "PackageResourceExposureV1": {
+      "oneOf": [
+        {
+          "const": "internal",
+          "type": "string"
+        },
+        {
+          "const": "exported",
+          "type": "string"
+        }
+      ]
+    },
+    "PackageResourceIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[./][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceKindV1": {
+      "oneOf": [
+        {
+          "const": "doctrine",
+          "type": "string"
+        },
+        {
+          "const": "operation_archetype",
+          "type": "string"
+        },
+        {
+          "const": "operation",
+          "type": "string"
+        },
+        {
+          "const": "role_archetype",
+          "type": "string"
+        },
+        {
+          "const": "role",
+          "type": "string"
+        },
+        {
+          "const": "stack",
+          "type": "string"
+        },
+        {
+          "const": "run_mode",
+          "type": "string"
+        },
+        {
+          "const": "policy_family",
+          "type": "string"
+        },
+        {
+          "const": "governing_order",
+          "type": "string"
+        },
+        {
+          "const": "capability_policy",
+          "type": "string"
+        },
+        {
+          "const": "tool_recipe",
+          "type": "string"
+        }
+      ]
+    },
+    "PackageResourceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "definition_source": {
+          "$ref": "#/$defs/OwnedConfinedRelativePath"
+        },
+        "exposure": {
+          "$ref": "#/$defs/PackageResourceExposureV1"
+        },
+        "id": {
+          "$ref": "#/$defs/PackageResourceIdV1"
+        },
+        "kind": {
+          "$ref": "#/$defs/PackageResourceKindV1"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "definition_source",
+        "exposure"
+      ],
+      "type": "object"
+    },
+    "PackageSourceRoleV1": {
+      "oneOf": [
+        {
+          "const": "declaration",
+          "type": "string"
+        },
+        {
+          "const": "body",
+          "type": "string"
+        },
+        {
+          "const": "documentation",
+          "type": "string"
+        }
+      ]
+    },
+    "PackageSourceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/OwnedConfinedRelativePath"
+        },
+        "role": {
+          "$ref": "#/$defs/PackageSourceRoleV1"
+        }
+      },
+      "required": [
+        "path",
+        "role"
+      ],
+      "type": "object"
+    },
+    "PackageVersionV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$",
+      "type": "string"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/agent-surface-package.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "license": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PackageLicense"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "package": {
+      "$ref": "#/$defs/PackageMeta"
+    }
+  },
+  "required": [
+    "package"
+  ],
+  "title": "agent-surface-package.v1",
+  "type": "object"
+}

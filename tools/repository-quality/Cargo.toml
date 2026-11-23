@@ -1,0 +1,66 @@
+[package]
+name = "pale-repository-quality"
+version = "0.0.1"
+edition = "2021"
+rust-version = "1.94"
+authors = ["Harsh Joshi"]
+license = "AGPL-3.0-or-later"
+description = "Tests that check Pale's repository layout, dependency direction and documentation rules."
+publish = false
+autotests = false
+autobenches = false
+
+[workspace]
+resolver = "2"
+
+[lints.rust]
+missing_docs = "deny"
+unsafe_code = "deny"
+
+[lints.clippy]
+doc_markdown = "deny"
+missing_errors_doc = "deny"
+missing_panics_doc = "deny"
+
+[lints.rustdoc]
+bare_urls = "deny"
+broken_intra_doc_links = "deny"
+invalid_codeblock_attributes = "deny"
+invalid_html_tags = "deny"
+private_intra_doc_links = "deny"
+
+[dev-dependencies]
+rtepl-repository = { git = "https://github.com/getHarshOnline/rtepl-common.git", rev = "13060ae859f5820efd5641d5145563c8a0e1452e" }
+pale-sdk = { version = "=0.0.1", features = ["native-local"] }
+serde = "=1.0.228"
+serde_json = "=1.0.149"
+syn = { version = "=2.0.117", default-features = false, features = ["full", "parsing", "visit"] }
+toml = "=0.9.11"
+
+[[test]]
+name = "json_format"
+path = "tests/json_format.rs"
+
+[[test]]
+name = "interface_dependencies"
+path = "tests/interface_dependencies.rs"
+
+[[test]]
+name = "generated_declaration_names"
+path = "tests/generated_declaration_names.rs"
+
+[[test]]
+name = "rustdoc_attribution"
+path = "tests/rustdoc_attribution.rs"
+
+[[test]]
+name = "source_organization"
+path = "tests/source_organization.rs"
+
+[[test]]
+name = "source_home_metadata"
+path = "tests/source_home_metadata.rs"
+
+[[test]]
+name = "capability_coverage"
+path = "tests/capability_coverage.rs"

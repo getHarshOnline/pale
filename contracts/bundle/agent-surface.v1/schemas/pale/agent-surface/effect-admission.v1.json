@@ -1,0 +1,198 @@
+{
+  "$defs": {
+    "ActionIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "AuthorityEvidenceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "authority_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "authority_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "authority_ref",
+        "authority_sha256"
+      ],
+      "type": "object"
+    },
+    "BoundedResidentTextV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "EffectAdmissionDecisionV1": {
+      "oneOf": [
+        {
+          "const": "admitted",
+          "type": "string"
+        }
+      ]
+    },
+    "EffectAdmissionIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRequestIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "SigningKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/effect-admission.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "action_body_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "action_id": {
+      "$ref": "#/$defs/ActionIdV1"
+    },
+    "authority_evidence": {
+      "items": {
+        "$ref": "#/$defs/AuthorityEvidenceV1"
+      },
+      "type": "array"
+    },
+    "canonical_effect_admission_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "canonical_request_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "conflict_claim_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "conflict_claim_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "conflict_resource_key": {},
+    "conflict_resource_key_schema_id": {
+      "$ref": "#/$defs/SchemaId"
+    },
+    "conflict_resource_key_schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "decision": {
+      "$ref": "#/$defs/EffectAdmissionDecisionV1"
+    },
+    "deployment_runtime_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "deployment_runtime_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "effect_admission_id": {
+      "$ref": "#/$defs/EffectAdmissionIdV1"
+    },
+    "effect_policy": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "expires_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "issued_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "issuer_key_epoch": {
+      "$ref": "#/$defs/SigningKeyEpochV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "issuer_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "reconciliation_policy": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "request_id": {
+      "$ref": "#/$defs/ResidentRequestIdV1"
+    },
+    "risk_class": {
+      "$ref": "#/$defs/BoundedResidentTextV1"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/effect-admission.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "effect_admission_id",
+    "request_id",
+    "canonical_request_sha256",
+    "action_id",
+    "action_body_sha256",
+    "conflict_resource_key_schema_id",
+    "conflict_resource_key_schema_sha256",
+    "conflict_resource_key",
+    "conflict_claim_ref",
+    "conflict_claim_sha256",
+    "authority_evidence",
+    "risk_class",
+    "effect_policy",
+    "reconciliation_policy",
+    "decision",
+    "issued_at",
+    "expires_at",
+    "deployment_runtime_authority_ref",
+    "deployment_runtime_authority_sha256",
+    "issuer_principal_id",
+    "issuer_key_id",
+    "issuer_key_epoch",
+    "canonical_effect_admission_sha256",
+    "signature"
+  ],
+  "title": "effect-admission.v1",
+  "type": "object"
+}

@@ -1,0 +1,350 @@
+{
+  "aggregate_sha256": "58942546f9fd436a3689c3b551ede76f321adc6c62ebd7b718baf049b0e7fde9",
+  "member_count": 23,
+  "members": [
+    {
+      "path": "bundle-identity.json",
+      "sha256": "8fe34354d0dda926e9d19fed48cd1adfe2bde1c6a3eb1421906fce9783135344",
+      "size": 260
+    },
+    {
+      "path": "contract-diagnostic.json",
+      "sha256": "23a71064c5064eee870cebeea1bcc093c7ffcdb771f25d5598284dcbb780f0b7",
+      "size": 1793
+    },
+    {
+      "path": "effective-profile-wire.json",
+      "sha256": "25955a504c6470e203a673761d4a911b743ad523adaa87f5961fb249faad6e5c",
+      "size": 19466
+    },
+    {
+      "path": "improvement-journey.json",
+      "sha256": "00bdc57b59715d15c989812c6302820364446338e779a81de401f2b985de5326",
+      "size": 5679
+    },
+    {
+      "path": "native-action-journey.json",
+      "sha256": "bc8d2ea0106150150a32fcb47538e22cc017d5ad816c46709e7c8915c1e80d05",
+      "size": 4445
+    },
+    {
+      "path": "observation-journey.json",
+      "sha256": "fb6529a018e01af8e02d7ea0a1b98ab103ba14fb355e64b10b19b8744d9c064b",
+      "size": 8040
+    },
+    {
+      "path": "one-shot/packages/engine/package.toml",
+      "sha256": "830ade7c043a36635cfc0e84cb047edd80cab848fc74ae6b50dd9f95add919cb",
+      "size": 364
+    },
+    {
+      "path": "one-shot/packages/engine/role.md",
+      "sha256": "bd62e095e75735e04bb4134f1dc37b90009e1e42c668978bfb96263d05ea61a2",
+      "size": 36
+    },
+    {
+      "path": "one-shot/packages/engine/roles.toml",
+      "sha256": "76a32adab0874e4df07ad29c8eab5cdbab65113842715852829842230d12e7b2",
+      "size": 119
+    },
+    {
+      "path": "one-shot/private/capabilities.toml",
+      "sha256": "f467408846b672876ff8a56f4007833815ad6e4b8b4ed10e6a081236e25fff6a",
+      "size": 194
+    },
+    {
+      "path": "one-shot/private/distribution-lock.toml",
+      "sha256": "68066e61589eda3602e61fd4b48b39d6ef1e8320aa50c0d3fe6016f6f8056f67",
+      "size": 359
+    },
+    {
+      "path": "one-shot/private/machine-binding.toml",
+      "sha256": "2acb3221f4f7d048c53d65cdb01ec69bfacf941fe57196e89c9969891ceda5cf",
+      "size": 232
+    },
+    {
+      "path": "one-shot/workspace/composition.toml",
+      "sha256": "cfd37505c0d7652e8c399366f59049736ac79d6eaddca10d5a8b09a1cff5d37a",
+      "size": 11404
+    },
+    {
+      "path": "one-shot/workspace/pale-workspace.toml",
+      "sha256": "15123073fbfe57b468423ddc10f322572fe9b62e83e61e5c56400da3a5a99605",
+      "size": 1288
+    },
+    {
+      "path": "one-shot/workspace/workspace-resolution.lock.toml",
+      "sha256": "181d1d222630ddb5c1f8d93b3ae7c266b98a3647aa67a2793a1041ede3eee9a2",
+      "size": 165
+    },
+    {
+      "path": "one-shot/workspace/workspace-universe.lock.toml",
+      "sha256": "6033d4bb060a3704232ec73f44bb9b59460f62bb841be7512ff6b989f0e422c2",
+      "size": 280
+    },
+    {
+      "path": "one-shot-journey.json",
+      "sha256": "f51f31e514932e45e3f9e7144a27f7633994d03e86850acc7982c9f9d7f7bfac",
+      "size": 2128
+    },
+    {
+      "path": "portable/pale-workspace.toml",
+      "sha256": "7f034c80038a143f99c22af185f796529e10ed0c5429e6d1c06105b6e576a39f",
+      "size": 564
+    },
+    {
+      "path": "portable/resolution.lock.toml",
+      "sha256": "181d1d222630ddb5c1f8d93b3ae7c266b98a3647aa67a2793a1041ede3eee9a2",
+      "size": 165
+    },
+    {
+      "path": "portable/universe.lock.toml",
+      "sha256": "a8addf83690253b8a3657f85b972c865bab6c8ce34a062d3dbd952aafbb0a91a",
+      "size": 287
+    },
+    {
+      "path": "portable-journey.json",
+      "sha256": "8b925595fe9017fa070b75ac511028d33a6793bd5887089b99d4611bcde76f8b",
+      "size": 2036
+    },
+    {
+      "path": "repository-admission.json",
+      "sha256": "12b7208fc38d53af066b7e061919d685ee3ca67a3ecdd7a06d81fe0d55d9012b",
+      "size": 264
+    },
+    {
+      "path": "repository-catalog.json",
+      "sha256": "137798014890ef9dc1080768ed3f4c16fe2c4a176a90a101725577113fdb2f2a",
+      "size": 5752
+    }
+  ],
+  "projections": [
+    {
+      "members": [
+        "one-shot/packages/engine/package.toml",
+        "one-shot/packages/engine/role.md",
+        "one-shot/packages/engine/roles.toml",
+        "one-shot/private/capabilities.toml",
+        "one-shot/private/distribution-lock.toml",
+        "one-shot/private/machine-binding.toml",
+        "one-shot/workspace/composition.toml",
+        "one-shot/workspace/pale-workspace.toml",
+        "one-shot/workspace/workspace-resolution.lock.toml",
+        "one-shot/workspace/workspace-universe.lock.toml"
+      ],
+      "root": "crates/pale-application/tests/fixtures/cross-leaf.v1"
+    },
+    {
+      "members": [
+        "bundle-identity.json",
+        "contract-diagnostic.json",
+        "effective-profile-wire.json",
+        "improvement-journey.json",
+        "native-action-journey.json",
+        "observation-journey.json",
+        "one-shot/packages/engine/package.toml",
+        "one-shot/packages/engine/role.md",
+        "one-shot/packages/engine/roles.toml",
+        "one-shot/private/capabilities.toml",
+        "one-shot/private/distribution-lock.toml",
+        "one-shot/private/machine-binding.toml",
+        "one-shot/workspace/composition.toml",
+        "one-shot/workspace/pale-workspace.toml",
+        "one-shot/workspace/workspace-resolution.lock.toml",
+        "one-shot/workspace/workspace-universe.lock.toml",
+        "one-shot-journey.json",
+        "portable/pale-workspace.toml",
+        "portable/resolution.lock.toml",
+        "portable/universe.lock.toml",
+        "portable-journey.json",
+        "repository-admission.json",
+        "repository-catalog.json"
+      ],
+      "root": "sdk/rust/tests/fixtures/cross-leaf.v1"
+    },
+    {
+      "members": [
+        "bundle-identity.json",
+        "contract-diagnostic.json",
+        "effective-profile-wire.json",
+        "improvement-journey.json",
+        "native-action-journey.json",
+        "observation-journey.json",
+        "one-shot/packages/engine/package.toml",
+        "one-shot/packages/engine/role.md",
+        "one-shot/packages/engine/roles.toml",
+        "one-shot/private/capabilities.toml",
+        "one-shot/private/distribution-lock.toml",
+        "one-shot/private/machine-binding.toml",
+        "one-shot/workspace/composition.toml",
+        "one-shot/workspace/pale-workspace.toml",
+        "one-shot/workspace/workspace-resolution.lock.toml",
+        "one-shot/workspace/workspace-universe.lock.toml",
+        "one-shot-journey.json",
+        "portable/pale-workspace.toml",
+        "portable/resolution.lock.toml",
+        "portable/universe.lock.toml",
+        "portable-journey.json",
+        "repository-admission.json",
+        "repository-catalog.json"
+      ],
+      "root": "interfaces/cli/tests/fixtures/cross-leaf.v1"
+    },
+    {
+      "members": [
+        "improvement-journey.json",
+        "one-shot/packages/engine/package.toml",
+        "one-shot/packages/engine/role.md",
+        "one-shot/packages/engine/roles.toml",
+        "one-shot/private/capabilities.toml",
+        "one-shot/private/distribution-lock.toml",
+        "one-shot/private/machine-binding.toml",
+        "one-shot/workspace/composition.toml",
+        "one-shot/workspace/pale-workspace.toml",
+        "one-shot/workspace/workspace-resolution.lock.toml",
+        "one-shot/workspace/workspace-universe.lock.toml"
+      ],
+      "root": "interfaces/mcp/tests/fixtures/cross-leaf.v1"
+    },
+    {
+      "members": [
+        "bundle-identity.json",
+        "contract-diagnostic.json",
+        "effective-profile-wire.json",
+        "improvement-journey.json",
+        "native-action-journey.json",
+        "observation-journey.json",
+        "one-shot/packages/engine/package.toml",
+        "one-shot/packages/engine/role.md",
+        "one-shot/packages/engine/roles.toml",
+        "one-shot/private/capabilities.toml",
+        "one-shot/private/distribution-lock.toml",
+        "one-shot/private/machine-binding.toml",
+        "one-shot/workspace/composition.toml",
+        "one-shot/workspace/pale-workspace.toml",
+        "one-shot/workspace/workspace-resolution.lock.toml",
+        "one-shot/workspace/workspace-universe.lock.toml",
+        "one-shot-journey.json",
+        "portable/pale-workspace.toml",
+        "portable/resolution.lock.toml",
+        "portable/universe.lock.toml",
+        "portable-journey.json",
+        "repository-admission.json",
+        "repository-catalog.json"
+      ],
+      "root": "sdk/js/tests/fixtures/cross-leaf.v1"
+    },
+    {
+      "members": [
+        "bundle-identity.json",
+        "contract-diagnostic.json",
+        "effective-profile-wire.json",
+        "improvement-journey.json",
+        "native-action-journey.json",
+        "observation-journey.json",
+        "one-shot/packages/engine/package.toml",
+        "one-shot/packages/engine/role.md",
+        "one-shot/packages/engine/roles.toml",
+        "one-shot/private/capabilities.toml",
+        "one-shot/private/distribution-lock.toml",
+        "one-shot/private/machine-binding.toml",
+        "one-shot/workspace/composition.toml",
+        "one-shot/workspace/pale-workspace.toml",
+        "one-shot/workspace/workspace-resolution.lock.toml",
+        "one-shot/workspace/workspace-universe.lock.toml",
+        "one-shot-journey.json",
+        "portable/pale-workspace.toml",
+        "portable/resolution.lock.toml",
+        "portable/universe.lock.toml",
+        "portable-journey.json",
+        "repository-admission.json",
+        "repository-catalog.json"
+      ],
+      "root": "sdk/go/tests/fixtures/cross-leaf.v1"
+    },
+    {
+      "members": [
+        "bundle-identity.json",
+        "contract-diagnostic.json",
+        "effective-profile-wire.json",
+        "improvement-journey.json",
+        "native-action-journey.json",
+        "observation-journey.json",
+        "one-shot/packages/engine/package.toml",
+        "one-shot/packages/engine/role.md",
+        "one-shot/packages/engine/roles.toml",
+        "one-shot/private/capabilities.toml",
+        "one-shot/private/distribution-lock.toml",
+        "one-shot/private/machine-binding.toml",
+        "one-shot/workspace/composition.toml",
+        "one-shot/workspace/pale-workspace.toml",
+        "one-shot/workspace/workspace-resolution.lock.toml",
+        "one-shot/workspace/workspace-universe.lock.toml",
+        "one-shot-journey.json",
+        "portable/pale-workspace.toml",
+        "portable/resolution.lock.toml",
+        "portable/universe.lock.toml",
+        "portable-journey.json",
+        "repository-admission.json",
+        "repository-catalog.json"
+      ],
+      "root": "sdk/python/tests/fixtures/cross-leaf.v1"
+    },
+    {
+      "members": [
+        "bundle-identity.json",
+        "contract-diagnostic.json",
+        "native-action-journey.json",
+        "portable-journey.json",
+        "portable/pale-workspace.toml",
+        "portable/resolution.lock.toml",
+        "portable/universe.lock.toml"
+      ],
+      "root": "sdk/wasm/tests/fixtures/cross-leaf.v1"
+    },
+    {
+      "members": [
+        "improvement-journey.json",
+        "one-shot/packages/engine/package.toml",
+        "one-shot/packages/engine/role.md",
+        "one-shot/packages/engine/roles.toml",
+        "one-shot/private/capabilities.toml",
+        "one-shot/private/distribution-lock.toml",
+        "one-shot/private/machine-binding.toml",
+        "one-shot/workspace/composition.toml",
+        "one-shot/workspace/pale-workspace.toml",
+        "one-shot/workspace/workspace-resolution.lock.toml",
+        "one-shot/workspace/workspace-universe.lock.toml"
+      ],
+      "root": "interfaces/acp/tests/fixtures/cross-leaf.v1"
+    },
+    {
+      "members": [
+        "effective-profile-wire.json",
+        "one-shot/packages/engine/package.toml",
+        "one-shot/packages/engine/role.md",
+        "one-shot/packages/engine/roles.toml",
+        "one-shot/private/capabilities.toml",
+        "one-shot/private/distribution-lock.toml",
+        "one-shot/private/machine-binding.toml",
+        "one-shot/workspace/composition.toml",
+        "one-shot/workspace/pale-workspace.toml",
+        "one-shot/workspace/workspace-resolution.lock.toml",
+        "one-shot/workspace/workspace-universe.lock.toml",
+        "portable/pale-workspace.toml",
+        "portable/resolution.lock.toml",
+        "portable/universe.lock.toml"
+      ],
+      "root": "interfaces/lsp/tests/fixtures/cross-leaf.v1"
+    },
+    {
+      "members": [
+        "contract-diagnostic.json",
+        "effective-profile-wire.json"
+      ],
+      "root": "integrations/vscode/tests/fixtures/cross-leaf.v1"
+    }
+  ],
+  "schema": "pale.cross-leaf-conformance-manifest.v1",
+  "version": 1
+}

@@ -1,0 +1,230 @@
+{
+  "name": "pale-vscode",
+  "displayName": "Pale",
+  "description": "Edit Pale Workspace configuration in VS Code with diagnostics and hover from the Pale language server.",
+  "version": "0.0.1",
+  "private": true,
+  "author": "Harsh Joshi",
+  "license": "AGPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/getHarshOnline/pale.git",
+    "directory": "integrations/vscode"
+  },
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "extensionKind": [
+    "workspace"
+  ],
+  "activationEvents": [
+    "workspaceContains:pale-workspace.toml"
+  ],
+  "main": "./dist/extension.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "test": "npm run build && node --test tests/*.test.cjs",
+    "check": "npm test"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "pale",
+        "aliases": [
+          "Pale"
+        ]
+      },
+      {
+        "id": "pale-toml",
+        "aliases": [
+          "Pale TOML"
+        ]
+      },
+      {
+        "id": "pale-page",
+        "aliases": [
+          "Pale Package Page"
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "command": "pale.profile.selectContext",
+        "title": "Pale: Select Profile Context"
+      },
+      {
+        "command": "pale.profile.refresh",
+        "title": "Pale: Refresh Profile"
+      },
+      {
+        "command": "pale.profile.explain",
+        "title": "Pale: Explain Profile Item"
+      },
+      {
+        "command": "pale.improvement.begin",
+        "title": "Pale: Begin Configuration Review",
+        "enablement": "pale.configurationReview.canBegin"
+      },
+      {
+        "command": "pale.improvement.evaluate",
+        "title": "Pale: Evaluate Configuration Candidate",
+        "enablement": "pale.configurationReview.canEvaluate"
+      },
+      {
+        "command": "pale.improvement.inspect",
+        "title": "Pale: Inspect Configuration Preview",
+        "enablement": "pale.configurationReview.canInspect"
+      },
+      {
+        "command": "pale.improvement.finish",
+        "title": "Pale: Finish Configuration Review",
+        "enablement": "pale.configurationReview.canFinish"
+      }
+    ],
+    "configuration": {
+      "title": "Pale",
+      "properties": {
+        "pale.server.path": {
+          "type": "string",
+          "default": "pale-lsp",
+          "scope": "resource",
+          "restricted": true,
+          "description": "Executable name or absolute path of the Pale language server."
+        },
+        "pale.workspace.rootManifest": {
+          "type": "string",
+          "default": "pale-workspace.toml",
+          "scope": "resource",
+          "description": "Label of the root manifest among the configured source documents."
+        },
+        "pale.workspace.machineId": {
+          "type": "string",
+          "default": "",
+          "scope": "resource",
+          "description": "Machine-binding ID to use when inspecting the effective configuration. This does not verify machine readiness."
+        },
+        "pale.workspace.sources": {
+          "type": "array",
+          "default": [],
+          "scope": "resource",
+          "description": "Files to send to the language server. Set each file's path, editor language, and compiler input role explicitly.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "path",
+              "languageId",
+              "role"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Workspace-folder-relative source path."
+              },
+              "languageId": {
+                "enum": [
+                  "pale",
+                  "pale-toml",
+                  "pale-page"
+                ],
+                "description": "Editor language to assign when this source document opens."
+              },
+              "role": {
+                "enum": [
+                  "workspace-manifest",
+                  "workspace-module",
+                  "workspace-language-primitives",
+                  "responsibility-derivation",
+                  "organizational-translation",
+                  "experience-composition",
+                  "workspace-resolution-lock",
+                  "workspace-universe-lock",
+                  "capabilities",
+                  "machine-binding",
+                  "distribution-lock",
+                  "lifecycle-guidance",
+                  "package-manifest",
+                  "package-doctrine",
+                  "package-operations",
+                  "package-roles",
+                  "package-stacks",
+                  "package-run-modes",
+                  "package-policy-family",
+                  "package-governing-order",
+                  "package-capability-policy",
+                  "package-tool-recipe",
+                  "package-page",
+                  "package-data",
+                  "package-text"
+                ],
+                "description": "Compiler input role for this file; Pale does not infer it from its name or contents."
+              }
+            }
+          }
+        }
+      }
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "pale.profile",
+          "name": "Pale Profile",
+          "contextualTitle": "Pale Profile"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "pale.profile.selectContext",
+          "when": "view == pale.profile",
+          "group": "navigation@1"
+        },
+        {
+          "command": "pale.profile.refresh",
+          "when": "view == pale.profile",
+          "group": "navigation@2"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "pale.profile.explain",
+          "when": "view == pale.profile && viewItem == pale.profile.explainable",
+          "group": "inline@1"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "pale.profile.explain",
+          "when": "false"
+        }
+      ]
+    }
+  },
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": false,
+      "description": "Pale starts a configured language-server executable and reads explicitly selected workspace sources."
+    },
+    "virtualWorkspaces": {
+      "supported": false,
+      "description": "The native Pale language-server process requires a host filesystem workspace."
+    }
+  },
+  "dependencies": {
+    "vscode-languageclient": "9.0.1"
+  },
+  "devDependencies": {
+    "@rtepl/pale-contracts": "0.0.1",
+    "@types/node": "20.17.0",
+    "@types/vscode": "1.96.0",
+    "typescript": "5.9.2"
+  }
+}

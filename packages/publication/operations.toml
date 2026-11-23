@@ -1,0 +1,55 @@
+[operations]
+schema_version = 1
+
+[[operations.operation]]
+id = "content-authoring"
+description = "Draft content for its reader and medium using the owner’s accepted sources."
+doctrine = "author.md"
+doctrine_refs = [{ scope = "local", resource_id = "content-composition" }]
+outputs = ["The requested draft with identified version, reader and purpose.", "Source references, voice choices, unresolved gaps and decisions."]
+
+[[operations.operation]]
+id = "adapt-content"
+description = "Adapt accepted content for another medium while preserving its supported claims."
+doctrine = "adapt.md"
+doctrine_refs = [{ scope = "local", resource_id = "cross-medium-adaptation" }]
+outputs = ["Identified variants with source references, material differences and unresolved constraints."]
+
+[[operations.operation]]
+id = "review-publication-candidate"
+description = "Review the current draft for its reader and the question asked."
+doctrine = "review-candidate.md"
+doctrine_refs = [{ scope = "local", resource_id = "editorial-review" }]
+outputs = ["In the review: actionable findings tied to passages and consequences.", "Unverified claims, source-use questions and remaining owner decisions."]
+
+[[operations.operation]]
+id = "qualify-local-build"
+description = "Check a publication candidate through its configured local renderer."
+doctrine = "build.md"
+doctrine_refs = [
+  { scope = "external", resource = { package_id = "pale.engineering", resource_id = "execution" } },
+  { scope = "local", resource_id = "publication-reference-evidence" },
+  { scope = "local", resource_id = "local-build-method" },
+]
+capability_policy = { scope = "local", resource_id = "local-build-policy" }
+capability_requirements = [
+  { id = "render", description = "Render the selected publication locally and return exact input and output identities.", capability = "publication-local-render", recipe = { scope = "local", resource_id = "local-render" }, effect_class = "execute", policy = { kind = "required_block" }, failure_posture = "fail_closed" },
+]
+outputs = ["In the build result: publication, input versions, output identity and renderer result record.", "Checks performed, observations and unresolved evidence or decisions."]
+
+[[operations.operation]]
+id = "review-search-visibility"
+description = "Review how a reader can discover a publication from current output and observations."
+doctrine = "search-visibility.md"
+outputs = ["In the review: inspected scope, evidence and recommendation.", "Unresolved conditions and the responsible owner."]
+roles = [{ scope = "local", resource_id = "seo-specialist" }]
+
+[[operations.operation]]
+id = "review-media-placement"
+description = "Review placed media against the approved asset, rendition and observed destination."
+doctrine = "review-media-placement.md"
+doctrine_refs = [
+  { scope = "local", resource_id = "media-placement-method" },
+  { scope = "external", resource = { package_id = "pale.design", resource_id = "independent" } },
+]
+outputs = ["In the review: placement and rendition identities, render observations and independent visual findings.", "Missing destination observations and pending owner decisions."]

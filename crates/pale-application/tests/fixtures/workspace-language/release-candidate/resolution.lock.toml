@@ -1,0 +1,15 @@
+schema = "pale/workspace-resolution-lock.v1"
+schema_version = 1
+resolution_digest = "4f5248707c2134a44ef6fa414739e54f6d1f0bdb90dfb76fd46f032cbfad7dab"
+
+[[releases]]
+module_id = "candidate"
+release_id = "release-1"
+module_digest = "906472744d729c6145fcec6de552cf4835087437042d27dd96311f2a33e15fb1"
+release_state = "candidate"
+
+[releases.publisher]
+publisher_id = "candidate-publisher"
+root_key_id = "candidate-publisher-root"
+recovery_authority_id = "candidate-publisher-recovery"
+delegated_release_key_id = "candidate-publisher-release"

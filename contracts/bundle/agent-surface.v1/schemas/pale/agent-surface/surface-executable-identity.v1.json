@@ -1,0 +1,65 @@
+{
+  "$defs": {
+    "DurablePublication": {
+      "oneOf": [
+        {
+          "const": "apple-full-fsync",
+          "type": "string"
+        },
+        {
+          "const": "unix-fsync",
+          "type": "string"
+        },
+        {
+          "const": "standard-sync-all",
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/surface-executable-identity.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "arch": {
+      "type": "string"
+    },
+    "durable_publication": {
+      "$ref": "#/$defs/DurablePublication"
+    },
+    "os": {
+      "type": "string"
+    },
+    "protocol": {
+      "type": "string"
+    },
+    "schema": {
+      "const": "pale/surface-executable-identity.v1",
+      "type": "string"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_sha256",
+    "schema_version",
+    "version",
+    "protocol",
+    "os",
+    "arch",
+    "durable_publication"
+  ],
+  "title": "surface-executable-identity.v1",
+  "type": "object"
+}

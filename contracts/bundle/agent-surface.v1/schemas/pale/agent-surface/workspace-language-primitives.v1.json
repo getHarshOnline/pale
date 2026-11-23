@@ -1,0 +1,529 @@
+{
+  "$defs": {
+    "DeclarationDependencyKindV1": {
+      "oneOf": [
+        {
+          "const": "positive",
+          "type": "string"
+        },
+        {
+          "const": "negation",
+          "type": "string"
+        },
+        {
+          "const": "effect",
+          "type": "string"
+        },
+        {
+          "const": "callback",
+          "type": "string"
+        },
+        {
+          "const": "unbounded_generation",
+          "type": "string"
+        }
+      ]
+    },
+    "DisclosureCeilingV1": {
+      "oneOf": [
+        {
+          "const": "private",
+          "type": "string"
+        },
+        {
+          "const": "protected",
+          "type": "string"
+        },
+        {
+          "const": "public",
+          "type": "string"
+        }
+      ]
+    },
+    "WorkspaceAuthorityCeilingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "permitted": {
+          "items": {
+            "$ref": "#/$defs/WorkspaceAuthorityScopeId"
+          },
+          "maxItems": 1024,
+          "minItems": 0,
+          "type": "array"
+        }
+      },
+      "required": [
+        "permitted"
+      ],
+      "type": "object"
+    },
+    "WorkspaceAuthorityScopeId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceComponentId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceControllerCeilingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "permitted": {
+          "items": {
+            "$ref": "#/$defs/WorkspaceControllerScopeId"
+          },
+          "maxItems": 1024,
+          "minItems": 0,
+          "type": "array"
+        }
+      },
+      "required": [
+        "permitted"
+      ],
+      "type": "object"
+    },
+    "WorkspaceControllerScopeId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceDeclarationDependencyV1": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "$ref": "#/$defs/DeclarationDependencyKindV1"
+        },
+        "target": {
+          "$ref": "#/$defs/WorkspaceDeclarationRefV1"
+        }
+      },
+      "required": [
+        "target",
+        "kind"
+      ],
+      "type": "object"
+    },
+    "WorkspaceDeclarationId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceDeclarationRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "declaration_id": {
+          "$ref": "#/$defs/WorkspaceDeclarationId"
+        },
+        "namespace": {
+          "$ref": "#/$defs/WorkspaceNamespaceId"
+        }
+      },
+      "required": [
+        "namespace",
+        "declaration_id"
+      ],
+      "type": "object"
+    },
+    "WorkspaceDeclarationV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "dependencies": {
+              "items": {
+                "$ref": "#/$defs/WorkspaceDeclarationDependencyV1"
+              },
+              "maxItems": 1024,
+              "minItems": 0,
+              "type": "array"
+            },
+            "id": {
+              "$ref": "#/$defs/WorkspaceDeclarationId"
+            },
+            "kind": {
+              "const": "trait",
+              "type": "string"
+            },
+            "namespace": {
+              "$ref": "#/$defs/WorkspaceNamespaceId"
+            }
+          },
+          "required": [
+            "kind",
+            "id",
+            "namespace",
+            "dependencies"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "dependencies": {
+              "items": {
+                "$ref": "#/$defs/WorkspaceDeclarationDependencyV1"
+              },
+              "maxItems": 1024,
+              "minItems": 0,
+              "type": "array"
+            },
+            "id": {
+              "$ref": "#/$defs/WorkspaceDeclarationId"
+            },
+            "kind": {
+              "const": "attribute",
+              "type": "string"
+            },
+            "namespace": {
+              "$ref": "#/$defs/WorkspaceNamespaceId"
+            },
+            "value_kind": {
+              "$ref": "#/$defs/WorkspaceValueKindV1"
+            }
+          },
+          "required": [
+            "kind",
+            "id",
+            "namespace",
+            "value_kind",
+            "dependencies"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "dependencies": {
+              "items": {
+                "$ref": "#/$defs/WorkspaceDeclarationDependencyV1"
+              },
+              "maxItems": 1024,
+              "minItems": 0,
+              "type": "array"
+            },
+            "from": {
+              "$ref": "#/$defs/WorkspaceDeclarationRefV1"
+            },
+            "id": {
+              "$ref": "#/$defs/WorkspaceDeclarationId"
+            },
+            "kind": {
+              "const": "relationship",
+              "type": "string"
+            },
+            "namespace": {
+              "$ref": "#/$defs/WorkspaceNamespaceId"
+            },
+            "to": {
+              "$ref": "#/$defs/WorkspaceDeclarationRefV1"
+            }
+          },
+          "required": [
+            "kind",
+            "id",
+            "namespace",
+            "from",
+            "to",
+            "dependencies"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "ceiling": {
+              "$ref": "#/$defs/WorkspacePolicyCeilingV1"
+            },
+            "dependencies": {
+              "items": {
+                "$ref": "#/$defs/WorkspaceDeclarationDependencyV1"
+              },
+              "maxItems": 1024,
+              "minItems": 0,
+              "type": "array"
+            },
+            "exclusive_authority": {
+              "items": {
+                "$ref": "#/$defs/WorkspaceExclusiveAuthorityClaimV1"
+              },
+              "maxItems": 1024,
+              "minItems": 0,
+              "type": "array"
+            },
+            "id": {
+              "$ref": "#/$defs/WorkspaceDeclarationId"
+            },
+            "kind": {
+              "const": "policy",
+              "type": "string"
+            },
+            "namespace": {
+              "$ref": "#/$defs/WorkspaceNamespaceId"
+            },
+            "obligations": {
+              "items": {
+                "$ref": "#/$defs/WorkspaceObligationId"
+              },
+              "maxItems": 1024,
+              "minItems": 0,
+              "type": "array"
+            }
+          },
+          "required": [
+            "kind",
+            "id",
+            "namespace",
+            "ceiling",
+            "obligations",
+            "exclusive_authority",
+            "dependencies"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "dependencies": {
+              "items": {
+                "$ref": "#/$defs/WorkspaceDeclarationDependencyV1"
+              },
+              "maxItems": 1024,
+              "minItems": 0,
+              "type": "array"
+            },
+            "id": {
+              "$ref": "#/$defs/WorkspaceDeclarationId"
+            },
+            "kind": {
+              "const": "resource",
+              "type": "string"
+            },
+            "namespace": {
+              "$ref": "#/$defs/WorkspaceNamespaceId"
+            },
+            "resource_kind": {
+              "$ref": "#/$defs/WorkspaceResourceKindV1"
+            }
+          },
+          "required": [
+            "kind",
+            "id",
+            "namespace",
+            "resource_kind",
+            "dependencies"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "WorkspaceEffectCeilingV1": {
+      "oneOf": [
+        {
+          "const": "none",
+          "type": "string"
+        },
+        {
+          "const": "read",
+          "type": "string"
+        },
+        {
+          "const": "mutate",
+          "type": "string"
+        }
+      ]
+    },
+    "WorkspaceExclusiveAuthorityClaimV1": {
+      "additionalProperties": false,
+      "properties": {
+        "authority_resolver": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "scope": {
+          "$ref": "#/$defs/WorkspaceAuthorityScopeId"
+        }
+      },
+      "required": [
+        "scope",
+        "authority_resolver"
+      ],
+      "type": "object"
+    },
+    "WorkspaceModuleId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceNamespaceId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceObligationId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspacePolicyCeilingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "authorities": {
+          "$ref": "#/$defs/WorkspaceAuthorityCeilingV1"
+        },
+        "controllers": {
+          "$ref": "#/$defs/WorkspaceControllerCeilingV1"
+        },
+        "disclosure": {
+          "$ref": "#/$defs/DisclosureCeilingV1"
+        },
+        "effect": {
+          "$ref": "#/$defs/WorkspaceEffectCeilingV1"
+        },
+        "model_use_permitted": {
+          "type": "boolean"
+        },
+        "retention_seconds": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "rights": {
+          "$ref": "#/$defs/WorkspaceRightsCeilingV1"
+        }
+      },
+      "required": [
+        "disclosure",
+        "effect",
+        "model_use_permitted",
+        "retention_seconds",
+        "rights",
+        "controllers",
+        "authorities"
+      ],
+      "type": "object"
+    },
+    "WorkspaceResourceId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceResourceKindV1": {
+      "oneOf": [
+        {
+          "const": "principal",
+          "type": "string"
+        },
+        {
+          "const": "organization",
+          "type": "string"
+        },
+        {
+          "const": "native_application",
+          "type": "string"
+        },
+        {
+          "const": "participant",
+          "type": "string"
+        },
+        {
+          "const": "package",
+          "type": "string"
+        },
+        {
+          "const": "normative_pack",
+          "type": "string"
+        }
+      ]
+    },
+    "WorkspaceRightId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceRightsCeilingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "permitted": {
+          "items": {
+            "$ref": "#/$defs/WorkspaceRightId"
+          },
+          "maxItems": 1024,
+          "minItems": 0,
+          "type": "array"
+        }
+      },
+      "required": [
+        "permitted"
+      ],
+      "type": "object"
+    },
+    "WorkspaceValueKindV1": {
+      "oneOf": [
+        {
+          "const": "boolean",
+          "type": "string"
+        },
+        {
+          "const": "integer",
+          "type": "string"
+        },
+        {
+          "const": "text",
+          "type": "string"
+        },
+        {
+          "const": "logical_id",
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/workspace-language-primitives.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "component_id": {
+      "$ref": "#/$defs/WorkspaceComponentId"
+    },
+    "declarations": {
+      "items": {
+        "$ref": "#/$defs/WorkspaceDeclarationV1"
+      },
+      "maxItems": 1024,
+      "minItems": 0,
+      "type": "array"
+    },
+    "module_id": {
+      "$ref": "#/$defs/WorkspaceModuleId"
+    },
+    "schema": {
+      "const": "pale/workspace-language-primitives.v1",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_version",
+    "component_id",
+    "module_id",
+    "declarations"
+  ],
+  "title": "workspace-language-primitives.v1",
+  "type": "object"
+}

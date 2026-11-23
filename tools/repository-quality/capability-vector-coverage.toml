@@ -1,0 +1,95 @@
+format = 1
+
+pending = [
+  "a2a.delegate-handle-inspection",
+  "package-distribution.inspection",
+  "package-catalog.inspection",
+  "authoring.ingress-limits",
+  "authoring.standalone-validation",
+  "authoring.standalone-inspection",
+  "workspace.portable-authoring-inspection",
+  "workspace.portable-authoring-navigation",
+  "workspace.portable-authoring-occurrences",
+  "workspace.portable-source-subjects",
+  "workspace.portable-comparison-subjects",
+  "workspace.portable-subject-comparison",
+  "workspace.portable-direct-dependencies",
+  "workspace.portable-direct-dependents",
+  "workspace.portable-subject-inspection",
+  "workspace.portable-organization-inspection",
+  "workspace.portable-contributing-roots",
+  "workspace.effective-profile-compilation",
+  "workspace.effective-profile-inspection",
+  "workspace.effective-profile-explanation",
+  "workspace.effective-profile-authoring-inspection",
+  "workspace.effective-profile-authoring-navigation",
+  "workspace.effective-profile-authoring-occurrences",
+  "workspace.effective-profile-authoring-join",
+  "workspace.effective-profile-authoring-pages",
+  "observation.snapshot",
+  "observation.page",
+  "observation.profile-inspection",
+  "observation.delta",
+  "observation.causal-path",
+  "observation.visual-lens",
+  "resident-hook.admission",
+  "resident-hook.codex-command-observation",
+  # These authenticated resident journeys are stateful and process-local.
+  # Static cross-leaf vectors cannot supply resident attachment, authority,
+  # custody, replay, or effect owners, so no canonical fixture is claimed.
+  "resident.invoke-start",
+  "resident.invoke-advance",
+  "resident.consult-start",
+  "resident.consult-advance",
+  "resident.delegate-start",
+  "resident.delegate-advance",
+  "resident.operation-cancellation",
+  "resident.operation-observation",
+  "one-shot.machine-effect-binding",
+  "one-shot.saved-plan-admission",
+  # SDK and CLI behavior tests cover these local inspections. No sealed
+  # cross-leaf vector currently represents either operation.
+  "local.workspace-source-inspection",
+  "local.doctor-inspection",
+  "local.one-shot-compilation",
+  "local.package-distribution-inspection",
+  "local.package-catalog-inspection",
+  "local.package-index-update",
+  "local.native-action-input-capture",
+  "local.repository-status",
+  "local.one-shot-planning",
+  "local.one-shot-plan-publication",
+  "local.materialization-run-admission",
+  "local.materialization-run-settlement",
+  "local.materialization-reconciliation-inspection",
+  "local.compiled-interface-identity",
+  "local.current-executable-binding-verification",
+  "local.control-storage-inspection",
+  "local.configuration-improvement-capture",
+  "local.configuration-improvement-preview",
+  "local.source-guidance-planning",
+  "local.source-guidance-write",
+  "local.source-guidance-recovery-planning",
+  "local.source-guidance-recovery-execution",
+]
+
+[covered]
+"contract.bundle-identity" = "bundle-identity.json"
+"contract.schema-lookup" = "contract-diagnostic.json"
+"contract.document-validation" = "contract-diagnostic.json"
+"diagnostic.projection" = "contract-diagnostic.json"
+"diagnostic.admission" = "contract-diagnostic.json"
+"workspace.portable-compilation" = "portable-journey.json"
+"workspace.portable-comparison" = "portable-journey.json"
+"workspace.portable-change-roots" = "portable-journey.json"
+"workspace.portable-impacts" = "portable-journey.json"
+"workspace.portable-explanation" = "portable-journey.json"
+"workspace.configuration-improvement" = "improvement-journey.json"
+"native-action.catalog" = "native-action-journey.json"
+"native-action.invocation" = "native-action-journey.json"
+"native-action.payload-invocation" = "native-action-journey.json"
+"native-action.repository-admission" = "repository-admission.json"
+"one-shot.compilation" = "one-shot-journey.json"
+"one-shot.compilation-summary" = "one-shot-journey.json"
+"one-shot.observation-targets" = "one-shot-journey.json"
+"one-shot.planning" = "one-shot-journey.json"

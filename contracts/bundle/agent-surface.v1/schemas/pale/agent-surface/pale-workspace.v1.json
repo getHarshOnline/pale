@@ -1,0 +1,646 @@
+{
+  "$defs": {
+    "AuthorityAccess": {
+      "additionalProperties": false,
+      "properties": {
+        "class": {
+          "$ref": "#/$defs/AuthorityAccessClass"
+        },
+        "root_id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "root_id",
+        "class"
+      ],
+      "type": "object"
+    },
+    "AuthorityAccessClass": {
+      "oneOf": [
+        {
+          "const": "read-only",
+          "type": "string"
+        }
+      ]
+    },
+    "ExecutionPathSelectionIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "ExecutionPathSelectionV1": {
+      "additionalProperties": false,
+      "properties": {
+        "experience_path_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "id": {
+          "$ref": "#/$defs/ExecutionPathSelectionIdV1"
+        }
+      },
+      "required": [
+        "id",
+        "experience_path_id"
+      ],
+      "type": "object"
+    },
+    "ExecutionWorkspaceRepositoryAccessV1": {
+      "oneOf": [
+        {
+          "const": "read",
+          "type": "string"
+        },
+        {
+          "const": "mutate",
+          "type": "string"
+        }
+      ]
+    },
+    "ExecutionWorkspaceRepositoryMembershipV1": {
+      "additionalProperties": false,
+      "properties": {
+        "access": {
+          "$ref": "#/$defs/ExecutionWorkspaceRepositoryAccessV1"
+        },
+        "execution_workspace_id": {
+          "$ref": "#/$defs/LogicalExecutionWorkspaceIdV1"
+        },
+        "repository_id": {
+          "$ref": "#/$defs/LogicalRepositoryIdV1"
+        }
+      },
+      "required": [
+        "execution_workspace_id",
+        "repository_id",
+        "access"
+      ],
+      "type": "object"
+    },
+    "LogicalExecutionWorkspaceIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "LogicalExecutionWorkspaceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "execution_path_ids": {
+          "items": {
+            "$ref": "#/$defs/ExecutionPathSelectionIdV1"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "id": {
+          "$ref": "#/$defs/LogicalExecutionWorkspaceIdV1"
+        },
+        "session": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SessionModel"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "title": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "execution_path_ids"
+      ],
+      "type": "object"
+    },
+    "LogicalProjectIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "LogicalProjectV1": {
+      "additionalProperties": false,
+      "properties": {
+        "authority_root_ids": {
+          "items": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "capabilities_file": {
+          "$ref": "#/$defs/OwnedConfinedRelativePath"
+        },
+        "id": {
+          "$ref": "#/$defs/LogicalProjectIdV1"
+        },
+        "owner": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ProjectOwnerReferenceV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "package_seeds": {
+          "items": {
+            "$ref": "#/$defs/PackageIdV1"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "run_policy": {
+          "$ref": "#/$defs/RunPolicyIdV1"
+        },
+        "title": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "run_policy",
+        "package_seeds",
+        "authority_root_ids",
+        "capabilities_file"
+      ],
+      "type": "object"
+    },
+    "LogicalRepositoryIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "LogicalRepositoryV1": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/LogicalRepositoryIdV1"
+        },
+        "title": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "title"
+      ],
+      "type": "object"
+    },
+    "OwnedConfinedRelativePath": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "type": "string"
+    },
+    "PackageIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[./][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "package_id": {
+          "$ref": "#/$defs/PackageIdV1"
+        },
+        "resource_id": {
+          "$ref": "#/$defs/PackageResourceIdV1"
+        }
+      },
+      "required": [
+        "package_id",
+        "resource_id"
+      ],
+      "type": "object"
+    },
+    "ProjectExecutionWorkspaceMembershipV1": {
+      "additionalProperties": false,
+      "properties": {
+        "execution_workspace_id": {
+          "$ref": "#/$defs/LogicalExecutionWorkspaceIdV1"
+        },
+        "project_id": {
+          "$ref": "#/$defs/LogicalProjectIdV1"
+        }
+      },
+      "required": [
+        "project_id",
+        "execution_workspace_id"
+      ],
+      "type": "object"
+    },
+    "ProjectOwnerReferenceV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "principal",
+              "type": "string"
+            },
+            "module_id": {
+              "$ref": "#/$defs/WorkspaceModuleId"
+            },
+            "resource_id": {
+              "$ref": "#/$defs/WorkspaceResourceId"
+            }
+          },
+          "required": [
+            "kind",
+            "module_id",
+            "resource_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "organization",
+              "type": "string"
+            },
+            "module_id": {
+              "$ref": "#/$defs/WorkspaceModuleId"
+            },
+            "resource_id": {
+              "$ref": "#/$defs/WorkspaceResourceId"
+            }
+          },
+          "required": [
+            "kind",
+            "module_id",
+            "resource_id"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "ProjectRepositoryMembershipV1": {
+      "additionalProperties": false,
+      "properties": {
+        "families": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceRefV1"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "materialization_order": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "project_id": {
+          "$ref": "#/$defs/LogicalProjectIdV1"
+        },
+        "repository_id": {
+          "$ref": "#/$defs/LogicalRepositoryIdV1"
+        },
+        "responsibility_derivation_ids": {
+          "items": {
+            "$ref": "#/$defs/ResponsibilityDerivationId"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "role": {
+          "$ref": "#/$defs/PackageResourceRefV1"
+        },
+        "stacks": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceRefV1"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "project_id",
+        "repository_id",
+        "role",
+        "materialization_order"
+      ],
+      "type": "object"
+    },
+    "ReadingOrderEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "rel_path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "root_id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "root_id",
+        "rel_path"
+      ],
+      "type": "object"
+    },
+    "ResponsibilityDerivationId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "RunPolicyIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "SessionModel": {
+      "additionalProperties": false,
+      "properties": {
+        "activation_path_ids": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/ExecutionPathSelectionIdV1"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "activation_roots": {
+          "items": {
+            "$ref": "#/$defs/LogicalRepositoryIdV1"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "additional_roots": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/LogicalRepositoryIdV1"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "authority_access": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/AuthorityAccess"
+          },
+          "type": "array"
+        },
+        "lifecycle_events": {
+          "default": [],
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/lifecycle-event.v1.json"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "reading_order": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/ReadingOrderEntry"
+          },
+          "type": "array"
+        },
+        "runtime": {
+          "$ref": "#/$defs/SessionRuntimeSelection"
+        }
+      },
+      "required": [
+        "activation_roots"
+      ],
+      "type": "object"
+    },
+    "SessionRuntimeSelection": {
+      "oneOf": [
+        {
+          "const": "machine-local",
+          "type": "string"
+        }
+      ]
+    },
+    "WorkspaceDesiredTopologyV1": {
+      "additionalProperties": false,
+      "properties": {
+        "execution_paths": {
+          "items": {
+            "$ref": "#/$defs/ExecutionPathSelectionV1"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "execution_workspace_repositories": {
+          "items": {
+            "$ref": "#/$defs/ExecutionWorkspaceRepositoryMembershipV1"
+          },
+          "maxItems": 4096,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "execution_workspaces": {
+          "items": {
+            "$ref": "#/$defs/LogicalExecutionWorkspaceV1"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "project_execution_workspaces": {
+          "items": {
+            "$ref": "#/$defs/ProjectExecutionWorkspaceMembershipV1"
+          },
+          "maxItems": 4096,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "project_repositories": {
+          "items": {
+            "$ref": "#/$defs/ProjectRepositoryMembershipV1"
+          },
+          "maxItems": 4096,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "projects": {
+          "items": {
+            "$ref": "#/$defs/LogicalProjectV1"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "repositories": {
+          "items": {
+            "$ref": "#/$defs/LogicalRepositoryV1"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "projects",
+        "execution_workspaces",
+        "repositories",
+        "execution_paths",
+        "project_repositories",
+        "project_execution_workspaces",
+        "execution_workspace_repositories"
+      ],
+      "type": "object"
+    },
+    "WorkspaceId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceMeta": {
+      "additionalProperties": false,
+      "properties": {
+        "desired_topology": {
+          "$ref": "#/$defs/WorkspaceDesiredTopologyV1"
+        },
+        "distribution_lock": {
+          "$ref": "#/$defs/OwnedConfinedRelativePath"
+        },
+        "experience_compositions": {
+          "items": {
+            "$ref": "#/$defs/OwnedConfinedRelativePath"
+          },
+          "maxItems": 1,
+          "type": "array"
+        },
+        "machine_binding_root": {
+          "$ref": "#/$defs/OwnedConfinedRelativePath"
+        },
+        "module_manifests": {
+          "items": {
+            "$ref": "#/$defs/OwnedConfinedRelativePath"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "module_sources": {
+          "items": {
+            "$ref": "#/$defs/OwnedConfinedRelativePath"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "organizational_translations": {
+          "items": {
+            "$ref": "#/$defs/OwnedConfinedRelativePath"
+          },
+          "maxItems": 1,
+          "type": "array"
+        },
+        "resolution_lock": {
+          "$ref": "#/$defs/OwnedConfinedRelativePath"
+        },
+        "responsibility_derivations": {
+          "items": {
+            "$ref": "#/$defs/OwnedConfinedRelativePath"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "schema_version": {
+          "const": 1,
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "source_components": {
+          "items": {
+            "$ref": "#/$defs/OwnedConfinedRelativePath"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "universe_lock": {
+          "$ref": "#/$defs/OwnedConfinedRelativePath"
+        },
+        "workspace_id": {
+          "$ref": "#/$defs/WorkspaceId"
+        }
+      },
+      "required": [
+        "schema_version",
+        "workspace_id",
+        "distribution_lock",
+        "desired_topology",
+        "machine_binding_root",
+        "module_manifests",
+        "source_components",
+        "responsibility_derivations",
+        "organizational_translations",
+        "experience_compositions",
+        "resolution_lock",
+        "universe_lock"
+      ],
+      "type": "object"
+    },
+    "WorkspaceModuleId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceResourceId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/pale-workspace.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "workspace": {
+      "$ref": "#/$defs/WorkspaceMeta"
+    }
+  },
+  "required": [
+    "workspace"
+  ],
+  "title": "pale-workspace.v1",
+  "type": "object"
+}

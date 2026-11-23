@@ -1,0 +1,4 @@
+id = "engineering.boundary_safety"
+title = "Keep the guarantees the change must respect"
+purpose = "Keep correctness, security, accessibility, input validation, recovery and requested behaviour intact while simplifying. Check who owns the affected data and decisions, and how the consuming system enforces those limits."
+body = "families/boundary_safety/body.md"

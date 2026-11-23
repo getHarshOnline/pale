@@ -1,0 +1,4 @@
+id = "engineering.solution_economy"
+title = "Choose the simplest complete solution"
+purpose = "After understanding the change and its guarantees, check what is necessary, reuse suitable code and platform facilities, and choose a complete solution that people can maintain."
+body = "families/solution_economy/body.md"

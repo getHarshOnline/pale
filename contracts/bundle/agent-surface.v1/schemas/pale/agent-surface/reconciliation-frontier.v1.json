@@ -1,0 +1,517 @@
+{
+  "$defs": {
+    "AuthorityEvidenceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "authority_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "authority_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "authority_ref",
+        "authority_sha256"
+      ],
+      "type": "object"
+    },
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "FrontierOwnerRevisionV1": {
+      "additionalProperties": false,
+      "properties": {
+        "native_revision": {
+          "$ref": "#/$defs/NativeRevisionV1"
+        },
+        "owner_system_id": {
+          "$ref": "#/$defs/OwnerSystemIdV1"
+        },
+        "record_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "record_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "owner_system_id",
+        "record_ref",
+        "record_sha256",
+        "native_revision"
+      ],
+      "type": "object"
+    },
+    "ImmutableRecordReferenceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "record_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "record_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "record_ref",
+        "record_sha256"
+      ],
+      "type": "object"
+    },
+    "NativeRevisionOwnerV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "NativeRevisionTokenV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "NativeRevisionV1": {
+      "additionalProperties": false,
+      "properties": {
+        "native_revision_owner": {
+          "$ref": "#/$defs/NativeRevisionOwnerV1"
+        },
+        "native_revision_token": {
+          "$ref": "#/$defs/NativeRevisionTokenV1"
+        }
+      },
+      "required": [
+        "native_revision_owner",
+        "native_revision_token"
+      ],
+      "type": "object"
+    },
+    "OwnerFrontierDispositionV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "OwnerRecordCoordinateV1": {
+      "additionalProperties": false,
+      "properties": {
+        "native_revision": {
+          "$ref": "#/$defs/NativeRevisionV1"
+        },
+        "owner_system_id": {
+          "$ref": "#/$defs/OwnerSystemIdV1"
+        },
+        "record_content_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "record_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "record_schema_id": {
+          "$ref": "#/$defs/SchemaId"
+        },
+        "record_schema_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "owner_system_id",
+        "record_ref",
+        "record_schema_id",
+        "record_schema_sha256",
+        "record_content_sha256",
+        "native_revision"
+      ],
+      "type": "object"
+    },
+    "OwnerSystemIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ReconciliationDimensionEntryV1": {
+      "additionalProperties": false,
+      "properties": {
+        "dimension": {
+          "$ref": "#/$defs/ReconciliationDimensionV1"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AuthorityEvidenceV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "status": {
+          "$ref": "#/$defs/ReconciliationDimensionStatusV1"
+        }
+      },
+      "required": [
+        "dimension",
+        "status"
+      ],
+      "type": "object"
+    },
+    "ReconciliationDimensionStatusV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "const": "complete",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "const": "pending",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "const": "gap",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "const": "blocked",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "const": "quarantined",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "const": "unavailable",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "const": "expired",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "disposition": {
+              "$ref": "#/$defs/OwnerFrontierDispositionV1"
+            },
+            "state": {
+              "const": "owner_terminal",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state",
+            "disposition"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "ReconciliationDimensionV1": {
+      "oneOf": [
+        {
+          "const": "owner_publication",
+          "type": "string"
+        },
+        {
+          "const": "pale_ingress",
+          "type": "string"
+        },
+        {
+          "const": "delivery",
+          "type": "string"
+        },
+        {
+          "const": "deterministic_projection",
+          "type": "string"
+        },
+        {
+          "const": "semantic_mapping",
+          "type": "string"
+        },
+        {
+          "const": "judgment",
+          "type": "string"
+        },
+        {
+          "const": "articulation",
+          "type": "string"
+        },
+        {
+          "const": "native_consequence",
+          "type": "string"
+        },
+        {
+          "const": "retention",
+          "type": "string"
+        }
+      ]
+    },
+    "ReconciliationFrontierIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ReconciliationSubjectV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "coordinate": {
+              "$ref": "#/$defs/OwnerRecordCoordinateV1"
+            },
+            "kind": {
+              "const": "source",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "coordinate"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "consumer_id": {
+              "$ref": "#/$defs/OwnerSystemIdV1"
+            },
+            "kind": {
+              "const": "consumer",
+              "type": "string"
+            },
+            "state_ref": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            "state_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            }
+          },
+          "required": [
+            "kind",
+            "consumer_id",
+            "state_ref",
+            "state_sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "projection",
+              "type": "string"
+            },
+            "projection_ref": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            "projection_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            }
+          },
+          "required": [
+            "kind",
+            "projection_ref",
+            "projection_sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "consequence_ref": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            "consequence_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "kind": {
+              "const": "consequence",
+              "type": "string"
+            },
+            "owner_system_id": {
+              "$ref": "#/$defs/OwnerSystemIdV1"
+            }
+          },
+          "required": [
+            "kind",
+            "owner_system_id",
+            "consequence_ref",
+            "consequence_sha256"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "SigningKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/reconciliation-frontier.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "canonical_reconciliation_frontier_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "deployment_runtime_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "deployment_runtime_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "dimensions": {
+      "items": {
+        "$ref": "#/$defs/ReconciliationDimensionEntryV1"
+      },
+      "type": "array"
+    },
+    "frontier_id": {
+      "$ref": "#/$defs/ReconciliationFrontierIdV1"
+    },
+    "generated_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "issuer_key_epoch": {
+      "$ref": "#/$defs/SigningKeyEpochV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "issuer_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "owner_record_revisions": {
+      "items": {
+        "$ref": "#/$defs/FrontierOwnerRevisionV1"
+      },
+      "type": "array"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/reconciliation-frontier.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    },
+    "source_occurrence_refs": {
+      "items": {
+        "$ref": "#/$defs/ImmutableRecordReferenceV1"
+      },
+      "type": "array"
+    },
+    "subject": {
+      "$ref": "#/$defs/ReconciliationSubjectV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "frontier_id",
+    "subject",
+    "dimensions",
+    "source_occurrence_refs",
+    "owner_record_revisions",
+    "generated_at",
+    "deployment_runtime_authority_ref",
+    "deployment_runtime_authority_sha256",
+    "issuer_principal_id",
+    "issuer_key_id",
+    "issuer_key_epoch",
+    "canonical_reconciliation_frontier_sha256",
+    "signature"
+  ],
+  "title": "reconciliation-frontier.v1",
+  "type": "object"
+}

@@ -1,0 +1,13 @@
+[roles]
+schema_version = 1
+
+[[roles.archetype]]
+id = "evidence-grounded-domain-specialist"
+description = "Review a product question from its evidence within the caller’s permissions."
+doctrine = "domain-lens.md"
+
+[[roles.role]]
+id = "marketing-agent"
+description = "Check how an offer speaks to its audience and what supports each claim."
+doctrine = "positioning-lens.md"
+extends = [{ scope = "local", resource_id = "evidence-grounded-domain-specialist" }]

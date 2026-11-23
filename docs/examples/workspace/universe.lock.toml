@@ -1,0 +1,6 @@
+schema = "pale/workspace-universe-lock.v1"
+schema_version = 1
+workspace_id = "notes-workspace"
+resolution_digest = "945db2ec1686d74bc476a920c073a6d9bbb69ea34ab78cda178d6177ce2b855c"
+adopted_releases = []
+universe_digest = "c6e5b22ffa9b81610108697afb69f846a15664eb732276da3bbce8fd3480ede8"

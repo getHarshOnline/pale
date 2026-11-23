@@ -1,0 +1,37 @@
+[package]
+name = "pale-adapter-darwin-signing"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Ed25519 signing core for Pale's macOS XPC Keychain helper."
+publish = false
+
+[lib]
+crate-type = ["rlib", "staticlib"]
+
+[lints]
+workspace = true
+
+[features]
+default = []
+# Public RFC test seed only, never an alternate production credential path.
+# Release builds with this feature are rejected by the source.
+qualification-fixture = []
+
+[dependencies]
+pale-core = { path = "../../crates/pale-core" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+base64 = "=0.22.1"
+ed25519-dalek = { version = "=2.2.0", default-features = false, features = ["std", "zeroize"] }
+zeroize = "=1.9.0"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+pale-adapter-fs = { path = "../fs" }
+security-framework = { version = "=3.7.0", default-features = false }
+
+[dev-dependencies]
+tempfile = { workspace = true }
+rustix = { workspace = true, features = ["process"] }

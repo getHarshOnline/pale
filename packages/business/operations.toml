@@ -1,0 +1,46 @@
+[operations]
+schema_version = 1
+
+[[operations.archetype]]
+id = "evidence-bound-business-decision"
+description = "Keep a business review within its evidence, configured tools and permitted actions."
+doctrine = "decision-boundary.md"
+
+[[operations.operation]]
+id = "competitive-analysis"
+description = "Compare the alternatives a customer can choose, using comparable evidence and clearly labelled judgments."
+doctrine = "competitive-analysis.md"
+doctrine_refs = [{ scope = "external", resource = { package_id = "pale.research", resource_id = "evidence-led-research" } }, { scope = "local", resource_id = "competitive-set-framing" }, { scope = "local", resource_id = "competitive-evidence-synthesis" }]
+outputs = ["In the comparison: alternatives, inclusion and exclusion reasons, comparable findings, contradictions, unknowns and information that may be stale."]
+extends = [{ scope = "local", resource_id = "evidence-bound-business-decision" }]
+
+[[operations.operation]]
+id = "decision-council"
+description = "Compare independent views of a consequential choice and return a recommendation that keeps dissent visible."
+doctrine = "decision-council.md"
+doctrine_refs = [{ scope = "local", resource_id = "council" }]
+outputs = ["In the advisory decision record: recommendation, reasons, trade-offs, dissent, uncertainty and reasons to reconsider."]
+extends = [{ scope = "local", resource_id = "evidence-bound-business-decision" }]
+
+[[operations.operation]]
+id = "production-audit"
+description = "Check whether a release is ready for its intended operating conditions."
+doctrine = "production-audit.md"
+doctrine_refs = [{ scope = "external", resource = { package_id = "pale.research", resource_id = "evidence-led-research" } }, { scope = "local", resource_id = "production-readiness-assessment" }]
+outputs = ["In the release assessment: ship, ship with conditions, block or unresolved, with remaining risks, evidence and missing checks."]
+extends = [{ scope = "local", resource_id = "evidence-bound-business-decision" }]
+
+[[operations.operation]]
+id = "review-commerce-launch"
+description = "Review a shop’s launch rehearsal through purchase, fulfilment, cancellation, return and refund."
+doctrine = "commerce-launch.md"
+doctrine_refs = [{ scope = "local", resource_id = "production-readiness-assessment" }]
+outputs = ["In the review: evidence for each customer journey and responsible owner.", "Launch blockers and the sales and availability claims supported by the checks."]
+extends = [{ scope = "local", resource_id = "evidence-bound-business-decision" }]
+
+[[operations.operation]]
+id = "review-engagement-boundary"
+description = "Keep each party’s role, outstanding commitments and permission for the requested work clear."
+doctrine = "review-engagement-boundary.md"
+outputs = ["On the engagement’s owning page: introduction, contracting, delivery and payment, with settled commitments and evidence for changes.", "On its owner’s work list: remaining authorised work and any specific missing choice, with its decision-maker."]
+extends = [{ scope = "local", resource_id = "evidence-bound-business-decision" }]

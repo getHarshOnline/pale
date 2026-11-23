@@ -1,0 +1,12 @@
+// hex in a line comment #ff0000 is ignored
+$brand: #9b3540;
+.card {
+  color: #fff;
+  background: rgb(10 20 30);
+  border-color: oklch(0.5 0.1 30);
+  box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.2);
+  transition: opacity 200ms ease, transform .3s;
+  animation: fade-in 1.5s var(--easing-productive);
+  animation-delay: var(--delay-preview, 120ms);
+  &:hover { outline-color: #abcd; }
+}

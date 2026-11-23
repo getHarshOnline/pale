@@ -1,0 +1,13 @@
+[workspace]
+schema_version = 1
+workspace_id = "act-ws"
+distribution_lock = "distribution/lock.toml"
+machine_binding_root = "bindings/machines"
+desired_topology = { projects = [{ id = "act", title = "Activation", run_policy = "standard", package_seeds = ["pale.engineering", "pale.governance"], authority_root_ids = ["auth_a"], capabilities_file = "projects/act/capabilities.toml" }], execution_workspaces = [{ id = "default", title = "Default execution workspace", execution_path_ids = ["direct-claude", "direct-codex"] }], repositories = [{ id = "alpha", title = "Alpha" }], execution_paths = [{ id = "direct-claude", experience_path_id = "direct-claude-code" }, { id = "direct-codex", experience_path_id = "direct-codex" }], project_repositories = [{ project_id = "act", repository_id = "alpha", role = { package_id = "pale.engineering", resource_id = "engine" }, stacks = [], families = [{ package_id = "pale.engineering", resource_id = "verification" }, { package_id = "pale.governance", resource_id = "authority-resolver" }], materialization_order = 0 }], project_execution_workspaces = [{ project_id = "act", execution_workspace_id = "default" }], execution_workspace_repositories = [{ execution_workspace_id = "default", repository_id = "alpha", access = "mutate" }] }
+module_manifests = []
+source_components = []
+responsibility_derivations = []
+organizational_translations = []
+experience_compositions = ["composition.toml"]
+resolution_lock = "workspace-resolution.lock.toml"
+universe_lock = "workspace-universe.lock.toml"

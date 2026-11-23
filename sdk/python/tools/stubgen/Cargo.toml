@@ -1,0 +1,21 @@
+[package]
+name = "pale-python-stubgen"
+version = "0.0.1"
+edition = "2024"
+rust-version = "1.94"
+publish = false
+autotests = false
+license = "Apache-2.0"
+description = "Render Python declarations from compiled PyO3 metadata with factory-only constructors."
+
+[workspace]
+resolver = "2"
+
+[dependencies]
+pyo3-introspection = "=0.29.0"
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[lints.clippy]
+all = "deny"

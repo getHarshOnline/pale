@@ -1,0 +1,138 @@
+[doctrine]
+schema_version = 1
+
+[[doctrine.entry]]
+id = "content-composition"
+description = "Compose content from accepted sources for a defined reader, purpose and medium."
+doctrine = "composition.md"
+placement = "operation_procedure"
+see_also = [{ scope = "local", resource_id = "article-judgment" }, { scope = "local", resource_id = "voice-distillation" }, { scope = "local", resource_id = "documentation-judgment" }]
+requires = [{ scope = "local", resource_id = "plain-writing" }]
+
+[[doctrine.entry]]
+id = "article-judgment"
+description = "Develop a long-form argument from its sources for the intended reader."
+doctrine = "article.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "cross-medium-adaptation"
+description = "Adapt content across the requested media while preserving claims, evidence and voice."
+doctrine = "adaptation.md"
+placement = "operation_procedure"
+requires = [{ scope = "external", resource = { package_id = "pale.design", resource_id = "presentation" } }]
+
+[[doctrine.entry]]
+id = "voice-distillation"
+description = "Develop a voice profile from owner-approved original work and test it against further examples."
+doctrine = "voice.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "media-placement-method"
+description = "Check which media rendition a publication actually shows and whether it preserves the intended meaning."
+doctrine = "media-placement.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "publication-reference-evidence"
+description = "Check a reference through editor navigation, incoming-reference search and the actual reader destination."
+doctrine = "reference-evidence.md"
+placement = "operation_procedure"
+see_also = [{ scope = "local", resource_id = "documentation-judgment" }]
+
+[[doctrine.entry]]
+id = "editorial-review"
+description = "Review a draft for its reader, source support, clarity and depth; use specialist checks when the question needs them."
+doctrine = "review.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "local", resource_id = "documentation-judgment" }, { scope = "local", resource_id = "staged-reader-review" }, { scope = "local", resource_id = "reviewed-asset-custody" }, { scope = "external", resource = { package_id = "pale.research", resource_id = "source-expression" } }, { scope = "external", resource = { package_id = "pale.research", resource_id = "source-rights" } }]
+requires = [{ scope = "local", resource_id = "plain-writing" }]
+
+[[doctrine.entry]]
+id = "documentation-judgment"
+description = "Write or review documentation for the reader’s actual job, keeping prerequisites, examples and next steps connected."
+doctrine = "documentation-judgment.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "plain-writing" }]
+
+[[doctrine.entry]]
+id = "staged-reader-review"
+description = "Check what a first-time reader can infer from a clue or reveal before seeing later answers."
+doctrine = "staged-reader-review.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "reviewed-asset-custody"
+description = "Check that archive installation or asset selection uses the bytes actually reviewed and accepted."
+doctrine = "reviewed-asset-custody.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "local-build-method"
+description = "Choose what to check in the build and its output."
+doctrine = "build/check-a-build.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "local", resource_id = "local-build-page-actions" }, { scope = "local", resource_id = "local-build-withheld-output" }, { scope = "local", resource_id = "local-build-build-stages" }, { scope = "local", resource_id = "local-build-documentation-output" }, { scope = "local", resource_id = "local-build-bibliography" }, { scope = "local", resource_id = "local-build-resource-loads" }, { scope = "local", resource_id = "local-build-compare-artifacts" }, { scope = "local", resource_id = "local-build-match-preview" }]
+
+[[doctrine.entry]]
+id = "plain-writing"
+description = "Write directly for the reader, preserving reasoning and examples."
+doctrine = "plain-writing.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "local-build-page-actions"
+description = "Use it to compare an action, its slot and its destination against the owner's placement decision in the output under review."
+doctrine = "build/page-actions.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "local-build-method" }]
+
+[[doctrine.entry]]
+id = "local-build-withheld-output"
+description = "Use it to inspect every place generated material can appear, including pages, metadata, search, feeds and downloads, for content the owner withholds."
+doctrine = "build/withheld-output.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "local-build-method" }]
+
+[[doctrine.entry]]
+id = "local-build-build-stages"
+description = "Use it to list each required build stage and child job and check its own diagnostics, rather than inferring success from the final artifact."
+doctrine = "build/build-stages.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "local-build-method" }]
+
+[[doctrine.entry]]
+id = "local-build-documentation-output"
+description = "Use it to identify the reader's job and the destination and expected contents of each authored or generated output."
+doctrine = "build/documentation-output.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "local-build-method" }]
+
+[[doctrine.entry]]
+id = "local-build-bibliography"
+description = "Check the bibliography in the rendered document."
+doctrine = "build/bibliography.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "local-build-method" }]
+
+[[doctrine.entry]]
+id = "local-build-resource-loads"
+description = "Use it to trace each declared resource from its reference to the bytes the renderer loads, including dependent resources such as a stylesheet's fonts."
+doctrine = "build/resource-loads.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "local-build-method" }]
+
+[[doctrine.entry]]
+id = "local-build-compare-artifacts"
+description = "Compare artifact bytes, content, appearance or interactions according to the claim being checked."
+doctrine = "build/compare-artifacts.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "local-build-method" }]
+
+[[doctrine.entry]]
+id = "local-build-match-preview"
+description = "When a screenshot, interaction check or review must refer to one local output, especially while a watch process can rebuild it."
+doctrine = "build/match-preview.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "local-build-method" }]

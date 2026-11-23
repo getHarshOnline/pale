@@ -1,0 +1,134 @@
+{
+  "$defs": {
+    "BoundedResidentTextV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "TypedDigestAlgorithmV1": {
+      "oneOf": [
+        {
+          "const": "sha256",
+          "type": "string"
+        }
+      ]
+    },
+    "TypedDigestCanonicalizationV1": {
+      "oneOf": [
+        {
+          "const": "rfc8785_json",
+          "type": "string"
+        },
+        {
+          "const": "raw_bytes",
+          "type": "string"
+        }
+      ]
+    },
+    "TypedDigestContentBindingV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "inline_json": {},
+            "kind": {
+              "const": "inline_json",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "inline_json"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "inline_bytes_base64": {
+              "type": "string"
+            },
+            "kind": {
+              "const": "inline_bytes_base64",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "inline_bytes_base64"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "content_ref": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            "content_ref_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "kind": {
+              "const": "immutable_content",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "content_ref",
+            "content_ref_sha256"
+          ],
+          "type": "object"
+        }
+      ]
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/typed-digest.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "canonicalization": {
+      "$ref": "#/$defs/TypedDigestCanonicalizationV1"
+    },
+    "content_binding": {
+      "$ref": "#/$defs/TypedDigestContentBindingV1"
+    },
+    "content_schema_id": {
+      "$ref": "#/$defs/SchemaId"
+    },
+    "content_schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "digest_algorithm": {
+      "$ref": "#/$defs/TypedDigestAlgorithmV1"
+    },
+    "kind": {
+      "$ref": "#/$defs/BoundedResidentTextV1"
+    }
+  },
+  "required": [
+    "kind",
+    "content_schema_id",
+    "content_schema_sha256",
+    "canonicalization",
+    "digest_algorithm",
+    "digest",
+    "content_binding"
+  ],
+  "title": "typed-digest.v1",
+  "type": "object"
+}

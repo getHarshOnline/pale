@@ -1,0 +1,211 @@
+{
+  "$defs": {
+    "BoundedResidentTextV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "Ed25519PublicKeyV1": {
+      "pattern": "^[A-Za-z0-9_-]{42}[AEIMQUYcgkosw048]$",
+      "type": "string"
+    },
+    "PrincipalKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "PrincipalRecordTransitionKindV1": {
+      "oneOf": [
+        {
+          "const": "initial",
+          "type": "string"
+        },
+        {
+          "const": "key_transition",
+          "type": "string"
+        },
+        {
+          "const": "policy_update",
+          "type": "string"
+        }
+      ]
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/principal-record.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "dependentRequired": {
+    "key_transition_ref": [
+      "key_transition_sha256"
+    ],
+    "key_transition_sha256": [
+      "key_transition_ref"
+    ]
+  },
+  "oneOf": [
+    {
+      "not": {
+        "anyOf": [
+          {
+            "required": [
+              "previous_record_sha256"
+            ]
+          },
+          {
+            "required": [
+              "key_transition_ref"
+            ]
+          },
+          {
+            "required": [
+              "key_transition_sha256"
+            ]
+          }
+        ]
+      },
+      "properties": {
+        "record_transition_kind": {
+          "const": "initial"
+        }
+      }
+    },
+    {
+      "properties": {
+        "record_transition_kind": {
+          "const": "key_transition"
+        }
+      },
+      "required": [
+        "previous_record_sha256",
+        "key_transition_ref",
+        "key_transition_sha256"
+      ]
+    },
+    {
+      "not": {
+        "anyOf": [
+          {
+            "required": [
+              "key_transition_ref"
+            ]
+          },
+          {
+            "required": [
+              "key_transition_sha256"
+            ]
+          }
+        ]
+      },
+      "properties": {
+        "record_transition_kind": {
+          "const": "policy_update"
+        }
+      },
+      "required": [
+        "previous_record_sha256"
+      ]
+    }
+  ],
+  "properties": {
+    "canonical_record_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "display_hint": {
+      "$ref": "#/$defs/BoundedResidentTextV1"
+    },
+    "expires_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "issued_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "key_epoch": {
+      "$ref": "#/$defs/PrincipalKeyEpochV1"
+    },
+    "key_transition_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "key_transition_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "previous_record_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "record_transition_kind": {
+      "$ref": "#/$defs/PrincipalRecordTransitionKindV1"
+    },
+    "recovery_policy_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "recovery_policy_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "root_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "root_public_key": {
+      "$ref": "#/$defs/Ed25519PublicKeyV1"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/principal-record.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "principal_id",
+    "display_hint",
+    "root_key_id",
+    "root_public_key",
+    "key_epoch",
+    "record_transition_kind",
+    "issued_at",
+    "expires_at",
+    "recovery_policy_ref",
+    "recovery_policy_sha256",
+    "canonical_record_sha256",
+    "signature"
+  ],
+  "title": "principal-record.v1",
+  "type": "object"
+}

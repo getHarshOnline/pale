@@ -1,0 +1,56 @@
+{
+  "$defs": {
+    "LogicalRepositoryIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/repository-native-action-catalog.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "contracts": {
+      "items": {
+        "$ref": "https://www.rawthoughts.in/pale/schemas/action-contract.v1.json"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "instance_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "profile_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "repository_id": {
+      "$ref": "#/$defs/LogicalRepositoryIdV1"
+    },
+    "schema": {
+      "const": "pale/repository-native-action-catalog.v1",
+      "type": "string"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_sha256",
+    "schema_version",
+    "profile_digest",
+    "instance_digest",
+    "repository_id",
+    "contracts"
+  ],
+  "title": "repository-native-action-catalog.v1",
+  "type": "object"
+}

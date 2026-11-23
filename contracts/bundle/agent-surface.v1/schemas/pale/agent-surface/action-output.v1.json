@@ -1,0 +1,1101 @@
+{
+  "$defs": {
+    "ComplianceCheckResult": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "passed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "passed"
+      ],
+      "type": "object"
+    },
+    "CompliancePromotion": {
+      "oneOf": [
+        {
+          "const": "eligible",
+          "type": "string"
+        },
+        {
+          "const": "not_eligible",
+          "type": "string"
+        }
+      ]
+    },
+    "ComplianceTraceGradeOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "compliance_rate_micros": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "passed_checks": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "promotion": {
+          "$ref": "#/$defs/CompliancePromotion"
+        },
+        "scale_micros": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "steps": {
+          "items": {
+            "$ref": "#/$defs/ComplianceCheckResult"
+          },
+          "type": "array"
+        },
+        "temporal_rules": {
+          "items": {
+            "$ref": "#/$defs/ComplianceCheckResult"
+          },
+          "type": "array"
+        },
+        "total_checks": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "scale_micros",
+        "passed_checks",
+        "total_checks",
+        "compliance_rate_micros",
+        "steps",
+        "temporal_rules",
+        "promotion"
+      ],
+      "type": "object"
+    },
+    "ConfigInvariantEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "line": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "occurrences": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "record_id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "record_id",
+        "line",
+        "occurrences"
+      ],
+      "type": "object"
+    },
+    "ConfigInvariantResult": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/ConfigInvariantEvidence"
+          },
+          "type": "array"
+        },
+        "evidence_truncated": {
+          "type": "boolean"
+        },
+        "invariant_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "match_count": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "passed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "invariant_id",
+        "passed",
+        "match_count",
+        "evidence_truncated",
+        "evidence"
+      ],
+      "type": "object"
+    },
+    "ConfigInvariantScanOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "passed": {
+          "type": "boolean"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/$defs/ConfigInvariantResult"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "passed",
+        "results"
+      ],
+      "type": "object"
+    },
+    "ConvergedFinding": {
+      "additionalProperties": false,
+      "properties": {
+        "canonical_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "disposition": {
+          "$ref": "#/$defs/FindingDisposition"
+        },
+        "evidence": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "file": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "line": {
+          "format": "uint32",
+          "minimum": 1,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "severity": {
+          "$ref": "#/$defs/ReviewSeverity"
+        },
+        "source_ids": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "title": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "verifier_confidence_micros": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "canonical_id",
+        "source_ids",
+        "file",
+        "title",
+        "evidence",
+        "severity",
+        "verifier_confidence_micros",
+        "disposition"
+      ],
+      "type": "object"
+    },
+    "CostAggregateOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "by_day_model": {
+          "items": {
+            "$ref": "#/$defs/CostAggregateRow"
+          },
+          "type": "array"
+        },
+        "selected_sessions": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "today_cost_micro_usd": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "total_cost_micro_usd": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "selected_sessions",
+        "total_cost_micro_usd",
+        "today_cost_micro_usd",
+        "by_day_model"
+      ],
+      "type": "object"
+    },
+    "CostAggregateRow": {
+      "additionalProperties": false,
+      "properties": {
+        "cost_micro_usd": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "date": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "model": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sessions": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "date",
+        "model",
+        "sessions",
+        "cost_micro_usd"
+      ],
+      "type": "object"
+    },
+    "EvidenceMatch": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "evidence"
+      ],
+      "type": "object"
+    },
+    "EvidenceSelectionOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "matches": {
+          "items": {
+            "$ref": "#/$defs/EvidenceMatch"
+          },
+          "type": "array"
+        },
+        "unmatched_observed": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "matches",
+        "unmatched_observed"
+      ],
+      "type": "object"
+    },
+    "FindingDisposition": {
+      "oneOf": [
+        {
+          "const": "blocking",
+          "type": "string"
+        },
+        {
+          "const": "advisory",
+          "type": "string"
+        }
+      ]
+    },
+    "LoopRecommendation": {
+      "oneOf": [
+        {
+          "const": "continue",
+          "type": "string"
+        },
+        {
+          "const": "intervene",
+          "type": "string"
+        },
+        {
+          "const": "stop",
+          "type": "string"
+        }
+      ]
+    },
+    "LoopStatusOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "failed_tool_result_ids": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "overdue_wakeups": {
+          "items": {
+            "$ref": "#/$defs/OverdueWakeup"
+          },
+          "type": "array"
+        },
+        "parse_error_ids": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "recommendation": {
+          "$ref": "#/$defs/LoopRecommendation"
+        },
+        "stale_bash": {
+          "items": {
+            "$ref": "#/$defs/StaleToolUse"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "stale_bash",
+        "overdue_wakeups",
+        "failed_tool_result_ids",
+        "parse_error_ids",
+        "recommendation"
+      ],
+      "type": "object"
+    },
+    "OverdueWakeup": {
+      "additionalProperties": false,
+      "properties": {
+        "overdue_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "wakeup_id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "wakeup_id",
+        "overdue_ms"
+      ],
+      "type": "object"
+    },
+    "PathInventoryEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "normalized_path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "occurrences": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "normalized_path",
+        "occurrences"
+      ],
+      "type": "object"
+    },
+    "PathInventoryOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "entries": {
+          "items": {
+            "$ref": "#/$defs/PathInventoryEntry"
+          },
+          "type": "array"
+        },
+        "input_count": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "unique_count": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "input_count",
+        "unique_count",
+        "entries"
+      ],
+      "type": "object"
+    },
+    "RankedCandidate": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "normalized_score_micros": {
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "type": "integer"
+        },
+        "weighted_sum": {
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "weighted_sum",
+        "normalized_score_micros"
+      ],
+      "type": "object"
+    },
+    "ReviewConvergenceOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "failed_required_dimensions": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "findings": {
+          "items": {
+            "$ref": "#/$defs/ConvergedFinding"
+          },
+          "type": "array"
+        },
+        "recommendation": {
+          "$ref": "#/$defs/ReviewRecommendation"
+        },
+        "required_dimensions_passed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "required_dimensions_passed",
+        "failed_required_dimensions",
+        "findings",
+        "recommendation"
+      ],
+      "type": "object"
+    },
+    "ReviewRecommendation": {
+      "oneOf": [
+        {
+          "const": "accept",
+          "type": "string"
+        },
+        {
+          "const": "block",
+          "type": "string"
+        }
+      ]
+    },
+    "ReviewSeverity": {
+      "oneOf": [
+        {
+          "const": "critical",
+          "type": "string"
+        },
+        {
+          "const": "high",
+          "type": "string"
+        },
+        {
+          "const": "medium",
+          "type": "string"
+        },
+        {
+          "const": "low",
+          "type": "string"
+        }
+      ]
+    },
+    "RubricCategoryScore": {
+      "additionalProperties": false,
+      "properties": {
+        "available_points": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "category_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "earned_points": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "score_micros": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "category_id",
+        "earned_points",
+        "available_points",
+        "score_micros"
+      ],
+      "type": "object"
+    },
+    "RubricEvaluationOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "categories": {
+          "items": {
+            "$ref": "#/$defs/RubricCategoryScore"
+          },
+          "type": "array"
+        },
+        "overall_score_micros": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "scale_micros": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "top_failures": {
+          "items": {
+            "$ref": "#/$defs/RubricFailure"
+          },
+          "type": "array"
+        },
+        "total_weight_micros": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "scale_micros",
+        "total_weight_micros",
+        "overall_score_micros",
+        "categories",
+        "top_failures"
+      ],
+      "type": "object"
+    },
+    "RubricFailure": {
+      "additionalProperties": false,
+      "properties": {
+        "category_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "check_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "lost_points": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "weighted_loss": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "check_id",
+        "category_id",
+        "lost_points",
+        "weighted_loss"
+      ],
+      "type": "object"
+    },
+    "ServiceDefinition": {
+      "additionalProperties": false,
+      "properties": {
+        "depends_on": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z][a-z0-9-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "kind": {
+          "maxLength": 128,
+          "minLength": 1,
+          "type": "string"
+        },
+        "launch": {
+          "$ref": "#/$defs/ServiceLaunch"
+        },
+        "name": {
+          "pattern": "^[a-z][a-z0-9-]{0,127}$",
+          "type": "string"
+        },
+        "ports": {
+          "default": [],
+          "items": {
+            "format": "uint16",
+            "maximum": 65535,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "maxItems": 64,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "precedence": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "name",
+        "kind",
+        "precedence",
+        "launch"
+      ],
+      "type": "object"
+    },
+    "ServiceDefinitionOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "services": {
+          "items": {
+            "$ref": "#/$defs/ServiceDefinition"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "services"
+      ],
+      "type": "object"
+    },
+    "ServiceLaunch": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "default": [],
+          "items": {
+            "maxLength": 4096,
+            "type": "string"
+          },
+          "maxItems": 128,
+          "type": "array"
+        },
+        "program": {
+          "maxLength": 512,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "program"
+      ],
+      "type": "object"
+    },
+    "SkillHealthOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "last_run_at_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "long": {
+          "$ref": "#/$defs/SkillWindowRate"
+        },
+        "pending_amendments": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "recent": {
+          "$ref": "#/$defs/SkillWindowRate"
+        },
+        "scale_micros": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "skills": {
+          "items": {
+            "$ref": "#/$defs/SkillHealthRow"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "scale_micros",
+        "pending_amendments",
+        "recent",
+        "long",
+        "skills"
+      ],
+      "type": "object"
+    },
+    "SkillHealthRow": {
+      "additionalProperties": false,
+      "properties": {
+        "last_run_at_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "long": {
+          "$ref": "#/$defs/SkillWindowRate"
+        },
+        "pending_amendments": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "recent": {
+          "$ref": "#/$defs/SkillWindowRate"
+        },
+        "skill_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "trend": {
+          "$ref": "#/$defs/SkillHealthTrend"
+        }
+      },
+      "required": [
+        "skill_id",
+        "recent",
+        "long",
+        "trend",
+        "pending_amendments"
+      ],
+      "type": "object"
+    },
+    "SkillHealthTrend": {
+      "oneOf": [
+        {
+          "const": "improving",
+          "type": "string"
+        },
+        {
+          "const": "stable",
+          "type": "string"
+        },
+        {
+          "const": "declining",
+          "type": "string"
+        },
+        {
+          "const": "insufficient_data",
+          "type": "string"
+        }
+      ]
+    },
+    "SkillWindowRate": {
+      "additionalProperties": false,
+      "properties": {
+        "runs": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "success_rate_micros": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "successes": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "runs",
+        "successes"
+      ],
+      "type": "object"
+    },
+    "StaleToolUse": {
+      "additionalProperties": false,
+      "properties": {
+        "age_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "tool_use_id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "tool_use_id",
+        "age_ms"
+      ],
+      "type": "object"
+    },
+    "WeightedRankingOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "ranking": {
+          "items": {
+            "$ref": "#/$defs/RankedCandidate"
+          },
+          "type": "array"
+        },
+        "scale_micros": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "total_weight_micros": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "scale_micros",
+        "total_weight_micros",
+        "ranking"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/action-output.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "compliance_trace_grade",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/ComplianceTraceGradeOutput"
+        }
+      },
+      "required": [
+        "kind",
+        "payload"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "config_invariant_scan",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/ConfigInvariantScanOutput"
+        }
+      },
+      "required": [
+        "kind",
+        "payload"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "cost_aggregate",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/CostAggregateOutput"
+        }
+      },
+      "required": [
+        "kind",
+        "payload"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "loop_status_reduce",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/LoopStatusOutput"
+        }
+      },
+      "required": [
+        "kind",
+        "payload"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "review_convergence_reduce",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/ReviewConvergenceOutput"
+        }
+      },
+      "required": [
+        "kind",
+        "payload"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "rubric_evaluation",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/RubricEvaluationOutput"
+        }
+      },
+      "required": [
+        "kind",
+        "payload"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "service_definition_normalize",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/ServiceDefinitionOutput"
+        }
+      },
+      "required": [
+        "kind",
+        "payload"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "skill_health_aggregate",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/SkillHealthOutput"
+        }
+      },
+      "required": [
+        "kind",
+        "payload"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "weighted_ranking",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/WeightedRankingOutput"
+        }
+      },
+      "required": [
+        "kind",
+        "payload"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "path_inventory",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/PathInventoryOutput"
+        }
+      },
+      "required": [
+        "kind",
+        "payload"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "evidence_selection",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/EvidenceSelectionOutput"
+        }
+      },
+      "required": [
+        "kind",
+        "payload"
+      ],
+      "type": "object"
+    }
+  ],
+  "title": "action-output.v1"
+}

@@ -1,0 +1,1 @@
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">cleanup&#95;succeeds</mi><mo>⁡</mo><mo>⟺</mo><mi>R</mi><mo>∧</mo><mi>A</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">&#92;operatorname{cleanup&#92;&#95;succeeds}&#92;Longleftrightarrow R&#92;land A.</annotation></semantics></math>

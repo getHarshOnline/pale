@@ -1,0 +1,74 @@
+{
+  "authority_journal_profile": {
+    "checkpoint_cadence": null,
+    "compaction_policy": null,
+    "corruption_checksum": null,
+    "corruption_checksum_bytes": null,
+    "frame_encoding": null,
+    "maximum_checkpoint_bytes": null,
+    "maximum_checkpoint_candidates": null,
+    "maximum_entry_bytes": null,
+    "maximum_tail_entries": null,
+    "measurement_status": "required_before_runtime_admission",
+    "retention_policy": null
+  },
+  "backup_restore_policy": "none_initial_v1",
+  "fixture_roots": [
+    "adapters/control-store/tests/support"
+  ],
+  "manifest_id": "pale-control-storage.v1",
+  "manifest_version": 1,
+  "migration_sets": {
+    "deployment_control": [
+      {
+        "id": "0001_initial_v1",
+        "ordinal": 1,
+        "path": "adapters/control-store/migrations/deployment-control/0001_initial_v1.sql",
+        "sha256": "4788fb42608821d31fa87c5dbd79800876f80fe075d4c1b7917ed56ff6c45799"
+      }
+    ],
+    "principal_trust": [
+      {
+        "id": "0001_initial_v1",
+        "ordinal": 1,
+        "path": "adapters/control-store/migrations/principal-trust/0001_initial_v1.sql",
+        "sha256": "c253016d788bc9824ffdf6646e3474f90d4fedb9a0a7cc6fd2433c5e05e181b4"
+      }
+    ]
+  },
+  "sqlite": {
+    "library_version": "3.51.3",
+    "link_strategy": "bundled",
+    "required_cargo_features": [
+      "backup",
+      "bundled"
+    ]
+  },
+  "sqlite_profile": {
+    "checkpoint_fullfsync": null,
+    "checkpoint_mode": null,
+    "compile_options_sha256": null,
+    "durability_grouping": null,
+    "foreign_keys": true,
+    "fullfsync": null,
+    "journal_mode": "wal",
+    "measurement_status": "required_before_runtime_admission",
+    "synchronous": null,
+    "trusted_schema": false,
+    "wal_autocheckpoint_frames": null
+  },
+  "stores": {
+    "deployment_control": {
+      "application_id": 1346456644,
+      "schema_id": "pale/control-store/deployment-control.v1",
+      "schema_sha256": "de6cc1f7d0f16b9c2e44ff533b293d4d253e57a496784a23aa3902ef975e5c8d",
+      "target_schema_version": 1
+    },
+    "principal_trust": {
+      "application_id": 1346456660,
+      "schema_id": "pale/control-store/principal-trust.v1",
+      "schema_sha256": "e698085c7dcb90998c40bfae866bdc6bd2432b2e6b072bafa87b1143aefb4a73",
+      "target_schema_version": 1
+    }
+  }
+}

@@ -1,0 +1,258 @@
+{
+  "$defs": {
+    "CatalogOperationStateV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "semantic_only",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "capability_bearing",
+              "type": "string"
+            },
+            "support": {
+              "$ref": "#/$defs/OperationSupport"
+            }
+          },
+          "required": [
+            "kind",
+            "support"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "LogicalRepositoryIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "OperationCatalogEntryV1": {
+      "additionalProperties": false,
+      "properties": {
+        "contract": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sealed-artifact.v1.json"
+        },
+        "contract_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "dispatch": {
+          "$ref": "#/$defs/OperationDispatchV1"
+        },
+        "id": {
+          "$ref": "#/$defs/PackageResourceRefV1"
+        },
+        "state": {
+          "$ref": "#/$defs/CatalogOperationStateV1"
+        }
+      },
+      "required": [
+        "id",
+        "dispatch",
+        "state",
+        "contract",
+        "contract_digest"
+      ],
+      "type": "object"
+    },
+    "OperationDispatchV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "aliases": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "invocation": {
+              "type": "string"
+            },
+            "kind": {
+              "const": "model_or_user",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "invocation"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "aliases": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "invocation": {
+              "type": "string"
+            },
+            "kind": {
+              "const": "user_only",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "invocation"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "internal",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "OperationSupport": {
+      "oneOf": [
+        {
+          "const": "full",
+          "type": "string"
+        },
+        {
+          "const": "degraded",
+          "type": "string"
+        },
+        {
+          "const": "blocked",
+          "type": "string"
+        }
+      ]
+    },
+    "PackageIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[./][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "package_id": {
+          "$ref": "#/$defs/PackageIdV1"
+        },
+        "resource_id": {
+          "$ref": "#/$defs/PackageResourceIdV1"
+        }
+      },
+      "required": [
+        "package_id",
+        "resource_id"
+      ],
+      "type": "object"
+    },
+    "ProviderBindingIdentityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_binding_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "provider_binding_sha256"
+      ],
+      "type": "object"
+    },
+    "ProviderBindingRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_binding_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "provider_binding_identity": {
+          "$ref": "#/$defs/ProviderBindingIdentityV1"
+        }
+      },
+      "required": [
+        "provider_binding_id",
+        "provider_binding_identity"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/operation-catalog.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "catalog_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "entries": {
+      "items": {
+        "$ref": "#/$defs/OperationCatalogEntryV1"
+      },
+      "type": "array"
+    },
+    "profile_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "provider_binding": {
+      "$ref": "#/$defs/ProviderBindingRefV1"
+    },
+    "repository_id": {
+      "$ref": "#/$defs/LogicalRepositoryIdV1"
+    },
+    "schema": {
+      "const": "pale/operation-catalog.v1",
+      "type": "string"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_sha256",
+    "schema_version",
+    "profile_digest",
+    "repository_id",
+    "provider_binding",
+    "entries",
+    "catalog_digest"
+  ],
+  "title": "operation-catalog.v1",
+  "type": "object"
+}

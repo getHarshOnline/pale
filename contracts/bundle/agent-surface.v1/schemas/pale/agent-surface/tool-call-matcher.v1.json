@@ -1,0 +1,8 @@
+{
+  "$id": "https://www.rawthoughts.in/pale/schemas/tool-call-matcher.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "maxLength": 4096,
+  "pattern": "^(\\*|[A-Za-z0-9_][A-Za-z0-9_.:-]*)(\\([^()\\r\\n]+\\))?$",
+  "title": "tool-call-matcher.v1",
+  "type": "string"
+}

@@ -1,0 +1,727 @@
+{
+  "schema": "pale.go-contract-source-coordinate.v1",
+  "version": 1,
+  "source": {
+    "registry_sha256": "5346a0c031a3f6768a3cb43d676671cf7c6a8567afbb99a44e4ed835c3cae365",
+    "schema_manifest_sha256": "eb9b67b2d4d31f433bd805d20b490e139d98e313074a5082cdcbf0a5754894e8",
+    "schema_set_sha256": "7c43ad4a005b041ec6e233f99ba5246a32a9a1dd90bfc4c1449839e400b8d3f0",
+    "schema_count": 138
+  },
+  "generator": {
+    "name": "github.com/atombender/go-jsonschema",
+    "version": "v0.24.1",
+    "implementation_sha256": "1e09353fe56f17ce78a7967d11e7f948aec275e5b238dea3d1d184a7441151d7",
+    "dependency_lock_sha256": "3b6685324407b866204811a15780cddc244aee7ea6e74b708bdabff9809d0b05",
+    "options": {
+      "schema_draft": "2020-12",
+      "only_models": true,
+      "scalar_sums_as_enums": true,
+      "closed_object_sums": true,
+      "pattern_maps": true,
+      "tags": [
+        "json"
+      ]
+    }
+  },
+  "output_set": {
+    "aggregate_sha256": "fa4c2c4f4febd76ff7b00f1574aaa9c3a4c37ab4f3c0c2388ce470aca59fd961",
+    "member_count": 139,
+    "members": [
+      {
+        "path": "registry_generated.go",
+        "sha256": "db2515c3e46820533404916d00345d2fd25fb830f7aee346653369cd502b317c",
+        "size": 21774
+      },
+      {
+        "path": "types/a2a_route_admission_v1/contract.go",
+        "sha256": "ee26a765d78a81c596e775a334b3b6b3bc1010aef8748be9fd7541982f1e2972",
+        "size": 9404
+      },
+      {
+        "path": "types/a2a_task_binding_v1/contract.go",
+        "sha256": "c49f1a65fc34f9aa6bdf3ea400b31a00b9062064181919ab0b0cba0886a359fb",
+        "size": 5308
+      },
+      {
+        "path": "types/a2a_task_observation_v1/contract.go",
+        "sha256": "76e1cf40be3a71a68475f0bb9ba99719d3077f63f6373ea72e481725b2b54049",
+        "size": 10697
+      },
+      {
+        "path": "types/action_contract_v1/contract.go",
+        "sha256": "ab207485ca8f4e38194fe8090f8901f980b255a997af5a42ff54848115c1182c",
+        "size": 3440
+      },
+      {
+        "path": "types/action_envelope_v1/contract.go",
+        "sha256": "fb1627246a7e816761fb01f5459a6d8bc068fcdfb697d4a0416b343765492629",
+        "size": 3517
+      },
+      {
+        "path": "types/action_execution_v1/contract.go",
+        "sha256": "4c2ee843ef6923540f0ee4c5d18d0ad2233b5557ec8c7cddb8c66f7813159a1b",
+        "size": 4275
+      },
+      {
+        "path": "types/action_input_v1/contract.go",
+        "sha256": "fe8de13a9f2cc6c3cd664e217cca3b536bb79cb1292cd917893995e7c9925532",
+        "size": 30177
+      },
+      {
+        "path": "types/action_output_v1/contract.go",
+        "sha256": "81799d32e17a1e5c2183dd88d8c57f9598619e74d1288a01467cbc705294ebb2",
+        "size": 24135
+      },
+      {
+        "path": "types/activation_fence_v1/contract.go",
+        "sha256": "1da80e760acb89bf9a2e0313e82ef66ed87c39104721c291c131e29300bcbfcc",
+        "size": 1785
+      },
+      {
+        "path": "types/active_generation_head_v1/contract.go",
+        "sha256": "0cb3d422986e1cb815a4564e3653ead6f8af10770a1df08a490f8b8941352685",
+        "size": 2006
+      },
+      {
+        "path": "types/adapter_failure_v1/contract.go",
+        "sha256": "a620284d0c013bf93b0fe68614df5089efe0990de11b76d286c4314c1a079c5e",
+        "size": 14788
+      },
+      {
+        "path": "types/advertised_generation_head_v1/contract.go",
+        "sha256": "3bfbd771498839e99ed42e11b32c5d87e754f419568987261bae77c71ba7f63c",
+        "size": 1867
+      },
+      {
+        "path": "types/agent_surface_package_v1/contract.go",
+        "sha256": "2180bfca31cac23f9cab8835d4356c638ba356b18d84c23500e10f1879b401b9",
+        "size": 4232
+      },
+      {
+        "path": "types/agent_surface_plan_v1/contract.go",
+        "sha256": "9f9a4fba47a66b1d1a62e89fd1e3e8ce642e3315dbdf3977adcfcfcd1d316b1d",
+        "size": 18420
+      },
+      {
+        "path": "types/capabilities_v1/contract.go",
+        "sha256": "485f4b42702c6924cbdfc998b914239e88dd7b4dc9c1a62ec3da0e413b4470ed",
+        "size": 23772
+      },
+      {
+        "path": "types/capability_bindings_v1/contract.go",
+        "sha256": "4fcd5d2174e178233ae5a29424365aae536bd887a6a3ebb69e262765b2c0d768",
+        "size": 14378
+      },
+      {
+        "path": "types/capability_procedure_v1/contract.go",
+        "sha256": "8815d89f2c81be065adf8f63eb258ef1ae77d504f75de06ca7e4c46850d35c3f",
+        "size": 10280
+      },
+      {
+        "path": "types/capability_result_v1/contract.go",
+        "sha256": "9ec5d444486694f9370acfe90da77af6ccb1259269a3240a9ba5f4d8cdf16bfe",
+        "size": 14176
+      },
+      {
+        "path": "types/capability_revocation_checkpoint_v1/contract.go",
+        "sha256": "c937d7e497d6b49bea05b55f7527e1f2ab37e8ebf038ec2142b3567ad4044bfa",
+        "size": 2920
+      },
+      {
+        "path": "types/capability_session_grant_revocation_v1/contract.go",
+        "sha256": "e4939add30aab174cfccbd481a936aa9119ef16c1ac11a861df19e547efe07a1",
+        "size": 3263
+      },
+      {
+        "path": "types/capability_session_grant_v1/contract.go",
+        "sha256": "c9e5417ba6c42fc630b79b4d1205a8f1402888ee618027b6e52a643e149f4864",
+        "size": 9453
+      },
+      {
+        "path": "types/checkpoint_signing_authority_v1/contract.go",
+        "sha256": "6754083b682ebf58908217b180ee0864d4d1afb42ec1249ada842a78205992db",
+        "size": 7386
+      },
+      {
+        "path": "types/common_request_envelope_v1/contract.go",
+        "sha256": "7c47c6cf66454d6348c798704815e91d0e8d3b33bf5eedee3fc6702b6ee1145f",
+        "size": 24122
+      },
+      {
+        "path": "types/compiled_generation_v1/contract.go",
+        "sha256": "a0fc781d9dda73c601dde06cb4ec125a2e777604a48f3645ecefd06f1efd7b56",
+        "size": 9338
+      },
+      {
+        "path": "types/composition_edge_v1/contract.go",
+        "sha256": "d1ad3cbe51c923231d103cfd5a993c7d9ee82f2868ee22b54659145bc33efa73",
+        "size": 10887
+      },
+      {
+        "path": "types/composition_primitives_v1/contract.go",
+        "sha256": "f8e25d89cb56269496ec3271bdd40d1b09b6d7d6119d371c7264a4dbf5ddb60e",
+        "size": 23971
+      },
+      {
+        "path": "types/continuity_contract_v1/contract.go",
+        "sha256": "7275b412e838581860d018c3fa398bf911a637082b8c0e51ef28256a1f14832c",
+        "size": 1119
+      },
+      {
+        "path": "types/contract_set_v1/contract.go",
+        "sha256": "22a60397e36e40bb61cfa6f747940e02083b7a0f6a52469017a5ecc180745f8e",
+        "size": 1979
+      },
+      {
+        "path": "types/control_state_checkpoint_v1/contract.go",
+        "sha256": "b5a01d6adc05026e1bbcbbe8d214bcb6dbe7f864c39b0e0a13d2a5a424aaf57e",
+        "size": 5634
+      },
+      {
+        "path": "types/decision_evidence_ledger_v1/contract.go",
+        "sha256": "dab532776397d22d335557da32beef766618aac3c11baf38eeb7d4202579e617",
+        "size": 26077
+      },
+      {
+        "path": "types/deferred_effect_v1/contract.go",
+        "sha256": "608910061b93ddb3f414b77fa88a507164181854cc495cc8caa876aa0d9d3592",
+        "size": 603
+      },
+      {
+        "path": "types/deferred_surface_manifest_v1/contract.go",
+        "sha256": "246c74d8414d6c7a463d59617a59e542916194f0dc03e5d6d3609fc93c12ad6d",
+        "size": 2509
+      },
+      {
+        "path": "types/deployment_acceptance_revocation_v1/contract.go",
+        "sha256": "b64d4aaadef7f53e5c9bcfb49b4d57d07cea051ae6709c291e6295ad506f2121",
+        "size": 3628
+      },
+      {
+        "path": "types/deployment_acceptance_v1/contract.go",
+        "sha256": "852b50d7c6fd0c3bd70754efbb3ed2575a874da79f75cebcc37f700f758f4cec",
+        "size": 3804
+      },
+      {
+        "path": "types/deployment_binding_proposal_v1/contract.go",
+        "sha256": "649c348d5423f57abb5b313f5614037d871422f77cee7b1af94b9d2343afe16c",
+        "size": 2457
+      },
+      {
+        "path": "types/deployment_binding_v1/contract.go",
+        "sha256": "b89c964a58bac7c46621b23d2c6b24f24c1afb01f959b7112bdf5d7fb75ed23d",
+        "size": 3123
+      },
+      {
+        "path": "types/deployment_control_store_genesis_receipt_v1/contract.go",
+        "sha256": "0111e3898aa423660a3d8442f46062a8f06d0d8cc2f56b031fe33a3fdab25748",
+        "size": 5077
+      },
+      {
+        "path": "types/deployment_runtime_authority_v1/contract.go",
+        "sha256": "cb901d03d532ada7a01b0166be59e7f2949c7df578ef3606c06855a1eabf80e3",
+        "size": 4480
+      },
+      {
+        "path": "types/deployment_terms_v1/contract.go",
+        "sha256": "ffb249541b28f423c8e024ba46f601a166095c64cde000eab860807cf3f2fd3b",
+        "size": 3696
+      },
+      {
+        "path": "types/diagnostic_v1/contract.go",
+        "sha256": "bb21b5353469184d951cf1f5f6b5958fb1088bc1fcbcffbca51d3272f257ea55",
+        "size": 8685
+      },
+      {
+        "path": "types/distribution_lock_v1/contract.go",
+        "sha256": "afd62bf763be66c577f988c825f6b1d62816e6b5f4b3f99d6cc3f246ac0c63bc",
+        "size": 1503
+      },
+      {
+        "path": "types/doctrine_entry_v1/contract.go",
+        "sha256": "25ad56a848b36325195c903fc63828e98705393cfb2cea586606d524441b217c",
+        "size": 4638
+      },
+      {
+        "path": "types/effect_admission_v1/contract.go",
+        "sha256": "98e0b2cc551a9a72ddda426ff39a29a6363c3c61cebb27a5d4ae51fe195e231a",
+        "size": 5055
+      },
+      {
+        "path": "types/effect_conflict_claim_v1/contract.go",
+        "sha256": "d2d2da931e85d5a75adbf39a45043ee9c931d10f78a5da11d271b103ea8fcb7a",
+        "size": 7421
+      },
+      {
+        "path": "types/effect_dispatch_intent_v1/contract.go",
+        "sha256": "7a2478f59804136f2b1e6b7f30b163941ef1710e7e466b36e81aaa0eff8c6e1b",
+        "size": 6463
+      },
+      {
+        "path": "types/effect_receipt_v1/contract.go",
+        "sha256": "99b9992860a1c5274388fd0144331531161a7cf67bc9c286aee0b381d6d66324",
+        "size": 10268
+      },
+      {
+        "path": "types/effective_profile_v1/contract.go",
+        "sha256": "747810f3e27a134e2d1d4b1484c8a89eb592169280505742a880deb4eca261ae",
+        "size": 34808
+      },
+      {
+        "path": "types/entry_contract_v1/contract.go",
+        "sha256": "657417a215724abf5421a141677ca1171701fd507ea5021c97c36f016b9b8461",
+        "size": 884
+      },
+      {
+        "path": "types/event_acknowledgement_v1/contract.go",
+        "sha256": "ff0a6c7c65da26723de1c0b0cdabdcc77161cc2e0d2dfc386dee50cdffa760c8",
+        "size": 5503
+      },
+      {
+        "path": "types/event_reference_v1/contract.go",
+        "sha256": "562256cf846806b6897c87ef72949d30a82db0d9392dda0f459282bfe1babf9a",
+        "size": 5268
+      },
+      {
+        "path": "types/execution_owner_fence_v1/contract.go",
+        "sha256": "b5c2e96740c0cf2687fd97d586ce5f0a5d2e9ced8308e438e5088e372c5a6442",
+        "size": 7472
+      },
+      {
+        "path": "types/experience_composition_plan_v1/contract.go",
+        "sha256": "be7d1879feeb09233a14d505003f9c102975754f30c6714be24eba9f577021c3",
+        "size": 17375
+      },
+      {
+        "path": "types/experience_path_v1/contract.go",
+        "sha256": "904b3d156672deb0c8b20aba92d4fba908c718247b5ae162202c643e014bcd2f",
+        "size": 4491
+      },
+      {
+        "path": "types/expiring_record_envelope_v1/contract.go",
+        "sha256": "b35adb82b221893defd3566ad54915f234c855eeb93cae3cbaa4e8f7729b0eac",
+        "size": 2682
+      },
+      {
+        "path": "types/genealogy_edge_v1/contract.go",
+        "sha256": "9aca2db7f5f08212aa2ce0059e8bf71caa33c5b3ca2bc833bb7a58fe06fe2cf3",
+        "size": 10174
+      },
+      {
+        "path": "types/generated_manifest_v1/contract.go",
+        "sha256": "3d4dd383bb51b0a8b43f5d126488c461cda8790a6621cfa07822af642106d876",
+        "size": 2584
+      },
+      {
+        "path": "types/governing_order_v1/contract.go",
+        "sha256": "e04f03e513d829b2d4be5cfbf379959ac1c7e01ef8176b4b36a1c2e91909c6a7",
+        "size": 9230
+      },
+      {
+        "path": "types/harness_projection_v1/contract.go",
+        "sha256": "874cdc3966e4cdcd24849f32bc7ef107532c17c0d7614b0c5107fa6ce97f3a35",
+        "size": 2886
+      },
+      {
+        "path": "types/hook_context_v1/contract.go",
+        "sha256": "49972e8712a8a7a579c5254da8e532b7819e0e6f464940de42a8cf8eb05b213d",
+        "size": 18217
+      },
+      {
+        "path": "types/interaction_occurrence_v1/contract.go",
+        "sha256": "2d2136a3821b2c182930ef404742d4c8a2a95e38eef4119fbc864c7404eca0bc",
+        "size": 16942
+      },
+      {
+        "path": "types/lifecycle_event_v1/contract.go",
+        "sha256": "a009db58382c692ed9e66eae0e37016ebfc099da2a71508041c9a1bd4142d50d",
+        "size": 1194
+      },
+      {
+        "path": "types/local_admin_authority_v1/contract.go",
+        "sha256": "ad7a13f92ac214cdac514356e6bdef09d622770c34830d44f6c685f1a7489143",
+        "size": 7173
+      },
+      {
+        "path": "types/local_admin_command_v1/contract.go",
+        "sha256": "29ff9aef9159c22724b800907ddaca372595e3c1a9fd35ddf03c41eb01edc9f9",
+        "size": 34244
+      },
+      {
+        "path": "types/local_admin_receipt_v1/contract.go",
+        "sha256": "d9ac7b1b8e1dcb6299c75861d217960e977c15890f40d9741eef3d56ae799e1b",
+        "size": 32016
+      },
+      {
+        "path": "types/local_route_binding_v1/contract.go",
+        "sha256": "acc39f7ace6127a07b240f02998369c82115f985694bcb7db4d01233c777f646",
+        "size": 6793
+      },
+      {
+        "path": "types/machine_binding_v1/contract.go",
+        "sha256": "feceb72622e011555ee4dfadf1d1d30d2f35fb297a5733bad3ccf481dd32f4a8",
+        "size": 5093
+      },
+      {
+        "path": "types/machine_local_root_identity_v1/contract.go",
+        "sha256": "d29a55deb7aa712182e251aa816a567a25249b89ed1d538298e6a2b6624df63a",
+        "size": 703
+      },
+      {
+        "path": "types/materialization_lineage_v1/contract.go",
+        "sha256": "00bbe0a5cd99ff43e2314a33700103a30291ee2f188aae19940b0479adf7232d",
+        "size": 2493
+      },
+      {
+        "path": "types/materialization_plan_v1/contract.go",
+        "sha256": "112fd2a1fa10da3a8842e74f1b8e309d292623333c7ccbd685d544e132e86d1e",
+        "size": 9090
+      },
+      {
+        "path": "types/materialization_state_v1/contract.go",
+        "sha256": "04fff32189707d824693f22d8c18e8ada3a3cda6bf8c924fddd7f74344042c79",
+        "size": 2240
+      },
+      {
+        "path": "types/native_action_catalog_v1/contract.go",
+        "sha256": "eba520e158da3c86d5ec1117f2d194e380b5bebfdba2ad20d8bfb2a1f1af31e5",
+        "size": 970
+      },
+      {
+        "path": "types/native_harness_binding_v1/contract.go",
+        "sha256": "3481943e0667f8421c78e6365d6ca37209b20b3ef7f4dd5030c9a470df86e95b",
+        "size": 1410
+      },
+      {
+        "path": "types/native_tool_request_v1/contract.go",
+        "sha256": "911467ff81f22d6c204c93027ade05312a3ed6507f3f771558178ff1f64ba8a4",
+        "size": 1743
+      },
+      {
+        "path": "types/official_reference_v1/contract.go",
+        "sha256": "45413550503612275296191c251cc926bf2176e691ac61332d649d1f56c6a8a0",
+        "size": 863
+      },
+      {
+        "path": "types/operation_catalog_v1/contract.go",
+        "sha256": "4616c71017cea279f56cb1468b1179dab66745ff9c5c8ee7834dbc09a712db68",
+        "size": 8677
+      },
+      {
+        "path": "types/operation_contract_v1/contract.go",
+        "sha256": "e032d2fe18e81db68b4e8e89bbd87044ea8af61fc80ae2fdb790acd5882fbfc4",
+        "size": 27539
+      },
+      {
+        "path": "types/operation_denial_v1/contract.go",
+        "sha256": "9117f7dd22af80f6a310435245b61d981598ebf4fd75affca965fecbf38ba9cf",
+        "size": 1625
+      },
+      {
+        "path": "types/operation_handle_v1/contract.go",
+        "sha256": "93aa6624523d0d78831936a61f74e3129f527b167db0f9102f9189dddf246150",
+        "size": 7960
+      },
+      {
+        "path": "types/operation_lease_v1/contract.go",
+        "sha256": "9db5fdc9d13c48013eb10578e960328e0e18ff00dc8837fba30809daaef8daa9",
+        "size": 6113
+      },
+      {
+        "path": "types/operation_observation_v1/contract.go",
+        "sha256": "50e9e0c5d9c12554b49be2f3df852e083dcdf5cf08c158f4a465599dc9f9dd71",
+        "size": 20282
+      },
+      {
+        "path": "types/operation_route_binding_v1/contract.go",
+        "sha256": "ca451a9eab0d8cccdb2628255059f88811b0e48a0727f6b198778d40e668af66",
+        "size": 3777
+      },
+      {
+        "path": "types/operation_v1/contract.go",
+        "sha256": "ed638fcd9d588384c362e662111bf464e347b07e76d48cfce10f2c25cedcfbcf",
+        "size": 5556
+      },
+      {
+        "path": "types/organizational_translation_v1/contract.go",
+        "sha256": "6118c066d217d5055c8a54c975846b1ab71c7ac88d200afb506cb3b950a1c4a8",
+        "size": 35115
+      },
+      {
+        "path": "types/package_data_v1/contract.go",
+        "sha256": "e86d244ebd28bf6586190c660203f73f8c9e4bb1816c96fcc165923cdf111ddf",
+        "size": 13316
+      },
+      {
+        "path": "types/package_page_v1/contract.go",
+        "sha256": "c6d82b141c2713c0bffb20b012c32b21e29c39a5a69d96e42d93bee998997880",
+        "size": 7030
+      },
+      {
+        "path": "types/pale_workspace_v1/contract.go",
+        "sha256": "4f8308c92dc6f098352af07fdd3721d92d81177dfbba9eeac1077771693bf6b2",
+        "size": 12875
+      },
+      {
+        "path": "types/participant_provider_manifest_v1/contract.go",
+        "sha256": "7abac189286644a9ebb15fc55a09e68e405a876dff0d3a17c8fdb193594879b0",
+        "size": 1367
+      },
+      {
+        "path": "types/policy_family_v1/contract.go",
+        "sha256": "3502c1e9c9aa9f8d115fd5987686a1ac80a7aa41199cf630a5cad795f2ba5d13",
+        "size": 699
+      },
+      {
+        "path": "types/principal_bootstrap_receipt_v1/contract.go",
+        "sha256": "78260c85ebe8f5a4c5a399bcd60cd14640ff02d430e011bbbe5d52f3fde4d8e9",
+        "size": 6218
+      },
+      {
+        "path": "types/principal_key_transition_v1/contract.go",
+        "sha256": "dafcd9984b55aacb06e400ac5c80ae339a56fce225820a9e32371e70e94ac438",
+        "size": 3524
+      },
+      {
+        "path": "types/principal_record_v1/contract.go",
+        "sha256": "99e644f40f8f0c54b0202c7f7f1183293725fe9bb0a2b1fcc98af736d4d6a434",
+        "size": 3417
+      },
+      {
+        "path": "types/principal_recovery_policy_v1/contract.go",
+        "sha256": "c1232e10c22c0c1640cd87223486e93353bee0dee0d61e6f3317cad0cf910139",
+        "size": 4013
+      },
+      {
+        "path": "types/principal_recovery_proof_v1/contract.go",
+        "sha256": "f4f4fb355a0074beab93a214ad3a27efe1cb4344fa773a11953960396741342f",
+        "size": 3690
+      },
+      {
+        "path": "types/principal_resident_writer_fence_v1/contract.go",
+        "sha256": "7635bdc5a9c6d6a3215f622ad847cecc5ce30eb356cf26fb5016ce59c33c813f",
+        "size": 5459
+      },
+      {
+        "path": "types/principal_resident_writer_takeover_receipt_v1/contract.go",
+        "sha256": "5ba80e09b8af54edf59243f65a265f2bb70f3f05f495a4e1442b143e1c68cda7",
+        "size": 5550
+      },
+      {
+        "path": "types/principal_resident_writer_terminal_receipt_v1/contract.go",
+        "sha256": "10c4a113eb927dc60637ffde247991f876f44ef08cb2e2a662850651ea9f7f68",
+        "size": 3575
+      },
+      {
+        "path": "types/principal_trust_checkpoint_v1/contract.go",
+        "sha256": "274bc69beeaae8b987ebaf965793270de18e080458a38076a1ad25b5f4943e95",
+        "size": 7489
+      },
+      {
+        "path": "types/producer_incarnation_authority_v1/contract.go",
+        "sha256": "0f981daa1cb4c4047a357f1e4695142bac9c24ea2205977672e6056b1fcd8a4f",
+        "size": 4340
+      },
+      {
+        "path": "types/producer_incarnation_retirement_v1/contract.go",
+        "sha256": "6d617ff7c6714a8921fc730aaafa1ca6b101174a5b7bdd8f70b13ad1c9c8ca37",
+        "size": 3246
+      },
+      {
+        "path": "types/producer_incarnation_v1/contract.go",
+        "sha256": "d34d5674a08c2fb79ab28469ef5bd73d2197c7ba4006ab3e5416334844b03d7f",
+        "size": 3565
+      },
+      {
+        "path": "types/provider_binding_v1/contract.go",
+        "sha256": "6d49c69d5a4400ed37286e0c9eb4e903ecfa6db2b6868d62d9af99f3e337b878",
+        "size": 11494
+      },
+      {
+        "path": "types/published_generation_head_v1/contract.go",
+        "sha256": "8419cffa7daef72dd1cac71aebe3246cc03893fd1b7fb72fafed16ac39cfb5b2",
+        "size": 1638
+      },
+      {
+        "path": "types/receipt_v1/contract.go",
+        "sha256": "8338ce113d262878ddba5a814eecd2fe75399b456083ab53e0361144ef2f34ec",
+        "size": 25379
+      },
+      {
+        "path": "types/reconciliation_case_v1/contract.go",
+        "sha256": "6048d6be37fda9fd5240dec29f047706755a92f64b4606b2bd1b2d388fc45ac2",
+        "size": 11854
+      },
+      {
+        "path": "types/reconciliation_custody_v1/contract.go",
+        "sha256": "38e0836e7e5493766621cb81ef18df98777ab17fde388038049877e909b3d2c8",
+        "size": 4858
+      },
+      {
+        "path": "types/reconciliation_frontier_v1/contract.go",
+        "sha256": "611c85e50bcfd9588153ab0efa2db3056a3ce83993485b7301adac7adc2981b4",
+        "size": 18010
+      },
+      {
+        "path": "types/reconciliation_request_v1/contract.go",
+        "sha256": "08e6596f7bfc0ff58fad4102b7de0e61793dd26956c555296631a7361d8662d5",
+        "size": 3821
+      },
+      {
+        "path": "types/reconciliation_result_v1/contract.go",
+        "sha256": "5eb01ff285ef70db9b4f7388579ea5cc710764d768606ae8f90603941668f866",
+        "size": 15121
+      },
+      {
+        "path": "types/repository_native_action_catalog_v1/contract.go",
+        "sha256": "1c5d54e9570e95c092670c52cc7af76ad55cce76cb2e7a7bd45eaf05174923b6",
+        "size": 1473
+      },
+      {
+        "path": "types/request_translation_v1/contract.go",
+        "sha256": "f2d035a2b65da66d2b99f915e4bc8a65574ff36752c0f74ea1c0e7e759915a3c",
+        "size": 1101
+      },
+      {
+        "path": "types/resolved_instance_v1/contract.go",
+        "sha256": "e0da00155aba6b98e09e5a248043fe678f2f17fc89ba603af7c8ae1993b14867",
+        "size": 5024
+      },
+      {
+        "path": "types/resource_continuity_profile_v1/contract.go",
+        "sha256": "48136475f8cf9c33d5fcd8c6efbaa3d3de3c60c0830bdaa35571521f65ad6302",
+        "size": 29960
+      },
+      {
+        "path": "types/responsibility_contract_v1/contract.go",
+        "sha256": "eb439429b5ba03e8d54ed8d2a0b01b1f74197a58e05404b33b4787fe451a9801",
+        "size": 1274
+      },
+      {
+        "path": "types/responsibility_derivation_v1/contract.go",
+        "sha256": "32ba39e5a92bca42d1a53d1cb242b8a1d4cb7557d396040f4517a57b58286eb1",
+        "size": 83760
+      },
+      {
+        "path": "types/result_translation_v1/contract.go",
+        "sha256": "7ed40383ca5f7ccb2ca6abdd840e4b4717c5edc9f2afb9248c00cd9ae3064a1d",
+        "size": 1093
+      },
+      {
+        "path": "types/role_v1/contract.go",
+        "sha256": "b45e6a46fd7a3eeeaa60e00c67b3bab61413f2cc3ede8ddfd45d07a81831e4e0",
+        "size": 4847
+      },
+      {
+        "path": "types/run_mode_v1/contract.go",
+        "sha256": "73b755c2665b809c8e29b9ce6e07be9155c66756dd52968297ea14da9ab88375",
+        "size": 4352
+      },
+      {
+        "path": "types/run_result_v1/contract.go",
+        "sha256": "e9268ef828897b59ab319add3fdd8e821d46e2d58d2fd200584c6f93f56b45a2",
+        "size": 4841
+      },
+      {
+        "path": "types/sealed_artifact_v1/contract.go",
+        "sha256": "276e76b82f6c78e2bd42db7ee1c66ccdc733ad8a25a614fa61d6b9e7962a4624",
+        "size": 576
+      },
+      {
+        "path": "types/session_admission_lease_v1/contract.go",
+        "sha256": "307662c65081921fb29bede0a376484a6af9495c8758940e3cada802726a39f7",
+        "size": 12860
+      },
+      {
+        "path": "types/session_runtime_state_v1/contract.go",
+        "sha256": "d375eb9490b44bb5153a6552c2fe54cd01bee024faded50d197e89ca3c8e96a2",
+        "size": 5905
+      },
+      {
+        "path": "types/settlement_contract_v1/contract.go",
+        "sha256": "029ab008923d857ea0b20d1d0e135f40d521fcb97776737c1d6abd2c4eec92e7",
+        "size": 1773
+      },
+      {
+        "path": "types/sha256_digest_v1/contract.go",
+        "sha256": "a02350ee2656068192579414407ead29e194a91ec6133ea0d905fc98618f4fae",
+        "size": 256
+      },
+      {
+        "path": "types/stack_v1/contract.go",
+        "sha256": "03726e1c6ac0122adcbb2650c29391725244cb7b2f8368b68b3265a1ed0f4191",
+        "size": 4086
+      },
+      {
+        "path": "types/surface_digest_v1/contract.go",
+        "sha256": "4f5e488f02dbdda1f544c89d60163d1f09bbbc3a69d7381d39771e0d8fdd2f50",
+        "size": 1226
+      },
+      {
+        "path": "types/surface_executable_binding_v1/contract.go",
+        "sha256": "7a915a9f063d4e4586ebcd6aaadd5c91c12c0a5bf4594673dc4918ac4d12481c",
+        "size": 797
+      },
+      {
+        "path": "types/surface_executable_identity_v1/contract.go",
+        "sha256": "8ad511a9a8b126ea089b05c782d8d87817f75726ecf817f1315983b09c690d56",
+        "size": 1521
+      },
+      {
+        "path": "types/surface_ownership_v1/contract.go",
+        "sha256": "f4df34c956a9e8bc2a87daf8f0df256702c22b06285ff563c27e2fd03def97f9",
+        "size": 415
+      },
+      {
+        "path": "types/termination_contract_v1/contract.go",
+        "sha256": "96641c804b235e6e205e4360cd7c263f85038e077cf2682f1bb10769e08102bb",
+        "size": 1225
+      },
+      {
+        "path": "types/tool_call_matcher_v1/contract.go",
+        "sha256": "75e4b9ba7934f60284eb5b1188087ae3e51e914cf4c35548154c1e41dc65caa0",
+        "size": 271
+      },
+      {
+        "path": "types/typed_digest_v1/contract.go",
+        "sha256": "670a66fc4441dd6211568a227f870ca92d5d375f8e62db5fadde1b9fcc23b3d5",
+        "size": 5276
+      },
+      {
+        "path": "types/workspace_composition_source_v1/contract.go",
+        "sha256": "0f7c5692cba40b9e37036be8c7bde1c3c87b853c7bb2e06040b1da896705f84c",
+        "size": 3972
+      },
+      {
+        "path": "types/workspace_derivation_receipt_v1/contract.go",
+        "sha256": "0a466d4654b7f21f0d579a0b53a6aaeabdfd83866c045cf3cba7865866f8e785",
+        "size": 40157
+      },
+      {
+        "path": "types/workspace_language_primitives_v1/contract.go",
+        "sha256": "8a30eb17a66ea634c7e8156760bc4dee207de9310d0b1eb63bf36d7e4f994018",
+        "size": 11913
+      },
+      {
+        "path": "types/workspace_module_source_v1/contract.go",
+        "sha256": "be22781264d908e933820dc058a3cc18defc32272c2ede93af762a5a844c72f7",
+        "size": 25517
+      },
+      {
+        "path": "types/workspace_module_v1/contract.go",
+        "sha256": "ed7f1b23382850f5de24d6cd8c20369b55cfa6e6c65186a731912c20ad4eb112",
+        "size": 26351
+      },
+      {
+        "path": "types/workspace_resolution_lock_v1/contract.go",
+        "sha256": "d3e1bd7558cd053b497e188c9196fe36be78f37c7bab0d86aaad1330a432217a",
+        "size": 2630
+      },
+      {
+        "path": "types/workspace_universe_lock_v1/contract.go",
+        "sha256": "59bb886f1e2f3982f266952f6911c1fd6bf7d9b221c8eee1b4e8ae60a7939071",
+        "size": 1673
+      }
+    ]
+  }
+}

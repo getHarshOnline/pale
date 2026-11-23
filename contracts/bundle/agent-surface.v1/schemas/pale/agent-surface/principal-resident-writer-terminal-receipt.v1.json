@@ -1,0 +1,127 @@
+{
+  "$defs": {
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "PrincipalKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "PrincipalResidentWriterGenerationV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "PrincipalResidentWriterTerminalReceiptIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/principal-resident-writer-terminal-receipt.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "canonical_principal_resident_writer_terminal_receipt_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "final_opened_store_heads_root_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "final_pending_custody_root_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "final_trust_checkpoint_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "final_trust_checkpoint_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "issuer_key_epoch": {
+      "$ref": "#/$defs/PrincipalKeyEpochV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "issuer_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/principal-resident-writer-terminal-receipt.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    },
+    "stopped_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "terminal_receipt_id": {
+      "$ref": "#/$defs/PrincipalResidentWriterTerminalReceiptIdV1"
+    },
+    "writer_fence_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "writer_fence_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "writer_generation": {
+      "$ref": "#/$defs/PrincipalResidentWriterGenerationV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "terminal_receipt_id",
+    "principal_id",
+    "writer_fence_ref",
+    "writer_fence_sha256",
+    "writer_generation",
+    "final_trust_checkpoint_ref",
+    "final_trust_checkpoint_sha256",
+    "final_opened_store_heads_root_sha256",
+    "final_pending_custody_root_sha256",
+    "stopped_at",
+    "issuer_principal_id",
+    "issuer_key_id",
+    "issuer_key_epoch",
+    "canonical_principal_resident_writer_terminal_receipt_sha256",
+    "signature"
+  ],
+  "title": "principal-resident-writer-terminal-receipt.v1",
+  "type": "object"
+}

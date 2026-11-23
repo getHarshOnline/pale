@@ -1,0 +1,63 @@
+{
+  "$defs": {
+    "ProviderBindingIdentityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_binding_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "provider_binding_sha256"
+      ],
+      "type": "object"
+    },
+    "ProviderBindingRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_binding_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "provider_binding_identity": {
+          "$ref": "#/$defs/ProviderBindingIdentityV1"
+        }
+      },
+      "required": [
+        "provider_binding_id",
+        "provider_binding_identity"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/native-harness-binding.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "exec": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "provider_binding": {
+      "$ref": "#/$defs/ProviderBindingRefV1"
+    },
+    "version": {
+      "maxLength": 1024,
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "provider_binding",
+    "exec",
+    "digest",
+    "version"
+  ],
+  "title": "native-harness-binding.v1",
+  "type": "object"
+}

@@ -1,0 +1,55 @@
+[operations]
+schema_version = 1
+
+[[operations.archetype]]
+id = "evidence-bound-knowledge"
+description = "Begin a research question with its decision, claims, sources, permissions and stopping conditions."
+doctrine = "evidence-bound-knowledge.md"
+doctrine_refs = [{ scope = "local", resource_id = "evidence-led-research" }]
+
+[[operations.operation]]
+id = "research"
+description = "Research a defined question and return what the evidence supports."
+doctrine = "research.md"
+doctrine_refs = [{ scope = "local", resource_id = "iterative-retrieval" }]
+roles = [{ scope = "local", resource_id = "docs-lookup" }]
+outputs = ["A decision brief with claims, sources, applicability, conflicts, gaps, confidence and conditions for reconsideration."]
+extends = [{ scope = "local", resource_id = "evidence-bound-knowledge" }]
+
+[[operations.operation]]
+id = "market-study"
+description = "Research a market choice using comparable estimates and alternative explanations."
+doctrine = "market-study.md"
+doctrine_refs = [{ scope = "local", resource_id = "decision-oriented-market-research" }, { scope = "local", resource_id = "audience-discovery" }]
+outputs = ["A decision brief with market definition, sourced estimates, assumptions, rival explanations, uncertainty and recommendation."]
+extends = [{ scope = "local", resource_id = "evidence-bound-knowledge" }]
+
+[[operations.operation]]
+id = "literature-review"
+description = "Search, assess and synthesize literature for a scholarly question."
+doctrine = "literature-review.md"
+doctrine_refs = [{ scope = "local", resource_id = "literature-method" }, { scope = "local", resource_id = "established-method-comparison" }]
+outputs = ["A literature review with protocol, search and screening records, synthesis, exclusions, conflicts and evidence gaps."]
+extends = [{ scope = "local", resource_id = "evidence-bound-knowledge" }]
+
+[[operations.operation]]
+id = "source-use-review"
+description = "Review a draft’s source dependence separately from permission for its proposed uses."
+doctrine = "source-use.md"
+doctrine_refs = [{ scope = "local", resource_id = "source-expression" }, { scope = "local", resource_id = "source-rights" }]
+outputs = ["In the review: editorial dependence, independent contribution and recommended revisions.", "Separate findings for each component and proposed use, with permissions, obligations and missing decisions."]
+extends = [{ scope = "local", resource_id = "evidence-bound-knowledge" }]
+
+[[operations.operation]]
+id = "review-evidence-update"
+description = "Review what new evidence changes about an accepted claim."
+doctrine = "review-update.md"
+doctrine_refs = [{ scope = "local", resource_id = "iterative-retrieval" }, { scope = "local", resource_id = "evidence-update-method" }]
+outputs = ["In the assessment: baseline, source changes, counterevidence and findings for each claim.", "Inspected coverage, gaps, evidence needed to resume and the owner’s decision."]
+extends = [{ scope = "local", resource_id = "evidence-bound-knowledge" }]
+
+[[operations.operation]]
+id = "review-proof-correspondence"
+description = "Check that formal statements support written claims and distinguish proof from implementation evidence."
+doctrine = "proof-correspondence.md"
+outputs = ["In the release review: claim-to-declaration mapping, proof checks and coverage results.", "Unresolved meaning, implementation and release claims, with the responsible owners."]

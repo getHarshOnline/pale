@@ -1,0 +1,534 @@
+{
+  "$defs": {
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "CapabilityAttemptIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "CapabilityResultReferenceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "record_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "record_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "record_ref",
+        "record_sha256"
+      ],
+      "type": "object"
+    },
+    "EffectReceiptReferenceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "record_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "record_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "record_ref",
+        "record_sha256"
+      ],
+      "type": "object"
+    },
+    "ImmutableRecordReferenceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "record_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "record_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "record_ref",
+        "record_sha256"
+      ],
+      "type": "object"
+    },
+    "OperationActivePhaseV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "phase": {
+              "const": "resolving",
+              "type": "string"
+            }
+          },
+          "required": [
+            "phase"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence": {
+              "$ref": "#/$defs/ImmutableRecordReferenceV1"
+            },
+            "phase": {
+              "const": "context_bound",
+              "type": "string"
+            }
+          },
+          "required": [
+            "phase",
+            "evidence"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "phase": {
+              "const": "provider_resolved",
+              "type": "string"
+            },
+            "provider_binding": {
+              "$ref": "#/$defs/ProviderBindingRefV1"
+            }
+          },
+          "required": [
+            "phase",
+            "provider_binding"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attempt_id": {
+              "$ref": "#/$defs/CapabilityAttemptIdV1"
+            },
+            "evidence": {
+              "$ref": "#/$defs/ImmutableRecordReferenceV1"
+            },
+            "phase": {
+              "const": "dispatch_prepared",
+              "type": "string"
+            }
+          },
+          "required": [
+            "phase",
+            "attempt_id",
+            "evidence"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attempt_id": {
+              "$ref": "#/$defs/CapabilityAttemptIdV1"
+            },
+            "evidence": {
+              "$ref": "#/$defs/ImmutableRecordReferenceV1"
+            },
+            "phase": {
+              "const": "dispatched",
+              "type": "string"
+            }
+          },
+          "required": [
+            "phase",
+            "attempt_id",
+            "evidence"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence": {
+              "$ref": "#/$defs/ImmutableRecordReferenceV1"
+            },
+            "phase": {
+              "const": "collecting_consultation",
+              "type": "string"
+            }
+          },
+          "required": [
+            "phase",
+            "evidence"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence": {
+              "$ref": "#/$defs/ImmutableRecordReferenceV1"
+            },
+            "phase": {
+              "const": "consultation_collected",
+              "type": "string"
+            }
+          },
+          "required": [
+            "phase",
+            "evidence"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "OperationHandleIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "OperationObservationRevisionV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "OperationObservationStateV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "phase": {
+              "$ref": "#/$defs/OperationActivePhaseV1"
+            },
+            "state": {
+              "const": "active",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state",
+            "phase"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "request": {
+              "$ref": "#/$defs/ImmutableRecordReferenceV1"
+            },
+            "state": {
+              "const": "cancellation_requested",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state",
+            "request"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "reconciliation": {
+              "$ref": "#/$defs/ReconciliationFrontierReferenceV1"
+            },
+            "state": {
+              "const": "recovering",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state",
+            "reconciliation"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "effect_receipt": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/EffectReceiptReferenceV1"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "result": {
+              "$ref": "#/$defs/CapabilityResultReferenceV1"
+            },
+            "state": {
+              "const": "succeeded",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state",
+            "result"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "diagnostic": {
+              "$ref": "#/$defs/ImmutableRecordReferenceV1"
+            },
+            "result": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/CapabilityResultReferenceV1"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "state": {
+              "const": "failed",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state",
+            "diagnostic"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "diagnostic": {
+              "$ref": "#/$defs/ImmutableRecordReferenceV1"
+            },
+            "state": {
+              "const": "cancelled",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state",
+            "diagnostic"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "diagnostic": {
+              "$ref": "#/$defs/ImmutableRecordReferenceV1"
+            },
+            "effect_receipt": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/EffectReceiptReferenceV1"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reconciliation": {
+              "$ref": "#/$defs/ReconciliationFrontierReferenceV1"
+            },
+            "state": {
+              "const": "outcome_unknown",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state",
+            "diagnostic",
+            "reconciliation"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "diagnostic": {
+              "$ref": "#/$defs/ImmutableRecordReferenceV1"
+            },
+            "state": {
+              "const": "expired",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state",
+            "diagnostic"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "ProviderBindingIdentityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_binding_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "provider_binding_sha256"
+      ],
+      "type": "object"
+    },
+    "ProviderBindingRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_binding_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "provider_binding_identity": {
+          "$ref": "#/$defs/ProviderBindingIdentityV1"
+        }
+      },
+      "required": [
+        "provider_binding_id",
+        "provider_binding_identity"
+      ],
+      "type": "object"
+    },
+    "ReconciliationFrontierReferenceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "record_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "record_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "record_ref",
+        "record_sha256"
+      ],
+      "type": "object"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "SigningKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/operation-observation.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "dependentRequired": {
+    "predecessor_ref": [
+      "predecessor_sha256"
+    ],
+    "predecessor_sha256": [
+      "predecessor_ref"
+    ]
+  },
+  "properties": {
+    "canonical_operation_observation_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "deployment_runtime_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "deployment_runtime_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "issuer_key_epoch": {
+      "$ref": "#/$defs/SigningKeyEpochV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "issuer_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "observed_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "operation_handle_id": {
+      "$ref": "#/$defs/OperationHandleIdV1"
+    },
+    "operation_handle_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "operation_handle_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "predecessor_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "predecessor_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "revision": {
+      "$ref": "#/$defs/OperationObservationRevisionV1"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/operation-observation.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    },
+    "state": {
+      "$ref": "#/$defs/OperationObservationStateV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "operation_handle_id",
+    "operation_handle_ref",
+    "operation_handle_sha256",
+    "revision",
+    "state",
+    "observed_at",
+    "deployment_runtime_authority_ref",
+    "deployment_runtime_authority_sha256",
+    "issuer_principal_id",
+    "issuer_key_id",
+    "issuer_key_epoch",
+    "canonical_operation_observation_sha256",
+    "signature"
+  ],
+  "title": "operation-observation.v1",
+  "type": "object"
+}

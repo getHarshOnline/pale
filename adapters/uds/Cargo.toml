@@ -1,0 +1,30 @@
+[package]
+name = "pale-adapter-uds"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Bounded Unix-domain socket carrier for Pale local IPC."
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+pale-ports = { path = "../../crates/pale-ports" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+sha2 = { workspace = true }
+ed25519-dalek = { version = "=2.2.0", default-features = false, features = ["std", "zeroize"] }
+zeroize = "=1.9.0"
+
+[target.'cfg(any(target_os = "linux", target_os = "macos"))'.dependencies]
+pale-adapter-fs = { path = "../fs" }
+nix = { workspace = true, features = ["fs", "poll", "socket", "user"] }
+rustix = { workspace = true, features = ["fs", "process"] }
+
+[dev-dependencies]
+tempfile = { workspace = true }
+getrandom = { workspace = true }

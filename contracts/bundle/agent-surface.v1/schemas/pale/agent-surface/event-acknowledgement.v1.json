@@ -1,0 +1,217 @@
+{
+  "$defs": {
+    "CanonicalEventIdentityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "event_id": {
+          "$ref": "#/$defs/EventIdV1"
+        },
+        "origin_principal_id": {
+          "$ref": "#/$defs/ResidentPrincipalIdV1"
+        },
+        "producer_epoch": {
+          "$ref": "#/$defs/ProducerEpochV1"
+        }
+      },
+      "required": [
+        "origin_principal_id",
+        "producer_epoch",
+        "event_id"
+      ],
+      "type": "object"
+    },
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "ConsumerStateVersionV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "DeliveryAttemptIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "EventAcknowledgementDispositionV1": {
+      "oneOf": [
+        {
+          "const": "accepted",
+          "type": "string"
+        },
+        {
+          "const": "duplicate",
+          "type": "string"
+        },
+        {
+          "const": "rejected",
+          "type": "string"
+        },
+        {
+          "const": "quarantined",
+          "type": "string"
+        }
+      ]
+    },
+    "EventIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "EventSubscriptionIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "PrincipalKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "ProducerEpochV1": {
+      "pattern": "^(?:[0-9a-f]{2}){16,256}$",
+      "type": "string"
+    },
+    "ResidentNodeIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentReasonV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/event-acknowledgement.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "dependentRequired": {
+    "duplicate_of_ack_ref": [
+      "duplicate_of_ack_sha256"
+    ],
+    "duplicate_of_ack_sha256": [
+      "duplicate_of_ack_ref"
+    ],
+    "quarantine_ref": [
+      "quarantine_sha256"
+    ],
+    "quarantine_sha256": [
+      "quarantine_ref"
+    ]
+  },
+  "properties": {
+    "acknowledged_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "acknowledging_node_delegation_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "acknowledging_node_delegation_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "acknowledging_node_id": {
+      "$ref": "#/$defs/ResidentNodeIdV1"
+    },
+    "acknowledging_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "acknowledging_principal_key_epoch": {
+      "$ref": "#/$defs/PrincipalKeyEpochV1"
+    },
+    "canonical_acknowledgement_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "canonical_event_identity": {
+      "$ref": "#/$defs/CanonicalEventIdentityV1"
+    },
+    "canonical_event_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "consumer_state_version": {
+      "$ref": "#/$defs/ConsumerStateVersionV1"
+    },
+    "delivery_attempt_id": {
+      "$ref": "#/$defs/DeliveryAttemptIdV1"
+    },
+    "destination_node_id": {
+      "$ref": "#/$defs/ResidentNodeIdV1"
+    },
+    "destination_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "disposition": {
+      "$ref": "#/$defs/EventAcknowledgementDispositionV1"
+    },
+    "duplicate_of_ack_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "duplicate_of_ack_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "quarantine_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "quarantine_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "reason_code": {
+      "$ref": "#/$defs/ResidentReasonV1"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/event-acknowledgement.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    },
+    "subscription_id": {
+      "$ref": "#/$defs/EventSubscriptionIdV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "canonical_event_identity",
+    "canonical_event_sha256",
+    "delivery_attempt_id",
+    "subscription_id",
+    "destination_principal_id",
+    "disposition",
+    "acknowledged_at",
+    "acknowledging_principal_id",
+    "acknowledging_node_id",
+    "acknowledging_principal_key_epoch",
+    "acknowledging_node_delegation_ref",
+    "acknowledging_node_delegation_sha256",
+    "canonical_acknowledgement_sha256",
+    "signature"
+  ],
+  "title": "event-acknowledgement.v1",
+  "type": "object"
+}

@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "'pale' 'hook' 'pre-tool-use' '--workspace' 'workspace-a' '--repository' 'repository-a' '--provider-binding' 'provider-binding-terminal' '--provider-binding-identity' 'c078c40d1aa0dc089ba5cae14151c9fddc660e77edc2d866a2ca0b695432233d'",
+            "type": "command"
+          }
+        ]
+      }
+    ]
+  }
+}

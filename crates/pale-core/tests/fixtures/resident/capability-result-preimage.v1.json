@@ -1,0 +1,52 @@
+{
+  "attempt_id": "attempt-1",
+  "completed_at": 11,
+  "implementation_kind": "native_test",
+  "implementation_version": "1",
+  "issuer_key_epoch": 1,
+  "issuer_key_id": "producer-key-1",
+  "issuer_principal_id": "producer-1",
+  "request_binding": {
+    "canonical_request_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+    "capability_id": "example.read",
+    "contract_set_ref": "contract-set-1",
+    "contract_set_sha256": "1bc92a44d0210965af148613e463e67cc773b883a02ecf8612defdc509916cba",
+    "correlation_id": "correlation-1",
+    "deployment_binding_ref": "deployment-1",
+    "deployment_binding_sha256": "6666666666666666666666666666666666666666666666666666666666666666",
+    "request_id": "request-1",
+    "route_binding_ref": "route-1",
+    "route_binding_schema_id": "example/route.v1",
+    "route_binding_schema_sha256": "7777777777777777777777777777777777777777777777777777777777777777",
+    "route_binding_sha256": "8888888888888888888888888888888888888888888888888888888888888888",
+    "route_generation": 1,
+    "session_grant_id": "grant-1",
+    "session_grant_sha256": "5555555555555555555555555555555555555555555555555555555555555555"
+  },
+  "schema_id": "pale/capability-result.v1",
+  "schema_sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+  "signing_authority_binding": {
+    "authority_mode": "integrated_runtime",
+    "integrated_runtime": {
+      "checked_principal_trust_checkpoint_ref": "trust-checkpoint-1",
+      "checked_principal_trust_checkpoint_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "deployment_binding_ref": "deployment-1",
+      "deployment_binding_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "deployment_runtime_authority_ref": "runtime-authority-1",
+      "deployment_runtime_authority_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "principal_id": "producer-1",
+    "signer_key_epoch": 1,
+    "signer_key_id": "producer-key-1"
+  },
+  "started_at": 10,
+  "status": "succeeded",
+  "success": {
+    "inline_payload": {
+      "answer": 42
+    },
+    "result_payload_sha256": "ecf59a2696ca44a417e20e2a7eabb1b26e82c779f8546bea354a2cc80e8e1eed",
+    "result_schema_id": "example/result.v1",
+    "result_schema_sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+  }
+}

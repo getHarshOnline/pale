@@ -1,0 +1,12 @@
+{
+  "name": "KaTeX",
+  "version": "0.18.4",
+  "source": "https://registry.npmjs.org/katex/-/katex-0.18.4.tgz",
+  "tarball_integrity": "sha512-IMPntbRLOU+eu88XDiFKqQ8Akhr9Tv7jDMXqPhjG9SI1JMA4DIgXk4x9k4skJz2NZJXBRbC+2pYBLj9olqcZow==",
+  "tarball_sha256": "0090b1ebccc77d1402ec95e85ee539e1da514d6cd6934156c00baf39dcb0e3aa",
+  "module_path": "tools/rustdoc-math/vendor/katex-0.18.4/katex.mjs",
+  "module_sha256": "9069225f8307ea43f5c98e3c4772e26572a234a8d740018724acfe57f7467cbe",
+  "license": "MIT",
+  "license_path": "THIRD_PARTY_LICENSES/KATEX-LICENSE",
+  "license_sha256": "766ccc1f306c885aa45542a9846bbd0a505b27a0374f146778171c2254ce18e3"
+}

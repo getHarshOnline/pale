@@ -1,0 +1,19 @@
+{
+  "$id": "https://www.rawthoughts.in/pale/schemas/sealed-artifact.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "rel_path": {
+      "type": "string"
+    },
+    "sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    }
+  },
+  "required": [
+    "rel_path",
+    "sha256"
+  ],
+  "title": "sealed-artifact.v1",
+  "type": "object"
+}

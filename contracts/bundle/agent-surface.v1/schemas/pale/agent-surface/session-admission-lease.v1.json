@@ -1,0 +1,408 @@
+{
+  "$defs": {
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "CapabilityIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "EffectClass": {
+      "oneOf": [
+        {
+          "const": "compute",
+          "type": "string"
+        },
+        {
+          "const": "read",
+          "type": "string"
+        },
+        {
+          "const": "execute",
+          "type": "string"
+        },
+        {
+          "const": "write",
+          "type": "string"
+        },
+        {
+          "const": "network",
+          "type": "string"
+        },
+        {
+          "const": "publish",
+          "type": "string"
+        }
+      ]
+    },
+    "ExecutionPathSelectionIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "ExecutionPathSelectionV1": {
+      "additionalProperties": false,
+      "properties": {
+        "experience_path_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "id": {
+          "$ref": "#/$defs/ExecutionPathSelectionIdV1"
+        }
+      },
+      "required": [
+        "id",
+        "experience_path_id"
+      ],
+      "type": "object"
+    },
+    "HarnessActivityIdentity": {
+      "oneOf": [
+        {
+          "properties": {
+            "digest": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "kind": {
+              "const": "session",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "digest"
+          ],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "digest": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "kind": {
+              "const": "turn",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "digest"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "LeaseBudgetUnitsV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "LeaseTimeoutMillisV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "LogicalExecutionWorkspaceIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "LogicalProjectIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "LogicalRepositoryIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "NativeSessionCorrelationV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "native_session_identity": {
+              "$ref": "#/$defs/HarnessActivityIdentity"
+            },
+            "visibility": {
+              "const": "observed",
+              "type": "string"
+            }
+          },
+          "required": [
+            "visibility",
+            "native_session_identity"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "reason": {
+              "$ref": "#/$defs/ResidentReasonV1"
+            },
+            "visibility": {
+              "const": "unobserved",
+              "type": "string"
+            }
+          },
+          "required": [
+            "visibility",
+            "reason"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "PrincipalRevocationEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "RelationshipScopeV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentControllerIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentReasonV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "SessionAdmissionIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SigningKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/session-admission-lease.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "activation_fence_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "active_generation_head_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "budget_ceiling_units": {
+      "$ref": "#/$defs/LeaseBudgetUnitsV1"
+    },
+    "capability_ceiling": {
+      "items": {
+        "$ref": "#/$defs/CapabilityIdV1"
+      },
+      "type": "array"
+    },
+    "checked_revocation_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "checked_revocation_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "compiled_generation_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "controller_id": {
+      "$ref": "#/$defs/ResidentControllerIdV1"
+    },
+    "deployment_binding_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "deployment_binding_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "deployment_runtime_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "deployment_runtime_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "effect_ceiling": {
+      "items": {
+        "$ref": "#/$defs/EffectClass"
+      },
+      "type": "array"
+    },
+    "evidence_destination": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "evidence_obligations": {
+      "items": {
+        "$ref": "#/$defs/ResidentRecordRefV1"
+      },
+      "type": "array"
+    },
+    "execution_path": {
+      "$ref": "#/$defs/ExecutionPathSelectionV1"
+    },
+    "execution_workspace_id": {
+      "$ref": "#/$defs/LogicalExecutionWorkspaceIdV1"
+    },
+    "expires_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "harness_adapter_build_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "harness_adapter_source_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "harness_configuration_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "harness_executable_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "instance_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "issued_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "issuer_key_epoch": {
+      "$ref": "#/$defs/SigningKeyEpochV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "issuer_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "native_session_correlation": {
+      "$ref": "#/$defs/NativeSessionCorrelationV1"
+    },
+    "principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "profile_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "project_id": {
+      "$ref": "#/$defs/LogicalProjectIdV1"
+    },
+    "read_ceiling": {
+      "items": {
+        "$ref": "#/$defs/ResidentRecordRefV1"
+      },
+      "type": "array"
+    },
+    "relationship_scope": {
+      "$ref": "#/$defs/RelationshipScopeV1"
+    },
+    "repository_id": {
+      "$ref": "#/$defs/LogicalRepositoryIdV1"
+    },
+    "revocation_epoch": {
+      "$ref": "#/$defs/PrincipalRevocationEpochV1"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/session-admission-lease.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "session_admission_id": {
+      "$ref": "#/$defs/SessionAdmissionIdV1"
+    },
+    "session_admission_lease_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    },
+    "timeout_ceiling_millis": {
+      "$ref": "#/$defs/LeaseTimeoutMillisV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "session_admission_id",
+    "compiled_generation_digest",
+    "active_generation_head_digest",
+    "activation_fence_digest",
+    "deployment_binding_ref",
+    "deployment_binding_sha256",
+    "deployment_runtime_authority_ref",
+    "deployment_runtime_authority_sha256",
+    "principal_id",
+    "controller_id",
+    "repository_id",
+    "project_id",
+    "execution_workspace_id",
+    "profile_digest",
+    "instance_digest",
+    "execution_path",
+    "harness_adapter_source_sha256",
+    "harness_adapter_build_sha256",
+    "harness_executable_sha256",
+    "harness_configuration_sha256",
+    "capability_ceiling",
+    "read_ceiling",
+    "effect_ceiling",
+    "budget_ceiling_units",
+    "timeout_ceiling_millis",
+    "evidence_obligations",
+    "evidence_destination",
+    "issued_at",
+    "expires_at",
+    "revocation_epoch",
+    "native_session_correlation",
+    "issuer_principal_id",
+    "issuer_key_id",
+    "issuer_key_epoch",
+    "session_admission_lease_digest",
+    "signature"
+  ],
+  "title": "session-admission-lease.v1",
+  "type": "object"
+}

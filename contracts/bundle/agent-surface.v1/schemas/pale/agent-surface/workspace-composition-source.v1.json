@@ -1,0 +1,125 @@
+{
+  "$defs": {
+    "ExperienceCompositionDeclarationsV1": {
+      "additionalProperties": false,
+      "properties": {
+        "continuity_contracts": {
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/continuity-contract.v1.json"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "edge_contracts": {
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/composition-edge.v1.json"
+          },
+          "maxItems": 4096,
+          "type": "array"
+        },
+        "entry_contracts": {
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/entry-contract.v1.json"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "participant_provider_manifests": {
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/participant-provider-manifest.v1.json"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "provider_bindings": {
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/provider-binding.v1.json"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "request_translations": {
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/request-translation.v1.json"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "responsibility_contracts": {
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/responsibility-contract.v1.json"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "result_translations": {
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/result-translation.v1.json"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "selected_experience_paths": {
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/experience-path.v1.json"
+          },
+          "maxItems": 256,
+          "type": "array"
+        },
+        "settlement_contracts": {
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/settlement-contract.v1.json"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "termination_contracts": {
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/termination-contract.v1.json"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        }
+      },
+      "required": [
+        "responsibility_contracts",
+        "participant_provider_manifests",
+        "provider_bindings",
+        "entry_contracts",
+        "request_translations",
+        "result_translations",
+        "termination_contracts",
+        "settlement_contracts",
+        "continuity_contracts",
+        "edge_contracts",
+        "selected_experience_paths"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/workspace-composition-source.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "declarations": {
+      "$ref": "#/$defs/ExperienceCompositionDeclarationsV1"
+    },
+    "schema": {
+      "const": "pale/workspace-composition-source.v1",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_version",
+    "declarations"
+  ],
+  "title": "workspace-composition-source.v1",
+  "type": "object"
+}

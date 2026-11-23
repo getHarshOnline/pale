@@ -1,0 +1,84 @@
+{
+  "$defs": {
+    "WorkspaceAdoptedReleaseV1": {
+      "additionalProperties": false,
+      "properties": {
+        "module_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "module_id": {
+          "$ref": "#/$defs/WorkspaceModuleId"
+        },
+        "release_id": {
+          "$ref": "#/$defs/WorkspaceReleaseId"
+        }
+      },
+      "required": [
+        "module_id",
+        "release_id",
+        "module_digest"
+      ],
+      "type": "object"
+    },
+    "WorkspaceId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceModuleId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceReleaseId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/workspace-universe-lock.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "adopted_releases": {
+      "items": {
+        "$ref": "#/$defs/WorkspaceAdoptedReleaseV1"
+      },
+      "maxItems": 1024,
+      "minItems": 0,
+      "type": "array"
+    },
+    "resolution_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema": {
+      "const": "pale/workspace-universe-lock.v1",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "universe_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "workspace_id": {
+      "$ref": "#/$defs/WorkspaceId"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_version",
+    "workspace_id",
+    "resolution_digest",
+    "adopted_releases",
+    "universe_digest"
+  ],
+  "title": "workspace-universe-lock.v1",
+  "type": "object"
+}

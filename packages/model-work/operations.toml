@@ -1,0 +1,52 @@
+[operations]
+schema_version = 1
+
+[[operations.operation]]
+id = "review-representation-comparison"
+description = "Review an internal-representation or sparse-dictionary comparison using its definitions, implementation and evidence."
+doctrine = "review-representation.md"
+doctrine_refs = [{ scope = "local", resource_id = "representation-comparison" }]
+outputs = ["In the study review: paired inputs, supported similarity, reconstruction and feature findings.", "Gaps in numerical checks, independence or interpretation, with the next useful checks."]
+
+[[operations.operation]]
+id = "ml-lifecycle"
+description = "Review the evidence for each stage of a model’s lifecycle and proposed promotion."
+doctrine = "lifecycle.md"
+doctrine_refs = [{ scope = "external", resource = { package_id = "pale.evaluation", resource_id = "evaluation-lineage" } }, { scope = "local", resource_id = "mle-workflow" }, { scope = "external", resource = { package_id = "pale.evaluation", resource_id = "candidate-comparison" } }]
+outputs = ["In the review: findings for each stage, supporting evidence and blocked transitions.", "A recommendation for the owner, with fallback and recovery needs."]
+roles = [{ scope = "local", resource_id = "mle-reviewer" }]
+
+[[operations.operation]]
+id = "assess-ml-adoption"
+description = "Assess whether a proposed use of machine learning earns its operating cost."
+doctrine = "adoption.md"
+doctrine_refs = [{ scope = "local", resource_id = "ml-adoption-playbook" }]
+outputs = ["In the recommendation: current method, target decision and a comparison that could disprove the proposal.", "Adopt, redesign, investigate or decline, with the scope and reasons."]
+
+[[operations.operation]]
+id = "assess-model-budget"
+description = "Compare model-assisted ways to complete a task within its quality and cost requirements."
+doctrine = "budget.md"
+doctrine_refs = [{ scope = "local", resource_id = "cost-aware-llm-pipeline" }]
+outputs = ["In the assessment: route, budget, comparable evidence, fallback, stopping conditions and missing usage measurements."]
+
+[[operations.operation]]
+id = "qualify-model-runtime"
+description = "Review a model runtime against quality and resource requirements on its intended hardware."
+doctrine = "runtime.md"
+doctrine_refs = [{ scope = "local", resource_id = "on-target-model-comparison" }, { scope = "external", resource = { package_id = "pale.evaluation", resource_id = "evaluation-lineage" } }]
+outputs = ["In the comparison: exact versions, observed quality, resource use and reduced-capability behaviour.", "Results for each requirement, whether to retain the baseline and missing evidence."]
+
+[[operations.operation]]
+id = "review-resource-comparison"
+description = "Review a model comparison using matched resources, required capabilities and controls."
+doctrine = "review-resource-comparison.md"
+doctrine_refs = [{ scope = "local", resource_id = "resource-matched-model-comparison" }, { scope = "local", resource_id = "cost-aware-llm-pipeline" }, { scope = "external", resource = { package_id = "pale.evaluation", resource_id = "evaluation-lineage" } }]
+outputs = ["In the review: matched resources, requirements, limits and evidence for each alternative.", "Supported differences, uncertainty and whether to retain the current method."]
+
+[[operations.operation]]
+id = "review-model-artifact"
+description = "Review the files and evidence for a proposed model or dataset."
+doctrine = "review-artifact.md"
+doctrine_refs = [{ scope = "local", resource_id = "model-artifact-evidence" }]
+outputs = ["In the review: repository, revision, inspected files and stated access.", "Unverified claims and the evidence needed to establish compatibility or use."]

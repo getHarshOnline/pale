@@ -1,0 +1,91 @@
+{
+  "$defs": {
+    "LogicalExecutionWorkspaceIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "LogicalProjectIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "LogicalRepositoryIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/generated-manifest.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "compilation_input_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "compiler_version": {
+      "type": "string"
+    },
+    "execution_workspace_id": {
+      "$ref": "#/$defs/LogicalExecutionWorkspaceIdV1"
+    },
+    "instance_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "manifest_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "outputs": {
+      "items": {
+        "$ref": "https://www.rawthoughts.in/pale/schemas/surface-digest.v1.json"
+      },
+      "type": "array"
+    },
+    "profile_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "project_id": {
+      "$ref": "#/$defs/LogicalProjectIdV1"
+    },
+    "renderer_version": {
+      "type": "string"
+    },
+    "repository_id": {
+      "$ref": "#/$defs/LogicalRepositoryIdV1"
+    },
+    "schema": {
+      "const": "pale.agent-surface.generated-manifest.v1",
+      "type": "string"
+    },
+    "schema_manifest_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_set_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_sha256",
+    "schema_manifest_sha256",
+    "schema_set_sha256",
+    "compilation_input_digest",
+    "compiler_version",
+    "renderer_version",
+    "project_id",
+    "execution_workspace_id",
+    "repository_id",
+    "profile_digest",
+    "instance_digest",
+    "outputs",
+    "manifest_digest"
+  ],
+  "title": "generated-manifest.v1",
+  "type": "object"
+}

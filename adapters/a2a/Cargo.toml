@@ -1,0 +1,23 @@
+[package]
+name = "pale-adapter-a2a"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Send agent-to-agent (A2A) requests for Pale over verified HTTPS and read the replies."
+publish = false
+autotests = false
+
+[lints]
+workspace = true
+
+[dependencies]
+pale-core = { path = "../../crates/pale-core" }
+pale-ports = { path = "../../crates/pale-ports" }
+a2a = { package = "a2a-lf", version = "=0.3.0" }
+reqwest = { version = "=0.13.4", default-features = false, features = ["rustls"] }
+tokio = { version = "=1.53.1", default-features = false, features = ["rt", "time", "net", "sync", "macros"] }
+serde = { workspace = true }
+serde_json = { workspace = true }
+

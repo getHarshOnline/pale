@@ -1,0 +1,7 @@
+[[run_policies]]
+id = "standard"
+description = "Portable compilation without an action gate."
+session_inject = false
+child_propagation = "propagate"
+action_gate = false
+gated_tool_matchers = []

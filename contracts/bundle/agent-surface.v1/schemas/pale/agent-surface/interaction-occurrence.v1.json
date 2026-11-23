@@ -1,0 +1,444 @@
+{
+  "$defs": {
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "DataClassificationV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "InteractionDisclosureCeilingV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "InteractionLifecycleProjectionV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "const": "unknown",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "const": "current",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence": {
+              "$ref": "#/$defs/OwnerRecordCoordinateV1"
+            },
+            "state": {
+              "const": "edited",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state",
+            "evidence"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence": {
+              "$ref": "#/$defs/OwnerRecordCoordinateV1"
+            },
+            "state": {
+              "const": "deleted",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state",
+            "evidence"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence": {
+              "$ref": "#/$defs/OwnerRecordCoordinateV1"
+            },
+            "state": {
+              "const": "superseded",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state",
+            "evidence"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "InteractionOccurrenceIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "InteractionResponseExpectationV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "const": "unknown",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "const": "none",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "expectation": {
+              "$ref": "#/$defs/ResponseExpectationV1"
+            },
+            "state": {
+              "const": "expected",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state",
+            "expectation"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "InteractionVisibilityV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "NativeContainerGenreV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "NativeRevisionOwnerV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "NativeRevisionTokenV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "NativeRevisionV1": {
+      "additionalProperties": false,
+      "properties": {
+        "native_revision_owner": {
+          "$ref": "#/$defs/NativeRevisionOwnerV1"
+        },
+        "native_revision_token": {
+          "$ref": "#/$defs/NativeRevisionTokenV1"
+        }
+      },
+      "required": [
+        "native_revision_owner",
+        "native_revision_token"
+      ],
+      "type": "object"
+    },
+    "OwnerRecordCoordinateV1": {
+      "additionalProperties": false,
+      "properties": {
+        "native_revision": {
+          "$ref": "#/$defs/NativeRevisionV1"
+        },
+        "owner_system_id": {
+          "$ref": "#/$defs/OwnerSystemIdV1"
+        },
+        "record_content_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "record_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "record_schema_id": {
+          "$ref": "#/$defs/SchemaId"
+        },
+        "record_schema_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "owner_system_id",
+        "record_ref",
+        "record_schema_id",
+        "record_schema_sha256",
+        "record_content_sha256",
+        "native_revision"
+      ],
+      "type": "object"
+    },
+    "OwnerRecordKnowledgeV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "const": "unknown",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "const": "absent",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "coordinate": {
+              "$ref": "#/$defs/OwnerRecordCoordinateV1"
+            },
+            "state": {
+              "const": "known",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state",
+            "coordinate"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "OwnerSystemIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "PayloadResolutionPolicyV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResponseExpectationV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "SigningKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/interaction-occurrence.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "actor_provenance": {
+      "$ref": "#/$defs/OwnerRecordCoordinateV1"
+    },
+    "audience_snapshot": {
+      "$ref": "#/$defs/OwnerRecordKnowledgeV1"
+    },
+    "canonical_occurrence_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "classification": {
+      "$ref": "#/$defs/DataClassificationV1"
+    },
+    "container_genre": {
+      "$ref": "#/$defs/NativeContainerGenreV1"
+    },
+    "deployment_runtime_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "deployment_runtime_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "disclosure_ceiling": {
+      "$ref": "#/$defs/InteractionDisclosureCeilingV1"
+    },
+    "event_reference_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "event_reference_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "issuer_key_epoch": {
+      "$ref": "#/$defs/SigningKeyEpochV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "issuer_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "lifecycle": {
+      "$ref": "#/$defs/InteractionLifecycleProjectionV1"
+    },
+    "mention_and_cc_records": {
+      "items": {
+        "$ref": "#/$defs/OwnerRecordCoordinateV1"
+      },
+      "type": "array"
+    },
+    "native_container": {
+      "$ref": "#/$defs/OwnerRecordCoordinateV1"
+    },
+    "occurrence_id": {
+      "$ref": "#/$defs/InteractionOccurrenceIdV1"
+    },
+    "parent_placement": {
+      "$ref": "#/$defs/OwnerRecordKnowledgeV1"
+    },
+    "participant_snapshot": {
+      "$ref": "#/$defs/OwnerRecordKnowledgeV1"
+    },
+    "payload_resolution_policy": {
+      "$ref": "#/$defs/PayloadResolutionPolicyV1"
+    },
+    "projected_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "referenced_records": {
+      "items": {
+        "$ref": "#/$defs/OwnerRecordCoordinateV1"
+      },
+      "type": "array"
+    },
+    "response_expectation": {
+      "$ref": "#/$defs/InteractionResponseExpectationV1"
+    },
+    "root_placement": {
+      "$ref": "#/$defs/OwnerRecordKnowledgeV1"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/interaction-occurrence.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    },
+    "thread_placement": {
+      "$ref": "#/$defs/OwnerRecordKnowledgeV1"
+    },
+    "visibility": {
+      "$ref": "#/$defs/InteractionVisibilityV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "occurrence_id",
+    "event_reference_ref",
+    "event_reference_sha256",
+    "native_container",
+    "container_genre",
+    "root_placement",
+    "thread_placement",
+    "parent_placement",
+    "referenced_records",
+    "actor_provenance",
+    "participant_snapshot",
+    "audience_snapshot",
+    "visibility",
+    "disclosure_ceiling",
+    "mention_and_cc_records",
+    "response_expectation",
+    "lifecycle",
+    "classification",
+    "payload_resolution_policy",
+    "projected_at",
+    "deployment_runtime_authority_ref",
+    "deployment_runtime_authority_sha256",
+    "issuer_principal_id",
+    "issuer_key_id",
+    "issuer_key_epoch",
+    "canonical_occurrence_sha256",
+    "signature"
+  ],
+  "title": "interaction-occurrence.v1",
+  "type": "object"
+}

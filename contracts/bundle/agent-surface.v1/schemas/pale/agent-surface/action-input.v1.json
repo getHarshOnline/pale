@@ -1,0 +1,1326 @@
+{
+  "$defs": {
+    "ClassifiedTraceEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "class": {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        "id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        "sequence": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "class",
+        "sequence"
+      ],
+      "type": "object"
+    },
+    "ComplianceStep": {
+      "additionalProperties": false,
+      "properties": {
+        "event_class": {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        "id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        "minimum_occurrences": {
+          "format": "uint32",
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "event_class",
+        "minimum_occurrences"
+      ],
+      "type": "object"
+    },
+    "ComplianceTemporalRule": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "first_step_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "kind": {
+              "const": "before",
+              "type": "string"
+            },
+            "second_step_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "id",
+            "first_step_id",
+            "second_step_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "first_step_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "kind": {
+              "const": "after",
+              "type": "string"
+            },
+            "second_step_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "id",
+            "first_step_id",
+            "second_step_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "kind": {
+              "const": "ordered",
+              "type": "string"
+            },
+            "step_ids": {
+              "items": {
+                "maxLength": 256,
+                "minLength": 1,
+                "type": "string"
+              },
+              "maxItems": 256,
+              "minItems": 2,
+              "type": "array"
+            }
+          },
+          "required": [
+            "kind",
+            "id",
+            "step_ids"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "ComplianceTraceGradeInput": {
+      "additionalProperties": false,
+      "properties": {
+        "events": {
+          "items": {
+            "$ref": "#/$defs/ClassifiedTraceEvent"
+          },
+          "maxItems": 10000,
+          "type": "array"
+        },
+        "promotion_threshold_micros": {
+          "format": "uint32",
+          "maximum": 1000000,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "required_steps": {
+          "items": {
+            "$ref": "#/$defs/ComplianceStep"
+          },
+          "maxItems": 256,
+          "minItems": 1,
+          "type": "array"
+        },
+        "temporal_rules": {
+          "items": {
+            "$ref": "#/$defs/ComplianceTemporalRule"
+          },
+          "maxItems": 512,
+          "type": "array"
+        }
+      },
+      "required": [
+        "events",
+        "required_steps",
+        "temporal_rules",
+        "promotion_threshold_micros"
+      ],
+      "type": "object"
+    },
+    "ConfigInvariant": {
+      "additionalProperties": false,
+      "properties": {
+        "expectation": {
+          "$ref": "#/$defs/ConfigInvariantExpectation"
+        },
+        "id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        "literal": {
+          "maxLength": 512,
+          "minLength": 1,
+          "type": "string"
+        },
+        "record_ids": {
+          "default": [],
+          "items": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 128,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "expectation",
+        "literal"
+      ],
+      "type": "object"
+    },
+    "ConfigInvariantExpectation": {
+      "oneOf": [
+        {
+          "const": "required_literal",
+          "type": "string"
+        },
+        {
+          "const": "forbidden_literal",
+          "type": "string"
+        }
+      ]
+    },
+    "ConfigInvariantScanInput": {
+      "additionalProperties": false,
+      "properties": {
+        "invariants": {
+          "items": {
+            "$ref": "#/$defs/ConfigInvariant"
+          },
+          "maxItems": 256,
+          "minItems": 1,
+          "type": "array"
+        },
+        "records": {
+          "items": {
+            "$ref": "#/$defs/ConfigTextRecord"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "records",
+        "invariants"
+      ],
+      "type": "object"
+    },
+    "ConfigTextRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        "text": {
+          "maxLength": 262144,
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "text"
+      ],
+      "type": "object"
+    },
+    "CostAggregateInput": {
+      "additionalProperties": false,
+      "properties": {
+        "snapshots": {
+          "items": {
+            "$ref": "#/$defs/CostSnapshot"
+          },
+          "maxItems": 100000,
+          "type": "array"
+        },
+        "today": {
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "today",
+        "snapshots"
+      ],
+      "type": "object"
+    },
+    "CostSnapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "cost_micro_usd": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "date": {
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+          "type": "string"
+        },
+        "model": {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        "session_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        "snapshot_index": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "session_id",
+        "snapshot_index",
+        "date",
+        "model",
+        "cost_micro_usd"
+      ],
+      "type": "object"
+    },
+    "EvidenceRule": {
+      "additionalProperties": false,
+      "properties": {
+        "exclude": {
+          "default": [],
+          "items": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        "require_all": {
+          "default": [],
+          "items": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "require_any": {
+          "default": [],
+          "items": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "EvidenceSelectionInput": {
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "$ref": "#/$defs/EvidenceSelectionMode"
+        },
+        "observed": {
+          "items": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 10000,
+          "type": "array"
+        },
+        "rules": {
+          "items": {
+            "$ref": "#/$defs/EvidenceRule"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        }
+      },
+      "required": [
+        "mode",
+        "observed",
+        "rules"
+      ],
+      "type": "object"
+    },
+    "EvidenceSelectionMode": {
+      "oneOf": [
+        {
+          "const": "all_matches",
+          "type": "string"
+        },
+        {
+          "const": "first_match",
+          "type": "string"
+        }
+      ]
+    },
+    "LoopEvent": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "kind": {
+              "const": "tool_use",
+              "type": "string"
+            },
+            "started_at_ms": {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "tool_kind": {
+              "$ref": "#/$defs/LoopToolKind"
+            }
+          },
+          "required": [
+            "kind",
+            "id",
+            "tool_kind",
+            "started_at_ms"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "completed_at_ms": {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "kind": {
+              "const": "tool_result",
+              "type": "string"
+            },
+            "succeeded": {
+              "type": "boolean"
+            },
+            "tool_use_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "id",
+            "tool_use_id",
+            "completed_at_ms",
+            "succeeded"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "due_at_ms": {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "kind": {
+              "const": "wakeup_scheduled",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "id",
+            "due_at_ms"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "kind": {
+              "const": "wakeup_observed",
+              "type": "string"
+            },
+            "observed_at_ms": {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "wakeup_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "id",
+            "wakeup_id",
+            "observed_at_ms"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "kind": {
+              "const": "parse_error",
+              "type": "string"
+            },
+            "observed_at_ms": {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "kind",
+            "id",
+            "observed_at_ms"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "LoopStatusInput": {
+      "additionalProperties": false,
+      "properties": {
+        "bash_stale_after_ms": {
+          "format": "uint64",
+          "maximum": 9007199254740991,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "events": {
+          "items": {
+            "$ref": "#/$defs/LoopEvent"
+          },
+          "maxItems": 50000,
+          "type": "array"
+        },
+        "now_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "wakeup_grace_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "now_ms",
+        "bash_stale_after_ms",
+        "wakeup_grace_ms",
+        "events"
+      ],
+      "type": "object"
+    },
+    "LoopToolKind": {
+      "oneOf": [
+        {
+          "const": "bash",
+          "type": "string"
+        },
+        {
+          "const": "other",
+          "type": "string"
+        }
+      ]
+    },
+    "PathInventoryInput": {
+      "additionalProperties": false,
+      "properties": {
+        "paths": {
+          "items": {
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 100000,
+          "type": "array"
+        },
+        "style": {
+          "$ref": "#/$defs/PathStyle"
+        }
+      },
+      "required": [
+        "style",
+        "paths"
+      ],
+      "type": "object"
+    },
+    "PathStyle": {
+      "oneOf": [
+        {
+          "const": "posix_relative",
+          "type": "string"
+        },
+        {
+          "const": "posix_absolute",
+          "type": "string"
+        }
+      ]
+    },
+    "RankingCandidate": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "scores": {
+          "items": {
+            "$ref": "#/$defs/RankingScore"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "scores"
+      ],
+      "type": "object"
+    },
+    "RankingScore": {
+      "additionalProperties": false,
+      "properties": {
+        "value_micros": {
+          "format": "int64",
+          "maximum": 1000000,
+          "minimum": -1000000,
+          "type": "integer"
+        },
+        "weight_id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "weight_id",
+        "value_micros"
+      ],
+      "type": "object"
+    },
+    "RankingWeight": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "weight_micros": {
+          "format": "uint32",
+          "maximum": 1000000,
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "weight_micros"
+      ],
+      "type": "object"
+    },
+    "ReviewConvergenceInput": {
+      "additionalProperties": false,
+      "properties": {
+        "findings": {
+          "items": {
+            "$ref": "#/$defs/ReviewFinding"
+          },
+          "maxItems": 10000,
+          "type": "array"
+        },
+        "verifier_dimensions": {
+          "items": {
+            "$ref": "#/$defs/VerifierDimension"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "findings",
+        "verifier_dimensions"
+      ],
+      "type": "object"
+    },
+    "ReviewFinding": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "default": "",
+          "maxLength": 8192,
+          "type": "string"
+        },
+        "file": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "type": "string"
+        },
+        "id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        "line": {
+          "format": "uint32",
+          "minimum": 1,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "severity": {
+          "$ref": "#/$defs/ReviewSeverity"
+        },
+        "title": {
+          "maxLength": 512,
+          "minLength": 1,
+          "type": "string"
+        },
+        "verifier_confidence_micros": {
+          "format": "uint32",
+          "maximum": 1000000,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "file",
+        "title",
+        "severity",
+        "verifier_confidence_micros"
+      ],
+      "type": "object"
+    },
+    "ReviewSeverity": {
+      "oneOf": [
+        {
+          "const": "critical",
+          "type": "string"
+        },
+        {
+          "const": "high",
+          "type": "string"
+        },
+        {
+          "const": "medium",
+          "type": "string"
+        },
+        {
+          "const": "low",
+          "type": "string"
+        }
+      ]
+    },
+    "RubricCategory": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        "weight_micros": {
+          "format": "uint32",
+          "maximum": 1000000,
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "weight_micros"
+      ],
+      "type": "object"
+    },
+    "RubricCheckResult": {
+      "additionalProperties": false,
+      "properties": {
+        "available_points": {
+          "format": "uint64",
+          "maximum": 9007199254740991,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "category_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        "earned_points": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "category_id",
+        "earned_points",
+        "available_points"
+      ],
+      "type": "object"
+    },
+    "RubricEvaluationInput": {
+      "additionalProperties": false,
+      "properties": {
+        "categories": {
+          "items": {
+            "$ref": "#/$defs/RubricCategory"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "type": "array"
+        },
+        "checks": {
+          "items": {
+            "$ref": "#/$defs/RubricCheckResult"
+          },
+          "maxItems": 4096,
+          "minItems": 1,
+          "type": "array"
+        },
+        "top_failure_limit": {
+          "format": "uint32",
+          "maximum": 64,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "categories",
+        "checks",
+        "top_failure_limit"
+      ],
+      "type": "object"
+    },
+    "ServiceDefinition": {
+      "additionalProperties": false,
+      "properties": {
+        "depends_on": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z][a-z0-9-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "kind": {
+          "maxLength": 128,
+          "minLength": 1,
+          "type": "string"
+        },
+        "launch": {
+          "$ref": "#/$defs/ServiceLaunch"
+        },
+        "name": {
+          "pattern": "^[a-z][a-z0-9-]{0,127}$",
+          "type": "string"
+        },
+        "ports": {
+          "default": [],
+          "items": {
+            "format": "uint16",
+            "maximum": 65535,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "maxItems": 64,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "precedence": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "name",
+        "kind",
+        "precedence",
+        "launch"
+      ],
+      "type": "object"
+    },
+    "ServiceDefinitionInput": {
+      "additionalProperties": false,
+      "properties": {
+        "services": {
+          "items": {
+            "$ref": "#/$defs/ServiceDefinition"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "services"
+      ],
+      "type": "object"
+    },
+    "ServiceLaunch": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "default": [],
+          "items": {
+            "maxLength": 4096,
+            "type": "string"
+          },
+          "maxItems": 128,
+          "type": "array"
+        },
+        "program": {
+          "maxLength": 512,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "program"
+      ],
+      "type": "object"
+    },
+    "SkillHealthInput": {
+      "additionalProperties": false,
+      "properties": {
+        "evaluation_time_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "long_window_start_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "recent_window_start_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "skills": {
+          "items": {
+            "$ref": "#/$defs/SkillHealthSeries"
+          },
+          "maxItems": 1024,
+          "minItems": 1,
+          "type": "array"
+        },
+        "trend_threshold_micros": {
+          "format": "uint32",
+          "maximum": 1000000,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "evaluation_time_ms",
+        "recent_window_start_ms",
+        "long_window_start_ms",
+        "trend_threshold_micros",
+        "skills"
+      ],
+      "type": "object"
+    },
+    "SkillHealthSeries": {
+      "additionalProperties": false,
+      "properties": {
+        "observations": {
+          "items": {
+            "$ref": "#/$defs/SkillRunObservation"
+          },
+          "maxItems": 100000,
+          "type": "array"
+        },
+        "pending_amendments": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "skill_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "skill_id",
+        "pending_amendments",
+        "observations"
+      ],
+      "type": "object"
+    },
+    "SkillRunObservation": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        "occurred_at_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "succeeded": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "occurred_at_ms",
+        "succeeded"
+      ],
+      "type": "object"
+    },
+    "VerifierDimension": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        "passed": {
+          "type": "boolean"
+        },
+        "required": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "required",
+        "passed"
+      ],
+      "type": "object"
+    },
+    "WeightedRankingInput": {
+      "additionalProperties": false,
+      "properties": {
+        "candidates": {
+          "items": {
+            "$ref": "#/$defs/RankingCandidate"
+          },
+          "maxItems": 10000,
+          "minItems": 1,
+          "type": "array"
+        },
+        "weights": {
+          "items": {
+            "$ref": "#/$defs/RankingWeight"
+          },
+          "maxItems": 1024,
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "weights",
+        "candidates"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/action-input.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "compliance_trace_grade",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/ComplianceTraceGradeInput"
+        }
+      },
+      "required": [
+        "kind",
+        "payload"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "config_invariant_scan",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/ConfigInvariantScanInput"
+        }
+      },
+      "required": [
+        "kind",
+        "payload"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "cost_aggregate",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/CostAggregateInput"
+        }
+      },
+      "required": [
+        "kind",
+        "payload"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "loop_status_reduce",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/LoopStatusInput"
+        }
+      },
+      "required": [
+        "kind",
+        "payload"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "review_convergence_reduce",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/ReviewConvergenceInput"
+        }
+      },
+      "required": [
+        "kind",
+        "payload"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "rubric_evaluation",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/RubricEvaluationInput"
+        }
+      },
+      "required": [
+        "kind",
+        "payload"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "service_definition_normalize",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/ServiceDefinitionInput"
+        }
+      },
+      "required": [
+        "kind",
+        "payload"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "skill_health_aggregate",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/SkillHealthInput"
+        }
+      },
+      "required": [
+        "kind",
+        "payload"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "weighted_ranking",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/WeightedRankingInput"
+        }
+      },
+      "required": [
+        "kind",
+        "payload"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "path_inventory",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/PathInventoryInput"
+        }
+      },
+      "required": [
+        "kind",
+        "payload"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "evidence_selection",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/EvidenceSelectionInput"
+        }
+      },
+      "required": [
+        "kind",
+        "payload"
+      ],
+      "type": "object"
+    }
+  ],
+  "title": "action-input.v1"
+}

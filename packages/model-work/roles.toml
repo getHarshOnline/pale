@@ -1,0 +1,7 @@
+[roles]
+schema_version = 1
+
+[[roles.role]]
+id = "mle-reviewer"
+description = "Independently review a model change and the evidence supporting its acceptance."
+doctrine = "reviewer.md"

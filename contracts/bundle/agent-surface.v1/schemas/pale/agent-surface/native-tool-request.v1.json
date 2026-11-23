@@ -1,0 +1,78 @@
+{
+  "$defs": {
+    "LogicalRepositoryIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "ProviderBindingIdentityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_binding_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "provider_binding_sha256"
+      ],
+      "type": "object"
+    },
+    "ProviderBindingRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_binding_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "provider_binding_identity": {
+          "$ref": "#/$defs/ProviderBindingIdentityV1"
+        }
+      },
+      "required": [
+        "provider_binding_id",
+        "provider_binding_identity"
+      ],
+      "type": "object"
+    },
+    "WorkspaceId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/native-tool-request.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "event": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/lifecycle-event.v1.json"
+    },
+    "native_event": {
+      "maxLength": 1048576,
+      "minLength": 1,
+      "type": "string"
+    },
+    "provider_binding": {
+      "$ref": "#/$defs/ProviderBindingRefV1"
+    },
+    "repository_id": {
+      "$ref": "#/$defs/LogicalRepositoryIdV1"
+    },
+    "workspace_id": {
+      "$ref": "#/$defs/WorkspaceId"
+    }
+  },
+  "required": [
+    "event",
+    "workspace_id",
+    "repository_id",
+    "provider_binding",
+    "native_event"
+  ],
+  "title": "native-tool-request.v1",
+  "type": "object"
+}

@@ -1,0 +1,18 @@
+[machine]
+id = "machine"
+schema_version = 1
+distribution_root = "/captured/distribution"
+
+[[repository_checkouts]]
+repository_id = "engine"
+checkout_root = "/captured/repository"
+
+[authority_roots]
+authority = "/captured/authority"
+
+[surface_executable]
+exec = "/synthetic/pale"
+digest = "c18a9103e8d6093714d6af687ee9b84d8b94ce1b4daaac79b1a0bd1ba251c219"
+version = "1.0.0"
+protocol = "pale.agent-surface-interface.v1"
+

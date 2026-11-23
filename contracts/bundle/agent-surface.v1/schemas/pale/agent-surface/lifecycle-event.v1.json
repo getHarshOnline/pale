@@ -1,0 +1,59 @@
+{
+  "$id": "https://www.rawthoughts.in/pale/schemas/lifecycle-event.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "const": "session-start",
+      "type": "string"
+    },
+    {
+      "const": "user-prompt-submit",
+      "type": "string"
+    },
+    {
+      "const": "user-prompt-expansion",
+      "type": "string"
+    },
+    {
+      "const": "permission-request",
+      "type": "string"
+    },
+    {
+      "const": "pre-tool-use",
+      "type": "string"
+    },
+    {
+      "const": "post-tool-use",
+      "type": "string"
+    },
+    {
+      "const": "post-tool-use-failure",
+      "type": "string"
+    },
+    {
+      "const": "subagent-start",
+      "type": "string"
+    },
+    {
+      "const": "subagent-stop",
+      "type": "string"
+    },
+    {
+      "const": "pre-compact",
+      "type": "string"
+    },
+    {
+      "const": "post-compact",
+      "type": "string"
+    },
+    {
+      "const": "stop",
+      "type": "string"
+    },
+    {
+      "const": "session-end",
+      "type": "string"
+    }
+  ],
+  "title": "lifecycle-event.v1"
+}

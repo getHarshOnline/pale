@@ -1,0 +1,1059 @@
+{
+  "$defs": {
+    "Approval": {
+      "oneOf": [
+        {
+          "const": "none",
+          "type": "string"
+        },
+        {
+          "const": "ask",
+          "type": "string"
+        },
+        {
+          "const": "gated",
+          "type": "string"
+        }
+      ]
+    },
+    "BoundaryCapability": {
+      "additionalProperties": false,
+      "properties": {
+        "forbidden_token_authority": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "forbidden_token_authority"
+      ],
+      "type": "object"
+    },
+    "CapabilityBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "approval": {
+          "$ref": "#/$defs/Approval"
+        },
+        "effect_class": {
+          "$ref": "#/$defs/EffectClass"
+        },
+        "implementation": {
+          "$ref": "#/$defs/CapabilityProviderBinding"
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tool_contract": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ToolContractIdV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "effect_class",
+        "approval",
+        "implementation"
+      ],
+      "type": "object"
+    },
+    "CapabilityIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "CapabilityNarrowingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "forbidden_capabilities": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/CapabilityIdV1"
+          },
+          "maxItems": 4096,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "forbidden_effects": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/EffectClass"
+          },
+          "maxItems": 4096,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "permitted_capabilities": {
+          "items": {
+            "$ref": "#/$defs/CapabilityIdV1"
+          },
+          "maxItems": 4096,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "permitted_effects": {
+          "items": {
+            "$ref": "#/$defs/EffectClass"
+          },
+          "maxItems": 4096,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "permitted_capabilities",
+        "permitted_effects"
+      ],
+      "type": "object"
+    },
+    "CapabilityProviderBinding": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "host_native",
+              "type": "string"
+            },
+            "provider_tools": {
+              "items": {
+                "$ref": "#/$defs/ProviderToolBindingV1"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "kind",
+            "provider_tools"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "native_rust",
+              "type": "string"
+            },
+            "target": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "target"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "connector",
+              "type": "string"
+            },
+            "provider_tools": {
+              "items": {
+                "$ref": "#/$defs/ProviderToolBindingV1"
+              },
+              "type": "array"
+            },
+            "target": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "target"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "ChildPropagation": {
+      "oneOf": [
+        {
+          "const": "propagate",
+          "type": "string"
+        },
+        {
+          "const": "exempt",
+          "type": "string"
+        },
+        {
+          "const": "none",
+          "type": "string"
+        }
+      ]
+    },
+    "EffectClass": {
+      "oneOf": [
+        {
+          "const": "compute",
+          "type": "string"
+        },
+        {
+          "const": "read",
+          "type": "string"
+        },
+        {
+          "const": "execute",
+          "type": "string"
+        },
+        {
+          "const": "write",
+          "type": "string"
+        },
+        {
+          "const": "network",
+          "type": "string"
+        },
+        {
+          "const": "publish",
+          "type": "string"
+        }
+      ]
+    },
+    "FailurePosture": {
+      "oneOf": [
+        {
+          "const": "fail_closed",
+          "type": "string"
+        },
+        {
+          "const": "fail_open",
+          "type": "string"
+        },
+        {
+          "const": "retry",
+          "type": "string"
+        },
+        {
+          "const": "steer",
+          "type": "string"
+        },
+        {
+          "const": "escalate",
+          "type": "string"
+        }
+      ]
+    },
+    "HostCommandConstraint": {
+      "additionalProperties": false,
+      "properties": {
+        "allow_trailing_args": {
+          "default": false,
+          "type": "boolean"
+        },
+        "argv_prefix": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "executable": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "executable"
+      ],
+      "type": "object"
+    },
+    "HostCommandSource": {
+      "oneOf": [
+        {
+          "const": "repository_capability_commands",
+          "type": "string"
+        }
+      ]
+    },
+    "HostToolBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "command_source": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/HostCommandSource"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "commands": {
+          "items": {
+            "$ref": "#/$defs/HostCommandConstraint"
+          },
+          "type": "array"
+        },
+        "input_equals": {
+          "additionalProperties": false,
+          "patternProperties": {
+            "^/(?:[^~\\u0000-\\u001F\\u007F-\\u009F]|~[01])+$": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "model_name": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "observability": {
+          "$ref": "#/$defs/ToolObservability"
+        }
+      },
+      "required": [
+        "name",
+        "observability"
+      ],
+      "type": "object"
+    },
+    "LifecycleAction": {
+      "oneOf": [
+        {
+          "const": "inject",
+          "type": "string"
+        },
+        {
+          "const": "inject_modes",
+          "type": "string"
+        },
+        {
+          "const": "deny",
+          "type": "string"
+        },
+        {
+          "const": "ask",
+          "type": "string"
+        },
+        {
+          "const": "warn",
+          "type": "string"
+        },
+        {
+          "const": "guide",
+          "type": "string"
+        },
+        {
+          "const": "notify",
+          "type": "string"
+        },
+        {
+          "const": "capture",
+          "type": "string"
+        },
+        {
+          "const": "activate",
+          "type": "string"
+        },
+        {
+          "const": "deactivate",
+          "type": "string"
+        },
+        {
+          "const": "rebaseline",
+          "type": "string"
+        },
+        {
+          "const": "signal",
+          "type": "string"
+        },
+        {
+          "const": "no_op",
+          "type": "string"
+        }
+      ]
+    },
+    "LifecycleBehavior": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "$ref": "#/$defs/LifecycleAction"
+        },
+        "activate_mode": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PackageResourceRefV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "allow_admitted_operation": {
+          "default": false,
+          "type": "boolean"
+        },
+        "case_insensitive": {
+          "default": false,
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string"
+        },
+        "event": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/lifecycle-event.v1.json"
+        },
+        "existing_targets_only": {
+          "default": false,
+          "type": "boolean"
+        },
+        "failure_posture": {
+          "$ref": "#/$defs/FailurePosture",
+          "default": "fail_closed"
+        },
+        "fallback": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LifecycleFallbackV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "governed_by": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "guidance": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/OwnedConfinedRelativePath"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "id": {
+          "$ref": "#/$defs/LifecycleBehaviorIdV1"
+        },
+        "matchers": {
+          "default": [],
+          "items": {
+            "maxLength": 4096,
+            "type": "string"
+          },
+          "maxItems": 256,
+          "type": "array"
+        },
+        "modes": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceRefV1"
+          },
+          "type": "array"
+        },
+        "predicate_kind": {
+          "$ref": "#/$defs/PredicateKind",
+          "default": "always"
+        },
+        "state_scope": {
+          "$ref": "#/$defs/StateScope",
+          "default": "stateless"
+        },
+        "timeout_ms": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "tool_reqs": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/CapabilityIdV1"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "description",
+        "event",
+        "action"
+      ],
+      "type": "object"
+    },
+    "LifecycleBehaviorCatalog": {
+      "additionalProperties": false,
+      "properties": {
+        "behaviour": {
+          "items": {
+            "$ref": "#/$defs/LifecycleBehavior"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "behaviour"
+      ],
+      "type": "object"
+    },
+    "LifecycleBehaviorIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "LifecycleFallbackV1": {
+      "additionalProperties": false,
+      "properties": {
+        "carrier_event": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/lifecycle-event.v1.json"
+        },
+        "guidance": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "guidance",
+        "carrier_event"
+      ],
+      "type": "object"
+    },
+    "NonEmptyCommandList": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "OperationBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "selection": {
+          "$ref": "#/$defs/OperationSelection"
+        }
+      },
+      "required": [
+        "selection"
+      ],
+      "type": "object"
+    },
+    "OperationBindingEntryV1": {
+      "additionalProperties": false,
+      "properties": {
+        "binding": {
+          "$ref": "#/$defs/OperationBinding"
+        },
+        "operation": {
+          "$ref": "#/$defs/PackageResourceRefV1"
+        }
+      },
+      "required": [
+        "operation",
+        "binding"
+      ],
+      "type": "object"
+    },
+    "OperationSelection": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "aliases": {
+              "default": [],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "kind": {
+              "const": "model_or_user",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "aliases": {
+              "default": [],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "kind": {
+              "const": "user_only",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "internal",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "OwnedConfinedRelativePath": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "type": "string"
+    },
+    "PackageIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[./][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "package_id": {
+          "$ref": "#/$defs/PackageIdV1"
+        },
+        "resource_id": {
+          "$ref": "#/$defs/PackageResourceIdV1"
+        }
+      },
+      "required": [
+        "package_id",
+        "resource_id"
+      ],
+      "type": "object"
+    },
+    "PackageResourceSelectorV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "resource": {
+              "$ref": "#/$defs/PackageResourceRefV1"
+            },
+            "selection": {
+              "const": "exact",
+              "type": "string"
+            }
+          },
+          "required": [
+            "selection",
+            "resource"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "package_id": {
+              "$ref": "#/$defs/PackageIdV1"
+            },
+            "selection": {
+              "const": "all_from_package",
+              "type": "string"
+            }
+          },
+          "required": [
+            "selection",
+            "package_id"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "PredicateKind": {
+      "oneOf": [
+        {
+          "const": "always",
+          "type": "string"
+        },
+        {
+          "const": "tool_match",
+          "type": "string"
+        },
+        {
+          "const": "destructive_shell",
+          "type": "string"
+        },
+        {
+          "const": "git_hook_bypass",
+          "type": "string"
+        },
+        {
+          "const": "write_effect",
+          "type": "string"
+        },
+        {
+          "const": "path_match",
+          "type": "string"
+        },
+        {
+          "const": "command_prefix",
+          "type": "string"
+        },
+        {
+          "const": "exact_message",
+          "type": "string"
+        },
+        {
+          "const": "mode_changed",
+          "type": "string"
+        },
+        {
+          "const": "rebaseline_pending",
+          "type": "string"
+        },
+        {
+          "const": "first_touch",
+          "type": "string"
+        },
+        {
+          "const": "connector_bound",
+          "type": "string"
+        },
+        {
+          "const": "never",
+          "type": "string"
+        }
+      ]
+    },
+    "ProviderBindingIdentityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_binding_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "provider_binding_sha256"
+      ],
+      "type": "object"
+    },
+    "ProviderBindingRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_binding_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "provider_binding_identity": {
+          "$ref": "#/$defs/ProviderBindingIdentityV1"
+        }
+      },
+      "required": [
+        "provider_binding_id",
+        "provider_binding_identity"
+      ],
+      "type": "object"
+    },
+    "ProviderToolBindingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_binding": {
+          "$ref": "#/$defs/ProviderBindingRefV1"
+        },
+        "tools": {
+          "items": {
+            "$ref": "#/$defs/HostToolBinding"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "provider_binding",
+        "tools"
+      ],
+      "type": "object"
+    },
+    "RepositoryCommandCapabilities": {
+      "additionalProperties": false,
+      "properties": {
+        "commands": {
+          "additionalProperties": false,
+          "minProperties": 1,
+          "patternProperties": {
+            "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$": {
+              "$ref": "#/$defs/NonEmptyCommandList"
+            }
+          },
+          "type": "object"
+        },
+        "mutating_not_readonly": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "note": {
+          "default": null,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "commands"
+      ],
+      "type": "object"
+    },
+    "RunPolicyEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "action_gate": {
+          "default": false,
+          "type": "boolean"
+        },
+        "child_propagation": {
+          "$ref": "#/$defs/ChildPropagation",
+          "default": "propagate"
+        },
+        "child_type_selectors": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "description": {
+          "type": "string"
+        },
+        "gated_tool_matchers": {
+          "default": [],
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/tool-call-matcher.v1.json"
+          },
+          "maxItems": 256,
+          "type": "array"
+        },
+        "id": {
+          "$ref": "#/$defs/RunPolicyIdV1"
+        },
+        "session_inject": {
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "description"
+      ],
+      "type": "object"
+    },
+    "RunPolicyIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "SemanticSelection": {
+      "additionalProperties": false,
+      "properties": {
+        "doctrine": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceSelectorV1"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "mode_defaults": {
+          "additionalProperties": {
+            "$ref": "#/$defs/PackageResourceRefV1"
+          },
+          "default": {},
+          "type": "object"
+        },
+        "operations": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceSelectorV1"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "roles": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceSelectorV1"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "run_modes": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceSelectorV1"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "stacks": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceSelectorV1"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "type": "object"
+    },
+    "StateScope": {
+      "oneOf": [
+        {
+          "const": "stateless",
+          "type": "string"
+        },
+        {
+          "const": "message",
+          "type": "string"
+        },
+        {
+          "const": "session",
+          "type": "string"
+        },
+        {
+          "const": "durable",
+          "type": "string"
+        }
+      ]
+    },
+    "ToolContractIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "ToolObservability": {
+      "oneOf": [
+        {
+          "const": "pre_tool_observable",
+          "type": "string"
+        },
+        {
+          "const": "permission_only",
+          "type": "string"
+        },
+        {
+          "const": "unobservable",
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/capabilities.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "boundary": {
+      "$ref": "#/$defs/BoundaryCapability",
+      "default": null
+    },
+    "capability_bindings": {
+      "additionalProperties": false,
+      "default": {},
+      "patternProperties": {
+        "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$": {
+          "$ref": "#/$defs/CapabilityBinding"
+        }
+      },
+      "type": "object"
+    },
+    "capability_narrowing": {
+      "$ref": "#/$defs/CapabilityNarrowingV1"
+    },
+    "lifecycle": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/LifecycleBehaviorCatalog"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "operation_bindings": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/OperationBindingEntryV1"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "repository_commands": {
+      "additionalProperties": false,
+      "default": {},
+      "patternProperties": {
+        "^[a-z][a-z0-9_-]*$": {
+          "$ref": "#/$defs/RepositoryCommandCapabilities"
+        }
+      },
+      "type": "object"
+    },
+    "run_policies": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/RunPolicyEntry"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "semantic": {
+      "$ref": "#/$defs/SemanticSelection",
+      "default": {
+        "doctrine": [],
+        "mode_defaults": {},
+        "operations": [],
+        "roles": [],
+        "run_modes": [],
+        "stacks": []
+      }
+    }
+  },
+  "title": "capabilities.v1",
+  "type": "object"
+}

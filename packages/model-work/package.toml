@@ -1,0 +1,62 @@
+[package]
+id = "pale.model-work"
+version = "0.2.4"
+schema_version = 1
+title = "Model Work"
+description = "Choose and adopt models, compare representations and artifacts, estimate cost and runtime, and review their lifecycle."
+compatible_compilers = ["pale-surface@1"]
+dependencies = [{ id = "pale.evaluation", version = "0.2.3" }, { id = "pale.research", version = "0.2.0" }]
+sources = [
+  { path = "adopt.md", role = "declaration" },
+  { path = "artifact.md", role = "declaration" },
+  { path = "build.md", role = "declaration" },
+  { path = "compare-resources.md", role = "declaration" },
+  { path = "compare-runtime.md", role = "declaration" },
+  { path = "cost.md", role = "declaration" },
+  { path = "hugging-face.md", role = "declaration" },
+  { path = "representations.md", role = "declaration" },
+  { path = "review.md", role = "declaration" },
+  { path = "INDEX.md", role = "documentation" },
+  { path = "representation-method.md", role = "documentation" },
+  { path = "review-representation.md", role = "documentation" },
+  { path = "artifact-method.md", role = "documentation" },
+  { path = "review-artifact.md", role = "documentation" },
+  { path = "hugging-face-practice.md", role = "documentation" },
+  { path = "stacks.toml", role = "documentation" },
+  { path = "doctrine.toml", role = "documentation" },
+  { path = "cost-method.md", role = "documentation" },
+  { path = "adoption-method.md", role = "documentation" },
+  { path = "lifecycle-method.md", role = "documentation" },
+  { path = "roles.toml", role = "documentation" },
+  { path = "reviewer.md", role = "documentation" },
+  { path = "operations.toml", role = "documentation" },
+  { path = "lifecycle.md", role = "documentation" },
+  { path = "adoption.md", role = "documentation" },
+  { path = "budget.md", role = "documentation" },
+  { path = "runtime.md", role = "documentation" },
+  { path = "runtime-method.md", role = "documentation" },
+  { path = "resource-comparison-method.md", role = "documentation" },
+  { path = "review-resource-comparison.md", role = "documentation" },
+]
+resources = [
+  { id = "adopt", kind = "doctrine", definition_source = "adopt.md", exposure = "exported" },
+  { id = "adopt", kind = "operation", definition_source = "adopt.md", exposure = "exported" },
+  { id = "artifact", kind = "doctrine", definition_source = "artifact.md", exposure = "exported" },
+  { id = "artifact", kind = "operation", definition_source = "artifact.md", exposure = "exported" },
+  { id = "build", kind = "doctrine", definition_source = "build.md", exposure = "exported" },
+  { id = "build", kind = "operation", definition_source = "build.md", exposure = "exported" },
+  { id = "compare-resources", kind = "doctrine", definition_source = "compare-resources.md", exposure = "exported" },
+  { id = "compare-resources", kind = "operation", definition_source = "compare-resources.md", exposure = "exported" },
+  { id = "compare-runtime", kind = "doctrine", definition_source = "compare-runtime.md", exposure = "exported" },
+  { id = "compare-runtime", kind = "operation", definition_source = "compare-runtime.md", exposure = "exported" },
+  { id = "cost", kind = "doctrine", definition_source = "cost.md", exposure = "exported" },
+  { id = "cost", kind = "operation", definition_source = "cost.md", exposure = "exported" },
+  { id = "hugging-face", kind = "doctrine", definition_source = "hugging-face.md", exposure = "exported" },
+  { id = "hugging-face", kind = "stack", definition_source = "hugging-face.md", exposure = "exported" },
+  { id = "representations", kind = "doctrine", definition_source = "representations.md", exposure = "exported" },
+  { id = "representations", kind = "operation", definition_source = "representations.md", exposure = "exported" },
+  { id = "review", kind = "role", definition_source = "review.md", exposure = "exported" },
+]
+
+[license]
+spdx = "AGPL-3.0-or-later"

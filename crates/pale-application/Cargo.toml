@@ -1,0 +1,115 @@
+[package]
+name = "pale-application"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Pale application services over core contracts, ports, and kernel mechanics."
+publish = false
+autotests = false
+
+[lints]
+workspace = true
+
+[features]
+# Package-text characterization is deliberately outside the default Engine.
+# It measures current private representation mechanics and selects no policy.
+bench = []
+bench-memory = ["bench", "dep:allocation-counter", "dep:nix"]
+# Lends one deterministic, callback-scoped resident journey to outer interface
+# conformance tests. It is disabled by default and opens no endpoint or store.
+interface-test-support = []
+# Exposes one callback-scoped semantic start helper to the physical control-store
+# conformance suite. It is disabled by default and cannot issue an operation.
+control-store-test-support = []
+
+[[bench]]
+name = "package_text"
+harness = false
+required-features = ["bench"]
+
+[dependencies]
+pale-core = { path = "../pale-core" }
+pale-contracts = { path = "../pale-contracts" }
+pale-ports = { path = "../pale-ports" }
+pale-kernel = { path = "../pale-kernel" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+jsonptr = { workspace = true }
+schemars = { workspace = true }
+toml = { workspace = true }
+toml_edit = { workspace = true }
+serde_path_to_error = { workspace = true }
+comrak = { workspace = true }
+chrono = { workspace = true }
+thiserror = { workspace = true }
+shlex = { workspace = true }
+allocation-counter = { workspace = true, optional = true }
+
+[target.'cfg(unix)'.dependencies]
+nix = { workspace = true, features = ["resource"], optional = true }
+
+[dev-dependencies]
+pale-adapter-a2a = { path = "../../adapters/a2a" }
+pale-adapter-uds = { path = "../../adapters/uds" }
+rustls = { version = "=0.23.40", default-features = false, features = ["std", "aws_lc_rs", "tls12"] }
+pale-adapter-fs = { path = "../../adapters/fs" }
+pale-adapter-process = { path = "../../adapters/process" }
+tempfile = { workspace = true }
+
+[[test]]
+name = "packages"
+path = "tests/packages/main.rs"
+
+[[test]]
+name = "actions"
+path = "tests/actions.rs"
+
+[[test]]
+name = "compile"
+path = "tests/compile.rs"
+
+[[test]]
+name = "decision_evidence"
+path = "tests/decision_evidence.rs"
+
+[[test]]
+name = "hook_event"
+path = "tests/hook_event.rs"
+
+[[test]]
+name = "hooks"
+path = "tests/hooks.rs"
+
+[[test]]
+name = "operation_admission"
+path = "tests/operation_admission.rs"
+
+[[test]]
+name = "run_modes"
+path = "tests/run_modes.rs"
+
+[[test]]
+name = "resident_service_construction"
+path = "tests/resident_service_construction.rs"
+
+[[test]]
+name = "resident_consult_service_construction"
+path = "tests/resident_consult_service_construction.rs"
+
+[[test]]
+name = "resident_delegate_service_construction"
+path = "tests/resident_delegate_service_construction.rs"
+
+[[test]]
+name = "schema"
+path = "tests/schema.rs"
+
+[[test]]
+name = "session_state"
+path = "tests/session_state.rs"
+
+[[test]]
+name = "zola_projection"
+path = "tests/zola_projection.rs"

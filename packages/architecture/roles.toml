@@ -1,0 +1,15 @@
+[roles]
+schema_version = 1
+
+[[roles.role]]
+id = "architect"
+description = "Independently review an architecture proposal, alternatives, risks and required checks."
+doctrine = "architect.md"
+doctrine_refs = [{ scope = "local", resource_id = "contract-first" }, { scope = "local", resource_id = "hexagonal-architecture" }]
+
+[[roles.role]]
+id = "database-reviewer"
+description = "Review a PostgreSQL change using supplied queries, migrations, plans and test results."
+doctrine = "database-reviewer.md"
+applies_to = [{ scope = "local", resource_id = "postgresql" }]
+doctrine_refs = [{ scope = "local", resource_id = "database-migrations" }]

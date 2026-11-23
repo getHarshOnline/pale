@@ -1,0 +1,168 @@
+{
+  "$defs": {
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "ReconciliationCustodyGenerationV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "ReconciliationCustodyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ReconciliationCustodyStateV1": {
+      "oneOf": [
+        {
+          "const": "active",
+          "type": "string"
+        },
+        {
+          "const": "transferred",
+          "type": "string"
+        },
+        {
+          "const": "closed",
+          "type": "string"
+        }
+      ]
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentNodeIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "SigningKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/reconciliation-custody.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "canonical_custody_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "case_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "case_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "conflict_resource_key": {},
+    "conflict_resource_key_schema_id": {
+      "$ref": "#/$defs/SchemaId"
+    },
+    "conflict_resource_key_schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "custody_generation": {
+      "$ref": "#/$defs/ReconciliationCustodyGenerationV1"
+    },
+    "custody_id": {
+      "$ref": "#/$defs/ReconciliationCustodyIdV1"
+    },
+    "custody_state": {
+      "$ref": "#/$defs/ReconciliationCustodyStateV1"
+    },
+    "deployment_runtime_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "deployment_runtime_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "holder_node_id": {
+      "$ref": "#/$defs/ResidentNodeIdV1"
+    },
+    "holder_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "issuer_key_epoch": {
+      "$ref": "#/$defs/SigningKeyEpochV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "issuer_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "previous_custody_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "previous_custody_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/reconciliation-custody.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    },
+    "terminal_result_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "terminal_result_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "transferred_or_closed_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "custody_id",
+    "case_ref",
+    "case_sha256",
+    "conflict_resource_key_schema_id",
+    "conflict_resource_key_schema_sha256",
+    "conflict_resource_key",
+    "custody_generation",
+    "custody_state",
+    "holder_principal_id",
+    "deployment_runtime_authority_ref",
+    "deployment_runtime_authority_sha256",
+    "issuer_principal_id",
+    "issuer_key_id",
+    "issuer_key_epoch",
+    "canonical_custody_sha256",
+    "signature"
+  ],
+  "title": "reconciliation-custody.v1",
+  "type": "object"
+}

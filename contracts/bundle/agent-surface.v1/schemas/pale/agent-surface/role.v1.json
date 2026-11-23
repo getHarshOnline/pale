@@ -1,0 +1,199 @@
+{
+  "$defs": {
+    "OwnedConfinedRelativePath": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "type": "string"
+    },
+    "PackageIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[./][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceLinkV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "resource_id": {
+              "$ref": "#/$defs/PackageResourceIdV1"
+            },
+            "scope": {
+              "const": "local",
+              "type": "string"
+            }
+          },
+          "required": [
+            "scope",
+            "resource_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "resource": {
+              "$ref": "#/$defs/PackageResourceRefV1"
+            },
+            "scope": {
+              "const": "external",
+              "type": "string"
+            }
+          },
+          "required": [
+            "scope",
+            "resource"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "PackageResourceRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "package_id": {
+          "$ref": "#/$defs/PackageIdV1"
+        },
+        "resource_id": {
+          "$ref": "#/$defs/PackageResourceIdV1"
+        }
+      },
+      "required": [
+        "package_id",
+        "resource_id"
+      ],
+      "type": "object"
+    },
+    "RoleArchetype": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "doctrine": {
+          "$ref": "#/$defs/OwnedConfinedRelativePath"
+        },
+        "doctrine_refs": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceLinkV1"
+          },
+          "type": "array"
+        },
+        "extends": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceLinkV1"
+          },
+          "type": "array"
+        },
+        "id": {
+          "$ref": "#/$defs/PackageResourceIdV1"
+        }
+      },
+      "required": [
+        "id",
+        "description",
+        "doctrine"
+      ],
+      "type": "object"
+    },
+    "RoleCatalog": {
+      "additionalProperties": false,
+      "properties": {
+        "archetype": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/RoleArchetype"
+          },
+          "type": "array"
+        },
+        "role": {
+          "items": {
+            "$ref": "#/$defs/SpecialistRole"
+          },
+          "type": "array"
+        },
+        "schema_version": {
+          "const": 1,
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version",
+        "role"
+      ],
+      "type": "object"
+    },
+    "SpecialistRole": {
+      "additionalProperties": false,
+      "properties": {
+        "applies_to": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceLinkV1"
+          },
+          "type": "array"
+        },
+        "description": {
+          "type": "string"
+        },
+        "doctrine": {
+          "$ref": "#/$defs/OwnedConfinedRelativePath"
+        },
+        "doctrine_refs": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceLinkV1"
+          },
+          "type": "array"
+        },
+        "extends": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceLinkV1"
+          },
+          "type": "array"
+        },
+        "id": {
+          "$ref": "#/$defs/PackageResourceIdV1"
+        },
+        "inherits_lenses": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceLinkV1"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "description",
+        "doctrine"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/role.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "roles": {
+      "$ref": "#/$defs/RoleCatalog"
+    }
+  },
+  "required": [
+    "roles"
+  ],
+  "title": "role.v1",
+  "type": "object"
+}

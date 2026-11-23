@@ -1,0 +1,6 @@
+[roles]
+schema_version = 1
+[[roles.role]]
+id = 'engine'
+description = 'Synthetic repository role'
+doctrine = 'role.md'

@@ -1,0 +1,232 @@
+{
+  "$defs": {
+    "EffectClass": {
+      "oneOf": [
+        {
+          "const": "compute",
+          "type": "string"
+        },
+        {
+          "const": "read",
+          "type": "string"
+        },
+        {
+          "const": "execute",
+          "type": "string"
+        },
+        {
+          "const": "write",
+          "type": "string"
+        },
+        {
+          "const": "network",
+          "type": "string"
+        },
+        {
+          "const": "publish",
+          "type": "string"
+        }
+      ]
+    },
+    "ResponsibilityPathIdentityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "responsibility_path_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "responsibility_path_sha256"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/experience-path.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "assurance_subject_id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._/-]+$",
+      "type": "string"
+    },
+    "budget": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/PathBudgetV1"
+    },
+    "capability_ceiling": {
+      "items": {
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9._/-]+$",
+        "type": "string"
+      },
+      "maxItems": 256,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "compiled_content": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/CompiledContentCoordinateV1"
+    },
+    "continuity_contract_id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._/-]+$",
+      "type": "string"
+    },
+    "destination_consequences": {
+      "items": {
+        "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/DestinationConsequenceV1"
+      },
+      "maxItems": 256,
+      "type": "array"
+    },
+    "effect_ceiling": {
+      "items": {
+        "$ref": "#/$defs/EffectClass"
+      },
+      "maxItems": 6,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "entry_contract_id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._/-]+$",
+      "type": "string"
+    },
+    "evidence_carrier_id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._/-]+$",
+      "type": "string"
+    },
+    "id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._/-]+$",
+      "type": "string"
+    },
+    "identity": {
+      "$ref": "#/$defs/ResponsibilityPathIdentityV1"
+    },
+    "invocations": {
+      "items": {
+        "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/PathInvocationV1"
+      },
+      "maxItems": 256,
+      "type": "array"
+    },
+    "native_outcomes": {
+      "items": {
+        "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/NativeOutcomeV1"
+      },
+      "maxItems": 256,
+      "type": "array"
+    },
+    "native_owner_transitions": {
+      "items": {
+        "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/NativeOwnerTransitionV1"
+      },
+      "maxItems": 256,
+      "type": "array"
+    },
+    "origin_receipt_contract_id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._/-]+$",
+      "type": "string"
+    },
+    "privacy_policy_id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._/-]+$",
+      "type": "string"
+    },
+    "provider_binding_ids": {
+      "items": {
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9._/-]+$",
+        "type": "string"
+      },
+      "maxItems": 256,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "reconciliation": {
+      "items": {
+        "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/ReconciliationRequirementV1"
+      },
+      "maxItems": 256,
+      "type": "array"
+    },
+    "responsibility_contract_ids": {
+      "items": {
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9._/-]+$",
+        "type": "string"
+      },
+      "maxItems": 256,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "retention_policy_id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._/-]+$",
+      "type": "string"
+    },
+    "settlement_contract_id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._/-]+$",
+      "type": "string"
+    },
+    "termination_contract_id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._/-]+$",
+      "type": "string"
+    },
+    "work_delegation_edge_ids": {
+      "items": {
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9._/-]+$",
+        "type": "string"
+      },
+      "maxItems": 256,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "id",
+    "identity",
+    "origin_receipt_contract_id",
+    "entry_contract_id",
+    "work_delegation_edge_ids",
+    "responsibility_contract_ids",
+    "provider_binding_ids",
+    "capability_ceiling",
+    "effect_ceiling",
+    "invocations",
+    "native_owner_transitions",
+    "native_outcomes",
+    "destination_consequences",
+    "reconciliation",
+    "compiled_content",
+    "assurance_subject_id",
+    "evidence_carrier_id",
+    "retention_policy_id",
+    "privacy_policy_id",
+    "termination_contract_id",
+    "settlement_contract_id",
+    "continuity_contract_id",
+    "budget"
+  ],
+  "title": "experience-path.v1",
+  "type": "object"
+}

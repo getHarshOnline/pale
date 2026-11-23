@@ -1,0 +1,21 @@
+[workspace]
+schema_version = 1
+workspace_id = "repository-guidance"
+distribution_lock = "distribution.lock.toml"
+machine_binding_root = "machines"
+module_manifests = []
+source_components = []
+responsibility_derivations = []
+organizational_translations = []
+experience_compositions = []
+resolution_lock = "resolution.lock.toml"
+universe_lock = "universe.lock.toml"
+
+[workspace.desired_topology]
+projects = [{ id = "repository", title = "Repository work", run_policy = "guidance", package_seeds = ["pale.engineering", "pale.governance"], authority_root_ids = [], capabilities_file = "capabilities.toml" }]
+execution_workspaces = [{ id = "local-guidance", title = "Local Package guidance", execution_path_ids = [] }]
+repositories = [{ id = "source", title = "Source repository" }]
+execution_paths = []
+project_repositories = [{ project_id = "repository", repository_id = "source", role = { package_id = "pale.engineering", resource_id = "change" }, stacks = [], families = [ { package_id = "pale.engineering", resource_id = "change/constraints" }, { package_id = "pale.engineering", resource_id = "testing" }, { package_id = "pale.governance", resource_id = "authority" }, { package_id = "pale.governance", resource_id = "execution" } ], materialization_order = 0 }]
+project_execution_workspaces = [{ project_id = "repository", execution_workspace_id = "local-guidance" }]
+execution_workspace_repositories = [{ execution_workspace_id = "local-guidance", repository_id = "source", access = "mutate" }]

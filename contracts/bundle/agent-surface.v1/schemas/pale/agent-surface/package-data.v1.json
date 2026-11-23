@@ -1,0 +1,431 @@
+{
+  "$defs": {
+    "GoverningConstraintV1": {
+      "additionalProperties": false,
+      "properties": {
+        "policy": {
+          "$ref": "#/$defs/PackageResourceLinkV1"
+        },
+        "scope": {
+          "$ref": "#/$defs/GoverningResourceLinkV1"
+        },
+        "subject": {
+          "$ref": "#/$defs/GoverningResourceLinkV1"
+        }
+      },
+      "required": [
+        "scope",
+        "subject",
+        "policy"
+      ],
+      "type": "object"
+    },
+    "GoverningExclusiveAuthorityClaimV1": {
+      "additionalProperties": false,
+      "properties": {
+        "authority": {
+          "$ref": "#/$defs/GoverningResourceLinkV1"
+        },
+        "scope": {
+          "$ref": "#/$defs/GoverningResourceLinkV1"
+        }
+      },
+      "required": [
+        "scope",
+        "authority"
+      ],
+      "type": "object"
+    },
+    "GoverningNarrowingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "broader": {
+          "$ref": "#/$defs/GoverningResourceLinkV1"
+        },
+        "narrower": {
+          "$ref": "#/$defs/GoverningResourceLinkV1"
+        },
+        "scope": {
+          "$ref": "#/$defs/GoverningResourceLinkV1"
+        }
+      },
+      "required": [
+        "scope",
+        "narrower",
+        "broader"
+      ],
+      "type": "object"
+    },
+    "GoverningObligationV1": {
+      "additionalProperties": false,
+      "properties": {
+        "obligation": {
+          "$ref": "#/$defs/GoverningResourceLinkV1"
+        },
+        "scope": {
+          "$ref": "#/$defs/GoverningResourceLinkV1"
+        },
+        "subject": {
+          "$ref": "#/$defs/GoverningResourceLinkV1"
+        }
+      },
+      "required": [
+        "scope",
+        "subject",
+        "obligation"
+      ],
+      "type": "object"
+    },
+    "GoverningOrderV1": {
+      "additionalProperties": false,
+      "properties": {
+        "constraints": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/GoverningConstraintV1"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "exclusive_authority": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/GoverningExclusiveAuthorityClaimV1"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "narrowing": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/GoverningNarrowingV1"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "obligations": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/GoverningObligationV1"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "order": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/ScopedOrderRelationV1"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "schema_version": {
+          "const": 1,
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version"
+      ],
+      "type": "object"
+    },
+    "GoverningResourceLinkV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/PackageResourceKindV1"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "resource_id": {
+              "$ref": "#/$defs/PackageResourceIdV1"
+            },
+            "scope": {
+              "const": "local",
+              "type": "string"
+            }
+          },
+          "required": [
+            "scope",
+            "resource_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/PackageResourceKindV1"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "resource": {
+              "$ref": "#/$defs/PackageResourceRefV1"
+            },
+            "scope": {
+              "const": "external",
+              "type": "string"
+            }
+          },
+          "required": [
+            "scope",
+            "resource"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "PackageIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceExposureV1": {
+      "oneOf": [
+        {
+          "const": "internal",
+          "type": "string"
+        },
+        {
+          "const": "exported",
+          "type": "string"
+        }
+      ]
+    },
+    "PackageResourceIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[./][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceKindV1": {
+      "oneOf": [
+        {
+          "const": "doctrine",
+          "type": "string"
+        },
+        {
+          "const": "operation_archetype",
+          "type": "string"
+        },
+        {
+          "const": "operation",
+          "type": "string"
+        },
+        {
+          "const": "role_archetype",
+          "type": "string"
+        },
+        {
+          "const": "role",
+          "type": "string"
+        },
+        {
+          "const": "stack",
+          "type": "string"
+        },
+        {
+          "const": "run_mode",
+          "type": "string"
+        },
+        {
+          "const": "policy_family",
+          "type": "string"
+        },
+        {
+          "const": "governing_order",
+          "type": "string"
+        },
+        {
+          "const": "capability_policy",
+          "type": "string"
+        },
+        {
+          "const": "tool_recipe",
+          "type": "string"
+        }
+      ]
+    },
+    "PackageResourceLinkV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "resource_id": {
+              "$ref": "#/$defs/PackageResourceIdV1"
+            },
+            "scope": {
+              "const": "local",
+              "type": "string"
+            }
+          },
+          "required": [
+            "scope",
+            "resource_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "resource": {
+              "$ref": "#/$defs/PackageResourceRefV1"
+            },
+            "scope": {
+              "const": "external",
+              "type": "string"
+            }
+          },
+          "required": [
+            "scope",
+            "resource"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "PackageResourceRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "package_id": {
+          "$ref": "#/$defs/PackageIdV1"
+        },
+        "resource_id": {
+          "$ref": "#/$defs/PackageResourceIdV1"
+        }
+      },
+      "required": [
+        "package_id",
+        "resource_id"
+      ],
+      "type": "object"
+    },
+    "ScopedOrderRelationV1": {
+      "additionalProperties": false,
+      "properties": {
+        "after": {
+          "$ref": "#/$defs/GoverningResourceLinkV1"
+        },
+        "before": {
+          "$ref": "#/$defs/GoverningResourceLinkV1"
+        },
+        "purpose": {
+          "$ref": "#/$defs/SemanticOrderPurposeV1"
+        },
+        "scope": {
+          "$ref": "#/$defs/GoverningResourceLinkV1"
+        }
+      },
+      "required": [
+        "scope",
+        "purpose",
+        "before",
+        "after"
+      ],
+      "type": "object"
+    },
+    "SemanticOrderPurposeV1": {
+      "oneOf": [
+        {
+          "const": "composition",
+          "type": "string"
+        },
+        {
+          "const": "reasoning",
+          "type": "string"
+        },
+        {
+          "const": "execution",
+          "type": "string"
+        },
+        {
+          "const": "presentation",
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/package-data.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "additionalProperties": false,
+      "properties": {
+        "exposure": {
+          "$ref": "#/$defs/PackageResourceExposureV1",
+          "default": "exported"
+        },
+        "kind": {
+          "const": "tool_recipe",
+          "type": "string"
+        },
+        "recipe": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/capability-procedure.v1.json#/$defs/ToolRecipe"
+        }
+      },
+      "required": [
+        "kind",
+        "recipe"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "exposure": {
+          "$ref": "#/$defs/PackageResourceExposureV1",
+          "default": "exported"
+        },
+        "kind": {
+          "const": "capability_policy",
+          "type": "string"
+        },
+        "policy": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/capability-procedure.v1.json#/$defs/CapabilityPolicy"
+        }
+      },
+      "required": [
+        "kind",
+        "policy"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "exposure": {
+          "$ref": "#/$defs/PackageResourceExposureV1",
+          "default": "exported"
+        },
+        "governing_order": {
+          "$ref": "#/$defs/GoverningOrderV1"
+        },
+        "kind": {
+          "const": "governing_order",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "governing_order"
+      ],
+      "type": "object"
+    }
+  ],
+  "title": "package-data.v1"
+}

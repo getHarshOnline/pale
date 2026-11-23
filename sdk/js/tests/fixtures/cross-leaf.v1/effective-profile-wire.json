@@ -1,0 +1,433 @@
+{
+  "currentProfileResponse": {
+    "context": {
+      "executionWorkspaceId": "default",
+      "projectId": "demo"
+    },
+    "coordinates": {
+      "compositionPlanDigest": "eadef78cf1496caa1f231180e82fee72b88f906c77d6af248e232c6eaca9d400",
+      "executionWorkspaceId": "default",
+      "instanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+      "machineId": "machine",
+      "packageSemanticIrDigest": "5a46037b02e7ac4b889786cf3b6af43af49df5a5f384ac6b616179ae6885c609",
+      "profileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c",
+      "projectId": "demo",
+      "selectedTopologyDigest": "1d1b7fb45689c3cbdc3dc27de8bcca278c969fa6af48d06db4d9512943bcbfd8",
+      "workspaceAdmissionEvidenceDigest": "7c085718ea04d8c5f4725338ad56a54fd4809ce99ba8703fd75148580223fb35",
+      "workspaceId": "act-ws",
+      "workspaceSemanticIrDigest": "d4c4f72f551db16482f784af572569dc903f7c456fa08867892676e4cbbf039a"
+    },
+    "editor": {
+      "documentRevision": "0",
+      "generation": "1"
+    },
+    "page": {
+      "entries": [
+        {
+          "explanationHandle": "05e6400dfa108c568dd2dd3db531149ba9b03e09455f5553599018d152f79226",
+          "kind": "machine-realization",
+          "machineId": "machine",
+          "realization": "unknown"
+        }
+      ],
+      "nextOffset": null,
+      "offset": 0,
+      "section": "machine-realization"
+    },
+    "state": {
+      "kind": "current"
+    }
+  },
+  "explanationRequest": {
+    "context": {
+      "executionWorkspaceId": "default",
+      "projectId": "demo"
+    },
+    "expectedCoordinate": {
+      "compositionPlanDigest": "eadef78cf1496caa1f231180e82fee72b88f906c77d6af248e232c6eaca9d400",
+      "documentRevision": "0",
+      "generation": "1",
+      "instanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+      "packageSemanticIrDigest": "5a46037b02e7ac4b889786cf3b6af43af49df5a5f384ac6b616179ae6885c609",
+      "profileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c",
+      "selectedTopologyDigest": "1d1b7fb45689c3cbdc3dc27de8bcca278c969fa6af48d06db4d9512943bcbfd8",
+      "workspaceAdmissionEvidenceDigest": "7c085718ea04d8c5f4725338ad56a54fd4809ce99ba8703fd75148580223fb35",
+      "workspaceSemanticIrDigest": "d4c4f72f551db16482f784af572569dc903f7c456fa08867892676e4cbbf039a"
+    },
+    "handle": "05e6400dfa108c568dd2dd3db531149ba9b03e09455f5553599018d152f79226"
+  },
+  "explanationResponse": {
+    "context": {
+      "executionWorkspaceId": "default",
+      "projectId": "demo"
+    },
+    "coordinates": {
+      "compositionPlanDigest": "eadef78cf1496caa1f231180e82fee72b88f906c77d6af248e232c6eaca9d400",
+      "executionWorkspaceId": "default",
+      "instanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+      "machineId": "machine",
+      "packageSemanticIrDigest": "5a46037b02e7ac4b889786cf3b6af43af49df5a5f384ac6b616179ae6885c609",
+      "profileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c",
+      "projectId": "demo",
+      "selectedTopologyDigest": "1d1b7fb45689c3cbdc3dc27de8bcca278c969fa6af48d06db4d9512943bcbfd8",
+      "workspaceAdmissionEvidenceDigest": "7c085718ea04d8c5f4725338ad56a54fd4809ce99ba8703fd75148580223fb35",
+      "workspaceId": "act-ws",
+      "workspaceSemanticIrDigest": "d4c4f72f551db16482f784af572569dc903f7c456fa08867892676e4cbbf039a"
+    },
+    "editor": {
+      "documentRevision": "0",
+      "generation": "1"
+    },
+    "explanation": {
+      "evidence": {
+        "kind": "machine-realization",
+        "realization": "unknown"
+      },
+      "handle": "05e6400dfa108c568dd2dd3db531149ba9b03e09455f5553599018d152f79226"
+    }
+  },
+  "improvement": {
+    "beginRequest": {
+      "action": "begin",
+      "context": {
+        "executionWorkspaceId": "default",
+        "projectId": "demo"
+      },
+      "expectedProfile": {
+        "compositionPlanDigest": "eadef78cf1496caa1f231180e82fee72b88f906c77d6af248e232c6eaca9d400",
+        "documentRevision": "0",
+        "generation": "1",
+        "instanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+        "packageSemanticIrDigest": "5a46037b02e7ac4b889786cf3b6af43af49df5a5f384ac6b616179ae6885c609",
+        "profileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c",
+        "selectedTopologyDigest": "1d1b7fb45689c3cbdc3dc27de8bcca278c969fa6af48d06db4d9512943bcbfd8",
+        "workspaceAdmissionEvidenceDigest": "7c085718ea04d8c5f4725338ad56a54fd4809ce99ba8703fd75148580223fb35",
+        "workspaceSemanticIrDigest": "d4c4f72f551db16482f784af572569dc903f7c456fa08867892676e4cbbf039a"
+      }
+    },
+    "evaluateRequest": {
+      "action": "evaluate",
+      "context": {
+        "executionWorkspaceId": "default",
+        "projectId": "demo"
+      },
+      "expectedBaseline": {
+        "compositionPlanDigest": "eadef78cf1496caa1f231180e82fee72b88f906c77d6af248e232c6eaca9d400",
+        "documentRevision": "0",
+        "generation": "1",
+        "instanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+        "packageSemanticIrDigest": "5a46037b02e7ac4b889786cf3b6af43af49df5a5f384ac6b616179ae6885c609",
+        "profileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c",
+        "selectedTopologyDigest": "1d1b7fb45689c3cbdc3dc27de8bcca278c969fa6af48d06db4d9512943bcbfd8",
+        "workspaceAdmissionEvidenceDigest": "7c085718ea04d8c5f4725338ad56a54fd4809ce99ba8703fd75148580223fb35",
+        "workspaceSemanticIrDigest": "d4c4f72f551db16482f784af572569dc903f7c456fa08867892676e4cbbf039a"
+      }
+    },
+    "explainedResponse": {
+      "baseline": {
+        "compositionPlanDigest": "eadef78cf1496caa1f231180e82fee72b88f906c77d6af248e232c6eaca9d400",
+        "documentRevision": "0",
+        "generation": "1",
+        "instanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+        "packageSemanticIrDigest": "5a46037b02e7ac4b889786cf3b6af43af49df5a5f384ac6b616179ae6885c609",
+        "profileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c",
+        "selectedTopologyDigest": "1d1b7fb45689c3cbdc3dc27de8bcca278c969fa6af48d06db4d9512943bcbfd8",
+        "workspaceAdmissionEvidenceDigest": "7c085718ea04d8c5f4725338ad56a54fd4809ce99ba8703fd75148580223fb35",
+        "workspaceSemanticIrDigest": "d4c4f72f551db16482f784af572569dc903f7c456fa08867892676e4cbbf039a"
+      },
+      "context": {
+        "executionWorkspaceId": "default",
+        "projectId": "demo"
+      },
+      "state": "explained"
+    },
+    "finishRequest": {
+      "action": "finish",
+      "context": {
+        "executionWorkspaceId": "default",
+        "projectId": "demo"
+      },
+      "disposition": "cancel",
+      "expectedPreview": {
+        "baseline": {
+          "compositionPlanDigest": "eadef78cf1496caa1f231180e82fee72b88f906c77d6af248e232c6eaca9d400",
+          "documentRevision": "0",
+          "generation": "1",
+          "instanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+          "packageSemanticIrDigest": "5a46037b02e7ac4b889786cf3b6af43af49df5a5f384ac6b616179ae6885c609",
+          "profileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c",
+          "selectedTopologyDigest": "1d1b7fb45689c3cbdc3dc27de8bcca278c969fa6af48d06db4d9512943bcbfd8",
+          "workspaceAdmissionEvidenceDigest": "7c085718ea04d8c5f4725338ad56a54fd4809ce99ba8703fd75148580223fb35",
+          "workspaceSemanticIrDigest": "d4c4f72f551db16482f784af572569dc903f7c456fa08867892676e4cbbf039a"
+        },
+        "candidateEditor": {
+          "documentRevision": "0",
+          "generation": "1"
+        },
+        "candidateInstanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+        "candidateProfileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c",
+        "candidateSelectedTopologyDigest": "1d1b7fb45689c3cbdc3dc27de8bcca278c969fa6af48d06db4d9512943bcbfd8",
+        "derivationReceiptDigest": "1944237e16612b77865511e7a699843cf302783f302500d378019e25569de2cc"
+      }
+    },
+    "previewedResponse": {
+      "context": {
+        "executionWorkspaceId": "default",
+        "projectId": "demo"
+      },
+      "coordinate": {
+        "baseline": {
+          "compositionPlanDigest": "eadef78cf1496caa1f231180e82fee72b88f906c77d6af248e232c6eaca9d400",
+          "documentRevision": "0",
+          "generation": "1",
+          "instanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+          "packageSemanticIrDigest": "5a46037b02e7ac4b889786cf3b6af43af49df5a5f384ac6b616179ae6885c609",
+          "profileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c",
+          "selectedTopologyDigest": "1d1b7fb45689c3cbdc3dc27de8bcca278c969fa6af48d06db4d9512943bcbfd8",
+          "workspaceAdmissionEvidenceDigest": "7c085718ea04d8c5f4725338ad56a54fd4809ce99ba8703fd75148580223fb35",
+          "workspaceSemanticIrDigest": "d4c4f72f551db16482f784af572569dc903f7c456fa08867892676e4cbbf039a"
+        },
+        "candidateEditor": {
+          "documentRevision": "0",
+          "generation": "1"
+        },
+        "candidateInstanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+        "candidateProfileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c",
+        "candidateSelectedTopologyDigest": "1d1b7fb45689c3cbdc3dc27de8bcca278c969fa6af48d06db4d9512943bcbfd8",
+        "derivationReceiptDigest": "1944237e16612b77865511e7a699843cf302783f302500d378019e25569de2cc"
+      },
+      "preview": {
+        "affectedCount": 0,
+        "baselineWorkspaceAdmissionEvidenceDigest": "7c085718ea04d8c5f4725338ad56a54fd4809ce99ba8703fd75148580223fb35",
+        "baselineWorkspaceSemanticIrDigest": "d4c4f72f551db16482f784af572569dc903f7c456fa08867892676e4cbbf039a",
+        "candidateInstanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+        "candidateProfileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c",
+        "candidateWorkspaceAdmissionEvidenceDigest": "7c085718ea04d8c5f4725338ad56a54fd4809ce99ba8703fd75148580223fb35",
+        "candidateWorkspaceSemanticIrDigest": "d4c4f72f551db16482f784af572569dc903f7c456fa08867892676e4cbbf039a",
+        "changeRootCount": 0,
+        "compositionPlanChange": {
+          "digest": "eadef78cf1496caa1f231180e82fee72b88f906c77d6af248e232c6eaca9d400",
+          "state": "unchanged"
+        },
+        "derivationReceiptDigest": "1944237e16612b77865511e7a699843cf302783f302500d378019e25569de2cc",
+        "executionWorkspaceId": "default",
+        "instanceChange": {
+          "digest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+          "state": "unchanged"
+        },
+        "instanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+        "packageSemanticIrChange": {
+          "digest": "5a46037b02e7ac4b889786cf3b6af43af49df5a5f384ac6b616179ae6885c609",
+          "state": "unchanged"
+        },
+        "profileChange": {
+          "digest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c",
+          "state": "unchanged"
+        },
+        "profileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c",
+        "projectId": "demo",
+        "selectedTopologyChange": {
+          "digest": "1d1b7fb45689c3cbdc3dc27de8bcca278c969fa6af48d06db4d9512943bcbfd8",
+          "state": "unchanged"
+        },
+        "unaffectedCount": 10,
+        "workspaceId": "act-ws"
+      },
+      "state": "previewed"
+    },
+    "terminalResponse": {
+      "context": {
+        "executionWorkspaceId": "default",
+        "projectId": "demo"
+      },
+      "coordinate": {
+        "baseline": {
+          "compositionPlanDigest": "eadef78cf1496caa1f231180e82fee72b88f906c77d6af248e232c6eaca9d400",
+          "documentRevision": "0",
+          "generation": "1",
+          "instanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+          "packageSemanticIrDigest": "5a46037b02e7ac4b889786cf3b6af43af49df5a5f384ac6b616179ae6885c609",
+          "profileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c",
+          "selectedTopologyDigest": "1d1b7fb45689c3cbdc3dc27de8bcca278c969fa6af48d06db4d9512943bcbfd8",
+          "workspaceAdmissionEvidenceDigest": "7c085718ea04d8c5f4725338ad56a54fd4809ce99ba8703fd75148580223fb35",
+          "workspaceSemanticIrDigest": "d4c4f72f551db16482f784af572569dc903f7c456fa08867892676e4cbbf039a"
+        },
+        "candidateEditor": {
+          "documentRevision": "0",
+          "generation": "1"
+        },
+        "candidateInstanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+        "candidateProfileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c",
+        "candidateSelectedTopologyDigest": "1d1b7fb45689c3cbdc3dc27de8bcca278c969fa6af48d06db4d9512943bcbfd8",
+        "derivationReceiptDigest": "1944237e16612b77865511e7a699843cf302783f302500d378019e25569de2cc"
+      },
+      "disposition": "cancelled",
+      "preview": {
+        "affectedCount": 0,
+        "baselineWorkspaceAdmissionEvidenceDigest": "7c085718ea04d8c5f4725338ad56a54fd4809ce99ba8703fd75148580223fb35",
+        "baselineWorkspaceSemanticIrDigest": "d4c4f72f551db16482f784af572569dc903f7c456fa08867892676e4cbbf039a",
+        "candidateInstanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+        "candidateProfileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c",
+        "candidateWorkspaceAdmissionEvidenceDigest": "7c085718ea04d8c5f4725338ad56a54fd4809ce99ba8703fd75148580223fb35",
+        "candidateWorkspaceSemanticIrDigest": "d4c4f72f551db16482f784af572569dc903f7c456fa08867892676e4cbbf039a",
+        "changeRootCount": 0,
+        "compositionPlanChange": {
+          "digest": "eadef78cf1496caa1f231180e82fee72b88f906c77d6af248e232c6eaca9d400",
+          "state": "unchanged"
+        },
+        "derivationReceiptDigest": "1944237e16612b77865511e7a699843cf302783f302500d378019e25569de2cc",
+        "executionWorkspaceId": "default",
+        "instanceChange": {
+          "digest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+          "state": "unchanged"
+        },
+        "instanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+        "packageSemanticIrChange": {
+          "digest": "5a46037b02e7ac4b889786cf3b6af43af49df5a5f384ac6b616179ae6885c609",
+          "state": "unchanged"
+        },
+        "profileChange": {
+          "digest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c",
+          "state": "unchanged"
+        },
+        "profileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c",
+        "projectId": "demo",
+        "selectedTopologyChange": {
+          "digest": "1d1b7fb45689c3cbdc3dc27de8bcca278c969fa6af48d06db4d9512943bcbfd8",
+          "state": "unchanged"
+        },
+        "unaffectedCount": 10,
+        "workspaceId": "act-ws"
+      },
+      "state": "terminal"
+    }
+  },
+  "notAdmittedProfileRequest": {
+    "context": {
+      "executionWorkspaceId": "default",
+      "projectId": "other"
+    },
+    "limit": 1,
+    "offset": 0,
+    "section": "machine-realization"
+  },
+  "notAdmittedProfileResponse": {
+    "context": {
+      "executionWorkspaceId": "default",
+      "projectId": "other"
+    },
+    "diagnosticIdentity": "9d26f06a348f030bd3a8b485fc0a45d6651650d28a4368afa402cff72051d161",
+    "editor": {
+      "documentRevision": "1",
+      "generation": "2"
+    },
+    "state": {
+      "kind": "not-admitted",
+      "summary": "portable workspace source was rejected"
+    }
+  },
+  "profileRequest": {
+    "context": {
+      "executionWorkspaceId": "default",
+      "projectId": "demo"
+    },
+    "limit": 1,
+    "offset": 0,
+    "section": "machine-realization"
+  },
+  "protocolAdvertisementWithoutWireDigest": {
+    "paleWorkspace": {
+      "cancellation": "result-suppression",
+      "documentRoles": [
+        "workspace-manifest",
+        "workspace-module",
+        "workspace-language-primitives",
+        "responsibility-derivation",
+        "organizational-translation",
+        "experience-composition",
+        "workspace-resolution-lock",
+        "workspace-universe-lock",
+        "capabilities",
+        "machine-binding",
+        "distribution-lock",
+        "lifecycle-guidance",
+        "package-manifest",
+        "package-doctrine",
+        "package-operations",
+        "package-roles",
+        "package-stacks",
+        "package-run-modes",
+        "package-policy-family",
+        "package-governing-order",
+        "package-capability-policy",
+        "package-tool-recipe",
+        "package-page",
+        "package-data",
+        "package-text"
+      ],
+      "inventorySha256": "fe47491f1260454669fb888235c09745ce4a229ee00856e3ac57a398fcd6f6df",
+      "methods": [
+        "pale/workspace/compilationSummary",
+        "pale/workspace/comparisonSummary",
+        "pale/workspace/changeRoots",
+        "pale/workspace/impacts",
+        "pale/workspace/explain",
+        "pale/workspace/profileContexts",
+        "pale/workspace/effectiveProfile",
+        "pale/workspace/effectiveProfileExplain",
+        "pale/workspace/configurationImprovement"
+      ],
+      "notifications": [
+        "pale/workspace/analysisPublished"
+      ],
+      "packageVersion": "0.0.1",
+      "protocolId": "getharshonline.pale-lsp.workspace"
+    }
+  },
+  "staleProfileResponse": {
+    "context": {
+      "executionWorkspaceId": "default",
+      "projectId": "demo"
+    },
+    "coordinates": {
+      "compositionPlanDigest": "eadef78cf1496caa1f231180e82fee72b88f906c77d6af248e232c6eaca9d400",
+      "executionWorkspaceId": "default",
+      "instanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+      "machineId": "machine",
+      "packageSemanticIrDigest": "5a46037b02e7ac4b889786cf3b6af43af49df5a5f384ac6b616179ae6885c609",
+      "profileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c",
+      "projectId": "demo",
+      "selectedTopologyDigest": "1d1b7fb45689c3cbdc3dc27de8bcca278c969fa6af48d06db4d9512943bcbfd8",
+      "workspaceAdmissionEvidenceDigest": "7c085718ea04d8c5f4725338ad56a54fd4809ce99ba8703fd75148580223fb35",
+      "workspaceId": "act-ws",
+      "workspaceSemanticIrDigest": "d4c4f72f551db16482f784af572569dc903f7c456fa08867892676e4cbbf039a"
+    },
+    "diagnosticIdentity": "9d26f06a348f030bd3a8b485fc0a45d6651650d28a4368afa402cff72051d161",
+    "editor": {
+      "documentRevision": "1",
+      "generation": "2"
+    },
+    "page": {
+      "entries": [
+        {
+          "explanationHandle": "05e6400dfa108c568dd2dd3db531149ba9b03e09455f5553599018d152f79226",
+          "kind": "machine-realization",
+          "machineId": "machine",
+          "realization": "unknown"
+        }
+      ],
+      "nextOffset": null,
+      "offset": 0,
+      "section": "machine-realization"
+    },
+    "state": {
+      "admittedEditor": {
+        "documentRevision": "0",
+        "generation": "1"
+      },
+      "admittedProfileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c",
+      "kind": "stale",
+      "summary": "portable workspace source was rejected"
+    }
+  }
+}

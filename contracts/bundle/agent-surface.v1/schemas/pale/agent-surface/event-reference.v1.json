@@ -1,0 +1,257 @@
+{
+  "$defs": {
+    "DataClassificationV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "DeploymentEnvironmentV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "EventCausationIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "EventCorrelationIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "EventIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "EventOrderingKeyV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "EventScopeV1": {
+      "additionalProperties": false,
+      "properties": {
+        "controller_scope": {
+          "$ref": "#/$defs/ResidentControllerIdV1"
+        },
+        "environment": {
+          "$ref": "#/$defs/DeploymentEnvironmentV1"
+        },
+        "principal_scope": {
+          "$ref": "#/$defs/ResidentPrincipalIdV1"
+        },
+        "relationship_scope": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RelationshipScopeV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "principal_scope",
+        "controller_scope",
+        "environment"
+      ],
+      "type": "object"
+    },
+    "EventTypeV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "LifecycleNamespaceV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "OwnerEventSequenceV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "ProducerEpochV1": {
+      "pattern": "^(?:[0-9a-f]{2}){16,256}$",
+      "type": "string"
+    },
+    "RelationshipScopeV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentControllerIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentNodeIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "SourceOwnerV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SourceVersionV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/event-reference.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "dependentRequired": {
+    "ordering_key": [
+      "sequence"
+    ],
+    "payload_ref": [
+      "payload_sha256"
+    ],
+    "payload_sha256": [
+      "payload_ref"
+    ],
+    "sequence": [
+      "ordering_key"
+    ]
+  },
+  "properties": {
+    "canonical_event_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "causation_id": {
+      "$ref": "#/$defs/EventCausationIdV1"
+    },
+    "classification": {
+      "$ref": "#/$defs/DataClassificationV1"
+    },
+    "correlation_id": {
+      "$ref": "#/$defs/EventCorrelationIdV1"
+    },
+    "event_id": {
+      "$ref": "#/$defs/EventIdV1"
+    },
+    "event_type": {
+      "$ref": "#/$defs/EventTypeV1"
+    },
+    "event_version": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "expires_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "lifecycle_namespace": {
+      "$ref": "#/$defs/LifecycleNamespaceV1"
+    },
+    "occurred_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "ordering_key": {
+      "$ref": "#/$defs/EventOrderingKeyV1"
+    },
+    "origin_node_id": {
+      "$ref": "#/$defs/ResidentNodeIdV1"
+    },
+    "origin_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "payload_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "payload_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "producer_epoch": {
+      "$ref": "#/$defs/ProducerEpochV1"
+    },
+    "recorded_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "schema_id": {
+      "const": "pale/event-reference.v1",
+      "type": "string"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "sequence": {
+      "$ref": "#/$defs/OwnerEventSequenceV1"
+    },
+    "source_owner": {
+      "$ref": "#/$defs/SourceOwnerV1"
+    },
+    "source_record_content_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "source_record_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "source_record_schema_id": {
+      "$ref": "#/$defs/SchemaId"
+    },
+    "source_record_schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "source_version": {
+      "$ref": "#/$defs/SourceVersionV1"
+    },
+    "target_scope": {
+      "$ref": "#/$defs/EventScopeV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "event_id",
+    "event_type",
+    "event_version",
+    "lifecycle_namespace",
+    "origin_principal_id",
+    "origin_node_id",
+    "source_owner",
+    "source_record_ref",
+    "source_record_schema_id",
+    "source_record_schema_sha256",
+    "source_record_content_sha256",
+    "source_version",
+    "target_scope",
+    "classification",
+    "occurred_at",
+    "recorded_at",
+    "correlation_id",
+    "producer_epoch",
+    "canonical_event_sha256"
+  ],
+  "title": "event-reference.v1",
+  "type": "object"
+}

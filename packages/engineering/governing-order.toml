@@ -1,0 +1,34 @@
+kind = "governing_order"
+
+[governing_order]
+schema_version = 1
+
+[[governing_order.order]]
+purpose = "reasoning"
+scope = { scope = "local", resource_id = "change", kind = "role" }
+before = { scope = "local", resource_id = "change/impact", kind = "policy_family" }
+after = { scope = "local", resource_id = "change/constraints", kind = "policy_family" }
+
+[[governing_order.order]]
+purpose = "reasoning"
+scope = { scope = "local", resource_id = "change", kind = "role" }
+before = { scope = "local", resource_id = "change/constraints", kind = "policy_family" }
+after = { scope = "local", resource_id = "change/choice", kind = "policy_family" }
+
+[[governing_order.order]]
+purpose = "reasoning"
+scope = { scope = "local", resource_id = "change", kind = "role" }
+before = { scope = "local", resource_id = "change/choice", kind = "policy_family" }
+after = { scope = "local", resource_id = "testing", kind = "policy_family" }
+
+[[governing_order.order]]
+purpose = "reasoning"
+scope = { scope = "local", resource_id = "change", kind = "role" }
+before = { scope = "local", resource_id = "testing", kind = "policy_family" }
+after = { scope = "local", resource_id = "review", kind = "policy_family" }
+
+[[governing_order.order]]
+purpose = "reasoning"
+scope = { scope = "local", resource_id = "change", kind = "role" }
+before = { scope = "local", resource_id = "review", kind = "policy_family" }
+after = { scope = "local", resource_id = "change/limits", kind = "policy_family" }

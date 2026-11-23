@@ -1,0 +1,64 @@
+{
+  "$defs": {
+    "ActivationFenceGenerationV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "ActivationFenceIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/activation-fence.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "activation_fence_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "activation_fence_generation": {
+      "$ref": "#/$defs/ActivationFenceGenerationV1"
+    },
+    "activation_fence_id": {
+      "$ref": "#/$defs/ActivationFenceIdV1"
+    },
+    "compiled_generation_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "predecessor_activation_fence_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/activation-fence.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_sha256",
+    "schema_version",
+    "activation_fence_id",
+    "activation_fence_generation",
+    "compiled_generation_digest",
+    "activation_fence_digest"
+  ],
+  "title": "activation-fence.v1",
+  "type": "object"
+}

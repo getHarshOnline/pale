@@ -1,0 +1,25 @@
+[package]
+name = "pale-core"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Pale core domain records, integrity identities, and canonicalization."
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+serde_with = { workspace = true }
+schemars = { workspace = true }
+jsonptr = { workspace = true }
+unicode-normalization = { workspace = true }
+url = { workspace = true }
+sha2 = { workspace = true }
+hex = { workspace = true }
+thiserror = { workspace = true }
+serde_jcs = { workspace = true }

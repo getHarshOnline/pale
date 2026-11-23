@@ -1,0 +1,7 @@
+[[run_policies]]
+id = "guidance"
+description = "Reusable source guidance with native project instructions and tools."
+session_inject = false
+child_propagation = "none"
+action_gate = false
+gated_tool_matchers = []

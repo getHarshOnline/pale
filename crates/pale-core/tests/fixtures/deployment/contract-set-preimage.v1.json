@@ -1,0 +1,19 @@
+{
+  "compatibility_profile_ref": "compatibility-profile-1",
+  "compatibility_profile_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "contract_set_id": "contract-set-1",
+  "entries": [
+    {
+      "contract_id": "contract/a.v1",
+      "contract_schema_ref": "schema-a",
+      "contract_schema_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "contract_id": "contract/b.v1",
+      "contract_schema_ref": "schema-b",
+      "contract_schema_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    }
+  ],
+  "schema_id": "pale/contract-set.v1",
+  "schema_sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+}

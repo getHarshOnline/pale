@@ -1,0 +1,136 @@
+{
+  "$defs": {
+    "WorkspaceModuleId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspacePublisherId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspacePublisherKeyId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspacePublisherRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "delegated_release_key_id": {
+          "$ref": "#/$defs/WorkspacePublisherKeyId"
+        },
+        "publisher_id": {
+          "$ref": "#/$defs/WorkspacePublisherId"
+        },
+        "recovery_authority_id": {
+          "$ref": "#/$defs/WorkspaceRecoveryAuthorityId"
+        },
+        "root_key_id": {
+          "$ref": "#/$defs/WorkspacePublisherKeyId"
+        }
+      },
+      "required": [
+        "publisher_id",
+        "root_key_id",
+        "recovery_authority_id",
+        "delegated_release_key_id"
+      ],
+      "type": "object"
+    },
+    "WorkspaceRecoveryAuthorityId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceReleaseId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceReleaseStateV1": {
+      "oneOf": [
+        {
+          "const": "candidate",
+          "type": "string"
+        },
+        {
+          "const": "published",
+          "type": "string"
+        },
+        {
+          "const": "revoked",
+          "type": "string"
+        }
+      ]
+    },
+    "WorkspaceResolvedReleaseV1": {
+      "additionalProperties": false,
+      "properties": {
+        "module_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "module_id": {
+          "$ref": "#/$defs/WorkspaceModuleId"
+        },
+        "publisher": {
+          "$ref": "#/$defs/WorkspacePublisherRefV1"
+        },
+        "release_id": {
+          "$ref": "#/$defs/WorkspaceReleaseId"
+        },
+        "release_state": {
+          "$ref": "#/$defs/WorkspaceReleaseStateV1"
+        }
+      },
+      "required": [
+        "module_id",
+        "release_id",
+        "module_digest",
+        "publisher",
+        "release_state"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/workspace-resolution-lock.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "releases": {
+      "items": {
+        "$ref": "#/$defs/WorkspaceResolvedReleaseV1"
+      },
+      "maxItems": 1024,
+      "minItems": 0,
+      "type": "array"
+    },
+    "resolution_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema": {
+      "const": "pale/workspace-resolution-lock.v1",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_version",
+    "releases",
+    "resolution_digest"
+  ],
+  "title": "workspace-resolution-lock.v1",
+  "type": "object"
+}

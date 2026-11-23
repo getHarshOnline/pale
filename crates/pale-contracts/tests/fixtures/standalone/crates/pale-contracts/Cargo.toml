@@ -1,0 +1,37 @@
+[package]
+name = "pale-contracts"
+version = "0.0.1"
+edition = "2021"
+rust-version = "1.94"
+license = "AGPL-3.0-or-later"
+repository = "https://github.com/getHarshOnline/pale"
+description = "Pale contract registry, generated descriptors, and offline validation."
+publish = false
+
+[lints.rust]
+missing_docs = "deny"
+unsafe_code = "deny"
+unreachable_pub = "deny"
+
+[lints.clippy]
+doc_markdown = "deny"
+missing_errors_doc = "deny"
+missing_panics_doc = "deny"
+
+[lints.rustdoc]
+bare_urls = "deny"
+broken_intra_doc_links = "deny"
+invalid_codeblock_attributes = "deny"
+invalid_html_tags = "deny"
+private_intra_doc_links = "deny"
+
+[dependencies]
+pale-core = { path = "../pale-core" }
+serde = { version = "=1.0.228", features = ["derive"] }
+serde_json = "=1.0.149"
+thiserror = "=2.0.18"
+jsonschema = { version = "=0.49.2", default-features = false }
+
+[build-dependencies]
+pale-contract-codegen = { path = "../pale-contract-codegen" }
+

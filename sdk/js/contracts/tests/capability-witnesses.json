@@ -1,0 +1,13 @@
+{
+  "contract.bundle-identity": [
+    "SCHEMA_FAMILIES",
+    "SCHEMA_MANIFEST_SHA256",
+    "SCHEMA_SET_SHA256"
+  ],
+  "contract.document-validation": [
+    "validate"
+  ],
+  "contract.schema-lookup": [
+    "CONTRACT_IDENTITIES"
+  ]
+}

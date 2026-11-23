@@ -1,0 +1,4 @@
+schema = "pale/workspace-resolution-lock.v1"
+schema_version = 1
+releases = []
+resolution_digest = "945db2ec1686d74bc476a920c073a6d9bbb69ea34ab78cda178d6177ce2b855c"

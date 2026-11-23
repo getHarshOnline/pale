@@ -1,0 +1,17 @@
+# Deliberately hand-ordered carrier for the Rust/JCS parity vector.
+module_id = "candidate"
+component_id = "alpha-source"
+schema_version = 1
+schema = "pale/workspace-language-primitives.v1"
+
+[[declarations]]
+namespace = "alpha"
+id = "common"
+kind = "trait"
+
+[[declarations.dependencies]]
+kind = "positive"
+
+[declarations.dependencies.target]
+declaration_id = "common"
+namespace = "beta"

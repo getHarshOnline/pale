@@ -1,0 +1,318 @@
+{
+  "$defs": {
+    "ActiveOperationLeaseV1": {
+      "additionalProperties": false,
+      "properties": {
+        "activation_epoch": {
+          "maximum": 9007199254740991,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "authorized_actions": {
+          "additionalProperties": false,
+          "patternProperties": {
+            "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            }
+          },
+          "type": "object"
+        },
+        "binding_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "catalog_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "contract_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "failure": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/OperationFailureV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "inflight_tools": {
+          "additionalProperties": false,
+          "patternProperties": {
+            "^[0-9a-f]{64}$": {
+              "$ref": "#/$defs/InflightToolAdmissionV1"
+            }
+          },
+          "type": "object"
+        },
+        "operation_id": {
+          "$ref": "#/$defs/PackageResourceRefV1"
+        },
+        "turn_digest": {
+          "anyOf": [
+            {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "activation_epoch",
+        "operation_id",
+        "contract_digest",
+        "catalog_digest",
+        "binding_digest"
+      ],
+      "type": "object"
+    },
+    "CapabilityRequirementIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "FailurePosture": {
+      "oneOf": [
+        {
+          "const": "fail_closed",
+          "type": "string"
+        },
+        {
+          "const": "fail_open",
+          "type": "string"
+        },
+        {
+          "const": "retry",
+          "type": "string"
+        },
+        {
+          "const": "steer",
+          "type": "string"
+        },
+        {
+          "const": "escalate",
+          "type": "string"
+        }
+      ]
+    },
+    "InflightAdmissionStatusV1": {
+      "oneOf": [
+        {
+          "const": "evidence_pending",
+          "type": "string"
+        },
+        {
+          "const": "admitted",
+          "type": "string"
+        }
+      ]
+    },
+    "InflightToolAdmissionV1": {
+      "additionalProperties": false,
+      "properties": {
+        "invocation_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "requirement_id": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CapabilityRequirementIdV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "status": {
+          "$ref": "#/$defs/InflightAdmissionStatusV1"
+        }
+      },
+      "required": [
+        "invocation_digest",
+        "status"
+      ],
+      "type": "object"
+    },
+    "OperationFailureV1": {
+      "additionalProperties": false,
+      "properties": {
+        "posture": {
+          "$ref": "#/$defs/FailurePosture"
+        },
+        "requirement_id": {
+          "$ref": "#/$defs/CapabilityRequirementIdV1"
+        }
+      },
+      "required": [
+        "requirement_id",
+        "posture"
+      ],
+      "type": "object"
+    },
+    "PackageIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[./][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "package_id": {
+          "$ref": "#/$defs/PackageIdV1"
+        },
+        "resource_id": {
+          "$ref": "#/$defs/PackageResourceIdV1"
+        }
+      },
+      "required": [
+        "package_id",
+        "resource_id"
+      ],
+      "type": "object"
+    },
+    "RebaselineDebtV1": {
+      "additionalProperties": false,
+      "properties": {
+        "epoch": {
+          "maximum": 9007199254740991,
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "epoch"
+      ],
+      "type": "object"
+    },
+    "VerificationDebtV1": {
+      "additionalProperties": false,
+      "properties": {
+        "completion_prompted": {
+          "default": false,
+          "type": "boolean"
+        },
+        "epoch": {
+          "maximum": 9007199254740991,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "requirement": {
+          "$ref": "#/$defs/VerificationRequirementV1"
+        }
+      },
+      "required": [
+        "epoch",
+        "requirement"
+      ],
+      "type": "object"
+    },
+    "VerificationRequirementV1": {
+      "oneOf": [
+        {
+          "const": "standard",
+          "type": "string"
+        },
+        {
+          "const": "protected_configuration",
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/session-runtime-state.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "active_modes": {
+      "additionalProperties": {
+        "$ref": "#/$defs/PackageResourceRefV1"
+      },
+      "type": "object"
+    },
+    "active_operation": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ActiveOperationLeaseV1"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "captures": {
+      "items": {
+        "maxLength": 512,
+        "type": "string"
+      },
+      "maxItems": 128,
+      "type": "array"
+    },
+    "operation_epoch": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "rebaseline_debt": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RebaselineDebtV1"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "rebaseline_epoch": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "schema": {
+      "const": "pale.session-runtime-state.v1",
+      "type": "string"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "touched": {
+      "items": {
+        "maxLength": 512,
+        "type": "string"
+      },
+      "maxItems": 1024,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "verification_debt": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/VerificationDebtV1"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "verification_epoch": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_sha256"
+  ],
+  "title": "session-runtime-state.v1",
+  "type": "object"
+}

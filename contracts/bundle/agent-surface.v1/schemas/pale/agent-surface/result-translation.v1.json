@@ -1,0 +1,44 @@
+{
+  "$id": "https://www.rawthoughts.in/pale/schemas/result-translation.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "from": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/ParticipantRefV1"
+    },
+    "id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._/-]+$",
+      "type": "string"
+    },
+    "input_contract": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._/-]+$",
+      "type": "string"
+    },
+    "output_contract": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._/-]+$",
+      "type": "string"
+    },
+    "preserves_evidence": {
+      "type": "boolean"
+    },
+    "to": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/ParticipantRefV1"
+    }
+  },
+  "required": [
+    "id",
+    "from",
+    "to",
+    "input_contract",
+    "output_contract",
+    "preserves_evidence"
+  ],
+  "title": "result-translation.v1",
+  "type": "object"
+}

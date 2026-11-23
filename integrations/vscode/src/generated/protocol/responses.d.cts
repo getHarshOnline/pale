@@ -1,0 +1,12 @@
+import type { AnalysisPublication } from "./AnalysisPublication.js";
+import type { ConfigurationImprovementResponse } from "./ConfigurationImprovementResponse.js";
+import type { EffectiveProfileExplanationResponse } from "./EffectiveProfileExplanationResponse.js";
+import type { EffectiveProfileResponse } from "./EffectiveProfileResponse.js";
+import type { PaleWorkspaceCapabilities } from "./PaleWorkspaceCapabilities.js";
+import type { ProfileContextsResponse } from "./ProfileContextsResponse.js";
+export function validateAnalysisPublication(value: unknown): value is AnalysisPublication;
+export function validateConfigurationImprovementResponse(value: unknown): value is ConfigurationImprovementResponse;
+export function validateEffectiveProfileExplanationResponse(value: unknown): value is EffectiveProfileExplanationResponse;
+export function validateEffectiveProfileResponse(value: unknown): value is EffectiveProfileResponse;
+export function validatePaleWorkspaceCapabilities(value: unknown): value is PaleWorkspaceCapabilities;
+export function validateProfileContextsResponse(value: unknown): value is ProfileContextsResponse;

@@ -1,0 +1,7 @@
+kind = "capability_policy"
+
+[policy]
+permitted_capabilities = ["calculation-check", "calculation-project", "calculation-close"]
+permitted_effects = ["compute", "read", "execute", "write"]
+forbidden_capabilities = []
+forbidden_effects = ["network", "publish"]

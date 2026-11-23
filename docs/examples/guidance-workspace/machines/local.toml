@@ -1,0 +1,10 @@
+[machine]
+id = "local"
+schema_version = 1
+distribution_root = "/absolute/path/to/pale"
+
+[[repository_checkouts]]
+repository_id = "source"
+checkout_root = "/absolute/path/to/your/repository"
+
+[authority_roots]

@@ -1,0 +1,26 @@
+[package]
+id = "pale.governance"
+version = "0.2.0"
+schema_version = 1
+title = "Governance"
+description = "Find who can settle a question and carry out agreed work within its permissions. These are Pale’s policies; upstream cases test them without defining them."
+compatible_compilers = ["pale-surface@1"]
+dependencies = []
+
+# The original files remain documentation until their owner authorises removal.
+sources = [
+  { path = "INDEX.md", role = "documentation" },
+  { path = "families/authority-resolver/family.toml", role = "documentation" },
+  { path = "families/authority-resolver/body.md", role = "documentation" },
+  { path = "families/execution-contract/family.toml", role = "documentation" },
+  { path = "families/execution-contract/body.md", role = "documentation" },
+  { path = "authority.md", role = "declaration" },
+  { path = "execution.md", role = "declaration" },
+]
+resources = [
+  { id = "authority", kind = "policy_family", definition_source = "authority.md", exposure = "exported" },
+  { id = "execution", kind = "policy_family", definition_source = "execution.md", exposure = "exported" },
+]
+
+[license]
+spdx = "AGPL-3.0-or-later"

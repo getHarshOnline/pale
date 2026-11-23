@@ -1,0 +1,71 @@
+{
+  "$defs": {
+    "EffectClass": {
+      "oneOf": [
+        {
+          "const": "compute",
+          "type": "string"
+        },
+        {
+          "const": "read",
+          "type": "string"
+        },
+        {
+          "const": "execute",
+          "type": "string"
+        },
+        {
+          "const": "write",
+          "type": "string"
+        },
+        {
+          "const": "network",
+          "type": "string"
+        },
+        {
+          "const": "publish",
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/responsibility-contract.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "authority_ceiling": {
+      "items": {
+        "$ref": "#/$defs/EffectClass"
+      },
+      "maxItems": 6,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._/-]+$",
+      "type": "string"
+    },
+    "participant": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/ParticipantRefV1"
+    },
+    "responsibilities": {
+      "items": {
+        "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/ResponsibilityV1"
+      },
+      "maxItems": 256,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "id",
+    "participant",
+    "responsibilities",
+    "authority_ceiling"
+  ],
+  "title": "responsibility-contract.v1",
+  "type": "object"
+}

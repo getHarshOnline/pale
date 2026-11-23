@@ -1,0 +1,49 @@
+[package]
+name = "pale-python"
+version = "0.0.1"
+edition = "2021"
+rust-version = "1.94"
+authors = ["Harsh Joshi"]
+license = "Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/getHarshOnline/pale"
+description = "Python binding that lets Python programs compile, inspect and review Pale configuration."
+publish = false
+
+[lib]
+name = "_native"
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = []
+extension-module = ["pyo3/extension-module"]
+
+[workspace]
+resolver = "2"
+
+[lints.rust]
+missing_docs = "deny"
+unsafe_code = "deny"
+unreachable_pub = "deny"
+
+[lints.clippy]
+doc_markdown = "deny"
+missing_errors_doc = "deny"
+missing_panics_doc = "deny"
+
+[lints.rustdoc]
+bare_urls = "deny"
+broken_intra_doc_links = "deny"
+invalid_codeblock_attributes = "deny"
+invalid_html_tags = "deny"
+private_intra_doc_links = "deny"
+
+[dependencies]
+pale-sdk = { version = "=0.0.1", features = ["native-local"] }
+pyo3 = { version = "=0.29.2", features = ["abi3-py39", "experimental-inspect", "multiple-pymethods"] }
+
+[build-dependencies]
+pyo3-build-config = "=0.29.2"
+
+[dev-dependencies]
+serde_json = "=1.0.149"

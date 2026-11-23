@@ -1,0 +1,69 @@
+[operations]
+schema_version = 1
+
+[[operations.operation]]
+id = "review-comparison"
+description = "Review a replay or notebook comparison against the exact claim it makes."
+doctrine = "replay.md"
+doctrine_refs = [{ scope = "local", resource_id = "decision-semantics" }, { scope = "local", resource_id = "evaluation-lineage" }, { scope = "local", resource_id = "reproducible-notebook" }, { scope = "local", resource_id = "candidate-comparison" }, { scope = "local", resource_id = "numerical-conformance" }]
+outputs = ["Method and case versions used in the comparison.", "Control results and limits.", "Recommendation to accept, revise or hold."]
+
+[[operations.archetype]]
+id = "independent-candidate-evaluation"
+description = "Evaluate one fixed candidate against agreed criteria and concrete examples, within the review scope."
+doctrine = "independent-candidate.md"
+doctrine_refs = [{ scope = "local", resource_id = "candidate-lineage" }]
+
+[[operations.operation]]
+id = "candidate-critique-loop"
+description = "Review successive candidate versions against the same rubric and examples."
+doctrine = "critique-loop.md"
+extends = [{ scope = "local", resource_id = "independent-candidate-evaluation" }]
+roles = [{ scope = "local", resource_id = "candidate-generator" }, { scope = "local", resource_id = "independent-evaluator" }]
+outputs = ["Candidate identities, findings, responses and unresolved blocking criteria.", "Recommendation to accept, revise, stop or escalate, with reasons."]
+
+[[operations.operation]]
+id = "dual-review-loop"
+description = "Reconcile two independent reviews while keeping disagreement visible."
+doctrine = "dual-review.md"
+extends = []
+doctrine_refs = [{ scope = "local", resource_id = "candidate-lineage" }]
+roles = [{ scope = "local", resource_id = "independent-evaluator" }]
+outputs = ["Two completed independent reviews, or the exact missing coverage.", "Shared findings, individual findings, disagreements and unresolved questions."]
+
+[[operations.operation]]
+id = "qualify-evaluation-instrument"
+description = "Check whether a scorer, rubric and cases can support the stated claim."
+doctrine = "qualify-instrument.md"
+extends = []
+doctrine_refs = [{ scope = "local", resource_id = "evaluation-instrument" }, { scope = "local", resource_id = "numerical-conformance" }]
+roles = []
+outputs = ["Evaluation method, controls and comparable case set.", "Whether the method is qualified, with observations and limits."]
+
+[[operations.operation]]
+id = "review-reference-admission"
+description = "Review whether a corrected reference can be accepted into the specified evaluation set."
+doctrine = "review-reference.md"
+doctrine_refs = [{ scope = "local", resource_id = "reference-admission" }, { scope = "local", resource_id = "evaluation-lineage" }]
+outputs = ["Reference history, acceptance and source-use evidence.", "Fixed membership, checks on data partitions and unresolved items."]
+
+[[operations.operation]]
+id = "qualify-relation-evidence"
+description = "Distinguish direct relation evidence, derived reachability and other properties that need separate proof."
+doctrine = "relation-evidence.md"
+doctrine_refs = [{ scope = "local", resource_id = "evaluation-lineage" }]
+outputs = ["Original assertions and edges supporting each derived result.", "Controls, evidence for claimed properties and remaining limits."]
+
+[[operations.operation]]
+id = "qualify-workbook-projection"
+description = "Check workbook bytes, required model features and recalculated output separately."
+doctrine = "workbook-projection.md"
+doctrine_refs = [{ scope = "local", resource_id = "evaluation-lineage" }]
+outputs = ["Exact artifact and source identity.", "Findings about the model, saved values and calculation engine, with coverage and unresolved differences."]
+
+[[operations.operation]]
+id = "qualify-optimisation"
+description = "Check the solver's emitted candidate, its feasibility and what the search actually proves."
+doctrine = "qualify-optimisation.md"
+doctrine_refs = [{ scope = "local", resource_id = "numerical-conformance" }]
+outputs = ["Exact candidate, independent replay and evidence that hard constraints hold.", "Search status, supported quality guarantee and limits."]

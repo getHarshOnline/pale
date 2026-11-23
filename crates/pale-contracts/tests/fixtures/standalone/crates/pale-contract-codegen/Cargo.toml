@@ -1,0 +1,33 @@
+[package]
+name = "pale-contract-codegen"
+version = "0.0.1"
+edition = "2021"
+rust-version = "1.94"
+license = "AGPL-3.0-or-later"
+repository = "https://github.com/getHarshOnline/pale"
+description = "Private deterministic generator for Pale portable contract bundles."
+publish = false
+
+[lints.rust]
+missing_docs = "deny"
+unsafe_code = "deny"
+unreachable_pub = "deny"
+
+[lints.clippy]
+doc_markdown = "deny"
+missing_errors_doc = "deny"
+missing_panics_doc = "deny"
+
+[lints.rustdoc]
+bare_urls = "deny"
+broken_intra_doc_links = "deny"
+invalid_codeblock_attributes = "deny"
+invalid_html_tags = "deny"
+private_intra_doc_links = "deny"
+
+[dependencies]
+pale-core = { path = "../pale-core" }
+schemars = { version = "=1.2.2", default-features = false, features = ["derive", "std"] }
+serde = { version = "=1.0.228", features = ["derive"] }
+serde_json = "=1.0.149"
+

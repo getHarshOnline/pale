@@ -1,0 +1,189 @@
+{
+  "$defs": {
+    "BoundedResidentTextV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "Ed25519PublicKeyV1": {
+      "pattern": "^[A-Za-z0-9_-]{42}[AEIMQUYcgkosw048]$",
+      "type": "string"
+    },
+    "PrincipalKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "PrincipalKeyTransitionModeV1": {
+      "oneOf": [
+        {
+          "const": "normal_rotation",
+          "type": "string"
+        },
+        {
+          "const": "recovery",
+          "type": "string"
+        }
+      ]
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/principal-key-transition.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "dependentRequired": {
+    "recovery_authority_proof_ref": [
+      "recovery_authority_proof_sha256"
+    ],
+    "recovery_authority_proof_sha256": [
+      "recovery_authority_proof_ref"
+    ]
+  },
+  "oneOf": [
+    {
+      "not": {
+        "anyOf": [
+          {
+            "required": [
+              "recovery_authority_proof_ref"
+            ]
+          },
+          {
+            "required": [
+              "recovery_authority_proof_sha256"
+            ]
+          }
+        ]
+      },
+      "properties": {
+        "transition_mode": {
+          "const": "normal_rotation"
+        }
+      },
+      "required": [
+        "old_key_signature"
+      ]
+    },
+    {
+      "not": {
+        "required": [
+          "old_key_signature"
+        ]
+      },
+      "properties": {
+        "transition_mode": {
+          "const": "recovery"
+        }
+      },
+      "required": [
+        "recovery_authority_proof_ref",
+        "recovery_authority_proof_sha256"
+      ]
+    }
+  ],
+  "properties": {
+    "canonical_record_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "effective_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "new_key_epoch": {
+      "$ref": "#/$defs/PrincipalKeyEpochV1"
+    },
+    "new_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "new_key_signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    },
+    "new_public_key": {
+      "$ref": "#/$defs/Ed25519PublicKeyV1"
+    },
+    "old_key_epoch": {
+      "$ref": "#/$defs/PrincipalKeyEpochV1"
+    },
+    "old_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "old_key_signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    },
+    "old_public_key": {
+      "$ref": "#/$defs/Ed25519PublicKeyV1"
+    },
+    "previous_record_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "recovery_authority_proof_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "recovery_authority_proof_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/principal-key-transition.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "transition_mode": {
+      "$ref": "#/$defs/PrincipalKeyTransitionModeV1"
+    },
+    "transition_reason": {
+      "$ref": "#/$defs/BoundedResidentTextV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "principal_id",
+    "transition_mode",
+    "old_key_epoch",
+    "new_key_epoch",
+    "old_key_id",
+    "new_key_id",
+    "old_public_key",
+    "new_public_key",
+    "transition_reason",
+    "previous_record_sha256",
+    "new_key_signature",
+    "effective_at",
+    "canonical_record_sha256"
+  ],
+  "title": "principal-key-transition.v1",
+  "type": "object"
+}

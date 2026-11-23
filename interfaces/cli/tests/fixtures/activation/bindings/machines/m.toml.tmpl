@@ -1,0 +1,35 @@
+[machine]
+id = "m"
+schema_version = 1
+distribution_root = "@DISTRIBUTION_ROOT@"
+
+[[repository_checkouts]]
+repository_id = "alpha"
+checkout_root = "@TARGET@"
+
+[authority_roots]
+auth_a = "@AUTH@"
+[surface_executable]
+exec = "@EXEC@"
+digest = "@DIGEST@"
+version = "@VERSION@"
+protocol = "pale.agent-surface-interface.v1"
+[[native_harnesses]]
+provider_binding = { provider_binding_id = "provider-binding-claude-code", provider_binding_identity = { provider_binding_sha256 = "b58a26f28fb233f99a718a40ae76d2f7f71cb2c53d2e7f5b2dc0d815e92156e3" } }
+exec = "@CLAUDE_EXEC@"
+digest = "@CLAUDE_DIGEST@"
+version = "Claude Code fixture 1.0.0"
+[[native_harnesses]]
+provider_binding = { provider_binding_id = "provider-binding-codex", provider_binding_identity = { provider_binding_sha256 = "7977566c3e2c4223716419eb9fd5076ed3de3b34cdb94a2e3114c9aa484ada20" } }
+exec = "@CODEX_EXEC@"
+digest = "@CODEX_DIGEST@"
+version = "codex-cli fixture 1.0.0"
+[session_state]
+root = "@STATE_ROOT@"
+ttl_seconds = 86400
+[durable_evidence]
+root = "@EVIDENCE_ROOT@"
+retention_seconds = 86400
+[materialization_lineage]
+root = "@LINEAGE_ROOT@"
+max_route_records_per_collection = 4096

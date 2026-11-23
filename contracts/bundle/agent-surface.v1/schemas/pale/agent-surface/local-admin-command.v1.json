@@ -1,0 +1,906 @@
+{
+  "$defs": {
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "CheckpointSigningAuthorityIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "CheckpointSigningScopeV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "bootstrap_id": {
+              "$ref": "#/$defs/PrincipalBootstrapIdV1"
+            },
+            "kind": {
+              "const": "principal_trust_store",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "bootstrap_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "deployment_binding_ref": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            "deployment_binding_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "kind": {
+              "const": "deployment",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "deployment_binding_ref",
+            "deployment_binding_sha256"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "ControlCheckpointDomainIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ControlIncarnationIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ControlStoreIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "DeploymentRuntimeAuthorityIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ExecutionOwnerFenceIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ExecutionPathSelectionIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "LocalAdminCandidateRecordV1": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate_record_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "candidate_record_schema_id": {
+          "$ref": "#/$defs/SchemaId"
+        },
+        "candidate_record_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "candidate_record_schema_id",
+        "candidate_record_ref",
+        "candidate_record_sha256"
+      ],
+      "type": "object"
+    },
+    "LocalAdminCommandIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "LocalAdminExpectedHeadV1": {
+      "additionalProperties": false,
+      "properties": {
+        "expected_head_epoch": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LocalAdminHeadEpochV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "expected_head_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "expected_head_sha256": {
+          "anyOf": [
+            {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "head_kind": {
+          "$ref": "#/$defs/LocalAdminHeadSelectorV1"
+        }
+      },
+      "required": [
+        "head_kind"
+      ],
+      "type": "object"
+    },
+    "LocalAdminHeadEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "LocalAdminHeadSelectorV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "principal_record",
+              "type": "string"
+            },
+            "principal_id": {
+              "$ref": "#/$defs/ResidentPrincipalIdV1"
+            }
+          },
+          "required": [
+            "kind",
+            "principal_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "principal_recovery_policy",
+              "type": "string"
+            },
+            "principal_id": {
+              "$ref": "#/$defs/ResidentPrincipalIdV1"
+            }
+          },
+          "required": [
+            "kind",
+            "principal_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "local_admin_authority",
+              "type": "string"
+            },
+            "principal_id": {
+              "$ref": "#/$defs/ResidentPrincipalIdV1"
+            }
+          },
+          "required": [
+            "kind",
+            "principal_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "producer_incarnation_authority",
+              "type": "string"
+            },
+            "principal_id": {
+              "$ref": "#/$defs/ResidentPrincipalIdV1"
+            }
+          },
+          "required": [
+            "kind",
+            "principal_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "principal_trust_checkpoint",
+              "type": "string"
+            },
+            "principal_id": {
+              "$ref": "#/$defs/ResidentPrincipalIdV1"
+            },
+            "trust_store_id": {
+              "$ref": "#/$defs/ControlStoreIdV1"
+            },
+            "trust_store_incarnation_id": {
+              "$ref": "#/$defs/ControlIncarnationIdV1"
+            }
+          },
+          "required": [
+            "kind",
+            "principal_id",
+            "trust_store_id",
+            "trust_store_incarnation_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "producer_incarnation",
+              "type": "string"
+            },
+            "origin_principal_id": {
+              "$ref": "#/$defs/ResidentPrincipalIdV1"
+            },
+            "producer_id": {
+              "$ref": "#/$defs/ProducerIdV1"
+            }
+          },
+          "required": [
+            "kind",
+            "origin_principal_id",
+            "producer_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "checkpoint_signing_authority_id": {
+              "$ref": "#/$defs/CheckpointSigningAuthorityIdV1"
+            },
+            "control_incarnation_id": {
+              "$ref": "#/$defs/ControlIncarnationIdV1"
+            },
+            "control_store_id": {
+              "$ref": "#/$defs/ControlStoreIdV1"
+            },
+            "kind": {
+              "const": "checkpoint_signing_authority",
+              "type": "string"
+            },
+            "principal_id": {
+              "$ref": "#/$defs/ResidentPrincipalIdV1"
+            },
+            "scope": {
+              "$ref": "#/$defs/CheckpointSigningScopeV1"
+            }
+          },
+          "required": [
+            "kind",
+            "principal_id",
+            "checkpoint_signing_authority_id",
+            "control_store_id",
+            "control_incarnation_id",
+            "scope"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "control_incarnation_id": {
+              "$ref": "#/$defs/ControlIncarnationIdV1"
+            },
+            "control_store_id": {
+              "$ref": "#/$defs/ControlStoreIdV1"
+            },
+            "deployment_binding_ref": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            "deployment_binding_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "kind": {
+              "const": "deployment_runtime_authority",
+              "type": "string"
+            },
+            "principal_id": {
+              "$ref": "#/$defs/ResidentPrincipalIdV1"
+            },
+            "runtime_authority_id": {
+              "$ref": "#/$defs/DeploymentRuntimeAuthorityIdV1"
+            }
+          },
+          "required": [
+            "kind",
+            "principal_id",
+            "runtime_authority_id",
+            "deployment_binding_ref",
+            "deployment_binding_sha256",
+            "control_store_id",
+            "control_incarnation_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "checkpoint_domain_id": {
+              "$ref": "#/$defs/ControlCheckpointDomainIdV1"
+            },
+            "control_incarnation_id": {
+              "$ref": "#/$defs/ControlIncarnationIdV1"
+            },
+            "control_store_id": {
+              "$ref": "#/$defs/ControlStoreIdV1"
+            },
+            "kind": {
+              "const": "control_checkpoint",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "control_store_id",
+            "control_incarnation_id",
+            "checkpoint_domain_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "deployment_binding_ref": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            "deployment_binding_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "kind": {
+              "const": "local_route",
+              "type": "string"
+            },
+            "route_id": {
+              "$ref": "#/$defs/LocalRouteIdV1"
+            },
+            "route_owner_principal_id": {
+              "$ref": "#/$defs/ResidentPrincipalIdV1"
+            },
+            "workspace_id": {
+              "$ref": "#/$defs/ResidentWorkspaceIdV1"
+            }
+          },
+          "required": [
+            "kind",
+            "route_owner_principal_id",
+            "route_id",
+            "workspace_id",
+            "deployment_binding_ref",
+            "deployment_binding_sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "controller_scope": {
+              "$ref": "#/$defs/ResidentControllerIdV1"
+            },
+            "deployment_binding_ref": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            "deployment_binding_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "execution_fence_id": {
+              "$ref": "#/$defs/ExecutionOwnerFenceIdV1"
+            },
+            "execution_path_id": {
+              "$ref": "#/$defs/ExecutionPathSelectionIdV1"
+            },
+            "kind": {
+              "const": "execution_fence",
+              "type": "string"
+            },
+            "principal_scope": {
+              "$ref": "#/$defs/ResidentPrincipalIdV1"
+            },
+            "relationship_scope": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/RelationshipScopeV1"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "execution_fence_id",
+            "execution_path_id",
+            "deployment_binding_ref",
+            "deployment_binding_sha256",
+            "principal_scope",
+            "controller_scope"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "deployment_acceptance_ref": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            "deployment_acceptance_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "kind": {
+              "const": "deployment_acceptance_revocation",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "deployment_acceptance_ref",
+            "deployment_acceptance_sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "grant_ref": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            "grant_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "kind": {
+              "const": "capability_grant_revocation",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "grant_ref",
+            "grant_sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "authority_principal_id": {
+              "$ref": "#/$defs/ResidentPrincipalIdV1"
+            },
+            "kind": {
+              "const": "capability_revocation_checkpoint",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "authority_principal_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "deployment_binding_ref": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            "deployment_binding_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "kind": {
+              "const": "owner_record_signing_authority",
+              "type": "string"
+            },
+            "owner_component_id": {
+              "$ref": "#/$defs/OwnerComponentIdV1"
+            },
+            "owner_contract_manifest_ref": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            "owner_contract_manifest_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "owner_record_signing_authority_id": {
+              "$ref": "#/$defs/OwnerRecordSigningAuthorityIdV1"
+            },
+            "principal_id": {
+              "$ref": "#/$defs/ResidentPrincipalIdV1"
+            }
+          },
+          "required": [
+            "kind",
+            "principal_id",
+            "owner_record_signing_authority_id",
+            "owner_component_id",
+            "deployment_binding_ref",
+            "deployment_binding_sha256",
+            "owner_contract_manifest_ref",
+            "owner_contract_manifest_sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "delegation_id": {
+              "$ref": "#/$defs/NodeDelegationIdV1"
+            },
+            "kind": {
+              "const": "node_delegation",
+              "type": "string"
+            },
+            "node_id": {
+              "$ref": "#/$defs/ResidentNodeIdV1"
+            },
+            "principal_id": {
+              "$ref": "#/$defs/ResidentPrincipalIdV1"
+            }
+          },
+          "required": [
+            "kind",
+            "principal_id",
+            "delegation_id",
+            "node_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "node_revocation",
+              "type": "string"
+            },
+            "node_id": {
+              "$ref": "#/$defs/ResidentNodeIdV1"
+            },
+            "principal_id": {
+              "$ref": "#/$defs/ResidentPrincipalIdV1"
+            }
+          },
+          "required": [
+            "kind",
+            "principal_id",
+            "node_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "federation_route",
+              "type": "string"
+            },
+            "route_id": {
+              "$ref": "#/$defs/ResidentRouteIdV1"
+            },
+            "route_owner_principal_id": {
+              "$ref": "#/$defs/ResidentPrincipalIdV1"
+            }
+          },
+          "required": [
+            "kind",
+            "route_owner_principal_id",
+            "route_id"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "LocalAdminIdempotencyKeyV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "LocalAdminOperationV1": {
+      "oneOf": [
+        {
+          "const": "rotate_principal_key",
+          "type": "string"
+        },
+        {
+          "const": "recover_principal_key",
+          "type": "string"
+        },
+        {
+          "const": "update_principal_recovery_policy",
+          "type": "string"
+        },
+        {
+          "const": "rotate_admin_authority",
+          "type": "string"
+        },
+        {
+          "const": "rotate_producer_incarnation_authority",
+          "type": "string"
+        },
+        {
+          "const": "issue_node_delegation",
+          "type": "string"
+        },
+        {
+          "const": "revoke_node_delegation",
+          "type": "string"
+        },
+        {
+          "const": "rotate_checkpoint_signer",
+          "type": "string"
+        },
+        {
+          "const": "rotate_deployment_runtime_authority",
+          "type": "string"
+        },
+        {
+          "const": "issue_owner_record_signing_authority",
+          "type": "string"
+        },
+        {
+          "const": "rotate_owner_record_signing_authority",
+          "type": "string"
+        },
+        {
+          "const": "retire_owner_record_signing_authority",
+          "type": "string"
+        },
+        {
+          "const": "allocate_producer_incarnation",
+          "type": "string"
+        },
+        {
+          "const": "retire_producer_incarnation",
+          "type": "string"
+        },
+        {
+          "const": "create_local_route",
+          "type": "string"
+        },
+        {
+          "const": "advance_local_route",
+          "type": "string"
+        },
+        {
+          "const": "propose_deployment",
+          "type": "string"
+        },
+        {
+          "const": "accept_deployment",
+          "type": "string"
+        },
+        {
+          "const": "revoke_deployment_acceptance",
+          "type": "string"
+        },
+        {
+          "const": "finalize_deployment",
+          "type": "string"
+        },
+        {
+          "const": "issue_session_grant",
+          "type": "string"
+        },
+        {
+          "const": "revoke_session_grant",
+          "type": "string"
+        },
+        {
+          "const": "advance_execution_fence",
+          "type": "string"
+        },
+        {
+          "const": "issue_apply_authorization",
+          "type": "string"
+        },
+        {
+          "const": "create_route_binding",
+          "type": "string"
+        },
+        {
+          "const": "advance_route_binding",
+          "type": "string"
+        }
+      ]
+    },
+    "LocalAdminSubjectIdentityV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "LocalRouteIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "NodeDelegationIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "OwnerComponentIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "OwnerRecordSigningAuthorityIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "PrincipalBootstrapIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ProducerIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "RelationshipScopeV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentControllerIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentNodeIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRouteIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentWorkspaceIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "SigningKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/local-admin-command.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "admin_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "admin_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "admin_command_id": {
+      "$ref": "#/$defs/LocalAdminCommandIdV1"
+    },
+    "candidate_records": {
+      "items": {
+        "$ref": "#/$defs/LocalAdminCandidateRecordV1"
+      },
+      "type": "array"
+    },
+    "candidate_set_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "canonical_admin_command_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "expected_heads": {
+      "items": {
+        "$ref": "#/$defs/LocalAdminExpectedHeadV1"
+      },
+      "type": "array"
+    },
+    "expires_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "idempotency_key": {
+      "$ref": "#/$defs/LocalAdminIdempotencyKeyV1"
+    },
+    "issued_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "operation": {
+      "$ref": "#/$defs/LocalAdminOperationV1"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/local-admin-command.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    },
+    "signer_identity": {
+      "$ref": "#/$defs/LocalAdminSubjectIdentityV1"
+    },
+    "signer_key_epoch": {
+      "$ref": "#/$defs/SigningKeyEpochV1"
+    },
+    "signer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "admin_command_id",
+    "operation",
+    "admin_authority_ref",
+    "admin_authority_sha256",
+    "candidate_records",
+    "candidate_set_sha256",
+    "expected_heads",
+    "idempotency_key",
+    "issued_at",
+    "expires_at",
+    "signer_identity",
+    "signer_key_id",
+    "signer_key_epoch",
+    "canonical_admin_command_sha256",
+    "signature"
+  ],
+  "title": "local-admin-command.v1",
+  "type": "object"
+}

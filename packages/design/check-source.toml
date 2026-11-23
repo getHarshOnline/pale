@@ -1,0 +1,15 @@
+kind = "tool_recipe"
+
+[recipe]
+description = "Check supplied HTML, CSS and script files for source problems and report which files were scanned."
+capability = "design-source-check"
+tool_contract = "design-source-check.v1"
+tool_operation = "check"
+effect_class = "execute"
+input_mapping.paths = "$.paths"
+input_mapping.token_roles = "$.token_roles"
+input_mapping.template_emoji = "$.template_emoji"
+input_mapping.fixed_width_limit = "$.fixed_width_limit"
+input_mapping.authored_sources = "$.authored_sources"
+evidence.required_fields = ["/status", "/files", "/findings", "/excluded"]
+evidence.proof_ceiling = "static-design-source-check"

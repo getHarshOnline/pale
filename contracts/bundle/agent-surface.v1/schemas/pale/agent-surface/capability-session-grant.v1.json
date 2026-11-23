@@ -1,0 +1,450 @@
+{
+  "$defs": {
+    "AuthorityEvidenceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "authority_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "authority_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "authority_ref",
+        "authority_sha256"
+      ],
+      "type": "object"
+    },
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "CapabilityIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "CapabilitySessionNonceV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "CapabilitySessionRouteConstraintsV1": {
+      "additionalProperties": false,
+      "properties": {
+        "contract_sets": {
+          "items": {
+            "$ref": "#/$defs/SessionContractSetConstraintV1"
+          },
+          "type": "array"
+        },
+        "destination_node_ids": {
+          "items": {
+            "$ref": "#/$defs/ResidentNodeIdV1"
+          },
+          "type": "array"
+        },
+        "destination_principal_ids": {
+          "items": {
+            "$ref": "#/$defs/ResidentPrincipalIdV1"
+          },
+          "type": "array"
+        },
+        "origin_node_id": {
+          "$ref": "#/$defs/ResidentNodeIdV1"
+        },
+        "origin_principal_id": {
+          "$ref": "#/$defs/ResidentPrincipalIdV1"
+        },
+        "routes": {
+          "items": {
+            "$ref": "#/$defs/SessionRouteConstraintV1"
+          },
+          "type": "array"
+        },
+        "transport_classes": {
+          "items": {
+            "$ref": "#/$defs/LocalTransportClassV1"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "origin_principal_id",
+        "origin_node_id",
+        "destination_principal_ids",
+        "destination_node_ids",
+        "routes",
+        "transport_classes",
+        "contract_sets"
+      ],
+      "type": "object"
+    },
+    "CapabilitySessionScopeCeilingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "authority_evidence": {
+          "items": {
+            "$ref": "#/$defs/AuthorityEvidenceV1"
+          },
+          "type": "array"
+        },
+        "controller_scopes": {
+          "items": {
+            "$ref": "#/$defs/ResidentControllerIdV1"
+          },
+          "type": "array"
+        },
+        "data_classification_ceiling": {
+          "$ref": "#/$defs/DataClassificationV1"
+        },
+        "environments": {
+          "items": {
+            "$ref": "#/$defs/DeploymentEnvironmentV1"
+          },
+          "type": "array"
+        },
+        "principal_scopes": {
+          "items": {
+            "$ref": "#/$defs/ResidentPrincipalIdV1"
+          },
+          "type": "array"
+        },
+        "purposes": {
+          "items": {
+            "$ref": "#/$defs/PermittedPurposeV1"
+          },
+          "type": "array"
+        },
+        "relationship_scopes": {
+          "items": {
+            "$ref": "#/$defs/RelationshipScopeV1"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "principal_scopes",
+        "controller_scopes",
+        "relationship_scopes",
+        "environments",
+        "data_classification_ceiling",
+        "purposes",
+        "authority_evidence"
+      ],
+      "type": "object"
+    },
+    "CapabilitySessionSubjectV1": {
+      "additionalProperties": false,
+      "properties": {
+        "identity": {
+          "$ref": "#/$defs/RequestCallerIdV1"
+        },
+        "role": {
+          "$ref": "#/$defs/RequestCallerRoleV1"
+        },
+        "subject_key_epoch": {
+          "$ref": "#/$defs/SigningKeyEpochV1"
+        },
+        "subject_key_id": {
+          "$ref": "#/$defs/ResidentKeyIdV1"
+        },
+        "subject_public_key": {
+          "$ref": "#/$defs/Ed25519PublicKeyV1"
+        },
+        "surface": {
+          "$ref": "#/$defs/RequestCallerSurfaceV1"
+        }
+      },
+      "required": [
+        "identity",
+        "role",
+        "surface",
+        "subject_key_id",
+        "subject_key_epoch",
+        "subject_public_key"
+      ],
+      "type": "object"
+    },
+    "DataClassificationV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "DeploymentAcceptanceRevocationEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "DeploymentEnvironmentV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "Ed25519PublicKeyV1": {
+      "pattern": "^[A-Za-z0-9_-]{42}[AEIMQUYcgkosw048]$",
+      "type": "string"
+    },
+    "LocalTransportClassV1": {
+      "oneOf": [
+        {
+          "const": "in_process",
+          "type": "string"
+        },
+        {
+          "const": "unix_socket",
+          "type": "string"
+        },
+        {
+          "const": "named_pipe",
+          "type": "string"
+        },
+        {
+          "const": "loopback_http",
+          "type": "string"
+        },
+        {
+          "const": "owner_native",
+          "type": "string"
+        },
+        {
+          "const": "same_principal_remote",
+          "type": "string"
+        }
+      ]
+    },
+    "PermittedPurposeV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "PrincipalSessionFloorEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "RelationshipScopeV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "RequestCallerIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "RequestCallerRoleV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "RequestCallerSurfaceV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentControllerIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentNodeIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRouteIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "RouteGenerationV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "SessionContractSetConstraintV1": {
+      "additionalProperties": false,
+      "properties": {
+        "contract_set_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "contract_set_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "contract_set_ref",
+        "contract_set_sha256"
+      ],
+      "type": "object"
+    },
+    "SessionGrantIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SessionRouteConstraintV1": {
+      "additionalProperties": false,
+      "properties": {
+        "route_binding_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "route_binding_schema_id": {
+          "$ref": "#/$defs/SchemaId"
+        },
+        "route_binding_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "route_generation": {
+          "$ref": "#/$defs/RouteGenerationV1"
+        },
+        "route_id": {
+          "$ref": "#/$defs/ResidentRouteIdV1"
+        }
+      },
+      "required": [
+        "route_binding_schema_id",
+        "route_binding_ref",
+        "route_binding_sha256",
+        "route_id",
+        "route_generation"
+      ],
+      "type": "object"
+    },
+    "SigningKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/capability-session-grant.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "allowed_capability_ids": {
+      "items": {
+        "$ref": "#/$defs/CapabilityIdV1"
+      },
+      "type": "array"
+    },
+    "allowed_route_constraints": {
+      "$ref": "#/$defs/CapabilitySessionRouteConstraintsV1"
+    },
+    "canonical_grant_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "checked_deployment_acceptance_revocation_epoch": {
+      "$ref": "#/$defs/DeploymentAcceptanceRevocationEpochV1"
+    },
+    "checked_principal_trust_checkpoint_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "checked_principal_trust_checkpoint_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "deployment_binding_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "deployment_binding_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "expires_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "issued_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "issuer_key_epoch": {
+      "$ref": "#/$defs/SigningKeyEpochV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "issuer_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "non_transferable": {
+      "type": "boolean"
+    },
+    "nonce": {
+      "$ref": "#/$defs/CapabilitySessionNonceV1"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/capability-session-grant.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "scope_ceiling": {
+      "$ref": "#/$defs/CapabilitySessionScopeCeilingV1"
+    },
+    "session_floor_epoch": {
+      "$ref": "#/$defs/PrincipalSessionFloorEpochV1"
+    },
+    "session_grant_id": {
+      "$ref": "#/$defs/SessionGrantIdV1"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    },
+    "subject": {
+      "$ref": "#/$defs/CapabilitySessionSubjectV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "session_grant_id",
+    "subject",
+    "deployment_binding_ref",
+    "deployment_binding_sha256",
+    "checked_principal_trust_checkpoint_ref",
+    "checked_principal_trust_checkpoint_sha256",
+    "checked_deployment_acceptance_revocation_epoch",
+    "session_floor_epoch",
+    "allowed_capability_ids",
+    "allowed_route_constraints",
+    "scope_ceiling",
+    "issued_at",
+    "expires_at",
+    "nonce",
+    "non_transferable",
+    "issuer_principal_id",
+    "issuer_key_id",
+    "issuer_key_epoch",
+    "canonical_grant_sha256",
+    "signature"
+  ],
+  "title": "capability-session-grant.v1",
+  "type": "object"
+}

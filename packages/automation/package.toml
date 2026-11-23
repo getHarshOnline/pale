@@ -1,0 +1,62 @@
+[package]
+id = "pale.automation"
+version = "0.2.0"
+schema_version = 1
+title = "Automation"
+description = "Build and compare workflows, check their effects and retries, and bring in human review when a decision needs it."
+compatible_compilers = ["pale-surface@1"]
+dependencies = [{ id = "pale.engineering", version = "0.2.1" }, { id = "pale.model-work", version = "0.2.4" }, { id = "pale.architecture", version = "0.2.0" }]
+sources = [
+  { path = "effects/deliver-and-reconnect.md", role = "documentation" },
+  { path = "effects/commit-and-retry.md", role = "documentation" },
+  { path = "effects/verify-the-route.md", role = "documentation" },
+  { path = "effects/rules-and-schedules.md", role = "documentation" },
+  { path = "INDEX.md", role = "documentation" },
+  { path = "export-verifier.toml", role = "documentation" },
+  { path = "export-verifier-policy.toml", role = "documentation" },
+  { path = "compare-exports.md", role = "documentation" },
+  { path = "stacks.toml", role = "documentation" },
+  { path = "n8n-practice.md", role = "documentation" },
+  { path = "appsmith-practice.md", role = "documentation" },
+  { path = "doctrine.toml", role = "documentation" },
+  { path = "operations.toml", role = "documentation" },
+  { path = "effects.md", role = "documentation" },
+  { path = "review.md", role = "documentation" },
+  { path = "qualify.md", role = "documentation" },
+  { path = "delegated-outcomes.md", role = "documentation" },
+  { path = "appsmith.md", role = "declaration" },
+  { path = "callbacks.md", role = "declaration" },
+  { path = "check.md", role = "declaration" },
+  { path = "delegation.md", role = "declaration" },
+  { path = "delivery.md", role = "declaration" },
+  { path = "export-policy.toml", role = "declaration" },
+  { path = "exports.md", role = "declaration" },
+  { path = "human-review.md", role = "declaration" },
+  { path = "n8n.md", role = "declaration" },
+  { path = "retry.md", role = "declaration" },
+  { path = "rules.md", role = "declaration" },
+  { path = "verify-exports.toml", role = "declaration" },
+  { path = "workflow.md", role = "declaration" },
+  { path = "admit-signals.md", role = "declaration" },
+]
+resources = [
+  { id = "admit-signals", kind = "doctrine", definition_source = "admit-signals.md", exposure = "exported" },
+  { id = "appsmith", kind = "doctrine", definition_source = "appsmith.md", exposure = "exported" },
+  { id = "appsmith", kind = "stack", definition_source = "appsmith.md", exposure = "exported" },
+  { id = "callbacks", kind = "doctrine", definition_source = "callbacks.md", exposure = "exported" },
+  { id = "check", kind = "operation", definition_source = "check.md", exposure = "exported" },
+  { id = "delegation", kind = "operation", definition_source = "delegation.md", exposure = "exported" },
+  { id = "delivery", kind = "doctrine", definition_source = "delivery.md", exposure = "exported" },
+  { id = "export-policy", kind = "capability_policy", definition_source = "export-policy.toml", exposure = "exported" },
+  { id = "exports", kind = "operation", definition_source = "exports.md", exposure = "exported" },
+  { id = "human-review", kind = "doctrine", definition_source = "human-review.md", exposure = "exported" },
+  { id = "n8n", kind = "doctrine", definition_source = "n8n.md", exposure = "exported" },
+  { id = "n8n", kind = "stack", definition_source = "n8n.md", exposure = "exported" },
+  { id = "retry", kind = "doctrine", definition_source = "retry.md", exposure = "exported" },
+  { id = "rules", kind = "doctrine", definition_source = "rules.md", exposure = "exported" },
+  { id = "verify-exports", kind = "tool_recipe", definition_source = "verify-exports.toml", exposure = "exported" },
+  { id = "workflow", kind = "doctrine", definition_source = "workflow.md", exposure = "exported" },
+]
+
+[license]
+spdx = "AGPL-3.0-or-later"

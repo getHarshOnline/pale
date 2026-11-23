@@ -1,0 +1,8 @@
+pale-go
+Copyright © 2026 RawThoughts Enterprises Private Limited.
+Author and originator: Harsh Joshi.
+
+The binding source is distributed under Apache-2.0; see LICENSE.
+The Pale engine linked or embedded by this binding retains its
+AGPL-3.0-or-later terms. The binding's licence does not relicense the
+combined artifact. Third-party dependencies retain their own terms.

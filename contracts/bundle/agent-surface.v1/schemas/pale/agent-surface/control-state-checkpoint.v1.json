@@ -1,0 +1,226 @@
+{
+  "$defs": {
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "ChangedControlLeafKeyV1": {
+      "additionalProperties": false,
+      "properties": {
+        "logical_key": {
+          "$ref": "#/$defs/ControlLogicalKeyV1"
+        },
+        "record_class": {
+          "$ref": "#/$defs/ControlRecordClassV1"
+        },
+        "scope_key_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "record_class",
+        "scope_key_sha256",
+        "logical_key"
+      ],
+      "type": "object"
+    },
+    "ControlCheckpointDomainIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ControlCheckpointIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ControlDomainEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "ControlDomainSequenceV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "ControlIncarnationIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ControlLeafCountV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "ControlLogicalKeyV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ControlRecordClassV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ControlStoreIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ControlTransactionSequenceV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "SigningKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/control-state-checkpoint.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "canonical_control_checkpoint_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "changed_leaf_keys": {
+      "items": {
+        "$ref": "#/$defs/ChangedControlLeafKeyV1"
+      },
+      "type": "array"
+    },
+    "checkpoint_domain_id": {
+      "$ref": "#/$defs/ControlCheckpointDomainIdV1"
+    },
+    "checkpoint_profile_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "checkpoint_profile_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "checkpoint_signing_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "checkpoint_signing_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "committed_transaction_sequence": {
+      "$ref": "#/$defs/ControlTransactionSequenceV1"
+    },
+    "control_checkpoint_id": {
+      "$ref": "#/$defs/ControlCheckpointIdV1"
+    },
+    "control_incarnation_id": {
+      "$ref": "#/$defs/ControlIncarnationIdV1"
+    },
+    "control_schema_version": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "control_store_id": {
+      "$ref": "#/$defs/ControlStoreIdV1"
+    },
+    "domain_epoch": {
+      "$ref": "#/$defs/ControlDomainEpochV1"
+    },
+    "domain_sequence": {
+      "$ref": "#/$defs/ControlDomainSequenceV1"
+    },
+    "issued_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "issuer_key_epoch": {
+      "$ref": "#/$defs/SigningKeyEpochV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "issuer_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "leaf_count": {
+      "$ref": "#/$defs/ControlLeafCountV1"
+    },
+    "previous_control_checkpoint_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "previous_control_checkpoint_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/control-state-checkpoint.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    },
+    "state_root_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "unresolved_custody_root_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "control_checkpoint_id",
+    "control_store_id",
+    "control_incarnation_id",
+    "checkpoint_domain_id",
+    "domain_epoch",
+    "domain_sequence",
+    "checkpoint_profile_ref",
+    "checkpoint_profile_sha256",
+    "control_schema_version",
+    "committed_transaction_sequence",
+    "state_root_sha256",
+    "leaf_count",
+    "changed_leaf_keys",
+    "unresolved_custody_root_sha256",
+    "issued_at",
+    "checkpoint_signing_authority_ref",
+    "checkpoint_signing_authority_sha256",
+    "issuer_principal_id",
+    "issuer_key_id",
+    "issuer_key_epoch",
+    "canonical_control_checkpoint_sha256",
+    "signature"
+  ],
+  "title": "control-state-checkpoint.v1",
+  "type": "object"
+}

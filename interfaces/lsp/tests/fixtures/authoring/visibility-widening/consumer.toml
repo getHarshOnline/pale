@@ -1,0 +1,5 @@
+schema = "pale/workspace-language-primitives.v1"
+schema_version = 1
+component_id = "consumer-source"
+module_id = "consumer"
+declarations = []

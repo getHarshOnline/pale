@@ -1,0 +1,73 @@
+[package]
+name = "pale-adapter-control-storage"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "SQLite write-ahead-log storage for Pale's control records."
+publish = false
+
+[lints]
+workspace = true
+
+# Storage characterization is deliberately outside the default adapter gate.
+# It measures explicit caller-supplied workloads and cannot select or admit the
+# unresolved initial-v1 SQLite profile.
+[features]
+bench = ["dep:tempfile"]
+# Assembled resident characterization is separate from physical SQLite rows.
+# Its compiler and fixture dependencies remain outside the default adapter.
+resident-bench = [
+    "bench",
+    "dep:pale-application",
+    "dep:pale-adapter-fs",
+    "dep:pale-contracts",
+    "dep:pale-kernel",
+    "dep:toml",
+]
+# Benchmark-only current-thread allocation and process-lifetime RSS evidence.
+# Neither dependency enters the default adapter or resident runtime closure.
+bench-memory = ["bench", "dep:allocation-counter", "dep:nix"]
+
+[[bench]]
+name = "control_sqlite"
+harness = false
+required-features = ["bench"]
+
+[[bench]]
+name = "resident_application"
+harness = false
+required-features = ["resident-bench"]
+
+[dependencies]
+pale-core = { path = "../../crates/pale-core" }
+pale-ports = { path = "../../crates/pale-ports" }
+pale-application = { path = "../../crates/pale-application", optional = true }
+pale-adapter-fs = { path = "../fs", optional = true }
+pale-contracts = { path = "../../crates/pale-contracts", optional = true }
+pale-kernel = { path = "../../crates/pale-kernel", optional = true }
+rusqlite = { workspace = true }
+sha2 = { workspace = true }
+hex = { workspace = true }
+# Private native checkpoint construction, never a portable compiler dependency.
+sparse-merkle-tree = { version = "=0.6.1", default-features = false, features = ["std", "trie"] }
+rustix = { workspace = true, features = ["process"] }
+serde = { workspace = true }
+serde_json = { workspace = true }
+serde_jcs = { workspace = true }
+thiserror = { workspace = true }
+toml = { workspace = true, optional = true }
+url = { workspace = true }
+tempfile = { workspace = true, optional = true }
+allocation-counter = { workspace = true, optional = true }
+nix = { workspace = true, features = ["resource"], optional = true }
+
+[dev-dependencies]
+pale-application = { path = "../../crates/pale-application", features = ["control-store-test-support", "interface-test-support"] }
+pale-adapter-a2a = { path = "../a2a" }
+pale-adapter-fs = { path = "../fs" }
+pale-contracts = { path = "../../crates/pale-contracts" }
+pale-kernel = { path = "../../crates/pale-kernel" }
+tempfile = { workspace = true }
+toml = { workspace = true }

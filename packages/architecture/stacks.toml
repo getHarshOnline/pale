@@ -1,0 +1,21 @@
+[stacks]
+schema_version = 1
+
+[[stacks.stack]]
+id = "postgresql"
+description = "Review PostgreSQL queries, constraints, transactions, access controls and migration behaviour."
+doctrine_refs = [{ scope = "local", resource_id = "postgres-patterns" }]
+role_doctrine_refs = [{ scope = "local", resource_id = "postgres-patterns" }]
+
+[[stacks.stack]]
+id = "redis"
+description = "Choose and test Redis caches, leases, counters and event streams for their required guarantees."
+doctrine_refs = [{ scope = "local", resource_id = "redis-patterns" }]
+role_doctrine_refs = [{ scope = "local", resource_id = "redis-patterns" }]
+
+[[stacks.stack]]
+id = "vite"
+description = "Check Vite build inputs, plugins, browser-visible settings and production output."
+doctrine_refs = [{ scope = "local", resource_id = "vite-patterns" }]
+role_doctrine_refs = [{ scope = "local", resource_id = "vite-patterns" }]
+extends = [{ scope = "external", resource = { package_id = "pale.engineering", resource_id = "web" } }]

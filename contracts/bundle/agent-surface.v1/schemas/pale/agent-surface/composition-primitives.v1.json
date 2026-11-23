@@ -1,0 +1,664 @@
+{
+  "$defs": {
+    "CompiledContentCoordinateV1": {
+      "additionalProperties": false,
+      "properties": {
+        "compiled_content_identity": {
+          "$ref": "#/$defs/CompiledContentIdentityV1"
+        },
+        "source_content_identity": {
+          "$ref": "#/$defs/SourceContentIdentityV1"
+        }
+      },
+      "required": [
+        "compiled_content_identity",
+        "source_content_identity"
+      ],
+      "type": "object"
+    },
+    "CompiledContentIdentityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "compiled_content_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "compiled_content_sha256"
+      ],
+      "type": "object"
+    },
+    "ContractSchemaIdentityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_id": {
+          "$ref": "#/$defs/SchemaId"
+        },
+        "schema_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "schema_id",
+        "schema_sha256"
+      ],
+      "type": "object"
+    },
+    "DestinationConsequenceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "consequence_contract_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "destination": {
+          "$ref": "#/$defs/ParticipantRefV1"
+        }
+      },
+      "required": [
+        "destination",
+        "consequence_contract_id"
+      ],
+      "type": "object"
+    },
+    "EntryOriginRefV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "user",
+              "type": "string"
+            },
+            "user_entry_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "user_entry_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "interface_entry_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            },
+            "kind": {
+              "const": "interface",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "interface_entry_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "participant",
+              "type": "string"
+            },
+            "participant_entry_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "participant_entry_id"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "InvocationIdentityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "invocation_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "invocation_sha256"
+      ],
+      "type": "object"
+    },
+    "NativeEffectIdentityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "native_effect_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "native_effect_sha256"
+      ],
+      "type": "object"
+    },
+    "NativeOutcomeV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "edge_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            },
+            "invocation_identity": {
+              "$ref": "#/$defs/InvocationIdentityV1"
+            },
+            "kind": {
+              "const": "read_only_result",
+              "type": "string"
+            },
+            "outcome_contract_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "edge_id",
+            "invocation_identity",
+            "outcome_contract_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "edge_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            },
+            "invocation_identity": {
+              "$ref": "#/$defs/InvocationIdentityV1"
+            },
+            "kind": {
+              "const": "effectful_outcome",
+              "type": "string"
+            },
+            "native_effect_identity": {
+              "$ref": "#/$defs/NativeEffectIdentityV1"
+            },
+            "outcome_contract_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "edge_id",
+            "invocation_identity",
+            "native_effect_identity",
+            "outcome_contract_id"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "NativeOwnerTransitionV1": {
+      "additionalProperties": false,
+      "properties": {
+        "edge_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "native_owner_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "receipt_contract_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "transition_contract_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "edge_id",
+        "native_owner_id",
+        "transition_contract_id",
+        "receipt_contract_id"
+      ],
+      "type": "object"
+    },
+    "ParticipantRefV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "interface_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            },
+            "kind": {
+              "const": "interface",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "interface_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "application_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            },
+            "kind": {
+              "const": "application",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "application_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "engine_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            },
+            "kind": {
+              "const": "engine",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "engine_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "capability_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            },
+            "kind": {
+              "const": "capability",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "capability_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "terminal_leaf",
+              "type": "string"
+            },
+            "terminal_leaf_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "terminal_leaf_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "plugin",
+              "type": "string"
+            },
+            "plugin_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "plugin_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "skill",
+              "type": "string"
+            },
+            "skill_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "skill_id"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "PathBudgetV1": {
+      "additionalProperties": false,
+      "properties": {
+        "max_cost_units": {
+          "format": "uint64",
+          "maximum": 9007199254740991,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "max_depth": {
+          "format": "uint32",
+          "maximum": 256,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "max_effect_count": {
+          "format": "uint32",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "max_fan_out": {
+          "format": "uint32",
+          "maximum": 256,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "max_recursion_iterations": {
+          "format": "uint32",
+          "maximum": 65535,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "max_resource_units": {
+          "format": "uint64",
+          "maximum": 9007199254740991,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "max_time_ms": {
+          "format": "uint64",
+          "maximum": 9007199254740991,
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "max_depth",
+        "max_fan_out",
+        "max_time_ms",
+        "max_cost_units",
+        "max_resource_units",
+        "max_effect_count",
+        "max_recursion_iterations"
+      ],
+      "type": "object"
+    },
+    "PathInvocationV1": {
+      "additionalProperties": false,
+      "properties": {
+        "edge_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "identity": {
+          "$ref": "#/$defs/InvocationIdentityV1"
+        }
+      },
+      "required": [
+        "edge_id",
+        "identity"
+      ],
+      "type": "object"
+    },
+    "ReconciliationRequirementV1": {
+      "additionalProperties": false,
+      "properties": {
+        "frontier_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "obligation_contract_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "obligation_contract_id",
+        "frontier_id"
+      ],
+      "type": "object"
+    },
+    "ResponsibilityV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "communication",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "organizational_work",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "crm_business_state",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "engineering_execution",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "context_memory",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "terminal_harness_execution",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "native_event_publication",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "native_effect_read_back",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "contract_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            },
+            "contract_schema_identity": {
+              "$ref": "#/$defs/ContractSchemaIdentityV1"
+            },
+            "kind": {
+              "const": "extension",
+              "type": "string"
+            },
+            "namespace_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "namespace_id",
+            "contract_id",
+            "contract_schema_identity"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "SourceContentIdentityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "source_content_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "source_content_sha256"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "not": {},
+  "title": "composition-primitives.v1"
+}

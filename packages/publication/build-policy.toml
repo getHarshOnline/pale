@@ -1,0 +1,7 @@
+kind = "capability_policy"
+
+[policy]
+permitted_capabilities = ["publication-local-render"]
+permitted_effects = ["execute"]
+forbidden_capabilities = []
+forbidden_effects = ["network", "publish"]

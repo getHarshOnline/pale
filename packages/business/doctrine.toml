@@ -1,0 +1,26 @@
+[doctrine]
+schema_version = 1
+
+[[doctrine.entry]]
+id = "council"
+description = "Bring different responsibilities and evidence to a difficult choice, keeping independent views and dissent visible."
+doctrine = "council.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "production-readiness-assessment"
+description = "Assess a release for its intended users and conditions, with evidence, risks, recovery and a clear recommendation."
+doctrine = "readiness.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "competitive-set-framing"
+description = "Choose the alternatives a customer could use and explain which belong in the comparison."
+doctrine = "competitive-set.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "competitive-evidence-synthesis"
+description = "Compare competitors using the evidence that could change the decision, with uncertainty and conflicting claims visible."
+doctrine = "competitive-synthesis.md"
+placement = "operation_procedure"

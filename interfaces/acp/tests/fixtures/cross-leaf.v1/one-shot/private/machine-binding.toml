@@ -1,0 +1,11 @@
+[machine]
+id = "machine"
+schema_version = 1
+distribution_root = "/captured/distribution"
+
+[[repository_checkouts]]
+repository_id = "engine"
+checkout_root = "/captured/repository"
+
+[authority_roots]
+authority = "/captured/authority"

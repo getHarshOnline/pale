@@ -1,0 +1,10 @@
+[distribution]
+compiler = "pale-surface@1"
+schema_manifest_sha256 = "eb9b67b2d4d31f433bd805d20b490e139d98e313074a5082cdcbf0a5754894e8"
+schema_set_sha256 = "7c43ad4a005b041ec6e233f99ba5246a32a9a1dd90bfc4c1449839e400b8d3f0"
+
+[[package]]
+id = "example.engine"
+version = "1.0.0"
+content_digest = "bf520686c62e55c7937a1554ca1a610c327d2910f4327a419992cd0f85796f97"
+

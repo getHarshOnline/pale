@@ -1,0 +1,163 @@
+# Pale root Cargo workspace.
+#
+# This virtual workspace hosts the inward Rust dependency spine and Pale-owned
+# capability adapters. SDKs, interfaces, integrations, and the Package corpus
+# share this repository but build outside this Cargo workspace.
+#
+# Minimal justified crate set only. Accepted future boundaries are added only
+# when a current use case, consumer, and conformance test earn them; this
+# workspace does not use its root manifest as a speculative adapter catalog.
+
+[workspace]
+resolver = "2"
+members = [
+    "crates/pale-core",
+    "crates/pale-contract-codegen",
+    "crates/pale-contracts",
+    "crates/pale-ports",
+    "crates/pale-application",
+    "crates/pale-kernel",
+    "adapters/fs",
+    "adapters/control-store",
+    "adapters/process",
+    "adapters/uds",
+    "adapters/a2a",
+    "adapters/etcd",
+    "adapters/darwin-signing",
+]
+exclude = [
+    "sdk/*",
+    "interfaces/*",
+    "integrations/*",
+    "packages",
+]
+
+[workspace.package]
+version = "0.0.1"
+edition = "2021"
+rust-version = "1.94"
+authors = ["Harsh Joshi"]
+license = "AGPL-3.0-or-later"
+readme = "README.md"
+repository = "https://github.com/getHarshOnline/pale"
+
+[workspace.lints.rust]
+missing_docs = "deny"
+unsafe_code = "deny"
+unreachable_pub = "deny"
+
+[workspace.lints.clippy]
+doc_markdown = "deny"
+missing_errors_doc = "deny"
+missing_panics_doc = "deny"
+
+[workspace.lints.rustdoc]
+bare_urls = "deny"
+broken_intra_doc_links = "deny"
+invalid_codeblock_attributes = "deny"
+invalid_html_tags = "deny"
+private_intra_doc_links = "deny"
+
+[workspace.dependencies]
+# Exact-pinned shared dependency foundation.
+serde = { version = "=1.0.228", features = ["derive"] }
+serde_json = "=1.0.149"
+serde_with = "=3.21.0"
+# Rust wire records are the authored contract-shape source. This exact,
+# minimal generator pin emits JSON Schema 2020-12 projections; generator
+# upgrades require a complete-corpus byte diff and reseal.
+schemars = { version = "=1.2.2", default-features = false, features = ["derive", "std"] }
+toml = "=0.9.11"
+# Repository-owned Codex `config.toml` may already carry inline hooks. The
+# format-preserving editor is pinned with only parse/display support so Pale
+# can amend that selected representation without erasing comments or unrelated
+# native-owner formatting. It is MIT OR Apache-2.0 and has MSRV 1.66.
+toml_edit = { version = "=0.22.27", default-features = false, features = ["parse", "display"] }
+# LSP keeps an error-recovering structural event stream for incomplete TOML.
+# Semantic admission still belongs to `toml` plus the generated contracts in
+# pale-application; this parser supplies ranges and nesting only.
+toml_parser = { version = "=1.0.6", default-features = false, features = ["std"] }
+# Nested typed-decoding paths are retained at the private workspace boundary.
+serde_path_to_error = "=0.1.20"
+# Standards implementations stay behind Pale-owned policy adapters. Exact
+# pins and minimal features prevent a patch release from widening the accepted
+# Markdown, calendar, or pointer behavior.
+comrak = { version = "=0.54.0", default-features = false }
+chrono = { version = "=0.4.45", default-features = false }
+jsonptr = { version = "=0.7.1", default-features = false }
+# Signed portable identities reject non-NFC text before canonicalization.
+# The exact pin is already present transitively; direct use makes the wire law
+# an explicit Pale dependency rather than an accidental dependency feature.
+unicode-normalization = "=0.1.25"
+url = { version = "=2.5.8", default-features = false, features = ["std"] }
+# `asm` selects the hardware-accelerated SHA-256 backend for boundaries that
+# require cryptographic content identity: immutable packages, authored schemas,
+# generated surfaces, plans, receipts, compiled inputs, and executable
+# verification. Mutable-state ordering, publication generations, epochs, and
+# counters use typed transactional invariants rather than gratuitous hashing.
+# The backend compiles a small assembly routine, so a C toolchain is required at
+# build time.
+sha2 = { version = "=0.10.9", features = ["asm"] }
+hex = "=0.4.3"
+getrandom = "=0.3.4"
+thiserror = "=2.0.18"
+anyhow = "=1.0.103"
+clap = { version = "=4.5.54", features = ["derive"] }
+tempfile = "=3.24.0"
+shlex = "=2.0.1"
+# Descriptor-relative filesystem operations keep confined paths bound to an
+# already-open directory instead of re-resolving mutable ancestors by name.
+rustix = { version = "=1.1.3", features = ["fs"] }
+# Standards-conformance dependencies are pinned exactly so a patch release cannot
+# silently change canonicalization or validation:
+#   serde_jcs  -> RFC 8785 (JCS) canonicalization (feeds every content digest)
+#   jsonschema -> JSON Schema (Draft 2020-12) enforcement
+serde_jcs = "=0.2.0"
+jsonschema = { version = "=0.49.2", default-features = false }
+petgraph = { version = "=0.8.3", default-features = false }
+roaring = { version = "=0.11.5", default-features = false }
+# Batch reachability may project the immutable packed graph into a
+# SuiteSparse:GraphBLAS matrix behind an explicit opt-in feature. The safe
+# wrapper is MIT OR Apache-2.0; its vendored SuiteSparse implementation is
+# Apache-2.0. Pale retains adjacency, generation fencing, proof paths, and
+# deterministic CPU fallback rather than exposing foreign graph objects.
+issundb-graphblas = { version = "=0.1.0-alpha.14", default-features = false }
+# The control-store adapter uses one pinned bundled SQLite source on Darwin and
+# Linux. The native backup wrapper supports bounded, unadmitted recovery
+# qualification; statement caches, extension loading, hooks, sessions, JSON
+# helpers, and other optional surfaces remain excluded.
+rusqlite = { version = "=0.39.0", default-features = false, features = ["backup", "bundled"] }
+# The opt-in SQLite benchmark counts Rust allocations on its current thread;
+# the crate never enters a default or resident-runtime dependency closure.
+allocation-counter = "=0.8.1"
+# The same benchmark reads process-lifetime RSS through nix's safe getrusage
+# wrapper. Only the resource module is enabled, and observed native units remain
+# explicit in every report row.
+nix = { version = "=0.31.3", default-features = false }
+
+# Build hot dependencies (SHA-256, JSON parsing, schema validation) optimized even in
+# dev + test builds, while leaving this workspace's own crates at their fast-compiling
+# default. This keeps the integration tests that spawn the binary (each runs the real
+# self-verification hash and context parse) off the opt-level-0 path. Set under both
+# profiles because `cargo test` builds the spawned binary with the `test` profile.
+[profile.dev.package."*"]
+opt-level = 2
+
+# Test failures need source and line coordinates, not the complete local-variable
+# descriptions emitted by the default full-debug profile. Full debuginfo remains an
+# explicit Cargo profile override for the uncommon debugger session.
+[profile.test]
+debug = "line-tables-only"
+
+[profile.test.package."*"]
+opt-level = 2
+debug = false
+
+# Repository hooks remain synchronous resident-IPC clients. The process-lived
+# pale-mcp leaf owns a bounded current-thread async runtime. Thin LTO improves
+# startup and size without imposing whole-program optimization on the local
+# edit/test loop.
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = "symbols"

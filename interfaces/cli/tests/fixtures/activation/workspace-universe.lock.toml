@@ -1,0 +1,6 @@
+schema = "pale/workspace-universe-lock.v1"
+schema_version = 1
+workspace_id = "act-ws"
+resolution_digest = "945db2ec1686d74bc476a920c073a6d9bbb69ea34ab78cda178d6177ce2b855c"
+adopted_releases = []
+universe_digest = "4dcd13b4fa7b1223084e0f4e84c7f4aea2de526fd00c9881c0dfe212640e2e8f"

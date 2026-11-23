@@ -1,0 +1,212 @@
+{
+  "$defs": {
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "ControlIncarnationIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ControlStoreIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "PrincipalKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "PrincipalSessionFloorEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "PrincipalTrustCheckpointEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "PrincipalTrustCheckpointIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/principal-trust-checkpoint.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "canonical_trust_checkpoint_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "checkpoint_epoch": {
+      "$ref": "#/$defs/PrincipalTrustCheckpointEpochV1"
+    },
+    "checkpoint_signing_authority_heads_root_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "deployment_acceptance_revocation_heads_root_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "deployment_runtime_authority_heads_root_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "federation_space_home_heads_root_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "issued_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "issuer_key_epoch": {
+      "$ref": "#/$defs/PrincipalKeyEpochV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "issuer_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "local_admin_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "local_admin_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "node_delegation_heads_root_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "node_delegation_revocation_heads_root_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "owner_record_signing_authority_heads_root_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "owner_signer_publication_frontier_heads_root_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "previous_trust_checkpoint_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "previous_trust_checkpoint_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "principal_control_incarnation_id": {
+      "$ref": "#/$defs/ControlIncarnationIdV1"
+    },
+    "principal_control_store_id": {
+      "$ref": "#/$defs/ControlStoreIdV1"
+    },
+    "principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "principal_record_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "principal_record_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "producer_incarnation_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "producer_incarnation_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "producer_incarnation_heads_root_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "recovery_policy_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "recovery_policy_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/principal-trust-checkpoint.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "session_floor_epoch": {
+      "$ref": "#/$defs/PrincipalSessionFloorEpochV1"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    },
+    "trust_checkpoint_id": {
+      "$ref": "#/$defs/PrincipalTrustCheckpointIdV1"
+    },
+    "trust_store_id": {
+      "$ref": "#/$defs/ControlStoreIdV1"
+    },
+    "trust_store_incarnation_id": {
+      "$ref": "#/$defs/ControlIncarnationIdV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "trust_checkpoint_id",
+    "principal_id",
+    "trust_store_id",
+    "trust_store_incarnation_id",
+    "principal_control_store_id",
+    "principal_control_incarnation_id",
+    "checkpoint_epoch",
+    "principal_record_ref",
+    "principal_record_sha256",
+    "recovery_policy_ref",
+    "recovery_policy_sha256",
+    "local_admin_authority_ref",
+    "local_admin_authority_sha256",
+    "producer_incarnation_authority_ref",
+    "producer_incarnation_authority_sha256",
+    "producer_incarnation_heads_root_sha256",
+    "session_floor_epoch",
+    "checkpoint_signing_authority_heads_root_sha256",
+    "deployment_runtime_authority_heads_root_sha256",
+    "owner_record_signing_authority_heads_root_sha256",
+    "owner_signer_publication_frontier_heads_root_sha256",
+    "deployment_acceptance_revocation_heads_root_sha256",
+    "federation_space_home_heads_root_sha256",
+    "node_delegation_heads_root_sha256",
+    "node_delegation_revocation_heads_root_sha256",
+    "issued_at",
+    "issuer_principal_id",
+    "issuer_key_id",
+    "issuer_key_epoch",
+    "canonical_trust_checkpoint_sha256",
+    "signature"
+  ],
+  "title": "principal-trust-checkpoint.v1",
+  "type": "object"
+}

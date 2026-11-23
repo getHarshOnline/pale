@@ -1,0 +1,22 @@
+[workspace]
+schema_version = 1
+workspace_id = "notes-workspace"
+distribution_lock = "distribution.lock.toml"
+machine_binding_root = "machines"
+module_manifests = []
+source_components = []
+responsibility_derivations = []
+organizational_translations = []
+experience_compositions = []
+resolution_lock = "resolution.lock.toml"
+universe_lock = "universe.lock.toml"
+
+# One project and its local authoring setting; no repository writes or providers.
+[workspace.desired_topology]
+projects = [{ id = "notes", title = "Shared notes", run_policy = "standard", package_seeds = [], authority_root_ids = [], capabilities_file = "capabilities.toml" }]
+execution_workspaces = [{ id = "local", title = "Local authoring", execution_path_ids = [] }]
+repositories = []
+execution_paths = []
+project_repositories = []
+project_execution_workspaces = [{ project_id = "notes", execution_workspace_id = "local" }]
+execution_workspace_repositories = []

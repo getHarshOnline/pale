@@ -1,0 +1,27 @@
+schema = "pale/workspace-resolution-lock.v1"
+schema_version = 1
+resolution_digest = "d8c4815600591c7938249c366551f39e1209562ac8741108bbd7d28cf1502d0e"
+
+[[releases]]
+module_id = "candidate"
+release_id = "release-1"
+module_digest = "0ac6918ee06ebc8218caf84f6e39ac77e714fc14e7c0b73b3052cd729b788bd6"
+release_state = "published"
+
+[releases.publisher]
+publisher_id = "candidate-publisher"
+root_key_id = "candidate-publisher-root"
+recovery_authority_id = "candidate-publisher-recovery"
+delegated_release_key_id = "candidate-publisher-release"
+
+[[releases]]
+module_id = "consumer"
+release_id = "release-1"
+module_digest = "9e24aca2c1e1403bbbca59d4381dbcc0f4ba170188d9ab58955b454d422a5815"
+release_state = "published"
+
+[releases.publisher]
+publisher_id = "consumer-publisher"
+root_key_id = "consumer-publisher-root"
+recovery_authority_id = "consumer-publisher-recovery"
+delegated_release_key_id = "consumer-publisher-release"

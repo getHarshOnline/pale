@@ -1,0 +1,40 @@
+{
+  "$defs": {
+    "OwnedConfinedRelativePath": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "type": "string"
+    },
+    "PackageResourceIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[./][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/policy-family.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "body": {
+      "$ref": "#/$defs/OwnedConfinedRelativePath"
+    },
+    "id": {
+      "$ref": "#/$defs/PackageResourceIdV1"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "purpose",
+    "body"
+  ],
+  "title": "policy-family.v1",
+  "type": "object"
+}

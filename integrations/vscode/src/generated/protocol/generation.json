@@ -1,0 +1,72 @@
+{
+  "schemaArtifactSha256": "bf101dfa84be5549d43b7cb365775a602762ebd334d74ea1e57df6d3f8efdebb",
+  "selection": {
+    "direction": "Responses",
+    "roots": [
+      "AnalysisPublication",
+      "ConfigurationImprovementResponse",
+      "EffectiveProfileExplanationResponse",
+      "EffectiveProfileResponse",
+      "PaleWorkspaceCapabilities",
+      "ProfileContextsResponse"
+    ],
+    "format": "commonjs"
+  },
+  "generator": {
+    "declaration-names.mjs": "09b416d1625485ef467b29a54f1b4469589aba307bde7b580a46c01da4c58ead",
+    "generate.mjs": "4cb3bb07e23a7fb172b1bb4a070859617300ad77af803f6c41ed223893ae8a6f",
+    "number-formats.mjs": "aa8fed38453a80dbd7e79ece3e63a29d0029b6a2f0e13f8b50924ddb30625aa2",
+    "package.json": "4936ade3711afabc684a947c89ddd76fc5d6657cbfc37f1f735257dc4f28b706",
+    "package-lock.json": "f03a6c4a03e830ba33c32cc7627efcd55b8233c823982c9a3bb284984a4e1737"
+  },
+  "bundledLicenses": {
+    "ajv": {
+      "version": "8.20.0",
+      "licenseSha256": "a05350a88e318e4f5f2c2a1ff1e2e88daa4dd38e6e78b71cccae422bdc762cc3"
+    },
+    "ajv-formats": {
+      "version": "3.0.1",
+      "licenseSha256": "9df3bb69929a3b650ed73b3bfa1756725aaff0ac296461605753547004eafeaf"
+    }
+  },
+  "bundledPackages": {
+    "responses.cjs": [
+      "ajv",
+      "ajv-formats"
+    ]
+  },
+  "outputs": [
+    {
+      "path": "AnalysisPublication.ts",
+      "sha256": "f14f3080344634d4473c603fcc085e11d25cd30cbc32808a8e80444848645566"
+    },
+    {
+      "path": "ConfigurationImprovementResponse.ts",
+      "sha256": "283f0e6c5e1e85b93c1fe363436b3e77d48c58585aaf1b17e273e01bff7494fb"
+    },
+    {
+      "path": "EffectiveProfileExplanationResponse.ts",
+      "sha256": "966cb86b18ec5be2c70dffd093596aa83f59c4737a7a5f15ceb4661b70af1e47"
+    },
+    {
+      "path": "EffectiveProfileResponse.ts",
+      "sha256": "b5f01519326d77fe0007455610e0115b75abb261a7482788d507071d8dd195ea"
+    },
+    {
+      "path": "PaleWorkspaceCapabilities.ts",
+      "sha256": "4f0c297d9ff6a09fd357fb37620541065f23eea8b03c042f95cb45840e2b2de5"
+    },
+    {
+      "path": "ProfileContextsResponse.ts",
+      "sha256": "46800d4660acf66a948a304831f143e04f414c5ab2571aecc0119a0bf8a3d6b9"
+    },
+    {
+      "path": "responses.cjs",
+      "sha256": "f20fd5c636b7073b1a4edf00e4df16b6514765ae5358c5d1d8b064773cb48271"
+    },
+    {
+      "path": "responses.d.cts",
+      "sha256": "10e085d2aba37c6f68d2d8cb88b9bec0382f774793af9b293231e8e773455066"
+    }
+  ]
+}

@@ -1,0 +1,334 @@
+{
+  "$defs": {
+    "A2aRemoteTaskStateV1": {
+      "oneOf": [
+        {
+          "const": "unspecified",
+          "type": "string"
+        },
+        {
+          "const": "submitted",
+          "type": "string"
+        },
+        {
+          "const": "working",
+          "type": "string"
+        },
+        {
+          "const": "input_required",
+          "type": "string"
+        },
+        {
+          "const": "auth_required",
+          "type": "string"
+        },
+        {
+          "const": "completed",
+          "type": "string"
+        },
+        {
+          "const": "canceled",
+          "type": "string"
+        },
+        {
+          "const": "failed",
+          "type": "string"
+        },
+        {
+          "const": "rejected",
+          "type": "string"
+        }
+      ]
+    },
+    "A2aSseEventIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "A2aTaskBindingIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "A2aTaskObservationRevisionV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "A2aTaskObservationSourceV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence": {
+              "$ref": "#/$defs/ImmutableRecordReferenceV1"
+            },
+            "source": {
+              "const": "initial_send_message_response",
+              "type": "string"
+            }
+          },
+          "required": [
+            "source",
+            "evidence"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "event_id": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/A2aSseEventIdV1"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "evidence": {
+              "$ref": "#/$defs/ImmutableRecordReferenceV1"
+            },
+            "source": {
+              "const": "initial_streaming_event",
+              "type": "string"
+            }
+          },
+          "required": [
+            "source",
+            "evidence"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "event_id": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/A2aSseEventIdV1"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "evidence": {
+              "$ref": "#/$defs/ImmutableRecordReferenceV1"
+            },
+            "source": {
+              "const": "streaming_event",
+              "type": "string"
+            }
+          },
+          "required": [
+            "source",
+            "evidence"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "request": {
+              "$ref": "#/$defs/ImmutableRecordReferenceV1"
+            },
+            "response": {
+              "$ref": "#/$defs/ImmutableRecordReferenceV1"
+            },
+            "source": {
+              "const": "get_task",
+              "type": "string"
+            }
+          },
+          "required": [
+            "source",
+            "request",
+            "response"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "request": {
+              "$ref": "#/$defs/ImmutableRecordReferenceV1"
+            },
+            "response": {
+              "$ref": "#/$defs/ImmutableRecordReferenceV1"
+            },
+            "source": {
+              "const": "cancel_task_read_back",
+              "type": "string"
+            }
+          },
+          "required": [
+            "source",
+            "request",
+            "response"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "ImmutableRecordReferenceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "record_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "record_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "record_ref",
+        "record_sha256"
+      ],
+      "type": "object"
+    },
+    "ReconciliationFrontierReferenceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "record_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "record_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "record_ref",
+        "record_sha256"
+      ],
+      "type": "object"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "SigningKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/a2a-task-observation.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "dependentRequired": {
+    "predecessor_ref": [
+      "predecessor_sha256"
+    ],
+    "predecessor_sha256": [
+      "predecessor_ref"
+    ]
+  },
+  "properties": {
+    "canonical_a2a_task_observation_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "deployment_runtime_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "deployment_runtime_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "issuer_key_epoch": {
+      "$ref": "#/$defs/SigningKeyEpochV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "issuer_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "observed_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "predecessor_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "predecessor_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "reconciliation": {
+      "$ref": "#/$defs/ReconciliationFrontierReferenceV1"
+    },
+    "remote_state": {
+      "$ref": "#/$defs/A2aRemoteTaskStateV1"
+    },
+    "revision": {
+      "$ref": "#/$defs/A2aTaskObservationRevisionV1"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/a2a-task-observation.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    },
+    "source": {
+      "$ref": "#/$defs/A2aTaskObservationSourceV1"
+    },
+    "task_binding_id": {
+      "$ref": "#/$defs/A2aTaskBindingIdV1"
+    },
+    "task_binding_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "task_binding_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "task_binding_id",
+    "task_binding_ref",
+    "task_binding_sha256",
+    "revision",
+    "source",
+    "remote_state",
+    "observed_at",
+    "deployment_runtime_authority_ref",
+    "deployment_runtime_authority_sha256",
+    "issuer_principal_id",
+    "issuer_key_id",
+    "issuer_key_epoch",
+    "canonical_a2a_task_observation_sha256",
+    "signature"
+  ],
+  "title": "a2a-task-observation.v1",
+  "type": "object"
+}

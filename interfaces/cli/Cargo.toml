@@ -1,0 +1,105 @@
+[package]
+name = "pale-cli"
+version = "0.0.1"
+edition = "2021"
+rust-version = "1.94"
+authors = ["Harsh Joshi"]
+license = "AGPL-3.0-or-later"
+readme = "README.md"
+repository = "https://github.com/getHarshOnline/pale"
+description = "Pale command facade over shared application and API use cases."
+publish = false
+autotests = false
+autobenches = false
+
+[workspace]
+resolver = "2"
+
+[lints.rust]
+missing_docs = "deny"
+unsafe_code = "deny"
+unreachable_pub = "deny"
+
+[lints.clippy]
+doc_markdown = "deny"
+missing_errors_doc = "deny"
+missing_panics_doc = "deny"
+
+[lints.rustdoc]
+bare_urls = "deny"
+broken_intra_doc_links = "deny"
+invalid_codeblock_attributes = "deny"
+invalid_html_tags = "deny"
+private_intra_doc_links = "deny"
+
+[features]
+default = ["native-local"]
+# Development-time wire metadata for transports that expose SDK-owned DTOs.
+wire-schema = ["pale-sdk/wire-schema"]
+native-local = [
+    "pale-sdk/native-local",
+    "dep:clap",
+    "dep:anyhow",
+    "dep:serde",
+    "dep:thiserror",
+]
+
+[[bin]]
+name = "pale"
+path = "src/main.rs"
+required-features = ["native-local"]
+# Unit invariants live in the library's private test bridge; integration tests
+# still build and exercise this executable through `CARGO_BIN_EXE_pale`.
+test = false
+
+[dependencies]
+pale-sdk = { version = "=0.0.1", default-features = false }
+clap = { version = "=4.5.54", features = ["derive"], optional = true }
+anyhow = { version = "=1.0.103", optional = true }
+serde = { version = "=1.0.228", features = ["derive"], optional = true }
+serde_json = "=1.0.149"
+thiserror = { version = "=2.0.18", optional = true }
+
+[dev-dependencies]
+tempfile = "=3.24.0"
+toml = "=0.9.11"
+sha2 = { version = "=0.10.9", features = ["asm"] }
+hex = "=0.4.3"
+
+[target.'cfg(any(target_os = "linux", target_os = "macos"))'.dev-dependencies]
+pale-adapter-uds = "=0.0.1"
+pale-adapter-process = "=0.0.1"
+pale-ports = "=0.0.1"
+pale-application = { version = "=0.0.1", features = ["interface-test-support"] }
+pale-resident = { path = "../resident" }
+ed25519-dalek = { version = "=2.2.0", default-features = false, features = ["std", "zeroize"] }
+
+[[test]]
+name = "hook_attachment"
+path = "tests/hook_attachment.rs"
+required-features = ["native-local"]
+
+[[test]]
+name = "cli"
+path = "tests/cli.rs"
+required-features = ["native-local"]
+
+[[test]]
+name = "mutation"
+path = "tests/mutation.rs"
+required-features = ["native-local"]
+
+[[test]]
+name = "removal_liveness"
+path = "tests/removal_liveness.rs"
+required-features = ["native-local"]
+
+[[test]]
+name = "executable_binding"
+path = "tests/executable_binding.rs"
+required-features = ["native-local"]
+
+[[test]]
+name = "summary"
+path = "tests/summary.rs"
+required-features = ["native-local"]

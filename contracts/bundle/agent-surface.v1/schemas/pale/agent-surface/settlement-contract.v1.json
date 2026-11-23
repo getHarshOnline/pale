@@ -1,0 +1,78 @@
+{
+  "$defs": {
+    "EvidenceSettlementIdentityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_settlement_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "evidence_settlement_sha256"
+      ],
+      "type": "object"
+    },
+    "SettlementDispositionV1": {
+      "oneOf": [
+        {
+          "const": "native_receipt_required",
+          "type": "string"
+        },
+        {
+          "const": "read_back_required",
+          "type": "string"
+        },
+        {
+          "const": "owner_acceptance_required",
+          "type": "string"
+        },
+        {
+          "const": "unsettled",
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/settlement-contract.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "disposition": {
+      "$ref": "#/$defs/SettlementDispositionV1"
+    },
+    "id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._/-]+$",
+      "type": "string"
+    },
+    "identity": {
+      "$ref": "#/$defs/EvidenceSettlementIdentityV1"
+    },
+    "native_receipt_contract": {
+      "oneOf": [
+        {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "observer": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/ParticipantRefV1"
+    }
+  },
+  "required": [
+    "id",
+    "observer",
+    "disposition",
+    "native_receipt_contract",
+    "identity"
+  ],
+  "title": "settlement-contract.v1",
+  "type": "object"
+}

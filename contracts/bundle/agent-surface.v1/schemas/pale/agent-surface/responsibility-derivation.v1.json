@@ -1,0 +1,2075 @@
+{
+  "$defs": {
+    "AttributableAnswerForBoundedResponsibilityV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "supplied",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/BoundedResponsibilityV1"
+            }
+          },
+          "required": [
+            "disposition",
+            "value",
+            "attribution"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "omitted",
+              "type": "string"
+            },
+            "reason": {
+              "$ref": "#/$defs/ResponsibilityOmissionReasonId"
+            }
+          },
+          "required": [
+            "disposition",
+            "reason",
+            "attribution"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "AttributableAnswerForConsumerAcceptanceRequirementV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "supplied",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/ConsumerAcceptanceRequirementV1"
+            }
+          },
+          "required": [
+            "disposition",
+            "value",
+            "attribution"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "omitted",
+              "type": "string"
+            },
+            "reason": {
+              "$ref": "#/$defs/ResponsibilityOmissionReasonId"
+            }
+          },
+          "required": [
+            "disposition",
+            "reason",
+            "attribution"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "AttributableAnswerForNativeReadBackRequirementV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "supplied",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/NativeReadBackRequirementV1"
+            }
+          },
+          "required": [
+            "disposition",
+            "value",
+            "attribution"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "omitted",
+              "type": "string"
+            },
+            "reason": {
+              "$ref": "#/$defs/ResponsibilityOmissionReasonId"
+            }
+          },
+          "required": [
+            "disposition",
+            "reason",
+            "attribution"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "AttributableAnswerForPaleSettlementRequirementV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "supplied",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/PaleSettlementRequirementV1"
+            }
+          },
+          "required": [
+            "disposition",
+            "value",
+            "attribution"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "omitted",
+              "type": "string"
+            },
+            "reason": {
+              "$ref": "#/$defs/ResponsibilityOmissionReasonId"
+            }
+          },
+          "required": [
+            "disposition",
+            "reason",
+            "attribution"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "AttributableAnswerForProviderAcceptanceRequirementV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "supplied",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/ProviderAcceptanceRequirementV1"
+            }
+          },
+          "required": [
+            "disposition",
+            "value",
+            "attribution"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "omitted",
+              "type": "string"
+            },
+            "reason": {
+              "$ref": "#/$defs/ResponsibilityOmissionReasonId"
+            }
+          },
+          "required": [
+            "disposition",
+            "reason",
+            "attribution"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "AttributableAnswerForProviderCompletionRequirementV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "supplied",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/ProviderCompletionRequirementV1"
+            }
+          },
+          "required": [
+            "disposition",
+            "value",
+            "attribution"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "omitted",
+              "type": "string"
+            },
+            "reason": {
+              "$ref": "#/$defs/ResponsibilityOmissionReasonId"
+            }
+          },
+          "required": [
+            "disposition",
+            "reason",
+            "attribution"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "AttributableAnswerForResponsibilityAdopterModuleV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "supplied",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/ResponsibilityAdopterModuleV1"
+            }
+          },
+          "required": [
+            "disposition",
+            "value",
+            "attribution"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "omitted",
+              "type": "string"
+            },
+            "reason": {
+              "$ref": "#/$defs/ResponsibilityOmissionReasonId"
+            }
+          },
+          "required": [
+            "disposition",
+            "reason",
+            "attribution"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "AttributableAnswerForResponsibilityCeilingsV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "supplied",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/ResponsibilityCeilingsV1"
+            }
+          },
+          "required": [
+            "disposition",
+            "value",
+            "attribution"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "omitted",
+              "type": "string"
+            },
+            "reason": {
+              "$ref": "#/$defs/ResponsibilityOmissionReasonId"
+            }
+          },
+          "required": [
+            "disposition",
+            "reason",
+            "attribution"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "AttributableAnswerForResponsibilityDirectPathV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "supplied",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/ResponsibilityDirectPathV1"
+            }
+          },
+          "required": [
+            "disposition",
+            "value",
+            "attribution"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "omitted",
+              "type": "string"
+            },
+            "reason": {
+              "$ref": "#/$defs/ResponsibilityOmissionReasonId"
+            }
+          },
+          "required": [
+            "disposition",
+            "reason",
+            "attribution"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "AttributableAnswerForResponsibilityIncumbentV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "supplied",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/ResponsibilityIncumbentV1"
+            }
+          },
+          "required": [
+            "disposition",
+            "value",
+            "attribution"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "omitted",
+              "type": "string"
+            },
+            "reason": {
+              "$ref": "#/$defs/ResponsibilityOmissionReasonId"
+            }
+          },
+          "required": [
+            "disposition",
+            "reason",
+            "attribution"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "AttributableAnswerForResponsibilityNativeOwnerV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "supplied",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/ResponsibilityNativeOwnerV1"
+            }
+          },
+          "required": [
+            "disposition",
+            "value",
+            "attribution"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "omitted",
+              "type": "string"
+            },
+            "reason": {
+              "$ref": "#/$defs/ResponsibilityOmissionReasonId"
+            }
+          },
+          "required": [
+            "disposition",
+            "reason",
+            "attribution"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "AttributableAnswerForResponsibilityPlacementV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "supplied",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/ResponsibilityPlacementV1"
+            }
+          },
+          "required": [
+            "disposition",
+            "value",
+            "attribution"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "omitted",
+              "type": "string"
+            },
+            "reason": {
+              "$ref": "#/$defs/ResponsibilityOmissionReasonId"
+            }
+          },
+          "required": [
+            "disposition",
+            "reason",
+            "attribution"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "AttributableAnswerForResponsibilityPublisherModuleV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "supplied",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/ResponsibilityPublisherModuleV1"
+            }
+          },
+          "required": [
+            "disposition",
+            "value",
+            "attribution"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "omitted",
+              "type": "string"
+            },
+            "reason": {
+              "$ref": "#/$defs/ResponsibilityOmissionReasonId"
+            }
+          },
+          "required": [
+            "disposition",
+            "reason",
+            "attribution"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "AttributableAnswerForResponsibilityReadinessV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "supplied",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/ResponsibilityReadinessV1"
+            }
+          },
+          "required": [
+            "disposition",
+            "value",
+            "attribution"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "omitted",
+              "type": "string"
+            },
+            "reason": {
+              "$ref": "#/$defs/ResponsibilityOmissionReasonId"
+            }
+          },
+          "required": [
+            "disposition",
+            "reason",
+            "attribution"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "AttributableAnswerForResponsibilityRequestFramerV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "supplied",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/ResponsibilityRequestFramerV1"
+            }
+          },
+          "required": [
+            "disposition",
+            "value",
+            "attribution"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "omitted",
+              "type": "string"
+            },
+            "reason": {
+              "$ref": "#/$defs/ResponsibilityOmissionReasonId"
+            }
+          },
+          "required": [
+            "disposition",
+            "reason",
+            "attribution"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "AttributableAnswerForResponsibilitySafeFailureV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "supplied",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/ResponsibilitySafeFailureV1"
+            }
+          },
+          "required": [
+            "disposition",
+            "value",
+            "attribution"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "omitted",
+              "type": "string"
+            },
+            "reason": {
+              "$ref": "#/$defs/ResponsibilityOmissionReasonId"
+            }
+          },
+          "required": [
+            "disposition",
+            "reason",
+            "attribution"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "AttributableAnswerForResponsibilitySilenceBoundaryV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "supplied",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/ResponsibilitySilenceBoundaryV1"
+            }
+          },
+          "required": [
+            "disposition",
+            "value",
+            "attribution"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "omitted",
+              "type": "string"
+            },
+            "reason": {
+              "$ref": "#/$defs/ResponsibilityOmissionReasonId"
+            }
+          },
+          "required": [
+            "disposition",
+            "reason",
+            "attribution"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "AttributableAnswerForResponsibilityTriggerV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "supplied",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/ResponsibilityTriggerV1"
+            }
+          },
+          "required": [
+            "disposition",
+            "value",
+            "attribution"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "omitted",
+              "type": "string"
+            },
+            "reason": {
+              "$ref": "#/$defs/ResponsibilityOmissionReasonId"
+            }
+          },
+          "required": [
+            "disposition",
+            "reason",
+            "attribution"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "AttributableAnswerForWorkspaceResourceId": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "supplied",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/WorkspaceResourceId"
+            }
+          },
+          "required": [
+            "disposition",
+            "value",
+            "attribution"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attribution": {
+              "$ref": "#/$defs/ResponsibilityAttributionV1"
+            },
+            "disposition": {
+              "const": "omitted",
+              "type": "string"
+            },
+            "reason": {
+              "$ref": "#/$defs/ResponsibilityOmissionReasonId"
+            }
+          },
+          "required": [
+            "disposition",
+            "reason",
+            "attribution"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "BoundedResponsibilityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "object": {
+          "$ref": "#/$defs/ResponsibilityObjectId"
+        },
+        "outcome": {
+          "$ref": "#/$defs/ResponsibilityOutcomeId"
+        },
+        "verb": {
+          "$ref": "#/$defs/ResponsibilityVerbId"
+        }
+      },
+      "required": [
+        "verb",
+        "object",
+        "outcome"
+      ],
+      "type": "object"
+    },
+    "ConsumerAcceptanceRequirementV1": {
+      "additionalProperties": false,
+      "properties": {
+        "requirement": {
+          "$ref": "#/$defs/ResponsibilityEvidenceRequirementV1"
+        }
+      },
+      "required": [
+        "requirement"
+      ],
+      "type": "object"
+    },
+    "DirectionalServiceContractId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "DirectionalServiceContractRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "consumer_scope": {
+          "$ref": "#/$defs/LogicalScopeRefV1"
+        },
+        "contract_id": {
+          "$ref": "#/$defs/DirectionalServiceContractId"
+        },
+        "namespace": {
+          "$ref": "#/$defs/WorkspaceNamespaceId"
+        },
+        "provider_scope": {
+          "$ref": "#/$defs/LogicalScopeRefV1"
+        }
+      },
+      "required": [
+        "namespace",
+        "contract_id",
+        "provider_scope",
+        "consumer_scope"
+      ],
+      "type": "object"
+    },
+    "DisclosureCeilingV1": {
+      "oneOf": [
+        {
+          "const": "private",
+          "type": "string"
+        },
+        {
+          "const": "protected",
+          "type": "string"
+        },
+        {
+          "const": "public",
+          "type": "string"
+        }
+      ]
+    },
+    "EffectiveFactStateV1": {
+      "oneOf": [
+        {
+          "const": "present",
+          "type": "string"
+        },
+        {
+          "const": "absent",
+          "type": "string"
+        },
+        {
+          "const": "denied",
+          "type": "string"
+        },
+        {
+          "const": "unknown",
+          "type": "string"
+        },
+        {
+          "const": "stale",
+          "type": "string"
+        },
+        {
+          "const": "superseded",
+          "type": "string"
+        },
+        {
+          "const": "revoked",
+          "type": "string"
+        }
+      ]
+    },
+    "LogicalScopeId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "LogicalScopeRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "namespace": {
+          "$ref": "#/$defs/WorkspaceNamespaceId"
+        },
+        "scope_id": {
+          "$ref": "#/$defs/LogicalScopeId"
+        }
+      },
+      "required": [
+        "namespace",
+        "scope_id"
+      ],
+      "type": "object"
+    },
+    "NativeReadBackRequirementV1": {
+      "additionalProperties": false,
+      "properties": {
+        "requirement": {
+          "$ref": "#/$defs/ResponsibilityEvidenceRequirementV1"
+        }
+      },
+      "required": [
+        "requirement"
+      ],
+      "type": "object"
+    },
+    "PaleSettlementRequirementV1": {
+      "additionalProperties": false,
+      "properties": {
+        "requirement": {
+          "$ref": "#/$defs/ResponsibilityEvidenceRequirementV1"
+        }
+      },
+      "required": [
+        "requirement"
+      ],
+      "type": "object"
+    },
+    "ProviderAcceptanceRequirementV1": {
+      "additionalProperties": false,
+      "properties": {
+        "requirement": {
+          "$ref": "#/$defs/ResponsibilityEvidenceRequirementV1"
+        }
+      },
+      "required": [
+        "requirement"
+      ],
+      "type": "object"
+    },
+    "ProviderCompletionRequirementV1": {
+      "additionalProperties": false,
+      "properties": {
+        "requirement": {
+          "$ref": "#/$defs/ResponsibilityEvidenceRequirementV1"
+        }
+      },
+      "required": [
+        "requirement"
+      ],
+      "type": "object"
+    },
+    "ResponsibilityAdopterModuleV1": {
+      "additionalProperties": false,
+      "properties": {
+        "adoption_owner": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "imported_export_id": {
+          "$ref": "#/$defs/WorkspaceExportId"
+        },
+        "imported_module_id": {
+          "$ref": "#/$defs/WorkspaceModuleId"
+        },
+        "imported_release_id": {
+          "$ref": "#/$defs/WorkspaceReleaseId"
+        },
+        "local_namespace": {
+          "$ref": "#/$defs/WorkspaceNamespaceId"
+        },
+        "module_id": {
+          "$ref": "#/$defs/WorkspaceModuleId"
+        }
+      },
+      "required": [
+        "module_id",
+        "imported_module_id",
+        "imported_release_id",
+        "imported_export_id",
+        "local_namespace",
+        "adoption_owner"
+      ],
+      "type": "object"
+    },
+    "ResponsibilityAttributionV1": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_ref": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "owner": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "source_id": {
+          "$ref": "#/$defs/WorkspaceDerivationSourceId"
+        }
+      },
+      "required": [
+        "source_id",
+        "owner",
+        "evidence_ref"
+      ],
+      "type": "object"
+    },
+    "ResponsibilityCeilingsV1": {
+      "additionalProperties": false,
+      "properties": {
+        "policy": {
+          "$ref": "#/$defs/WorkspacePolicyCeilingV1"
+        },
+        "resources": {
+          "items": {
+            "$ref": "#/$defs/WorkspaceResourceId"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "policy",
+        "resources"
+      ],
+      "type": "object"
+    },
+    "ResponsibilityDerivationId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "ResponsibilityDerivationLifecycleV1": {
+      "oneOf": [
+        {
+          "const": "verified_current",
+          "type": "string"
+        },
+        {
+          "const": "accepted_target",
+          "type": "string"
+        },
+        {
+          "const": "owner_desired_configuration",
+          "type": "string"
+        },
+        {
+          "const": "candidate",
+          "type": "string"
+        },
+        {
+          "const": "implementation_open",
+          "type": "string"
+        },
+        {
+          "const": "configuration_open",
+          "type": "string"
+        },
+        {
+          "const": "evidence_gated",
+          "type": "string"
+        },
+        {
+          "const": "historical",
+          "type": "string"
+        },
+        {
+          "const": "rejected",
+          "type": "string"
+        }
+      ]
+    },
+    "ResponsibilityDirectPathV1": {
+      "additionalProperties": false,
+      "properties": {
+        "availability_policy": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "native_owner": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "path": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        }
+      },
+      "required": [
+        "path",
+        "native_owner",
+        "availability_policy"
+      ],
+      "type": "object"
+    },
+    "ResponsibilityEvidenceRequirementV1": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_ref": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "owner": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        }
+      },
+      "required": [
+        "owner",
+        "evidence_ref"
+      ],
+      "type": "object"
+    },
+    "ResponsibilityGenealogyLinkId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "ResponsibilityGenealogyLinkV1": {
+      "additionalProperties": false,
+      "properties": {
+        "link_id": {
+          "$ref": "#/$defs/ResponsibilityGenealogyLinkId"
+        },
+        "occurrences": {
+          "items": {
+            "$ref": "#/$defs/ResponsibilityOccurrenceId"
+          },
+          "maxItems": 1024,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "projections": {
+          "items": {
+            "$ref": "#/$defs/ResponsibilityProjectionId"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "responsibilities": {
+          "items": {
+            "$ref": "#/$defs/ResponsibilityDerivationId"
+          },
+          "maxItems": 1024,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "link_id",
+        "responsibilities",
+        "projections",
+        "occurrences"
+      ],
+      "type": "object"
+    },
+    "ResponsibilityIncumbentV1": {
+      "additionalProperties": false,
+      "properties": {
+        "mechanism": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "retained_evidence": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "writer": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        }
+      },
+      "required": [
+        "mechanism",
+        "writer",
+        "retained_evidence"
+      ],
+      "type": "object"
+    },
+    "ResponsibilityNativeOwnerV1": {
+      "additionalProperties": false,
+      "properties": {
+        "authority_resolver": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "owner": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "owner_class": {
+          "$ref": "#/$defs/ResponsibilityOwnerClassV1"
+        }
+      },
+      "required": [
+        "owner",
+        "owner_class",
+        "authority_resolver"
+      ],
+      "type": "object"
+    },
+    "ResponsibilityNativeProjectionV1": {
+      "additionalProperties": false,
+      "properties": {
+        "class": {
+          "$ref": "#/$defs/ResponsibilityProjectionClassV1"
+        },
+        "native_owner": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "native_refs": {
+          "items": {
+            "$ref": "#/$defs/WorkspaceResourceId"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "projection_id": {
+          "$ref": "#/$defs/ResponsibilityProjectionId"
+        },
+        "state": {
+          "$ref": "#/$defs/EffectiveFactStateV1"
+        }
+      },
+      "required": [
+        "projection_id",
+        "class",
+        "native_owner",
+        "native_refs",
+        "state"
+      ],
+      "type": "object"
+    },
+    "ResponsibilityObjectId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "ResponsibilityOccurrenceId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "ResponsibilityOmissionReasonId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "ResponsibilityOutcomeId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "ResponsibilityOwnerClassV1": {
+      "oneOf": [
+        {
+          "const": "principal",
+          "type": "string"
+        },
+        {
+          "const": "relationship_contract",
+          "type": "string"
+        },
+        {
+          "const": "native_application",
+          "type": "string"
+        },
+        {
+          "const": "module",
+          "type": "string"
+        }
+      ]
+    },
+    "ResponsibilityPlacementV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "vertical_local",
+              "type": "string"
+            },
+            "scope": {
+              "$ref": "#/$defs/WorkspaceResourceId"
+            }
+          },
+          "required": [
+            "kind",
+            "scope"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "directional_service",
+              "type": "string"
+            },
+            "service_contract": {
+              "$ref": "#/$defs/DirectionalServiceContractRefV1"
+            }
+          },
+          "required": [
+            "kind",
+            "service_contract"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "ResponsibilityProjectionClassV1": {
+      "oneOf": [
+        {
+          "const": "accountable_work",
+          "type": "string"
+        },
+        {
+          "const": "communication",
+          "type": "string"
+        },
+        {
+          "const": "relationship",
+          "type": "string"
+        },
+        {
+          "const": "native_application",
+          "type": "string"
+        },
+        {
+          "const": "derived_view",
+          "type": "string"
+        },
+        {
+          "const": "context",
+          "type": "string"
+        },
+        {
+          "const": "genealogy",
+          "type": "string"
+        }
+      ]
+    },
+    "ResponsibilityProjectionId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "ResponsibilityPublisherModuleV1": {
+      "additionalProperties": false,
+      "properties": {
+        "export_id": {
+          "$ref": "#/$defs/WorkspaceExportId"
+        },
+        "module_id": {
+          "$ref": "#/$defs/WorkspaceModuleId"
+        },
+        "release_id": {
+          "$ref": "#/$defs/WorkspaceReleaseId"
+        },
+        "semantic_owner": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        }
+      },
+      "required": [
+        "module_id",
+        "release_id",
+        "export_id",
+        "semantic_owner"
+      ],
+      "type": "object"
+    },
+    "ResponsibilityReadinessV1": {
+      "additionalProperties": false,
+      "properties": {
+        "failure_proof": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "native_read_back_proof": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "operation_contract": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "recovery_proof": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "replay_proof": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "rollback_proof": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        }
+      },
+      "required": [
+        "operation_contract",
+        "replay_proof",
+        "failure_proof",
+        "recovery_proof",
+        "rollback_proof",
+        "native_read_back_proof"
+      ],
+      "type": "object"
+    },
+    "ResponsibilityRequestFramerV1": {
+      "additionalProperties": false,
+      "properties": {
+        "actor": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "authority_scope": {
+          "$ref": "#/$defs/WorkspaceAuthorityScopeId"
+        },
+        "owner": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        }
+      },
+      "required": [
+        "actor",
+        "owner",
+        "authority_scope"
+      ],
+      "type": "object"
+    },
+    "ResponsibilityResidenceClassV1": {
+      "oneOf": [
+        {
+          "const": "package",
+          "type": "string"
+        },
+        {
+          "const": "normative_pack",
+          "type": "string"
+        },
+        {
+          "const": "native_application",
+          "type": "string"
+        },
+        {
+          "const": "configuration",
+          "type": "string"
+        },
+        {
+          "const": "reference",
+          "type": "string"
+        }
+      ]
+    },
+    "ResponsibilityResidenceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "class": {
+          "$ref": "#/$defs/ResponsibilityResidenceClassV1"
+        },
+        "owner": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        },
+        "resource": {
+          "$ref": "#/$defs/WorkspaceResourceId"
+        }
+      },
+      "required": [
+        "class",
+        "resource",
+        "owner"
+      ],
+      "type": "object"
+    },
+    "ResponsibilitySafeFailureV1": {
+      "oneOf": [
+        {
+          "const": "deny",
+          "type": "string"
+        },
+        {
+          "const": "wait",
+          "type": "string"
+        },
+        {
+          "const": "degrade",
+          "type": "string"
+        },
+        {
+          "const": "remain_native",
+          "type": "string"
+        },
+        {
+          "const": "compensate",
+          "type": "string"
+        },
+        {
+          "const": "owner_escalation",
+          "type": "string"
+        }
+      ]
+    },
+    "ResponsibilitySilenceBoundaryV1": {
+      "additionalProperties": false,
+      "properties": {
+        "silent_surfaces": {
+          "items": {
+            "$ref": "#/$defs/ResponsibilitySilenceClassV1"
+          },
+          "maxItems": 3,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "silent_surfaces"
+      ],
+      "type": "object"
+    },
+    "ResponsibilitySilenceClassV1": {
+      "oneOf": [
+        {
+          "const": "communication",
+          "type": "string"
+        },
+        {
+          "const": "accountable_work",
+          "type": "string"
+        },
+        {
+          "const": "relationship_state",
+          "type": "string"
+        }
+      ]
+    },
+    "ResponsibilityStructuralSelectionV1": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "$ref": "#/$defs/StructuralObjectKindV1"
+        },
+        "selection": {
+          "$ref": "#/$defs/AttributableAnswerForWorkspaceResourceId"
+        }
+      },
+      "required": [
+        "kind",
+        "selection"
+      ],
+      "type": "object"
+    },
+    "ResponsibilityTriggerV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "cadence": {
+              "$ref": "#/$defs/WorkspaceResourceId"
+            },
+            "kind": {
+              "const": "recurring_cadence",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "cadence"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "event": {
+              "$ref": "#/$defs/WorkspaceResourceId"
+            },
+            "kind": {
+              "const": "owner_event",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "event"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "event": {
+              "$ref": "#/$defs/WorkspaceResourceId"
+            },
+            "kind": {
+              "const": "native_event",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "event"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "bounded_request",
+              "type": "string"
+            },
+            "request_contract": {
+              "$ref": "#/$defs/WorkspaceResourceId"
+            }
+          },
+          "required": [
+            "kind",
+            "request_contract"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "ResponsibilityVerbId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "StructuralObjectKindV1": {
+      "oneOf": [
+        {
+          "const": "logical_organization",
+          "type": "string"
+        },
+        {
+          "const": "stable_role",
+          "type": "string"
+        },
+        {
+          "const": "occupant_provider",
+          "type": "string"
+        },
+        {
+          "const": "directional_service_contract",
+          "type": "string"
+        },
+        {
+          "const": "accountable_work_projection",
+          "type": "string"
+        },
+        {
+          "const": "communication_projection",
+          "type": "string"
+        },
+        {
+          "const": "relationship_projection",
+          "type": "string"
+        },
+        {
+          "const": "native_application",
+          "type": "string"
+        },
+        {
+          "const": "package",
+          "type": "string"
+        },
+        {
+          "const": "normative_pack",
+          "type": "string"
+        },
+        {
+          "const": "reference_only",
+          "type": "string"
+        }
+      ]
+    },
+    "WorkspaceAuthorityCeilingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "permitted": {
+          "items": {
+            "$ref": "#/$defs/WorkspaceAuthorityScopeId"
+          },
+          "maxItems": 1024,
+          "minItems": 0,
+          "type": "array"
+        }
+      },
+      "required": [
+        "permitted"
+      ],
+      "type": "object"
+    },
+    "WorkspaceAuthorityScopeId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceControllerCeilingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "permitted": {
+          "items": {
+            "$ref": "#/$defs/WorkspaceControllerScopeId"
+          },
+          "maxItems": 1024,
+          "minItems": 0,
+          "type": "array"
+        }
+      },
+      "required": [
+        "permitted"
+      ],
+      "type": "object"
+    },
+    "WorkspaceControllerScopeId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceDerivationSourceId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceEffectCeilingV1": {
+      "oneOf": [
+        {
+          "const": "none",
+          "type": "string"
+        },
+        {
+          "const": "read",
+          "type": "string"
+        },
+        {
+          "const": "mutate",
+          "type": "string"
+        }
+      ]
+    },
+    "WorkspaceExportId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceModuleId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceNamespaceId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspacePolicyCeilingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "authorities": {
+          "$ref": "#/$defs/WorkspaceAuthorityCeilingV1"
+        },
+        "controllers": {
+          "$ref": "#/$defs/WorkspaceControllerCeilingV1"
+        },
+        "disclosure": {
+          "$ref": "#/$defs/DisclosureCeilingV1"
+        },
+        "effect": {
+          "$ref": "#/$defs/WorkspaceEffectCeilingV1"
+        },
+        "model_use_permitted": {
+          "type": "boolean"
+        },
+        "retention_seconds": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "rights": {
+          "$ref": "#/$defs/WorkspaceRightsCeilingV1"
+        }
+      },
+      "required": [
+        "disclosure",
+        "effect",
+        "model_use_permitted",
+        "retention_seconds",
+        "rights",
+        "controllers",
+        "authorities"
+      ],
+      "type": "object"
+    },
+    "WorkspaceReleaseId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceResourceId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceRightId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceRightsCeilingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "permitted": {
+          "items": {
+            "$ref": "#/$defs/WorkspaceRightId"
+          },
+          "maxItems": 1024,
+          "minItems": 0,
+          "type": "array"
+        }
+      },
+      "required": [
+        "permitted"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/responsibility-derivation.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "adopter_module": {
+      "$ref": "#/$defs/AttributableAnswerForResponsibilityAdopterModuleV1"
+    },
+    "ceilings": {
+      "$ref": "#/$defs/AttributableAnswerForResponsibilityCeilingsV1"
+    },
+    "consumer_acceptance": {
+      "$ref": "#/$defs/AttributableAnswerForConsumerAcceptanceRequirementV1"
+    },
+    "derivation_id": {
+      "$ref": "#/$defs/ResponsibilityDerivationId"
+    },
+    "direct_path": {
+      "$ref": "#/$defs/AttributableAnswerForResponsibilityDirectPathV1"
+    },
+    "genealogy_links": {
+      "items": {
+        "$ref": "#/$defs/ResponsibilityGenealogyLinkV1"
+      },
+      "maxItems": 4096,
+      "type": "array"
+    },
+    "incumbent": {
+      "$ref": "#/$defs/AttributableAnswerForResponsibilityIncumbentV1"
+    },
+    "lawful_silence": {
+      "$ref": "#/$defs/AttributableAnswerForResponsibilitySilenceBoundaryV1"
+    },
+    "lifecycle": {
+      "$ref": "#/$defs/ResponsibilityDerivationLifecycleV1"
+    },
+    "native_owner": {
+      "$ref": "#/$defs/AttributableAnswerForResponsibilityNativeOwnerV1"
+    },
+    "native_projections": {
+      "items": {
+        "$ref": "#/$defs/ResponsibilityNativeProjectionV1"
+      },
+      "maxItems": 1024,
+      "type": "array"
+    },
+    "native_result": {
+      "$ref": "#/$defs/AttributableAnswerForNativeReadBackRequirementV1"
+    },
+    "pale_settlement": {
+      "$ref": "#/$defs/AttributableAnswerForPaleSettlementRequirementV1"
+    },
+    "placement": {
+      "$ref": "#/$defs/AttributableAnswerForResponsibilityPlacementV1"
+    },
+    "provenance": {
+      "$ref": "#/$defs/ResponsibilityAttributionV1"
+    },
+    "provider_acceptance": {
+      "$ref": "#/$defs/AttributableAnswerForProviderAcceptanceRequirementV1"
+    },
+    "provider_completion": {
+      "$ref": "#/$defs/AttributableAnswerForProviderCompletionRequirementV1"
+    },
+    "publisher_module": {
+      "$ref": "#/$defs/AttributableAnswerForResponsibilityPublisherModuleV1"
+    },
+    "readiness": {
+      "$ref": "#/$defs/AttributableAnswerForResponsibilityReadinessV1"
+    },
+    "request_framer": {
+      "$ref": "#/$defs/AttributableAnswerForResponsibilityRequestFramerV1"
+    },
+    "residence": {
+      "items": {
+        "$ref": "#/$defs/ResponsibilityResidenceV1"
+      },
+      "maxItems": 1024,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "responsibility": {
+      "$ref": "#/$defs/AttributableAnswerForBoundedResponsibilityV1"
+    },
+    "safe_failure": {
+      "$ref": "#/$defs/AttributableAnswerForResponsibilitySafeFailureV1"
+    },
+    "schema": {
+      "const": "pale/responsibility-derivation.v1",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "structural_objects": {
+      "items": {
+        "$ref": "#/$defs/ResponsibilityStructuralSelectionV1"
+      },
+      "maxItems": 11,
+      "minItems": 11,
+      "type": "array"
+    },
+    "trigger": {
+      "$ref": "#/$defs/AttributableAnswerForResponsibilityTriggerV1"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_version",
+    "derivation_id",
+    "lifecycle",
+    "provenance",
+    "responsibility",
+    "native_owner",
+    "trigger",
+    "placement",
+    "structural_objects",
+    "request_framer",
+    "provider_completion",
+    "provider_acceptance",
+    "consumer_acceptance",
+    "native_result",
+    "pale_settlement",
+    "lawful_silence",
+    "publisher_module",
+    "adopter_module",
+    "ceilings",
+    "incumbent",
+    "readiness",
+    "safe_failure",
+    "direct_path",
+    "residence",
+    "native_projections",
+    "genealogy_links"
+  ],
+  "title": "responsibility-derivation.v1",
+  "type": "object"
+}

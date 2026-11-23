@@ -1,0 +1,193 @@
+{
+  "$defs": {
+    "ActionEffect": {
+      "oneOf": [
+        {
+          "const": "compute",
+          "type": "string"
+        }
+      ]
+    },
+    "ActionReceipt": {
+      "additionalProperties": false,
+      "properties": {
+        "action_id": {
+          "pattern": "^pale\\.compute\\.[a-z0-9-]+$",
+          "type": "string"
+        },
+        "action_version": {
+          "const": 1,
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "contract_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "receipt_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "request_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "result_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "schema": {
+          "const": "pale/action-receipt.v1",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": 1,
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema",
+        "schema_version",
+        "action_id",
+        "action_version",
+        "contract_digest",
+        "request_digest",
+        "result_digest",
+        "receipt_digest"
+      ],
+      "type": "object"
+    },
+    "ActionRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "action_id": {
+          "pattern": "^pale\\.compute\\.[a-z0-9-]+$",
+          "type": "string"
+        },
+        "action_version": {
+          "const": 1,
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "contract_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "effect": {
+          "$ref": "#/$defs/ActionEffect"
+        },
+        "input": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/action-input.v1.json"
+        },
+        "request_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "schema": {
+          "const": "pale/action-request.v1",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": 1,
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema",
+        "schema_version",
+        "action_id",
+        "action_version",
+        "contract_digest",
+        "effect",
+        "input",
+        "request_digest"
+      ],
+      "type": "object"
+    },
+    "ActionResult": {
+      "additionalProperties": false,
+      "properties": {
+        "action_id": {
+          "pattern": "^pale\\.compute\\.[a-z0-9-]+$",
+          "type": "string"
+        },
+        "action_version": {
+          "const": 1,
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "contract_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "output": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/action-output.v1.json"
+        },
+        "request_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "result_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "schema": {
+          "const": "pale/action-result.v1",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": 1,
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema",
+        "schema_version",
+        "action_id",
+        "action_version",
+        "contract_digest",
+        "request_digest",
+        "output",
+        "result_digest"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/action-execution.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "receipt": {
+      "$ref": "#/$defs/ActionReceipt"
+    },
+    "request": {
+      "$ref": "#/$defs/ActionRequest"
+    },
+    "result": {
+      "$ref": "#/$defs/ActionResult"
+    },
+    "schema": {
+      "const": "pale/action-execution.v1",
+      "type": "string"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_sha256",
+    "schema_version",
+    "request",
+    "result",
+    "receipt"
+  ],
+  "title": "action-execution.v1",
+  "type": "object"
+}

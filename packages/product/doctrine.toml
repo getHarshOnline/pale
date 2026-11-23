@@ -1,0 +1,14 @@
+[doctrine]
+schema_version = 1
+
+[[doctrine.entry]]
+id = "product-lens"
+description = "Find the need behind a product request and compare the alternatives."
+doctrine = "need-method.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "product-capability"
+description = "Define what a product must enable before choosing how to build it."
+doctrine = "capability-method.md"
+placement = "operation_procedure"

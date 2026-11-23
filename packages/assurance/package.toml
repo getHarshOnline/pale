@@ -1,0 +1,51 @@
+[package]
+id = "pale.assurance"
+version = "0.2.0"
+schema_version = 1
+title = "Assurance"
+description = "Check which rules apply, review proposals and financial research, and assess data use, consent, registers and governance evidence."
+compatible_compilers = ["pale-surface@1"]
+dependencies = [{ id = "pale.research", version = "0.2.0" }]
+sources = [
+  { path = "calculation.md", role = "declaration" },
+  { path = "data/website.md", role = "declaration" },
+  { path = "data.md", role = "declaration" },
+  { path = "governance.md", role = "declaration" },
+  { path = "permission.md", role = "declaration" },
+  { path = "register.md", role = "declaration" },
+  { path = "rule-proposal.md", role = "declaration" },
+  { path = "rules.md", role = "declaration" },
+  { path = "INDEX.md", role = "documentation" },
+  { path = "governance-evidence.md", role = "documentation" },
+  { path = "register-reconciliation.md", role = "documentation" },
+  { path = "doctrine.toml", role = "documentation" },
+  { path = "applicability.md", role = "documentation" },
+  { path = "proposal-verification.md", role = "documentation" },
+  { path = "finance-invocation.md", role = "documentation" },
+  { path = "data-operation.md", role = "documentation" },
+  { path = "consent.md", role = "documentation" },
+  { path = "operations.toml", role = "documentation" },
+  { path = "finance-research.md", role = "documentation" },
+  { path = "proposal-review.md", role = "documentation" },
+  { path = "preflight.md", role = "documentation" },
+  { path = "website-review.md", role = "documentation" },
+  { path = "consent-review.md", role = "documentation" },
+]
+resources = [
+  { id = "calculation", kind = "doctrine", definition_source = "calculation.md", exposure = "exported" },
+  { id = "calculation", kind = "operation", definition_source = "calculation.md", exposure = "exported" },
+  { id = "data/website", kind = "operation", definition_source = "data/website.md", exposure = "exported" },
+  { id = "data", kind = "doctrine", definition_source = "data.md", exposure = "exported" },
+  { id = "governance", kind = "operation", definition_source = "governance.md", exposure = "exported" },
+  { id = "permission", kind = "doctrine", definition_source = "permission.md", exposure = "exported" },
+  { id = "permission", kind = "operation", definition_source = "permission.md", exposure = "exported" },
+  { id = "register", kind = "doctrine", definition_source = "register.md", exposure = "exported" },
+  { id = "register", kind = "operation", definition_source = "register.md", exposure = "exported" },
+  { id = "rule-proposal", kind = "doctrine", definition_source = "rule-proposal.md", exposure = "exported" },
+  { id = "rule-proposal", kind = "operation", definition_source = "rule-proposal.md", exposure = "exported" },
+  { id = "rules", kind = "doctrine", definition_source = "rules.md", exposure = "exported" },
+  { id = "rules", kind = "operation", definition_source = "rules.md", exposure = "exported" },
+]
+
+[license]
+spdx = "AGPL-3.0-or-later"

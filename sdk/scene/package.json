@@ -1,0 +1,70 @@
+{
+  "name": "@rtepl/pale-scene",
+  "version": "0.0.1",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/getHarshOnline/pale.git",
+    "directory": "sdk/scene"
+  },
+  "author": "Harsh Joshi",
+  "license": "AGPL-3.0-or-later",
+  "description": "Compile Pale inspection results into renderer-neutral scene geometry.",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./organization": {
+      "types": "./dist/organization.d.ts",
+      "default": "./dist/organization.js"
+    },
+    "./change": {
+      "types": "./dist/change.d.ts",
+      "default": "./dist/change.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "tools/build.mjs",
+    "tools/declaration-names.mjs",
+    "tools/qualify-performance.mjs",
+    "tsconfig.json",
+    "LICENSE",
+    "README.md",
+    "third-party/elkjs/LICENSE.md",
+    "third-party/paper/LICENSE.txt"
+  ],
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "test": "npm run test:available",
+    "test:available": "npm run build && node --test --test-isolation=none --test-concurrency=1 tests/build-boundary.test.cjs tests/performance-qualification.test.cjs tests/public-errors.test.cjs tests/scene-contacts.test.cjs tests/scene-geometry.test.cjs tests/scene-worker.test.cjs",
+    "test:recipient": "npm run build && node --test --test-isolation=none --test-concurrency=1 tests/scene-budget-generation.test.cjs tests/scene-change-intake.test.cjs tests/scene-coverage.test.cjs tests/scene-generation.test.cjs tests/scene-organization.test.cjs tests/scene-profile-association.test.cjs tests/scene-topology.test.cjs",
+    "test:package": "node tests/package-consumer.mjs",
+    "qualify:performance": "npm run build && node tools/qualify-performance.mjs"
+  },
+  "dependencies": {
+    "elkjs": "0.12.0",
+    "paper": "0.12.18"
+  },
+  "peerDependencies": {
+    "@rtepl/pale": "0.0.1"
+  },
+  "peerDependenciesMeta": {
+    "@rtepl/pale": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "typescript": "5.9.2",
+    "@types/node": "20.17.0",
+    "undici-types": "6.19.8"
+  },
+  "engines": {
+    "node": ">=24.16.0"
+  }
+}

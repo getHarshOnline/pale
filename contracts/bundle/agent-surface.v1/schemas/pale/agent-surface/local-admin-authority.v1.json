@@ -1,0 +1,290 @@
+{
+  "$defs": {
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "Ed25519PublicKeyV1": {
+      "pattern": "^[A-Za-z0-9_-]{42}[AEIMQUYcgkosw048]$",
+      "type": "string"
+    },
+    "LocalAdminAuthorityEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "LocalAdminAuthorityIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "LocalAdminOperationV1": {
+      "oneOf": [
+        {
+          "const": "rotate_principal_key",
+          "type": "string"
+        },
+        {
+          "const": "recover_principal_key",
+          "type": "string"
+        },
+        {
+          "const": "update_principal_recovery_policy",
+          "type": "string"
+        },
+        {
+          "const": "rotate_admin_authority",
+          "type": "string"
+        },
+        {
+          "const": "rotate_producer_incarnation_authority",
+          "type": "string"
+        },
+        {
+          "const": "issue_node_delegation",
+          "type": "string"
+        },
+        {
+          "const": "revoke_node_delegation",
+          "type": "string"
+        },
+        {
+          "const": "rotate_checkpoint_signer",
+          "type": "string"
+        },
+        {
+          "const": "rotate_deployment_runtime_authority",
+          "type": "string"
+        },
+        {
+          "const": "issue_owner_record_signing_authority",
+          "type": "string"
+        },
+        {
+          "const": "rotate_owner_record_signing_authority",
+          "type": "string"
+        },
+        {
+          "const": "retire_owner_record_signing_authority",
+          "type": "string"
+        },
+        {
+          "const": "allocate_producer_incarnation",
+          "type": "string"
+        },
+        {
+          "const": "retire_producer_incarnation",
+          "type": "string"
+        },
+        {
+          "const": "create_local_route",
+          "type": "string"
+        },
+        {
+          "const": "advance_local_route",
+          "type": "string"
+        },
+        {
+          "const": "propose_deployment",
+          "type": "string"
+        },
+        {
+          "const": "accept_deployment",
+          "type": "string"
+        },
+        {
+          "const": "revoke_deployment_acceptance",
+          "type": "string"
+        },
+        {
+          "const": "finalize_deployment",
+          "type": "string"
+        },
+        {
+          "const": "issue_session_grant",
+          "type": "string"
+        },
+        {
+          "const": "revoke_session_grant",
+          "type": "string"
+        },
+        {
+          "const": "advance_execution_fence",
+          "type": "string"
+        },
+        {
+          "const": "issue_apply_authorization",
+          "type": "string"
+        },
+        {
+          "const": "create_route_binding",
+          "type": "string"
+        },
+        {
+          "const": "advance_route_binding",
+          "type": "string"
+        }
+      ]
+    },
+    "LocalAdminSubjectIdentityV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "PrincipalAuthorityStateV1": {
+      "oneOf": [
+        {
+          "const": "active",
+          "type": "string"
+        },
+        {
+          "const": "retired",
+          "type": "string"
+        }
+      ]
+    },
+    "PrincipalKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "SigningKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/local-admin-authority.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "admin_authority_id": {
+      "$ref": "#/$defs/LocalAdminAuthorityIdV1"
+    },
+    "allowed_operations": {
+      "items": {
+        "$ref": "#/$defs/LocalAdminOperationV1"
+      },
+      "type": "array"
+    },
+    "authority_epoch": {
+      "$ref": "#/$defs/LocalAdminAuthorityEpochV1"
+    },
+    "canonical_admin_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "expires_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "issued_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "issuer_key_epoch": {
+      "$ref": "#/$defs/PrincipalKeyEpochV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "issuer_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "previous_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "previous_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "principal_record_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "principal_record_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "recovery_policy_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "recovery_policy_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/local-admin-authority.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    },
+    "state": {
+      "$ref": "#/$defs/PrincipalAuthorityStateV1"
+    },
+    "subject_identity": {
+      "$ref": "#/$defs/LocalAdminSubjectIdentityV1"
+    },
+    "subject_key_epoch": {
+      "$ref": "#/$defs/SigningKeyEpochV1"
+    },
+    "subject_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "subject_public_key": {
+      "$ref": "#/$defs/Ed25519PublicKeyV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "admin_authority_id",
+    "principal_id",
+    "principal_record_ref",
+    "principal_record_sha256",
+    "recovery_policy_ref",
+    "recovery_policy_sha256",
+    "subject_identity",
+    "subject_key_id",
+    "subject_key_epoch",
+    "subject_public_key",
+    "allowed_operations",
+    "state",
+    "issued_at",
+    "expires_at",
+    "authority_epoch",
+    "issuer_principal_id",
+    "issuer_key_id",
+    "issuer_key_epoch",
+    "canonical_admin_authority_sha256",
+    "signature"
+  ],
+  "title": "local-admin-authority.v1",
+  "type": "object"
+}

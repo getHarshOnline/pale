@@ -1,0 +1,35 @@
+{
+  "$id": "https://www.rawthoughts.in/pale/schemas/native-action-catalog.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "contracts": {
+      "items": {
+        "$ref": "https://www.rawthoughts.in/pale/schemas/action-contract.v1.json"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "schema": {
+      "const": "pale/native-action-catalog.v1",
+      "type": "string"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_sha256",
+    "schema_version",
+    "contracts"
+  ],
+  "title": "native-action-catalog.v1",
+  "type": "object"
+}

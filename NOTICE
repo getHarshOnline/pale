@@ -1,0 +1,39 @@
+Pale
+Copyright © 2026 RawThoughts Enterprises Private Limited.
+Author and originator: Harsh Joshi.
+
+Original implementation and Packages: AGPL-3.0-or-later (LICENSE).
+Generated contracts and the thin language bindings (contracts/, sdk/go,
+sdk/js, sdk/python and sdk/wasm): Apache-2.0 (contracts/LICENSE), where their
+manifests identify it. Apache-2.0 on a contract or binding does not move
+Pale's compiler, admission, diagnostic, graph, runtime, reconciliation or
+effect semantics out of their AGPL-3.0-or-later source homes. A binding that
+links or embeds the Pale engine leaves the engine under AGPL-3.0-or-later and
+does not relicense the combined artifact. Third-party dependencies retain their
+own terms.
+
+The Packages adapt ECC at 591ab5cbd3f2f65860ea91c226e410b1502c8e2e,
+Copyright (c) 2026 Affaan Mustafa, and ponytail at
+16f29800fd2681bdf24f3eb4ccffe38be3baec6b,
+Copyright (c) 2026 DietrichGebert, both under the MIT License.
+Their complete notices are in THIRD_PARTY_LICENSES/ECC-LICENSE and
+THIRD_PARTY_LICENSES/PONYTAIL-LICENSE. We read the two repositories at those
+commits (3,378 and 156 files, 3,534 in all) and sorted their 564 components:
+126 were rewritten into Pale's own guides, 65 were folded into other guides,
+and the other 373 were not carried. Further adapted methods and their required
+notices are identified in packages/NOTICE and beside their sources.
+
+The scene compiler in sdk/scene uses two upstream packages unchanged. Its Node
+layout adapter uses elkjs 0.12.0, which declares EPL-2.0 OR
+GPL-3.0-or-later and keeps its upstream copyright and secondary-license
+notices; its licence text is reproduced in
+sdk/scene/third-party/elkjs/LICENSE.md. Its contact adapter uses the Paper.js
+0.12.18 core under the MIT License, reproduced in
+sdk/scene/third-party/paper/LICENSE.txt, and loads no PaperScript, DOM or
+canvas implementation. The separate @rtepl/pale native peer keeps its own
+licences and notices.
+
+KaTeX's retained licence is THIRD_PARTY_LICENSES/KATEX-LICENSE. The release
+job generates each shipped artifact's dependency inventory with
+tools/generate_sbom.py and does not commit it; separately built components
+retain their own dependency notices.

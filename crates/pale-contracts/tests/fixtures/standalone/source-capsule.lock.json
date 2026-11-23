@@ -1,0 +1,9 @@
+{
+  "format": "pale-contract-source-capsule-lock.v1",
+  "proof_scope": "local_source_capsule_build_independence_only",
+  "cargo_lock_sha256": "aa87ab286bc6054a306a5df2e3b47bbd58f5b14df1be9bd03332a27f04b159c4",
+  "source_inventory_sha256": "e6d2e90d2d4a0b7ce44950c489e1234aea72584b83a9136506c6a0f38f0b6065",
+  "schema_count": 138,
+  "schema_manifest_sha256": "eb9b67b2d4d31f433bd805d20b490e139d98e313074a5082cdcbf0a5754894e8",
+  "schema_set_sha256": "7c43ad4a005b041ec6e233f99ba5246a32a9a1dd90bfc4c1449839e400b8d3f0"
+}

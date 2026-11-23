@@ -1,0 +1,101 @@
+[roles]
+schema_version = 1
+
+[[roles.role]]
+id = "code-work"
+description = "Understand a code change, fit it to its callers and check the whole result."
+doctrine = "code-work.md"
+doctrine_refs = [{ scope = "local", resource_id = "common" }]
+
+[[roles.role]]
+id = "code-reviewer"
+description = "Review a specific code change independently and report concrete failures with the evidence and severity each warrants."
+doctrine = "lenses/code-reviewer-entry.md"
+extends = [{ scope = "local", resource_id = "independent-reviewer" }]
+
+[[roles.role]]
+id = "security-reviewer"
+description = "Review whether untrusted input can reach a security failure, with attention to permission, secrets and existing protections."
+doctrine = "lenses/security-reviewer.md"
+doctrine_refs = [{ scope = "local", resource_id = "security-review" }]
+inherits_lenses = [{ scope = "local", resource_id = "code-reviewer" }]
+
+[[roles.role]]
+id = "build-error-resolver"
+description = "Independently find the cause of a failed build and propose the smallest correction supported by the source and diagnostics."
+doctrine = "lenses/build-error-resolver.md"
+
+[[roles.role]]
+id = "test-evidence-reviewer"
+description = "Independently check whether the tests would fail if the claimed behaviour were wrong."
+doctrine = "lenses/test-evidence-reviewer.md"
+doctrine_refs = [{ scope = "local", resource_id = "common" }]
+
+[[roles.role]]
+id = "zola-reviewer"
+description = "Find Zola ownership and rendering failures in configuration, content, templates, assets and generated output."
+doctrine = "lenses/zola-reviewer.md"
+applies_to = [{ scope = "local", resource_id = "zola" }]
+extends = [{ scope = "local", resource_id = "independent-reviewer" }]
+
+[[roles.role]]
+id = "rust-reviewer"
+description = "Find Rust ownership, error and concurrency failures with a reachable path or measured consequence."
+doctrine = "lenses/rust-reviewer.md"
+applies_to = [{ scope = "local", resource_id = "rust" }]
+extends = [{ scope = "local", resource_id = "independent-reviewer" }]
+
+[[roles.role]]
+id = "go-reviewer"
+description = "Find reachable Go failures in errors, cancellation, concurrency, input handling and resource use."
+doctrine = "lenses/go-reviewer.md"
+applies_to = [{ scope = "local", resource_id = "go" }]
+extends = [{ scope = "local", resource_id = "independent-reviewer" }]
+
+[[roles.role]]
+id = "python-reviewer"
+description = "Find Python failures in input handling, exceptions, resources, async work and data contracts."
+doctrine = "lenses/python-reviewer.md"
+applies_to = [{ scope = "local", resource_id = "python" }]
+extends = [{ scope = "local", resource_id = "independent-reviewer" }]
+
+[[roles.role]]
+id = "cpp-reviewer"
+description = "Find C++ lifetime, ownership and concurrency failures, with evidence for performance findings."
+doctrine = "lenses/cpp-reviewer.md"
+applies_to = [{ scope = "local", resource_id = "cpp" }]
+extends = [{ scope = "local", resource_id = "independent-reviewer" }]
+
+[[roles.role]]
+id = "java-reviewer"
+description = "Find Java service failures in permissions, concurrency, transactions, persistence and retries."
+doctrine = "lenses/java-reviewer.md"
+applies_to = [{ scope = "local", resource_id = "java" }]
+extends = [{ scope = "local", resource_id = "independent-reviewer" }]
+
+[[roles.role]]
+id = "typescript-reviewer"
+description = "Find JavaScript and TypeScript failures in runtime data, promises, input handling and module behaviour."
+doctrine = "lenses/typescript-reviewer.md"
+applies_to = [{ scope = "local", resource_id = "typescript" }]
+extends = [{ scope = "local", resource_id = "independent-reviewer" }]
+
+[[roles.role]]
+id = "react-reviewer"
+description = "Find React lifecycle, identity, server/client and interaction failures, with evidence for performance findings."
+doctrine = "lenses/react-reviewer.md"
+applies_to = [{ scope = "local", resource_id = "react" }]
+extends = [{ scope = "local", resource_id = "independent-reviewer" }]
+
+[[roles.role]]
+id = "vue-reviewer"
+description = "Find Vue reactivity, cleanup, server-rendering and interaction failures."
+doctrine = "lenses/vue-reviewer.md"
+applies_to = [{ scope = "local", resource_id = "vue" }]
+extends = [{ scope = "local", resource_id = "independent-reviewer" }]
+
+[[roles.archetype]]
+id = "independent-reviewer"
+description = "Read a specific change independently and explain what the code and its checks establish."
+doctrine = "lenses/code-reviewer.md"
+doctrine_refs = [{ scope = "local", resource_id = "review-method" }]

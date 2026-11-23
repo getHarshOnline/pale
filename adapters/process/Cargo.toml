@@ -1,0 +1,24 @@
+[package]
+name = "pale-adapter-process"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Executable verification, child-process supervision, host time and operating-system randomness for Pale."
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+getrandom = { workspace = true }
+pale-core = { path = "../../crates/pale-core" }
+pale-ports = { path = "../../crates/pale-ports" }
+
+[target.'cfg(unix)'.dependencies]
+rtepl-filesystem = { git = "https://github.com/getHarshOnline/rtepl-common.git", rev = "13060ae859f5820efd5641d5145563c8a0e1452e" }
+rustix = { workspace = true, features = ["process"] }
+
+[dev-dependencies]
+tempfile = { workspace = true }

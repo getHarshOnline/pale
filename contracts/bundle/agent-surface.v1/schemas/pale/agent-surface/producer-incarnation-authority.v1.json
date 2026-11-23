@@ -1,0 +1,168 @@
+{
+  "$defs": {
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "Ed25519PublicKeyV1": {
+      "pattern": "^[A-Za-z0-9_-]{42}[AEIMQUYcgkosw048]$",
+      "type": "string"
+    },
+    "PrincipalAuthorityStateV1": {
+      "oneOf": [
+        {
+          "const": "active",
+          "type": "string"
+        },
+        {
+          "const": "retired",
+          "type": "string"
+        }
+      ]
+    },
+    "PrincipalKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "ProducerIncarnationAuthorityEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "ProducerIncarnationAuthorityIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ProducerNamespaceV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "SigningKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/producer-incarnation-authority.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "authority_epoch": {
+      "$ref": "#/$defs/ProducerIncarnationAuthorityEpochV1"
+    },
+    "canonical_producer_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "expires_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "issued_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "issuer_key_epoch": {
+      "$ref": "#/$defs/PrincipalKeyEpochV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "issuer_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "permitted_producer_namespaces": {
+      "items": {
+        "$ref": "#/$defs/ProducerNamespaceV1"
+      },
+      "type": "array"
+    },
+    "predecessor_final_publication_frontier_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "predecessor_final_publication_frontier_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "previous_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "previous_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "producer_authority_id": {
+      "$ref": "#/$defs/ProducerIncarnationAuthorityIdV1"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/producer-incarnation-authority.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    },
+    "state": {
+      "$ref": "#/$defs/PrincipalAuthorityStateV1"
+    },
+    "subject_key_epoch": {
+      "$ref": "#/$defs/SigningKeyEpochV1"
+    },
+    "subject_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "subject_public_key": {
+      "$ref": "#/$defs/Ed25519PublicKeyV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "producer_authority_id",
+    "principal_id",
+    "subject_key_id",
+    "subject_key_epoch",
+    "subject_public_key",
+    "permitted_producer_namespaces",
+    "authority_epoch",
+    "state",
+    "issued_at",
+    "expires_at",
+    "issuer_principal_id",
+    "issuer_key_id",
+    "issuer_key_epoch",
+    "canonical_producer_authority_sha256",
+    "signature"
+  ],
+  "title": "producer-incarnation-authority.v1",
+  "type": "object"
+}

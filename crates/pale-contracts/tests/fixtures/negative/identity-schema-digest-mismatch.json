@@ -1,0 +1,10 @@
+{
+  "arch": "x86_64",
+  "durable_publication": "standard-sync-all",
+  "os": "linux",
+  "protocol": "pale.invalid-interface.v1",
+  "schema": "pale/surface-executable-identity.v1",
+  "schema_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "schema_version": 1,
+  "version": "0.0.1"
+}

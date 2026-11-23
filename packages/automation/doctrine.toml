@@ -1,0 +1,58 @@
+[doctrine]
+schema_version = 1
+
+[[doctrine.entry]]
+id = "workflow-effects"
+description = "Trace a workflow from request to recorded result, including retries and replay."
+doctrine = "effects.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "local", resource_id = "effects-deliver-and-reconnect" }, { scope = "local", resource_id = "effects-commit-and-retry" }, { scope = "local", resource_id = "effects-verify-the-route" }, { scope = "local", resource_id = "effects-rules-and-schedules" }]
+
+[[doctrine.entry]]
+id = "operator-review"
+description = "Check human-in-the-loop (HITL) decisions, usable reviews and the result actually applied."
+doctrine = "review.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "n8n-practice"
+description = "Check an n8n workflow before deployment and after failure."
+doctrine = "n8n-practice.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "local", resource_id = "workflow-effects" }]
+
+[[doctrine.entry]]
+id = "appsmith-practice"
+description = "Check an Appsmith application, its saved revision and the operator journey."
+doctrine = "appsmith-practice.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "local", resource_id = "operator-review" }]
+
+[[doctrine.entry]]
+id = "effects-deliver-and-reconnect"
+description = "Deliver committed occurrences and recover missing history."
+doctrine = "effects/deliver-and-reconnect.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "workflow-effects" }]
+
+[[doctrine.entry]]
+id = "effects-commit-and-retry"
+description = "Commit results once and retry from durable state."
+doctrine = "effects/commit-and-retry.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "workflow-effects" }]
+see_also = [{ scope = "external", resource = { package_id = "pale.model-work", resource_id = "cost" } }]
+
+[[doctrine.entry]]
+id = "effects-verify-the-route"
+description = "Check callbacks, destination identity and refreshed authentication."
+doctrine = "effects/verify-the-route.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "workflow-effects" }]
+
+[[doctrine.entry]]
+id = "effects-rules-and-schedules"
+description = "Check the rule applied, scheduled runs and replacement behaviour."
+doctrine = "effects/rules-and-schedules.md"
+placement = "standalone_judgment"
+requires = [{ scope = "local", resource_id = "workflow-effects" }]

@@ -1,0 +1,47 @@
+[package]
+name = "pale-js-native"
+version = "0.0.1"
+edition = "2021"
+rust-version = "1.94"
+authors = ["Harsh Joshi"]
+license = "Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/getHarshOnline/pale"
+description = "Node.js binding that lets JavaScript programs compile, inspect and review Pale configuration."
+publish = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[workspace]
+resolver = "2"
+
+[lints.rust]
+missing_docs = "deny"
+unsafe_code = "deny"
+unreachable_pub = "deny"
+
+[lints.clippy]
+doc_markdown = "deny"
+missing_errors_doc = "deny"
+missing_panics_doc = "deny"
+
+[lints.rustdoc]
+bare_urls = "deny"
+broken_intra_doc_links = "deny"
+invalid_codeblock_attributes = "deny"
+invalid_html_tags = "deny"
+private_intra_doc_links = "deny"
+
+[dependencies]
+pale-sdk = { version = "=0.0.1", features = ["native-local"] }
+napi = { version = "=3.12.2", default-features = false, features = ["napi8"] }
+napi-derive = { version = "=3.6.3", default-features = false, features = ["strict", "type-def"] }
+
+[build-dependencies]
+napi-build = "=2.4.1"
+
+[dev-dependencies]
+# Unit tests run outside Node, so resolve Node-API symbols dynamically only in
+# the test graph. Production bindings retain napi-rs's normal linked ABI.
+napi = { version = "=3.12.2", default-features = false, features = ["napi8", "dyn-symbols"] }

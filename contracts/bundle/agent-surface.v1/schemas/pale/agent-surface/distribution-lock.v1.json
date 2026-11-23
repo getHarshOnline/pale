@@ -1,0 +1,77 @@
+{
+  "$defs": {
+    "DistributionMeta": {
+      "additionalProperties": false,
+      "properties": {
+        "compiler": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema_manifest_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "schema_set_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "compiler",
+        "schema_manifest_sha256",
+        "schema_set_sha256"
+      ],
+      "type": "object"
+    },
+    "PackageIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageReleaseV1": {
+      "additionalProperties": false,
+      "properties": {
+        "content_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "id": {
+          "$ref": "#/$defs/PackageIdV1"
+        },
+        "version": {
+          "$ref": "#/$defs/PackageVersionV1"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "content_digest"
+      ],
+      "type": "object"
+    },
+    "PackageVersionV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$",
+      "type": "string"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/distribution-lock.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "distribution": {
+      "$ref": "#/$defs/DistributionMeta"
+    },
+    "package": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/PackageReleaseV1"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "distribution"
+  ],
+  "title": "distribution-lock.v1",
+  "type": "object"
+}

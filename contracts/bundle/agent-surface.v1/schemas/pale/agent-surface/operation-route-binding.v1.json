@@ -1,0 +1,169 @@
+{
+  "$defs": {
+    "ExecutionPathSelectionIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "ExecutionPathSelectionV1": {
+      "additionalProperties": false,
+      "properties": {
+        "experience_path_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "id": {
+          "$ref": "#/$defs/ExecutionPathSelectionIdV1"
+        }
+      },
+      "required": [
+        "id",
+        "experience_path_id"
+      ],
+      "type": "object"
+    },
+    "ExecutionPathWitnessV1": {
+      "additionalProperties": false,
+      "properties": {
+        "composition_plan_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "responsibility_path_identity": {
+          "$ref": "#/$defs/ResponsibilityPathIdentityV1"
+        },
+        "selection": {
+          "$ref": "#/$defs/ExecutionPathSelectionV1"
+        },
+        "terminal_provider_binding": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ProviderBindingRefV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "work_delegation_edge_ids": {
+          "items": {
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9._/-]+$",
+            "type": "string"
+          },
+          "maxItems": 256,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "selection",
+        "responsibility_path_identity",
+        "work_delegation_edge_ids",
+        "composition_plan_digest"
+      ],
+      "type": "object"
+    },
+    "LogicalRepositoryIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "ProviderBindingIdentityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_binding_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "provider_binding_sha256"
+      ],
+      "type": "object"
+    },
+    "ProviderBindingRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_binding_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "provider_binding_identity": {
+          "$ref": "#/$defs/ProviderBindingIdentityV1"
+        }
+      },
+      "required": [
+        "provider_binding_id",
+        "provider_binding_identity"
+      ],
+      "type": "object"
+    },
+    "ResponsibilityPathIdentityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "responsibility_path_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "responsibility_path_sha256"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/operation-route-binding.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "binding_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "catalog": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sealed-artifact.v1.json"
+    },
+    "catalog_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "execution_path_witness": {
+      "$ref": "#/$defs/ExecutionPathWitnessV1"
+    },
+    "profile_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "repository_id": {
+      "$ref": "#/$defs/LogicalRepositoryIdV1"
+    },
+    "schema": {
+      "const": "pale/operation-route-binding.v1",
+      "type": "string"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_sha256",
+    "schema_version",
+    "profile_digest",
+    "repository_id",
+    "execution_path_witness",
+    "catalog",
+    "catalog_digest",
+    "binding_digest"
+  ],
+  "title": "operation-route-binding.v1",
+  "type": "object"
+}

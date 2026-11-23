@@ -1,0 +1,7 @@
+[roles]
+schema_version = 1
+
+[[roles.role]]
+id = "seo-specialist"
+description = "Review current evidence for a defined search-visibility question."
+doctrine = "search-reviewer.md"

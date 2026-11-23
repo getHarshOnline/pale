@@ -1,0 +1,27 @@
+[stacks]
+schema_version = 1
+
+[[stacks.stack]]
+id = "hugging-face-hub"
+description = "Inspect model and dataset metadata through a permitted Hugging Face connection."
+doctrine_refs = [{ scope = "local", resource_id = "hugging-face-practice" }]
+
+[[stacks.stack.official_sources]]
+label = "Hub API endpoints"
+url = "https://huggingface.co/docs/hub/api"
+
+[[stacks.stack.official_sources]]
+label = "Hugging Face MCP and host setup"
+url = "https://huggingface.co/docs/hub/agents-mcp"
+
+[[stacks.stack.official_sources]]
+label = "Hugging Face agent skills"
+url = "https://huggingface.co/docs/hub/agents-skills"
+
+[[stacks.stack.official_sources]]
+label = "Revision-specific file reads"
+url = "https://huggingface.co/docs/huggingface_hub/guides/download"
+
+[[stacks.stack.official_sources]]
+label = "Gated access"
+url = "https://huggingface.co/docs/hub/models-gated"

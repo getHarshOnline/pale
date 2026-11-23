@@ -1,0 +1,37 @@
+[operations]
+schema_version = 1
+archetype = []
+
+[[operations.operation]]
+id = "review"
+description = "Inspect one named bounded capability."
+doctrine = "review.md"
+extends = []
+doctrine_refs = []
+roles = []
+outputs = []
+
+[[operations.operation.capability_requirements]]
+id = "first"
+description = "Read the selected evidence."
+capability = "read"
+effect_class = "compute"
+failure_posture = "fail_closed"
+
+[operations.operation.capability_requirements.policy]
+kind = "required_block"
+
+[[operations.operation.capability_requirements]]
+id = "second"
+description = "Read the selected evidence."
+capability = "read"
+effect_class = "compute"
+failure_posture = "fail_closed"
+
+[operations.operation.capability_requirements.policy]
+kind = "required_block"
+
+[operations.operation.capability_policy]
+scope = "local"
+resource_id = "review-policy"
+

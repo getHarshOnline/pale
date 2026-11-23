@@ -1,0 +1,676 @@
+{
+  "$defs": {
+    "CompositionGraphKindV1": {
+      "oneOf": [
+        {
+          "const": "provider_compatibility",
+          "type": "string"
+        },
+        {
+          "const": "work_delegation",
+          "type": "string"
+        },
+        {
+          "const": "ui_embedding",
+          "type": "string"
+        },
+        {
+          "const": "plugin_dependency",
+          "type": "string"
+        },
+        {
+          "const": "native_application_call",
+          "type": "string"
+        },
+        {
+          "const": "terminal_leaf",
+          "type": "string"
+        },
+        {
+          "const": "observation_settlement",
+          "type": "string"
+        }
+      ]
+    },
+    "CompositionReasonPathV1": {
+      "additionalProperties": false,
+      "properties": {
+        "path_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "reasons": {
+          "items": {
+            "$ref": "#/$defs/CompositionReasonStepV1"
+          },
+          "maxItems": 1024,
+          "minItems": 3,
+          "type": "array"
+        }
+      },
+      "required": [
+        "path_id",
+        "reasons"
+      ],
+      "type": "object"
+    },
+    "CompositionReasonStepV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "contract_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            },
+            "reason": {
+              "const": "origin_receipt",
+              "type": "string"
+            }
+          },
+          "required": [
+            "reason",
+            "contract_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "contract_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            },
+            "reason": {
+              "const": "entry_contract",
+              "type": "string"
+            }
+          },
+          "required": [
+            "reason",
+            "contract_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "contract_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            },
+            "reason": {
+              "const": "responsibility_contract",
+              "type": "string"
+            }
+          },
+          "required": [
+            "reason",
+            "contract_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "binding_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            },
+            "reason": {
+              "const": "provider_binding",
+              "type": "string"
+            }
+          },
+          "required": [
+            "reason",
+            "binding_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "edge_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            },
+            "reason": {
+              "const": "delegation_edge",
+              "type": "string"
+            }
+          },
+          "required": [
+            "reason",
+            "edge_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "contract_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            },
+            "reason": {
+              "const": "termination_contract",
+              "type": "string"
+            }
+          },
+          "required": [
+            "reason",
+            "contract_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "contract_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            },
+            "reason": {
+              "const": "settlement_contract",
+              "type": "string"
+            }
+          },
+          "required": [
+            "reason",
+            "contract_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "contract_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9._/-]+$",
+              "type": "string"
+            },
+            "reason": {
+              "const": "continuity_contract",
+              "type": "string"
+            }
+          },
+          "required": [
+            "reason",
+            "contract_id"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "ExperienceCompositionDeclarationsV1": {
+      "additionalProperties": false,
+      "properties": {
+        "continuity_contracts": {
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/continuity-contract.v1.json"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "edge_contracts": {
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/composition-edge.v1.json"
+          },
+          "maxItems": 4096,
+          "type": "array"
+        },
+        "entry_contracts": {
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/entry-contract.v1.json"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "participant_provider_manifests": {
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/participant-provider-manifest.v1.json"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "provider_bindings": {
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/provider-binding.v1.json"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "request_translations": {
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/request-translation.v1.json"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "responsibility_contracts": {
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/responsibility-contract.v1.json"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "result_translations": {
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/result-translation.v1.json"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "selected_experience_paths": {
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/experience-path.v1.json"
+          },
+          "maxItems": 256,
+          "type": "array"
+        },
+        "settlement_contracts": {
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/settlement-contract.v1.json"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "termination_contracts": {
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/termination-contract.v1.json"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        }
+      },
+      "required": [
+        "responsibility_contracts",
+        "participant_provider_manifests",
+        "provider_bindings",
+        "entry_contracts",
+        "request_translations",
+        "result_translations",
+        "termination_contracts",
+        "settlement_contracts",
+        "continuity_contracts",
+        "edge_contracts",
+        "selected_experience_paths"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/experience-composition-plan.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "declarations": {
+      "$ref": "#/$defs/ExperienceCompositionDeclarationsV1"
+    },
+    "delegation_graph": {
+      "allOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "edges": {
+              "items": {
+                "maxLength": 1024,
+                "minLength": 3,
+                "type": "string"
+              },
+              "maxItems": 4096,
+              "type": "array",
+              "uniqueItems": true
+            },
+            "kind": {
+              "$ref": "#/$defs/CompositionGraphKindV1"
+            },
+            "nodes": {
+              "items": {
+                "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/ParticipantRefV1"
+              },
+              "maxItems": 1024,
+              "type": "array",
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "kind",
+            "nodes",
+            "edges"
+          ],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "kind": {
+              "const": "work_delegation"
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "evidence_settlement_graph": {
+      "allOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "edges": {
+              "items": {
+                "maxLength": 1024,
+                "minLength": 3,
+                "type": "string"
+              },
+              "maxItems": 4096,
+              "type": "array",
+              "uniqueItems": true
+            },
+            "kind": {
+              "$ref": "#/$defs/CompositionGraphKindV1"
+            },
+            "nodes": {
+              "items": {
+                "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/ParticipantRefV1"
+              },
+              "maxItems": 1024,
+              "type": "array",
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "kind",
+            "nodes",
+            "edges"
+          ],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "kind": {
+              "const": "observation_settlement"
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "native_application_graph": {
+      "allOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "edges": {
+              "items": {
+                "maxLength": 1024,
+                "minLength": 3,
+                "type": "string"
+              },
+              "maxItems": 4096,
+              "type": "array",
+              "uniqueItems": true
+            },
+            "kind": {
+              "$ref": "#/$defs/CompositionGraphKindV1"
+            },
+            "nodes": {
+              "items": {
+                "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/ParticipantRefV1"
+              },
+              "maxItems": 1024,
+              "type": "array",
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "kind",
+            "nodes",
+            "edges"
+          ],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "kind": {
+              "const": "native_application_call"
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "plan_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "plugin_dependency_graph": {
+      "allOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "edges": {
+              "items": {
+                "maxLength": 1024,
+                "minLength": 3,
+                "type": "string"
+              },
+              "maxItems": 4096,
+              "type": "array",
+              "uniqueItems": true
+            },
+            "kind": {
+              "$ref": "#/$defs/CompositionGraphKindV1"
+            },
+            "nodes": {
+              "items": {
+                "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/ParticipantRefV1"
+              },
+              "maxItems": 1024,
+              "type": "array",
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "kind",
+            "nodes",
+            "edges"
+          ],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "kind": {
+              "const": "plugin_dependency"
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "provider_compatibility_graph": {
+      "allOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "edges": {
+              "items": {
+                "maxLength": 1024,
+                "minLength": 3,
+                "type": "string"
+              },
+              "maxItems": 4096,
+              "type": "array",
+              "uniqueItems": true
+            },
+            "kind": {
+              "$ref": "#/$defs/CompositionGraphKindV1"
+            },
+            "nodes": {
+              "items": {
+                "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/ParticipantRefV1"
+              },
+              "maxItems": 1024,
+              "type": "array",
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "kind",
+            "nodes",
+            "edges"
+          ],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "kind": {
+              "const": "provider_compatibility"
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "reason_paths": {
+      "items": {
+        "$ref": "#/$defs/CompositionReasonPathV1"
+      },
+      "maxItems": 256,
+      "type": "array"
+    },
+    "schema": {
+      "const": "pale/experience-composition-plan.v1",
+      "type": "string"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "terminal_leaf_graph": {
+      "allOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "edges": {
+              "items": {
+                "maxLength": 1024,
+                "minLength": 3,
+                "type": "string"
+              },
+              "maxItems": 4096,
+              "type": "array",
+              "uniqueItems": true
+            },
+            "kind": {
+              "$ref": "#/$defs/CompositionGraphKindV1"
+            },
+            "nodes": {
+              "items": {
+                "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/ParticipantRefV1"
+              },
+              "maxItems": 1024,
+              "type": "array",
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "kind",
+            "nodes",
+            "edges"
+          ],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "kind": {
+              "const": "terminal_leaf"
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "ui_embedding_graph": {
+      "allOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "edges": {
+              "items": {
+                "maxLength": 1024,
+                "minLength": 3,
+                "type": "string"
+              },
+              "maxItems": 4096,
+              "type": "array",
+              "uniqueItems": true
+            },
+            "kind": {
+              "$ref": "#/$defs/CompositionGraphKindV1"
+            },
+            "nodes": {
+              "items": {
+                "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/ParticipantRefV1"
+              },
+              "maxItems": 1024,
+              "type": "array",
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "kind",
+            "nodes",
+            "edges"
+          ],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "kind": {
+              "const": "ui_embedding"
+            }
+          },
+          "type": "object"
+        }
+      ]
+    }
+  },
+  "required": [
+    "schema",
+    "schema_sha256",
+    "schema_version",
+    "declarations",
+    "provider_compatibility_graph",
+    "delegation_graph",
+    "ui_embedding_graph",
+    "plugin_dependency_graph",
+    "native_application_graph",
+    "terminal_leaf_graph",
+    "evidence_settlement_graph",
+    "reason_paths",
+    "plan_digest"
+  ],
+  "title": "experience-composition-plan.v1",
+  "type": "object"
+}

@@ -1,0 +1,217 @@
+{
+  "$defs": {
+    "ActionIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "BoundedResidentTextV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "CapabilityAttemptIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "EffectDispatchIntentIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ReconciliationCaseIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ReconciliationCustodyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "RouteGenerationV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "SigningKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/effect-dispatch-intent.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "action_body_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "action_id": {
+      "$ref": "#/$defs/ActionIdV1"
+    },
+    "attempt_id": {
+      "$ref": "#/$defs/CapabilityAttemptIdV1"
+    },
+    "canonical_dispatch_intent_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "canonical_request_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "conflict_claim_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "conflict_claim_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "contract_set_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "contract_set_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "deployment_runtime_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "deployment_runtime_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "effect_admission_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "effect_admission_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "effect_dispatch_intent_id": {
+      "$ref": "#/$defs/EffectDispatchIntentIdV1"
+    },
+    "execution_owner_fence_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "execution_owner_fence_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "implementation_kind": {
+      "$ref": "#/$defs/BoundedResidentTextV1"
+    },
+    "implementation_version": {
+      "$ref": "#/$defs/BoundedResidentTextV1"
+    },
+    "intended_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "issuer_key_epoch": {
+      "$ref": "#/$defs/SigningKeyEpochV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "issuer_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "provider_request_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/typed-digest.v1.json"
+    },
+    "request_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "reserved_reconciliation_case_id": {
+      "$ref": "#/$defs/ReconciliationCaseIdV1"
+    },
+    "reserved_reconciliation_custody_id": {
+      "$ref": "#/$defs/ReconciliationCustodyIdV1"
+    },
+    "route_binding_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "route_binding_schema_id": {
+      "$ref": "#/$defs/SchemaId"
+    },
+    "route_binding_schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "route_binding_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "route_generation": {
+      "$ref": "#/$defs/RouteGenerationV1"
+    },
+    "schema_id": {
+      "const": "pale/effect-dispatch-intent.v1",
+      "type": "string"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "effect_dispatch_intent_id",
+    "attempt_id",
+    "request_ref",
+    "canonical_request_sha256",
+    "action_id",
+    "action_body_sha256",
+    "effect_admission_ref",
+    "effect_admission_sha256",
+    "conflict_claim_ref",
+    "conflict_claim_sha256",
+    "contract_set_ref",
+    "contract_set_sha256",
+    "route_binding_schema_id",
+    "route_binding_schema_sha256",
+    "route_binding_ref",
+    "route_binding_sha256",
+    "route_generation",
+    "reserved_reconciliation_case_id",
+    "reserved_reconciliation_custody_id",
+    "implementation_kind",
+    "implementation_version",
+    "intended_at",
+    "deployment_runtime_authority_ref",
+    "deployment_runtime_authority_sha256",
+    "issuer_principal_id",
+    "issuer_key_id",
+    "issuer_key_epoch",
+    "canonical_dispatch_intent_sha256",
+    "signature"
+  ],
+  "title": "effect-dispatch-intent.v1",
+  "type": "object"
+}

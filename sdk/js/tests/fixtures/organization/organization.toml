@@ -1,0 +1,834 @@
+schema = "pale/organizational-translation.v1"
+schema_version = 1
+
+[[scopes]]
+state = "present"
+
+[scopes.scope]
+namespace = "alpha"
+scope_id = "scope"
+
+[scopes.axes]
+owner = "owner.alpha"
+controller = "controller.alpha-scope"
+authority = "authority.alpha-scope"
+resources = ["resource.alpha-scope"]
+disclosure = "protected"
+
+[scopes.interval]
+start = 1
+end_exclusive = 10
+
+[[scopes]]
+state = "present"
+
+[scopes.scope]
+namespace = "beta"
+scope_id = "scope"
+
+[scopes.axes]
+owner = "owner.beta"
+controller = "controller.beta-scope"
+authority = "authority.beta-scope"
+resources = ["resource.beta-scope"]
+disclosure = "protected"
+
+[scopes.interval]
+start = 1
+end_exclusive = 10
+
+[[scopes]]
+state = "present"
+
+[scopes.scope]
+namespace = "gamma"
+scope_id = "scope"
+
+[scopes.axes]
+owner = "owner.gamma"
+controller = "controller.gamma-scope"
+authority = "authority.gamma-scope"
+resources = ["resource.gamma-scope"]
+disclosure = "protected"
+
+[scopes.interval]
+start = 1
+end_exclusive = 10
+
+[[organizations]]
+state = "present"
+
+[organizations.organization]
+namespace = "alpha"
+organization_id = "organization"
+
+[organizations.scope]
+namespace = "alpha"
+scope_id = "scope"
+
+[organizations.axes]
+owner = "owner.alpha"
+controller = "controller.alpha-organization"
+authority = "authority.alpha-organization"
+resources = ["resource.alpha-organization"]
+disclosure = "protected"
+
+[organizations.interval]
+start = 1
+end_exclusive = 10
+
+[[organizations]]
+state = "present"
+
+[organizations.organization]
+namespace = "beta"
+organization_id = "organization"
+
+[organizations.scope]
+namespace = "beta"
+scope_id = "scope"
+
+[organizations.axes]
+owner = "owner.beta"
+controller = "controller.beta-organization"
+authority = "authority.beta-organization"
+resources = ["resource.beta-organization"]
+disclosure = "protected"
+
+[organizations.interval]
+start = 1
+end_exclusive = 10
+
+[[groups]]
+state = "present"
+
+[groups.group]
+namespace = "alpha"
+group_id = "group"
+
+[groups.organization]
+namespace = "alpha"
+organization_id = "organization"
+
+[groups.axes]
+owner = "owner.alpha"
+controller = "controller.alpha-group"
+authority = "authority.alpha-group"
+resources = ["resource.alpha-group"]
+disclosure = "protected"
+
+[groups.interval]
+start = 1
+end_exclusive = 10
+
+[[discipline_trees]]
+state = "present"
+
+[discipline_trees.tree]
+namespace = "alpha"
+tree_id = "primary-tree"
+
+[discipline_trees.organization]
+namespace = "alpha"
+organization_id = "organization"
+
+[discipline_trees.axes]
+owner = "owner.alpha"
+controller = "controller.primary-tree"
+authority = "authority.primary-tree"
+resources = ["resource.primary-tree"]
+disclosure = "protected"
+
+[discipline_trees.interval]
+start = 1
+end_exclusive = 10
+
+[[discipline_trees]]
+state = "present"
+
+[discipline_trees.tree]
+namespace = "alpha"
+tree_id = "leader-tree"
+
+[discipline_trees.organization]
+namespace = "alpha"
+organization_id = "organization"
+
+[discipline_trees.axes]
+owner = "owner.alpha"
+controller = "controller.leader-tree"
+authority = "authority.leader-tree"
+resources = ["resource.leader-tree"]
+disclosure = "protected"
+
+[discipline_trees.interval]
+start = 1
+end_exclusive = 10
+
+[[discipline_trees]]
+state = "present"
+
+[discipline_trees.tree]
+namespace = "beta"
+tree_id = "primary-tree"
+
+[discipline_trees.organization]
+namespace = "beta"
+organization_id = "organization"
+
+[discipline_trees.axes]
+owner = "owner.beta"
+controller = "controller.primary-tree"
+authority = "authority.primary-tree"
+resources = ["resource.primary-tree"]
+disclosure = "protected"
+
+[discipline_trees.interval]
+start = 1
+end_exclusive = 10
+
+[[discipline_trees]]
+state = "present"
+
+[discipline_trees.tree]
+namespace = "beta"
+tree_id = "supporting-tree"
+
+[discipline_trees.organization]
+namespace = "beta"
+organization_id = "organization"
+
+[discipline_trees.axes]
+owner = "owner.beta"
+controller = "controller.supporting-tree"
+authority = "authority.supporting-tree"
+resources = ["resource.supporting-tree"]
+disclosure = "protected"
+
+[discipline_trees.interval]
+start = 1
+end_exclusive = 10
+
+[[discipline_trees]]
+state = "absent"
+
+[discipline_trees.tree]
+namespace = "beta"
+tree_id = "optional-tree"
+
+[discipline_trees.organization]
+namespace = "beta"
+organization_id = "organization"
+
+[discipline_trees.axes]
+owner = "owner.beta"
+controller = "controller.optional-tree"
+authority = "authority.optional-tree"
+resources = ["resource.optional-tree"]
+disclosure = "protected"
+
+[discipline_trees.interval]
+start = 1
+end_exclusive = 10
+
+[[roles]]
+role_class = "role-class.accountable"
+state = "present"
+
+[roles.role]
+namespace = "alpha"
+role_id = "accountable-a"
+
+[roles.organization]
+namespace = "alpha"
+organization_id = "organization"
+
+[roles.group]
+namespace = "alpha"
+group_id = "group"
+
+[roles.discipline_tree]
+namespace = "alpha"
+tree_id = "primary-tree"
+
+[roles.axes]
+owner = "owner.alpha"
+controller = "controller.role-a"
+authority = "authority.role-a"
+resources = ["resource.role-a"]
+disclosure = "protected"
+
+[roles.interval]
+start = 1
+end_exclusive = 10
+
+[[roles]]
+role_class = "role-class.accountable"
+state = "present"
+
+[roles.role]
+namespace = "alpha"
+role_id = "accountable-b"
+
+[roles.organization]
+namespace = "alpha"
+organization_id = "organization"
+
+[roles.group]
+namespace = "alpha"
+group_id = "group"
+
+[roles.discipline_tree]
+namespace = "alpha"
+tree_id = "leader-tree"
+
+[roles.axes]
+owner = "owner.alpha"
+controller = "controller.role-b"
+authority = "authority.role-b"
+resources = ["resource.role-b"]
+disclosure = "protected"
+
+[roles.interval]
+start = 1
+end_exclusive = 10
+
+[[roles]]
+role_class = "role-class.reviewer"
+state = "present"
+
+[roles.role]
+namespace = "beta"
+role_id = "reviewer"
+
+[roles.organization]
+namespace = "beta"
+organization_id = "organization"
+
+[roles.axes]
+owner = "owner.beta"
+controller = "controller.role-c"
+authority = "authority.role-c"
+resources = ["resource.role-c"]
+disclosure = "protected"
+
+[roles.interval]
+start = 1
+end_exclusive = 10
+
+[[occupant_bindings]]
+occupant = "occupant.alpha"
+issuer = "issuer.alpha"
+state = "present"
+
+[occupant_bindings.role]
+namespace = "alpha"
+role_id = "accountable-a"
+
+[occupant_bindings.interval]
+start = 1
+end_exclusive = 10
+
+[[provider_bindings]]
+provider = "provider.communication"
+issuer = "issuer.provider"
+state = "present"
+
+[provider_bindings.role]
+namespace = "alpha"
+role_id = "accountable-b"
+
+[provider_bindings.interval]
+start = 1
+end_exclusive = 10
+
+[[communication_actor_bindings]]
+provider = "provider.communication"
+handle = "actor.canonical"
+issuer = "issuer.communication"
+state = "present"
+
+[[communication_actor_bindings.local_resolutions]]
+
+[communication_actor_bindings.local_resolutions.local_node]
+kind = "role"
+
+[communication_actor_bindings.local_resolutions.local_node.role]
+namespace = "alpha"
+role_id = "accountable-a"
+
+[[communication_actor_bindings.local_resolutions.authorized_closure]]
+kind = "role"
+
+[communication_actor_bindings.local_resolutions.authorized_closure.role]
+namespace = "alpha"
+role_id = "accountable-b"
+
+[[communication_actor_bindings.local_resolutions]]
+authorized_closure = []
+
+[communication_actor_bindings.local_resolutions.local_node]
+kind = "role"
+
+[communication_actor_bindings.local_resolutions.local_node.role]
+namespace = "beta"
+role_id = "reviewer"
+
+[communication_actor_bindings.interval]
+start = 1
+end_exclusive = 10
+
+[[leadership]]
+topic = "topic.shared"
+issuer = "issuer.leadership"
+disclosure = "protected"
+state = "present"
+
+[[leadership.participants]]
+namespace = "alpha"
+role_id = "accountable-a"
+
+[[leadership.participants]]
+namespace = "beta"
+role_id = "reviewer"
+
+[[leadership.affected_scopes]]
+namespace = "alpha"
+scope_id = "scope"
+
+[[leadership.affected_scopes]]
+namespace = "beta"
+scope_id = "scope"
+
+[leadership.interval]
+start = 1
+end_exclusive = 10
+
+[[relations]]
+relation_id = "relation.coordinates"
+class = "coordinates"
+issuer = "issuer.coordinates"
+state = "present"
+
+[relations.from]
+kind = "group"
+
+[relations.from.group]
+namespace = "alpha"
+group_id = "group"
+
+[relations.to]
+kind = "discipline_tree"
+
+[relations.to.tree]
+namespace = "alpha"
+tree_id = "primary-tree"
+
+[relations.interval]
+start = 1
+end_exclusive = 10
+
+[[relations]]
+relation_id = "relation.leader"
+class = "leader"
+issuer = "issuer.leader"
+state = "present"
+
+[relations.from]
+kind = "discipline_tree"
+
+[relations.from.tree]
+namespace = "alpha"
+tree_id = "leader-tree"
+
+[relations.to]
+kind = "discipline_tree"
+
+[relations.to.tree]
+namespace = "alpha"
+tree_id = "primary-tree"
+
+[relations.interval]
+start = 1
+end_exclusive = 10
+
+[[relations]]
+relation_id = "relation.collaboration"
+class = "collaboration"
+issuer = "issuer.collaboration"
+state = "present"
+
+[relations.from]
+kind = "role"
+
+[relations.from.role]
+namespace = "alpha"
+role_id = "accountable-a"
+
+[relations.to]
+kind = "role"
+
+[relations.to.role]
+namespace = "alpha"
+role_id = "accountable-b"
+
+[relations.interval]
+start = 1
+end_exclusive = 10
+
+[[relations]]
+relation_id = "relation.supporting"
+class = "supporting"
+issuer = "issuer.supporting"
+state = "present"
+
+[relations.from]
+kind = "discipline_tree"
+
+[relations.from.tree]
+namespace = "beta"
+tree_id = "supporting-tree"
+
+[relations.to]
+kind = "discipline_tree"
+
+[relations.to.tree]
+namespace = "beta"
+tree_id = "primary-tree"
+
+[relations.interval]
+start = 1
+end_exclusive = 10
+
+[[relations]]
+relation_id = "relation.atomic-decision"
+class = "collaboration"
+issuer = "issuer.atomic-decision"
+state = "present"
+
+[relations.from]
+kind = "role"
+
+[relations.from.role]
+namespace = "alpha"
+role_id = "accountable-a"
+
+[relations.to]
+kind = "object"
+object = "object.atomic-system"
+
+[relations.interval]
+start = 1
+end_exclusive = 10
+
+[[relations]]
+relation_id = "relation.atomic-native-gate"
+class = "acceptance"
+issuer = "issuer.atomic-native-gate"
+state = "present"
+
+[relations.from]
+kind = "role"
+
+[relations.from.role]
+namespace = "alpha"
+role_id = "accountable-b"
+
+[relations.to]
+kind = "object"
+object = "object.atomic-system"
+
+[relations.interval]
+start = 1
+end_exclusive = 10
+
+[[objects]]
+object_id = "object.named-scope"
+namespace = "alpha"
+object_class = "object-class.named-scope"
+state = "present"
+
+[objects.scope]
+namespace = "alpha"
+scope_id = "scope"
+
+[objects.organization]
+namespace = "alpha"
+organization_id = "organization"
+
+[objects.axes]
+owner = "owner.alpha"
+controller = "controller.object-named"
+authority = "authority.object-named"
+resources = ["resource.object-named"]
+disclosure = "protected"
+
+[objects.interval]
+start = 1
+end_exclusive = 10
+
+[[objects]]
+object_id = "object.atomic-system"
+namespace = "alpha"
+object_class = "object-class.atomic-system"
+state = "present"
+
+[objects.scope]
+namespace = "alpha"
+scope_id = "scope"
+
+[objects.organization]
+namespace = "alpha"
+organization_id = "organization"
+
+[objects.axes]
+owner = "owner.alpha"
+controller = "controller.object-atomic"
+authority = "authority.object-atomic"
+resources = ["resource.object-atomic"]
+disclosure = "protected"
+
+[objects.interval]
+start = 1
+end_exclusive = 10
+
+[[population_rules]]
+object_class = "object-class.named-scope"
+accountable_role_class = "role-class.named-scope-owner"
+issuer = "issuer.population"
+state = "present"
+
+[population_rules.interval]
+start = 1
+end_exclusive = 10
+
+[[population_rules]]
+object_class = "object-class.atomic-system"
+accountable_role_class = "role-class.atomic-owner"
+issuer = "issuer.population"
+state = "present"
+
+[population_rules.interval]
+start = 1
+end_exclusive = 10
+
+[[group_lenses]]
+profile_id = "lens.quality"
+alignment_relation = "relation.collaboration"
+lens = "lens-class.quality"
+standards = ["standard.quality"]
+block_conditions = ["condition.quality-gate"]
+rights = ["standards", "review", "bounded_block", "escalation"]
+issuer = "issuer.lens"
+state = "present"
+
+[group_lenses.holder]
+namespace = "alpha"
+role_id = "accountable-a"
+
+[group_lenses.review_owner]
+namespace = "alpha"
+role_id = "accountable-b"
+
+[group_lenses.escalation_resolver]
+namespace = "alpha"
+role_id = "accountable-b"
+
+[group_lenses.interval]
+start = 1
+end_exclusive = 10
+
+[[services]]
+contract_id = "service.shared"
+namespace = "alpha"
+contract_owner = "owner.alpha"
+state = "present"
+
+[services.provider_scope]
+namespace = "alpha"
+scope_id = "scope"
+
+[services.consumer_scope]
+namespace = "beta"
+scope_id = "scope"
+
+[services.provider_completion.requirement]
+owner = "alpha"
+evidence_ref = "evidence.alpha.completion"
+
+[services.provider_acceptance.requirement]
+owner = "alpha"
+evidence_ref = "evidence.alpha.provider-acceptance"
+
+[services.consumer_acceptance.requirement]
+owner = "alpha"
+evidence_ref = "evidence.alpha.consumer-acceptance"
+
+[services.native_read_back.requirement]
+owner = "alpha"
+evidence_ref = "evidence.alpha.native-read-back"
+
+[services.pale_settlement.requirement]
+owner = "alpha"
+evidence_ref = "evidence.alpha.settlement"
+
+[[services.assignments]]
+account = "account.alpha.one"
+mandate = "mandate.alpha.one"
+stewards = ["steward.shared", "steward.alpha"]
+pods = ["pod.shared", "pod.alpha"]
+state = "present"
+
+[services.assignments.interval]
+start = 1
+end_exclusive = 10
+
+[[services.assignments]]
+account = "account.alpha.two"
+mandate = "mandate.alpha.two"
+stewards = ["steward.shared"]
+pods = ["pod.shared"]
+state = "stale"
+
+[services.assignments.interval]
+start = 1
+end_exclusive = 10
+
+[services.ceiling]
+disclosure = "protected"
+effect = "read"
+model_use_permitted = false
+retention_seconds = 300
+
+[services.ceiling.rights]
+permitted = ["right.alpha"]
+
+[services.ceiling.controllers]
+permitted = ["controller.alpha"]
+
+[services.ceiling.authorities]
+permitted = ["authority.alpha"]
+
+[services.interval]
+start = 1
+end_exclusive = 10
+
+[[services]]
+contract_id = "service.shared"
+namespace = "beta"
+contract_owner = "owner.beta"
+state = "present"
+
+[services.provider_scope]
+namespace = "beta"
+scope_id = "scope"
+
+[services.consumer_scope]
+namespace = "alpha"
+scope_id = "scope"
+
+[services.provider_completion.requirement]
+owner = "beta"
+evidence_ref = "evidence.beta.completion"
+
+[services.provider_acceptance.requirement]
+owner = "beta"
+evidence_ref = "evidence.beta.provider-acceptance"
+
+[services.consumer_acceptance.requirement]
+owner = "beta"
+evidence_ref = "evidence.beta.consumer-acceptance"
+
+[services.native_read_back.requirement]
+owner = "beta"
+evidence_ref = "evidence.beta.native-read-back"
+
+[services.pale_settlement.requirement]
+owner = "beta"
+evidence_ref = "evidence.beta.settlement"
+
+[[services.assignments]]
+account = "account.beta.one"
+mandate = "mandate.beta.one"
+stewards = ["steward.shared", "steward.beta"]
+pods = ["pod.shared", "pod.beta"]
+state = "present"
+
+[services.assignments.interval]
+start = 1
+end_exclusive = 10
+
+[[services.assignments]]
+account = "account.beta.two"
+mandate = "mandate.beta.two"
+stewards = ["steward.shared"]
+pods = ["pod.shared"]
+state = "stale"
+
+[services.assignments.interval]
+start = 1
+end_exclusive = 10
+
+[services.ceiling]
+disclosure = "protected"
+effect = "read"
+model_use_permitted = false
+retention_seconds = 300
+
+[services.ceiling.rights]
+permitted = ["right.beta"]
+
+[services.ceiling.controllers]
+permitted = ["controller.beta"]
+
+[services.ceiling.authorities]
+permitted = ["authority.beta"]
+
+[services.interval]
+start = 1
+end_exclusive = 10
+
+[[native_projections]]
+projection_id = "projection.alpha.work"
+class = "accountable_work"
+native_owner = "native-owner.alpha"
+native_refs = ["native.alpha.one", "native.alpha.two"]
+disclosure = "protected"
+state = "present"
+
+[native_projections.subject]
+kind = "organization"
+
+[native_projections.subject.organization]
+namespace = "alpha"
+organization_id = "organization"
+
+[native_projections.interval]
+start = 1
+end_exclusive = 10
+
+[[native_projections]]
+projection_id = "projection.beta.relationship"
+class = "relationship"
+native_owner = "native-owner.beta"
+native_refs = []
+disclosure = "private"
+state = "stale"
+
+[native_projections.subject]
+kind = "organization"
+
+[native_projections.subject.organization]
+namespace = "beta"
+organization_id = "organization"
+
+[native_projections.interval]
+start = 1
+end_exclusive = 10
+
+[inspection]
+inspection_id = "inspection.complete"
+principal = "principal.viewer"
+disclosure = "protected"
+coordinates = ["scope_organization", "group_tree", "role_binding", "atomic_object", "group_lens", "directional_service", "acceptance_frontier", "native_projection", "effective_state"]
+states = ["present", "absent", "denied", "unknown", "stale", "superseded", "revoked"]

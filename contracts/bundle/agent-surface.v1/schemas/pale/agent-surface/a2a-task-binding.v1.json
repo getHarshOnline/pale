@@ -1,0 +1,216 @@
+{
+  "$defs": {
+    "A2aJsonRpcRequestIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "A2aRemoteContextIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "A2aRemoteTaskIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "A2aRouteAdmissionIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "A2aTaskBindingIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "A2aTaskRequestModeV1": {
+      "oneOf": [
+        {
+          "const": "send_message",
+          "type": "string"
+        },
+        {
+          "const": "send_streaming_message",
+          "type": "string"
+        }
+      ]
+    },
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "CapabilityAttemptIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ImmutableRecordReferenceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "record_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "record_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "record_ref",
+        "record_sha256"
+      ],
+      "type": "object"
+    },
+    "OperationHandleIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "SigningKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/a2a-task-binding.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "attempt_id": {
+      "$ref": "#/$defs/CapabilityAttemptIdV1"
+    },
+    "bound_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "canonical_a2a_task_binding_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "deployment_runtime_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "deployment_runtime_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "initial_task_evidence": {
+      "$ref": "#/$defs/ImmutableRecordReferenceV1"
+    },
+    "issuer_key_epoch": {
+      "$ref": "#/$defs/SigningKeyEpochV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "issuer_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "json_rpc_request_id": {
+      "$ref": "#/$defs/A2aJsonRpcRequestIdV1"
+    },
+    "operation_handle_id": {
+      "$ref": "#/$defs/OperationHandleIdV1"
+    },
+    "operation_handle_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "operation_handle_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "operation_observation_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "operation_observation_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "remote_context_id": {
+      "$ref": "#/$defs/A2aRemoteContextIdV1"
+    },
+    "remote_task_id": {
+      "$ref": "#/$defs/A2aRemoteTaskIdV1"
+    },
+    "request_evidence": {
+      "$ref": "#/$defs/ImmutableRecordReferenceV1"
+    },
+    "request_mode": {
+      "$ref": "#/$defs/A2aTaskRequestModeV1"
+    },
+    "route_admission_id": {
+      "$ref": "#/$defs/A2aRouteAdmissionIdV1"
+    },
+    "route_admission_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "route_admission_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/a2a-task-binding.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    },
+    "task_binding_id": {
+      "$ref": "#/$defs/A2aTaskBindingIdV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "task_binding_id",
+    "operation_handle_id",
+    "operation_handle_ref",
+    "operation_handle_sha256",
+    "operation_observation_ref",
+    "operation_observation_sha256",
+    "route_admission_id",
+    "route_admission_ref",
+    "route_admission_sha256",
+    "attempt_id",
+    "json_rpc_request_id",
+    "request_mode",
+    "remote_task_id",
+    "remote_context_id",
+    "request_evidence",
+    "initial_task_evidence",
+    "bound_at",
+    "deployment_runtime_authority_ref",
+    "deployment_runtime_authority_sha256",
+    "issuer_principal_id",
+    "issuer_key_id",
+    "issuer_key_epoch",
+    "canonical_a2a_task_binding_sha256",
+    "signature"
+  ],
+  "title": "a2a-task-binding.v1",
+  "type": "object"
+}

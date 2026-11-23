@@ -1,0 +1,174 @@
+{
+  "$defs": {
+    "ActionBoundary": {
+      "oneOf": [
+        {
+          "const": "pure",
+          "type": "string"
+        }
+      ]
+    },
+    "ActionEffect": {
+      "oneOf": [
+        {
+          "const": "compute",
+          "type": "string"
+        }
+      ]
+    },
+    "ActionInputKind": {
+      "oneOf": [
+        {
+          "const": "compliance_trace_grade",
+          "type": "string"
+        },
+        {
+          "const": "config_invariant_scan",
+          "type": "string"
+        },
+        {
+          "const": "cost_aggregate",
+          "type": "string"
+        },
+        {
+          "const": "loop_status_reduce",
+          "type": "string"
+        },
+        {
+          "const": "review_convergence_reduce",
+          "type": "string"
+        },
+        {
+          "const": "rubric_evaluation",
+          "type": "string"
+        },
+        {
+          "const": "service_definition_normalize",
+          "type": "string"
+        },
+        {
+          "const": "skill_health_aggregate",
+          "type": "string"
+        },
+        {
+          "const": "weighted_ranking",
+          "type": "string"
+        },
+        {
+          "const": "path_inventory",
+          "type": "string"
+        },
+        {
+          "const": "evidence_selection",
+          "type": "string"
+        }
+      ]
+    },
+    "ActionOutputKind": {
+      "oneOf": [
+        {
+          "const": "compliance_trace_grade",
+          "type": "string"
+        },
+        {
+          "const": "config_invariant_scan",
+          "type": "string"
+        },
+        {
+          "const": "cost_aggregate",
+          "type": "string"
+        },
+        {
+          "const": "loop_status_reduce",
+          "type": "string"
+        },
+        {
+          "const": "review_convergence_reduce",
+          "type": "string"
+        },
+        {
+          "const": "rubric_evaluation",
+          "type": "string"
+        },
+        {
+          "const": "service_definition_normalize",
+          "type": "string"
+        },
+        {
+          "const": "skill_health_aggregate",
+          "type": "string"
+        },
+        {
+          "const": "weighted_ranking",
+          "type": "string"
+        },
+        {
+          "const": "path_inventory",
+          "type": "string"
+        },
+        {
+          "const": "evidence_selection",
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/action-contract.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "boundary": {
+      "$ref": "#/$defs/ActionBoundary"
+    },
+    "contract_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "description": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "effect": {
+      "$ref": "#/$defs/ActionEffect"
+    },
+    "id": {
+      "pattern": "^pale\\.compute\\.[a-z0-9-]+$",
+      "type": "string"
+    },
+    "input_kind": {
+      "$ref": "#/$defs/ActionInputKind"
+    },
+    "output_kind": {
+      "$ref": "#/$defs/ActionOutputKind"
+    },
+    "schema": {
+      "const": "pale/action-contract.v1",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_version",
+    "id",
+    "version",
+    "description",
+    "effect",
+    "boundary",
+    "input_kind",
+    "output_kind",
+    "contract_digest"
+  ],
+  "title": "action-contract.v1",
+  "type": "object"
+}

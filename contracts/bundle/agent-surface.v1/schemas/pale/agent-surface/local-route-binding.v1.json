@@ -1,0 +1,247 @@
+{
+  "$defs": {
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "LocalRouteIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "LocalTransportClassV1": {
+      "oneOf": [
+        {
+          "const": "in_process",
+          "type": "string"
+        },
+        {
+          "const": "unix_socket",
+          "type": "string"
+        },
+        {
+          "const": "named_pipe",
+          "type": "string"
+        },
+        {
+          "const": "loopback_http",
+          "type": "string"
+        },
+        {
+          "const": "owner_native",
+          "type": "string"
+        },
+        {
+          "const": "same_principal_remote",
+          "type": "string"
+        }
+      ]
+    },
+    "PrincipalKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentNodeIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentWorkspaceIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "RouteGenerationV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/local-route-binding.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "dependentRequired": {
+    "destination_node_delegation_ref": [
+      "destination_node_id",
+      "destination_node_delegation_sha256"
+    ],
+    "destination_node_delegation_sha256": [
+      "destination_node_id",
+      "destination_node_delegation_ref"
+    ],
+    "destination_node_id": [
+      "destination_node_delegation_ref",
+      "destination_node_delegation_sha256"
+    ],
+    "previous_route_binding_ref": [
+      "previous_route_binding_sha256"
+    ],
+    "previous_route_binding_sha256": [
+      "previous_route_binding_ref"
+    ]
+  },
+  "properties": {
+    "canonical_local_route_binding_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "checked_trust_checkpoint_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "checked_trust_checkpoint_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "contract_set_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "contract_set_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "deployment_binding_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "deployment_binding_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "destination_node_delegation_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "destination_node_delegation_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "destination_node_id": {
+      "$ref": "#/$defs/ResidentNodeIdV1"
+    },
+    "destination_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "endpoint_binding_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "endpoint_binding_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "expires_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "issued_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "issuer_key_epoch": {
+      "$ref": "#/$defs/PrincipalKeyEpochV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "issuer_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "origin_node_delegation_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "origin_node_delegation_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "origin_node_id": {
+      "$ref": "#/$defs/ResidentNodeIdV1"
+    },
+    "origin_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "previous_route_binding_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "previous_route_binding_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "route_generation": {
+      "$ref": "#/$defs/RouteGenerationV1"
+    },
+    "route_id": {
+      "$ref": "#/$defs/LocalRouteIdV1"
+    },
+    "route_owner_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/local-route-binding.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    },
+    "transport_class": {
+      "$ref": "#/$defs/LocalTransportClassV1"
+    },
+    "transport_profile_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "transport_profile_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "workspace_id": {
+      "$ref": "#/$defs/ResidentWorkspaceIdV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "route_id",
+    "route_generation",
+    "route_owner_principal_id",
+    "workspace_id",
+    "deployment_binding_ref",
+    "deployment_binding_sha256",
+    "origin_principal_id",
+    "origin_node_id",
+    "origin_node_delegation_ref",
+    "origin_node_delegation_sha256",
+    "destination_principal_id",
+    "checked_trust_checkpoint_ref",
+    "checked_trust_checkpoint_sha256",
+    "transport_class",
+    "transport_profile_ref",
+    "transport_profile_sha256",
+    "endpoint_binding_ref",
+    "endpoint_binding_sha256",
+    "contract_set_ref",
+    "contract_set_sha256",
+    "issued_at",
+    "issuer_principal_id",
+    "issuer_key_id",
+    "issuer_key_epoch",
+    "canonical_local_route_binding_sha256",
+    "signature"
+  ],
+  "title": "local-route-binding.v1",
+  "type": "object"
+}

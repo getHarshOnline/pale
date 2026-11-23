@@ -1,0 +1,289 @@
+{
+  "bootstrapReceipt": {
+    "recordRef": "bootstrap-receipt-1",
+    "wire": {
+      "bootstrap_id": "interface-conformance-bootstrap",
+      "candidate_root_key_id": "root-key-1",
+      "canonical_bootstrap_receipt_sha256": "3a678514277ff14792db421a632e862a48d36a73cd06790df04778abae59ff88",
+      "committed_at": 50,
+      "initial_admin_authority_ref": "admin-authority-1",
+      "initial_admin_authority_sha256": "05a71b49478ab6c5fa5768e45c182c0ebdc7ec4f5aca1a0029b10476507baeeb",
+      "initial_control_checkpoints": [
+        {
+          "checkpoint_domain_id": "admin-authority",
+          "control_checkpoint_ref": "control-checkpoint-1",
+          "control_checkpoint_sha256": "240f7898d35365dd80c70a9b2840ab1c597ef65dcec6251bf00eac42bd47893d",
+          "domain_epoch": 1,
+          "domain_sequence": 1
+        },
+        {
+          "checkpoint_domain_id": "principal-head",
+          "control_checkpoint_ref": "control-checkpoint-2",
+          "control_checkpoint_sha256": "3c42468b55a078a751f6de4f2ff137d809daa0c6d875fbbc16026233fb79121e",
+          "domain_epoch": 1,
+          "domain_sequence": 1
+        }
+      ],
+      "initial_producer_incarnation_authority_ref": "producer-authority-1",
+      "initial_producer_incarnation_authority_sha256": "11e6984c052e2a172a1c9d3835e25dae441a359e73d12312673eb52c02d1388f",
+      "initial_trust_store_checkpoint_signing_authority_ref": "checkpoint-authority-1",
+      "initial_trust_store_checkpoint_signing_authority_sha256": "5416872e66103283de1c63c20b97c21de0fd0d5db297842752b4e316e8f80b56",
+      "principal_control_incarnation_id": "principal-control-incarnation-1",
+      "principal_control_store_id": "principal-control-store-1",
+      "principal_record_ref": "principal-record-1",
+      "principal_record_sha256": "495a9a7888beb01e6a893bd974b6606147dc2a00b0bf52ad1c9662c6d5b977d0",
+      "recovery_policy_ref": "recovery-policy-1",
+      "recovery_policy_sha256": "69479b2659184e45ef7082c05e55c5d503962e6aa8a7da26faec1c5ed0f7d7b8",
+      "schema_id": "pale/principal-bootstrap-receipt.v1",
+      "schema_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "signature": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "trust_checkpoint_epoch": 1,
+      "trust_checkpoint_ref": "trust-checkpoint-1",
+      "trust_checkpoint_sha256": "aa1877023168e11926be59d13b7ae2f5fd1ef80abd7481004dc876bf2d320bde",
+      "trust_store_id": "trust-store-1",
+      "trust_store_incarnation_id": "trust-incarnation-1"
+    }
+  },
+  "checkpointAuthority": {
+    "recordRef": "checkpoint-authority-1",
+    "wire": {
+      "allowed_domain_prefixes": [
+        "admin-authority",
+        "principal-head"
+      ],
+      "canonical_checkpoint_signing_authority_sha256": "5416872e66103283de1c63c20b97c21de0fd0d5db297842752b4e316e8f80b56",
+      "checkpoint_profile_ref": "checkpoint-profile-1",
+      "checkpoint_profile_sha256": "6666666666666666666666666666666666666666666666666666666666666666",
+      "checkpoint_signing_authority_id": "checkpoint-authority-1",
+      "control_incarnation_id": "principal-control-incarnation-1",
+      "control_store_id": "principal-control-store-1",
+      "expires_at": 800,
+      "issued_at": 20,
+      "issuer_key_epoch": 1,
+      "issuer_key_id": "root-key-1",
+      "issuer_principal_id": "principal-1",
+      "principal_id": "principal-1",
+      "schema_id": "pale/checkpoint-signing-authority.v1",
+      "schema_sha256": "5555555555555555555555555555555555555555555555555555555555555555",
+      "scope": {
+        "bootstrap_id": "interface-conformance-bootstrap",
+        "kind": "principal_trust_store"
+      },
+      "signature": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "signer_epoch": 1,
+      "state": "active",
+      "subject_key_epoch": 1,
+      "subject_key_id": "checkpoint-key-1",
+      "subject_public_key": "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+    }
+  },
+  "controlCheckpoints": [
+    {
+      "recordRef": "control-checkpoint-1",
+      "wire": {
+        "canonical_control_checkpoint_sha256": "240f7898d35365dd80c70a9b2840ab1c597ef65dcec6251bf00eac42bd47893d",
+        "changed_leaf_keys": [
+          {
+            "logical_key": "leaf-1",
+            "record_class": "bootstrap-record",
+            "scope_key_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        ],
+        "checkpoint_domain_id": "admin-authority",
+        "checkpoint_profile_ref": "checkpoint-profile-1",
+        "checkpoint_profile_sha256": "6666666666666666666666666666666666666666666666666666666666666666",
+        "checkpoint_signing_authority_ref": "checkpoint-authority-1",
+        "checkpoint_signing_authority_sha256": "5416872e66103283de1c63c20b97c21de0fd0d5db297842752b4e316e8f80b56",
+        "committed_transaction_sequence": 2,
+        "control_checkpoint_id": "control-checkpoint-1",
+        "control_incarnation_id": "principal-control-incarnation-1",
+        "control_schema_version": 1,
+        "control_store_id": "principal-control-store-1",
+        "domain_epoch": 1,
+        "domain_sequence": 1,
+        "issued_at": 45,
+        "issuer_key_epoch": 1,
+        "issuer_key_id": "checkpoint-key-1",
+        "issuer_principal_id": "principal-1",
+        "leaf_count": 1,
+        "schema_id": "pale/control-state-checkpoint.v1",
+        "schema_sha256": "8888888888888888888888888888888888888888888888888888888888888888",
+        "signature": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "state_root_sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+        "unresolved_custody_root_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      }
+    },
+    {
+      "recordRef": "control-checkpoint-2",
+      "wire": {
+        "canonical_control_checkpoint_sha256": "3c42468b55a078a751f6de4f2ff137d809daa0c6d875fbbc16026233fb79121e",
+        "changed_leaf_keys": [
+          {
+            "logical_key": "leaf-2",
+            "record_class": "bootstrap-record",
+            "scope_key_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        ],
+        "checkpoint_domain_id": "principal-head",
+        "checkpoint_profile_ref": "checkpoint-profile-1",
+        "checkpoint_profile_sha256": "6666666666666666666666666666666666666666666666666666666666666666",
+        "checkpoint_signing_authority_ref": "checkpoint-authority-1",
+        "checkpoint_signing_authority_sha256": "5416872e66103283de1c63c20b97c21de0fd0d5db297842752b4e316e8f80b56",
+        "committed_transaction_sequence": 2,
+        "control_checkpoint_id": "control-checkpoint-2",
+        "control_incarnation_id": "principal-control-incarnation-1",
+        "control_schema_version": 1,
+        "control_store_id": "principal-control-store-1",
+        "domain_epoch": 1,
+        "domain_sequence": 1,
+        "issued_at": 45,
+        "issuer_key_epoch": 1,
+        "issuer_key_id": "checkpoint-key-1",
+        "issuer_principal_id": "principal-1",
+        "leaf_count": 1,
+        "schema_id": "pale/control-state-checkpoint.v1",
+        "schema_sha256": "8888888888888888888888888888888888888888888888888888888888888888",
+        "signature": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "state_root_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "unresolved_custody_root_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      }
+    }
+  ],
+  "localAdminAuthority": {
+    "recordRef": "admin-authority-1",
+    "wire": {
+      "admin_authority_id": "admin-authority-1",
+      "allowed_operations": [
+        "finalize_deployment"
+      ],
+      "authority_epoch": 1,
+      "canonical_admin_authority_sha256": "05a71b49478ab6c5fa5768e45c182c0ebdc7ec4f5aca1a0029b10476507baeeb",
+      "expires_at": 800,
+      "issued_at": 20,
+      "issuer_key_epoch": 1,
+      "issuer_key_id": "root-key-1",
+      "issuer_principal_id": "principal-1",
+      "principal_id": "principal-1",
+      "principal_record_ref": "principal-record-1",
+      "principal_record_sha256": "495a9a7888beb01e6a893bd974b6606147dc2a00b0bf52ad1c9662c6d5b977d0",
+      "recovery_policy_ref": "recovery-policy-1",
+      "recovery_policy_sha256": "69479b2659184e45ef7082c05e55c5d503962e6aa8a7da26faec1c5ed0f7d7b8",
+      "schema_id": "pale/local-admin-authority.v1",
+      "schema_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+      "signature": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "state": "active",
+      "subject_identity": "local-admin-1",
+      "subject_key_epoch": 1,
+      "subject_key_id": "admin-key-1",
+      "subject_public_key": "IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII"
+    }
+  },
+  "principal": {
+    "recordRef": "principal-record-1",
+    "wire": {
+      "canonical_record_sha256": "495a9a7888beb01e6a893bd974b6606147dc2a00b0bf52ad1c9662c6d5b977d0",
+      "display_hint": "Local principal",
+      "expires_at": 1000,
+      "issued_at": 10,
+      "key_epoch": 1,
+      "principal_id": "principal-1",
+      "record_transition_kind": "initial",
+      "recovery_policy_ref": "recovery-policy-1",
+      "recovery_policy_sha256": "69479b2659184e45ef7082c05e55c5d503962e6aa8a7da26faec1c5ed0f7d7b8",
+      "root_key_id": "root-key-1",
+      "root_public_key": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "schema_id": "pale/principal-record.v1",
+      "schema_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+      "signature": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    }
+  },
+  "producerAuthority": {
+    "recordRef": "producer-authority-1",
+    "wire": {
+      "authority_epoch": 1,
+      "canonical_producer_authority_sha256": "11e6984c052e2a172a1c9d3835e25dae441a359e73d12312673eb52c02d1388f",
+      "expires_at": 800,
+      "issued_at": 20,
+      "issuer_key_epoch": 1,
+      "issuer_key_id": "root-key-1",
+      "issuer_principal_id": "principal-1",
+      "permitted_producer_namespaces": [
+        "pale"
+      ],
+      "principal_id": "principal-1",
+      "producer_authority_id": "producer-authority-1",
+      "schema_id": "pale/producer-incarnation-authority.v1",
+      "schema_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "signature": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "state": "active",
+      "subject_key_epoch": 1,
+      "subject_key_id": "producer-key-1",
+      "subject_public_key": "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"
+    }
+  },
+  "recoveryPolicy": {
+    "recordRef": "recovery-policy-1",
+    "wire": {
+      "canonical_record_sha256": "69479b2659184e45ef7082c05e55c5d503962e6aa8a7da26faec1c5ed0f7d7b8",
+      "eligible_signers": [
+        {
+          "recovery_key_epoch": 1,
+          "recovery_key_id": "recovery-key-1",
+          "recovery_principal_id": "principal-1",
+          "recovery_public_key": "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
+        }
+      ],
+      "expires_at": 900,
+      "issued_at": 10,
+      "issuer_key_id": "root-key-1",
+      "issuer_principal_key_epoch": 1,
+      "policy_epoch": 1,
+      "principal_id": "principal-1",
+      "proof_validity_seconds": 300,
+      "recovery_policy_id": "recovery-policy-1",
+      "replay_scope": "principal_key_recovery_proof",
+      "schema_id": "pale/principal-recovery-policy.v1",
+      "schema_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "signature": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "threshold": 1
+    }
+  },
+  "trustCheckpoint": {
+    "recordRef": "trust-checkpoint-1",
+    "wire": {
+      "canonical_trust_checkpoint_sha256": "aa1877023168e11926be59d13b7ae2f5fd1ef80abd7481004dc876bf2d320bde",
+      "checkpoint_epoch": 1,
+      "checkpoint_signing_authority_heads_root_sha256": "9fbfb0fa84022860ce615bf20dade07aab5c17ee1bf4f9595689e7c7feae1c16",
+      "deployment_acceptance_revocation_heads_root_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "deployment_runtime_authority_heads_root_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "federation_space_home_heads_root_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "issued_at": 40,
+      "issuer_key_epoch": 1,
+      "issuer_key_id": "root-key-1",
+      "issuer_principal_id": "principal-1",
+      "local_admin_authority_ref": "admin-authority-1",
+      "local_admin_authority_sha256": "05a71b49478ab6c5fa5768e45c182c0ebdc7ec4f5aca1a0029b10476507baeeb",
+      "node_delegation_heads_root_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "node_delegation_revocation_heads_root_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "owner_record_signing_authority_heads_root_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "owner_signer_publication_frontier_heads_root_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "principal_control_incarnation_id": "principal-control-incarnation-1",
+      "principal_control_store_id": "principal-control-store-1",
+      "principal_id": "principal-1",
+      "principal_record_ref": "principal-record-1",
+      "principal_record_sha256": "495a9a7888beb01e6a893bd974b6606147dc2a00b0bf52ad1c9662c6d5b977d0",
+      "producer_incarnation_authority_ref": "producer-authority-1",
+      "producer_incarnation_authority_sha256": "11e6984c052e2a172a1c9d3835e25dae441a359e73d12312673eb52c02d1388f",
+      "producer_incarnation_heads_root_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "recovery_policy_ref": "recovery-policy-1",
+      "recovery_policy_sha256": "69479b2659184e45ef7082c05e55c5d503962e6aa8a7da26faec1c5ed0f7d7b8",
+      "schema_id": "pale/principal-trust-checkpoint.v1",
+      "schema_sha256": "7777777777777777777777777777777777777777777777777777777777777777",
+      "session_floor_epoch": 1,
+      "signature": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "trust_checkpoint_id": "trust-checkpoint-1",
+      "trust_store_id": "trust-store-1",
+      "trust_store_incarnation_id": "trust-incarnation-1"
+    }
+  }
+}

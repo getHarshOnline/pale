@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Pale"
+type: software
+version: 0.0.1
+authors:
+  - family-names: "Joshi"
+    given-names: "Harsh"
+    email: "info@rawthoughts.in"
+    website: "https://rawthoughts.in"
+    affiliation: "RawThoughts Enterprises Private Limited"
+repository-code: "https://github.com/getHarshOnline/pale"
+url: "https://rawthoughts.in/pale"
+abstract: >-
+  Pale compiles workspace configuration into explicit rules for agents and
+  applications. Shared tools check those rules, explain effective permissions
+  and review proposed changes. Connected systems retain their records and
+  authority.
+keywords:
+  - local-first
+  - agent-coordination
+  - typed-contracts
+  - contextual-admission
+  - interoperability
+license:
+  - AGPL-3.0-or-later
+  - Apache-2.0

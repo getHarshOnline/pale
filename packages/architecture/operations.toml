@@ -1,0 +1,112 @@
+[operations]
+schema_version = 1
+
+[[operations.operation]]
+id = "propose-architecture"
+description = "Compare architecture choices and recommend responsibilities and change order."
+doctrine = "propose.md"
+doctrine_refs = [{ scope = "local", resource_id = "contract-first" }, { scope = "local", resource_id = "hexagonal-architecture" }]
+outputs = ["In the design review or reply: current and proposed responsibilities, alternatives and trade-offs.", "Unresolved assumptions, affected owners and acceptance tests."]
+roles = [{ scope = "local", resource_id = "architect" }]
+
+[[operations.operation]]
+id = "review-contract-change"
+description = "Review an interface change against actual producers, consumers and compatibility promises."
+doctrine = "review-contract.md"
+doctrine_refs = [{ scope = "local", resource_id = "contract-first" }, { scope = "local", resource_id = "command-retry" }]
+outputs = ["In the review reply: versions, callers and supported combinations.", "Located findings, negative tests and observed compatibility results."]
+
+[[operations.operation]]
+id = "plan-persistence-migration"
+description = "Plan a data migration, coexistence checks and recovery rehearsal."
+doctrine = "plan-migration.md"
+doctrine_refs = [
+  { scope = "local", resource_id = "database-migrations" },
+  { scope = "local", resource_id = "persistence-recovery" },
+]
+outputs = ["In the migration plan: scope, starting state and expected result.", "Rehearsal, refusal, rollback and reconciliation conditions."]
+
+[[operations.operation]]
+id = "plan-persistence-recovery"
+description = "Plan a restore rehearsal and the checks needed before recovered state is used."
+doctrine = "plan-recovery.md"
+doctrine_refs = [{ scope = "local", resource_id = "persistence-recovery" }]
+outputs = ["In the recovery plan: backup and restored-state checks, responsible operators and permitted scope.", "Restart cases, refusal conditions and remaining activation requirements."]
+
+[[operations.operation]]
+id = "plan-release-topology"
+description = "Plan release stages, exposure limits, observation and recovery."
+doctrine = "plan-release.md"
+doctrine_refs = [{ scope = "local", resource_id = "deployment-patterns" }, { scope = "local", resource_id = "release-provenance" }]
+outputs = ["In the release plan: stages, checkpoints and responsible operators.", "Readiness, inspection and recovery criteria."]
+
+[[operations.operation]]
+id = "record-architecture-decision"
+description = "Prepare a lasting design decision with alternatives, reasons and conditions for reconsidering it."
+doctrine = "record-decision.md"
+doctrine_refs = [{ scope = "local", resource_id = "architecture-decision-records" }, { scope = "external", resource = { package_id = "pale.engineering", resource_id = "handoff" } }]
+outputs = ["In the repository’s decision home: the proposed choice, evidence, alternatives and any accepted trade-offs.", "Affected claims and owners, required checks and recovery conditions."]
+
+[[operations.operation]]
+id = "onboard-codebase"
+description = "Trace a new task through its repository instructions, entry points and relevant code."
+doctrine = "onboard.md"
+doctrine_refs = [{ scope = "local", resource_id = "codebase-onboarding" }, { scope = "local", resource_id = "worktree-frontier" }, { scope = "external", resource = { package_id = "pale.engineering", resource_id = "handoff" } }]
+outputs = ["In the handoff reply: owners, entry points and observed or untested commands.", "Scope for the next change, source revision and unresolved questions."]
+
+[[operations.operation]]
+id = "review-database-change"
+description = "Review PostgreSQL queries, migrations and access changes using actual database observations."
+doctrine = "review-database.md"
+outputs = ["In the review reply: scope, evidence, findings and recommendation.", "Missing checks and their responsible owners."]
+doctrine_refs = [{ scope = "local", resource_id = "postgres-patterns" }]
+roles = [{ scope = "local", resource_id = "database-reviewer" }]
+
+[[operations.operation]]
+id = "review-fork-lineage"
+description = "Check a fork’s source, refs, transport and the version its consumer actually uses."
+doctrine = "review-fork.md"
+doctrine_refs = [{ scope = "local", resource_id = "git-workflow" }]
+outputs = ["In the review reply: upstream, mirror, maintained branch and consumer revisions, with observation dates and effective transport.", "Divergence or history risks, and separate decisions needed for integration or pin changes."]
+
+[[operations.operation]]
+id = "qualify-data-erasure"
+description = "Review deletion, dependent invalidation and recovery without reviving removed data."
+doctrine = "qualify-erasure.md"
+doctrine_refs = [{ scope = "local", resource_id = "data-erasure-method" }, { scope = "local", resource_id = "persistence-recovery" }]
+outputs = ["In the review reply: copies covered and separately observed access denial, invalidation and deletion.", "Recovery results, permitted residual retention and outstanding confirmations from copy holders."]
+
+[[operations.operation]]
+id = "qualify-snapshot-import"
+description = "Review snapshot coverage, replacements, permitted removals and visible imported state."
+doctrine = "qualify-snapshot-import.md"
+doctrine_refs = [{ scope = "local", resource_id = "snapshot-import-method" }]
+outputs = ["In the review reply: source coverage, record identities and permission for removals.", "Observed consumer state and unresolved removals or recovery checks."]
+
+[[operations.operation]]
+id = "review-diagnostic-projection"
+description = "Check that a live status view respects permissions, preserves meaning and shows recovery accurately."
+doctrine = "diagnostic-projection.md"
+doctrine_refs = [{ scope = "local", resource_id = "semantic-compatibility" }]
+outputs = ["In the review reply: producer and viewer scope, source observations and displayed results.", "Refusal and recovery cases exercised, with checks still needed from the owning system."]
+
+[[operations.operation]]
+id = "review-release-materials"
+description = "Compare a release’s contents, inherited material, declarations and source-delivery requirements."
+doctrine = "review-release-materials.md"
+doctrine_refs = [{ scope = "local", resource_id = "release-provenance" }]
+outputs = ["In the release review: candidate and upstream inventories, classifications and discrepancies.", "Rights or delivery questions still open and their responsible owners."]
+
+[[operations.operation]]
+id = "review-data-transformation"
+description = "Review a record transformation against its inputs and consumer requirements."
+doctrine = "review-data-transformation.md"
+doctrine_refs = [{ scope = "local", resource_id = "data-transformation" }, { scope = "external", resource = { package_id = "pale.evaluation", resource_id = "rows" } }]
+outputs = ["In the review reply: source version, output contract and all writes or deliveries in scope.", "Located findings, executed checks and unresolved observations."]
+
+[[operations.operation]]
+id = "review-dbt-transformation"
+description = "Review a dbt model, effective hooks and the tests that actually ran."
+doctrine = "review-dbt-transformation.md"
+doctrine_refs = [{ scope = "local", resource_id = "data-transformation" }, { scope = "local", resource_id = "dbt-transformation" }, { scope = "external", resource = { package_id = "pale.evaluation", resource_id = "rows" } }]
+outputs = ["In the review reply: project revision, target, model and all actions it can trigger.", "Model, hook, test and consumer results, findings and remaining checks."]

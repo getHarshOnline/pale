@@ -1,0 +1,37 @@
+{
+  "$defs": {
+    "OfficialSourceUrl": {
+      "pattern": "^https://[^\\s]+$",
+      "type": "string"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/official-reference.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "checked": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "jurisdiction": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "label": {
+      "type": "string"
+    },
+    "url": {
+      "$ref": "#/$defs/OfficialSourceUrl"
+    }
+  },
+  "required": [
+    "label",
+    "url"
+  ],
+  "title": "official-reference.v1",
+  "type": "object"
+}

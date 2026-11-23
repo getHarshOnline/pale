@@ -1,0 +1,158 @@
+[
+  {
+    "kind": "principal-trust",
+    "state": {
+      "kind": "missing"
+    }
+  },
+  {
+    "kind": "deployment-control",
+    "state": {
+      "kind": "empty"
+    }
+  },
+  {
+    "kind": "principal-trust",
+    "state": {
+      "kind": "ready"
+    }
+  },
+  {
+    "kind": "deployment-control",
+    "state": {
+      "kind": "profile-unselected",
+      "details": {
+        "unresolved": [
+          "backup-restore-policy",
+          "authority-compaction-policy",
+          "authority-retention-policy",
+          "authority-checkpoint-cadence",
+          "authority-maximum-tail-entries",
+          "authority-maximum-checkpoint-candidates",
+          "authority-maximum-checkpoint-bytes",
+          "authority-maximum-entry-bytes",
+          "authority-corruption-checksum-bytes",
+          "authority-corruption-checksum",
+          "authority-frame-encoding",
+          "sqlite-durability-grouping",
+          "sqlite-wal-autocheckpoint-frames",
+          "sqlite-checkpoint-mode",
+          "sqlite-checkpoint-full-fsync",
+          "sqlite-full-fsync",
+          "sqlite-synchronous",
+          "sqlite-compile-options"
+        ]
+      }
+    }
+  },
+  {
+    "kind": "principal-trust",
+    "state": {
+      "kind": "profile-unselected",
+      "details": {
+        "unresolved": []
+      }
+    }
+  },
+  {
+    "kind": "deployment-control",
+    "state": {
+      "kind": "rejected",
+      "details": {
+        "kind": "unsafe-entry-kind"
+      }
+    }
+  },
+  {
+    "kind": "principal-trust",
+    "state": {
+      "kind": "rejected",
+      "details": {
+        "kind": "corrupt-or-partial"
+      }
+    }
+  },
+  {
+    "kind": "deployment-control",
+    "state": {
+      "kind": "rejected",
+      "details": {
+        "kind": "wrong-store-kind"
+      }
+    }
+  },
+  {
+    "kind": "principal-trust",
+    "state": {
+      "kind": "rejected",
+      "details": {
+        "kind": "wrong-logical-store-id"
+      }
+    }
+  },
+  {
+    "kind": "deployment-control",
+    "state": {
+      "kind": "rejected",
+      "details": {
+        "kind": "wrong-control-incarnation"
+      }
+    }
+  },
+  {
+    "kind": "principal-trust",
+    "state": {
+      "kind": "rejected",
+      "details": {
+        "kind": "wrong-principal-scope"
+      }
+    }
+  },
+  {
+    "kind": "deployment-control",
+    "state": {
+      "kind": "rejected",
+      "details": {
+        "kind": "wrong-deployment-scope"
+      }
+    }
+  },
+  {
+    "kind": "principal-trust",
+    "state": {
+      "kind": "rejected",
+      "details": {
+        "kind": "source-identity-mismatch"
+      }
+    }
+  },
+  {
+    "kind": "deployment-control",
+    "state": {
+      "kind": "rejected",
+      "details": {
+        "kind": "newer-version",
+        "observed": 9,
+        "supported": 1
+      }
+    }
+  },
+  {
+    "kind": "principal-trust",
+    "state": {
+      "kind": "rejected",
+      "details": {
+        "kind": "sqlite-build-mismatch"
+      }
+    }
+  },
+  {
+    "kind": "deployment-control",
+    "state": {
+      "kind": "rejected",
+      "details": {
+        "kind": "structural-profile-mismatch"
+      }
+    }
+  }
+]

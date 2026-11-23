@@ -1,0 +1,4 @@
+id = "governance.execution-contract"
+title = "Do the agreed work and check its result"
+purpose = "Use the request's existing permissions, preserve other people's work, check the result and name any action still needed from its owner."
+body = "families/execution-contract/body.md"

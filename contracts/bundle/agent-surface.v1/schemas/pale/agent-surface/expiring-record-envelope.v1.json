@@ -1,0 +1,99 @@
+{
+  "$defs": {
+    "ExpiringRecordClassV1": {
+      "oneOf": [
+        {
+          "const": "session-continuity",
+          "type": "string"
+        },
+        {
+          "const": "durable-evidence",
+          "type": "string"
+        }
+      ]
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/expiring-record-envelope.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "compilation_input_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "payload_schema": {
+      "$ref": "#/$defs/SchemaId"
+    },
+    "payload_schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "publication_generation": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "record_binding": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "record_class": {
+      "$ref": "#/$defs/ExpiringRecordClassV1"
+    },
+    "schema": {
+      "const": "pale.expiring-record-envelope.v1",
+      "type": "string"
+    },
+    "schema_manifest_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_set_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "state": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "updated_subsec_nanos": {
+      "default": 0,
+      "format": "uint32",
+      "maximum": 999999999,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "updated_unix_seconds": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_sha256",
+    "schema_version",
+    "schema_manifest_sha256",
+    "schema_set_sha256",
+    "compilation_input_digest",
+    "payload_schema",
+    "payload_schema_sha256",
+    "record_class",
+    "record_binding",
+    "publication_generation",
+    "updated_unix_seconds",
+    "state"
+  ],
+  "title": "expiring-record-envelope.v1",
+  "type": "object"
+}

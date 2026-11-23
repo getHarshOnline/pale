@@ -1,0 +1,133 @@
+{
+  "$defs": {
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "ProducerEpochV1": {
+      "pattern": "^(?:[0-9a-f]{2}){16,256}$",
+      "type": "string"
+    },
+    "ProducerIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ProducerIncarnationIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "SigningKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/producer-incarnation.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "allocated_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "canonical_incarnation_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "incarnation_id": {
+      "$ref": "#/$defs/ProducerIncarnationIdV1"
+    },
+    "issuer_key_epoch": {
+      "$ref": "#/$defs/SigningKeyEpochV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "issuer_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "origin_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "previous_incarnation_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "previous_incarnation_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "producer_epoch": {
+      "$ref": "#/$defs/ProducerEpochV1"
+    },
+    "producer_id": {
+      "$ref": "#/$defs/ProducerIdV1"
+    },
+    "producer_implementation_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "producer_implementation_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "producer_incarnation_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "producer_incarnation_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/producer-incarnation.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "incarnation_id",
+    "origin_principal_id",
+    "producer_id",
+    "producer_epoch",
+    "producer_implementation_ref",
+    "producer_implementation_sha256",
+    "producer_incarnation_authority_ref",
+    "producer_incarnation_authority_sha256",
+    "allocated_at",
+    "issuer_principal_id",
+    "issuer_key_id",
+    "issuer_key_epoch",
+    "canonical_incarnation_sha256",
+    "signature"
+  ],
+  "title": "producer-incarnation.v1",
+  "type": "object"
+}

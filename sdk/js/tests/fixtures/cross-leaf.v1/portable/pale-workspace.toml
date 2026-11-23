@@ -1,0 +1,13 @@
+[workspace]
+schema_version = 1
+workspace_id = "empty-adopter"
+distribution_lock = "distribution.lock.toml"
+machine_binding_root = "machines"
+desired_topology = { projects = [], execution_workspaces = [], repositories = [], execution_paths = [], project_repositories = [], project_execution_workspaces = [], execution_workspace_repositories = [] }
+module_manifests = []
+source_components = []
+responsibility_derivations = []
+organizational_translations = []
+experience_compositions = []
+resolution_lock = "resolution.lock.toml"
+universe_lock = "universe.lock.toml"

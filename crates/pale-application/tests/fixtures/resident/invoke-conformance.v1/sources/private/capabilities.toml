@@ -1,0 +1,44 @@
+[repository_commands]
+
+[semantic]
+roles = []
+doctrine = []
+run_modes = []
+stacks = []
+
+[[semantic.operations]]
+selection = "exact"
+
+[semantic.operations.resource]
+package_id = "example.engine"
+resource_id = "review"
+
+[semantic.mode_defaults]
+
+[capability_bindings.read]
+effect_class = "compute"
+approval = "none"
+
+[capability_bindings.read.implementation]
+kind = "native_rust"
+target = "pale.compute.path-inventory"
+
+[[operation_bindings]]
+
+[operation_bindings.operation]
+package_id = "example.engine"
+resource_id = "review"
+
+[operation_bindings.binding.selection]
+kind = "model_or_user"
+aliases = []
+
+[[run_policies]]
+id = "standard"
+description = "Portable compilation without an action gate."
+session_inject = false
+child_propagation = "propagate"
+child_type_selectors = []
+action_gate = false
+gated_tool_matchers = []
+

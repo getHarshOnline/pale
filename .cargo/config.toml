@@ -1,0 +1,20 @@
+# This checkout resolves exact `0.0.1` dependencies from their component homes.
+# Components share one repository but retain independent manifests. Registry
+# packages must also be verified outside this checkout without these patches.
+[build]
+target-dir = "target"
+# Limit growth from repeated agent and test builds.
+incremental = false
+
+[patch.crates-io]
+pale-core = { path = "crates/pale-core" }
+pale-contracts = { path = "crates/pale-contracts" }
+pale-ports = { path = "crates/pale-ports" }
+pale-kernel = { path = "crates/pale-kernel" }
+pale-application = { path = "crates/pale-application" }
+pale-adapter-fs = { path = "adapters/fs" }
+pale-adapter-process = { path = "adapters/process" }
+pale-adapter-control-storage = { path = "adapters/control-store" }
+pale-adapter-uds = { path = "adapters/uds" }
+pale-sdk = { path = "sdk/rust" }
+pale-cli = { path = "interfaces/cli" }

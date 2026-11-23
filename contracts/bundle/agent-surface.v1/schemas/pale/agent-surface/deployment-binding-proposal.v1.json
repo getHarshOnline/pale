@@ -1,0 +1,91 @@
+{
+  "$defs": {
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "DeploymentProposalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "PrincipalKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/deployment-binding-proposal.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "canonical_proposal_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "compiler_key_epoch": {
+      "$ref": "#/$defs/PrincipalKeyEpochV1"
+    },
+    "compiler_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "compiler_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "deployment_proposal_id": {
+      "$ref": "#/$defs/DeploymentProposalIdV1"
+    },
+    "deployment_terms": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/deployment-terms.v1.json"
+    },
+    "deployment_terms_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "proposal_expires_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "proposed_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "schema_id": {
+      "const": "pale/deployment-binding-proposal.v1",
+      "type": "string"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "deployment_proposal_id",
+    "deployment_terms",
+    "deployment_terms_sha256",
+    "proposed_at",
+    "proposal_expires_at",
+    "compiler_principal_id",
+    "compiler_key_id",
+    "compiler_key_epoch",
+    "canonical_proposal_sha256",
+    "signature"
+  ],
+  "title": "deployment-binding-proposal.v1",
+  "type": "object"
+}

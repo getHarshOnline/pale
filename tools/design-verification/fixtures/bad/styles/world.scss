@@ -1,0 +1,6 @@
+.panel { width: 480px; }
+.plate { padding: 12px; gap: var(--space-3, 1.5rem); }
+.accent { color: #b54147; background: oklch(0.6 0.1 20); }
+.fade { transition: opacity 200ms ease; }
+:root[data-mode="dark"] .panel { color: var(--color-ink); }
+button:focus { outline: none; }

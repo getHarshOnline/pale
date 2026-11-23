@@ -1,0 +1,37 @@
+[package]
+id = "pale.product"
+version = "0.2.1"
+schema_version = 1
+title = "Product"
+description = "Understand a user need, define what the product must enable and check how an offer speaks to its audience."
+compatible_compilers = ["pale-surface@1"]
+dependencies = [{ id = "pale.research", version = "0.2.0" }]
+
+# The original files remain documentation until their owner authorises removal.
+sources = [
+  { path = "INDEX.md", role = "documentation" },
+  { path = "operations.toml", role = "documentation" },
+  { path = "doctrine.toml", role = "documentation" },
+  { path = "roles.toml", role = "documentation" },
+  { path = "need-method.md", role = "documentation" },
+  { path = "capability-method.md", role = "documentation" },
+  { path = "domain-lens.md", role = "documentation" },
+  { path = "positioning-lens.md", role = "documentation" },
+  { path = "assess-need.md", role = "documentation" },
+  { path = "define-capability.md", role = "documentation" },
+  { path = "review-positioning.md", role = "documentation" },
+  { path = "need.md", role = "declaration" },
+  { path = "capability.md", role = "declaration" },
+  { path = "positioning.md", role = "declaration" },
+]
+resources = [
+  { id = "need", kind = "doctrine", definition_source = "need.md", exposure = "exported" },
+  { id = "need", kind = "operation", definition_source = "need.md", exposure = "exported" },
+  { id = "capability", kind = "doctrine", definition_source = "capability.md", exposure = "exported" },
+  { id = "capability", kind = "operation", definition_source = "capability.md", exposure = "exported" },
+  { id = "positioning", kind = "operation", definition_source = "positioning.md", exposure = "exported" },
+  { id = "positioning", kind = "role", definition_source = "positioning.md", exposure = "exported" },
+]
+
+[license]
+spdx = "AGPL-3.0-or-later"

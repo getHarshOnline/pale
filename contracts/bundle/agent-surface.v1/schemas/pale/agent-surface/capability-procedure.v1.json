@@ -1,0 +1,394 @@
+{
+  "$defs": {
+    "CapabilityFallback": {
+      "additionalProperties": false,
+      "properties": {
+        "guidance": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "recipe": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PackageResourceLinkV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "guidance"
+      ],
+      "type": "object"
+    },
+    "CapabilityIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "CapabilityPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "forbidden_capabilities": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/CapabilityIdV1"
+          },
+          "maxItems": 4096,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "forbidden_effects": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/EffectClass"
+          },
+          "maxItems": 4096,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "permitted_capabilities": {
+          "items": {
+            "$ref": "#/$defs/CapabilityIdV1"
+          },
+          "maxItems": 4096,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "permitted_effects": {
+          "items": {
+            "$ref": "#/$defs/EffectClass"
+          },
+          "maxItems": 4096,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "permitted_capabilities",
+        "permitted_effects"
+      ],
+      "type": "object"
+    },
+    "CapabilityRequirementIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "CapabilityRequirementPolicy": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "required_block",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "degraded_outcome": {
+              "$ref": "#/$defs/DegradedOutcomeIdV1"
+            },
+            "fallback": {
+              "$ref": "#/$defs/CapabilityFallback"
+            },
+            "kind": {
+              "const": "required_degrade",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "fallback",
+            "degraded_outcome"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "fallback": {
+              "$ref": "#/$defs/CapabilityFallback"
+            },
+            "kind": {
+              "const": "optional",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "fallback"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "DegradedOutcomeIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "EffectClass": {
+      "oneOf": [
+        {
+          "const": "compute",
+          "type": "string"
+        },
+        {
+          "const": "read",
+          "type": "string"
+        },
+        {
+          "const": "execute",
+          "type": "string"
+        },
+        {
+          "const": "write",
+          "type": "string"
+        },
+        {
+          "const": "network",
+          "type": "string"
+        },
+        {
+          "const": "publish",
+          "type": "string"
+        }
+      ]
+    },
+    "FailurePosture": {
+      "oneOf": [
+        {
+          "const": "fail_closed",
+          "type": "string"
+        },
+        {
+          "const": "fail_open",
+          "type": "string"
+        },
+        {
+          "const": "retry",
+          "type": "string"
+        },
+        {
+          "const": "steer",
+          "type": "string"
+        },
+        {
+          "const": "escalate",
+          "type": "string"
+        }
+      ]
+    },
+    "NonRootJsonPointer": {
+      "maxLength": 1024,
+      "minLength": 2,
+      "pattern": "^/(?:[^~\\u0000-\\u001F\\u007F-\\u009F]|~[01])+$",
+      "type": "string"
+    },
+    "OperationCapabilityRequirement": {
+      "additionalProperties": false,
+      "properties": {
+        "capability": {
+          "$ref": "#/$defs/CapabilityIdV1"
+        },
+        "description": {
+          "type": "string"
+        },
+        "effect_class": {
+          "$ref": "#/$defs/EffectClass"
+        },
+        "failure_posture": {
+          "$ref": "#/$defs/FailurePosture"
+        },
+        "id": {
+          "$ref": "#/$defs/CapabilityRequirementIdV1"
+        },
+        "policy": {
+          "$ref": "#/$defs/CapabilityRequirementPolicy"
+        },
+        "recipe": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PackageResourceLinkV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "description",
+        "capability",
+        "effect_class",
+        "policy",
+        "failure_posture"
+      ],
+      "type": "object"
+    },
+    "PackageIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[./][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceLinkV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "resource_id": {
+              "$ref": "#/$defs/PackageResourceIdV1"
+            },
+            "scope": {
+              "const": "local",
+              "type": "string"
+            }
+          },
+          "required": [
+            "scope",
+            "resource_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "resource": {
+              "$ref": "#/$defs/PackageResourceRefV1"
+            },
+            "scope": {
+              "const": "external",
+              "type": "string"
+            }
+          },
+          "required": [
+            "scope",
+            "resource"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "PackageResourceRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "package_id": {
+          "$ref": "#/$defs/PackageIdV1"
+        },
+        "resource_id": {
+          "$ref": "#/$defs/PackageResourceIdV1"
+        }
+      },
+      "required": [
+        "package_id",
+        "resource_id"
+      ],
+      "type": "object"
+    },
+    "ProofCeilingIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "ToolContractIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "ToolEvidenceContract": {
+      "additionalProperties": false,
+      "properties": {
+        "proof_ceiling": {
+          "$ref": "#/$defs/ProofCeilingIdV1"
+        },
+        "repository_verifier": {
+          "default": false,
+          "type": "boolean"
+        },
+        "required_fields": {
+          "items": {
+            "$ref": "#/$defs/NonRootJsonPointer"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "required_fields",
+        "proof_ceiling"
+      ],
+      "type": "object"
+    },
+    "ToolOperationIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "ToolRecipe": {
+      "additionalProperties": false,
+      "properties": {
+        "capability": {
+          "$ref": "#/$defs/CapabilityIdV1"
+        },
+        "description": {
+          "type": "string"
+        },
+        "effect_class": {
+          "$ref": "#/$defs/EffectClass"
+        },
+        "evidence": {
+          "$ref": "#/$defs/ToolEvidenceContract"
+        },
+        "input_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "tool_contract": {
+          "$ref": "#/$defs/ToolContractIdV1"
+        },
+        "tool_operation": {
+          "$ref": "#/$defs/ToolOperationIdV1"
+        }
+      },
+      "required": [
+        "description",
+        "capability",
+        "tool_contract",
+        "tool_operation",
+        "effect_class",
+        "input_mapping",
+        "evidence"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/capability-procedure.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "not": {},
+  "title": "capability-procedure.v1"
+}

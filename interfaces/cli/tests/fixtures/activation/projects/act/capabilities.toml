@@ -1,0 +1,220 @@
+[repository_commands.engine.commands]
+project-test = ["cargo test"]
+
+[semantic]
+operations = [
+  { selection = "exact", resource = { package_id = "pale.engineering", resource_id = "repo-scan" } },
+  { selection = "exact", resource = { package_id = "pale.engineering", resource_id = "verify-project" } },
+]
+roles = [
+  { selection = "exact", resource = { package_id = "pale.engineering", resource_id = "code-reviewer" } },
+]
+run_modes = [
+  { selection = "all_from_package", package_id = "pale.engineering" },
+]
+[semantic.mode_defaults]
+intensity = { package_id = "pale.engineering", resource_id = "standard" }
+
+[capability_narrowing]
+permitted_capabilities = [
+  "local-inspection",
+  "path-inventory-compute",
+  "project-format-check",
+  "project-format-write",
+  "project-test",
+  "source-control-local-change",
+]
+forbidden_capabilities = []
+permitted_effects = ["compute", "execute", "read", "write"]
+forbidden_effects = []
+
+[[run_policies]]
+id = "standard"
+description = "Activation fixture policy without a consequential-action gate."
+session_inject = true
+child_propagation = "propagate"
+action_gate = false
+gated_tool_matchers = []
+
+[[run_policies]]
+id = "strict"
+description = "Activation fixture policy requiring exact authorization for command tools."
+session_inject = true
+child_propagation = "propagate"
+action_gate = true
+gated_tool_matchers = ["Bash(rg*)"]
+
+[[operation_bindings]]
+operation = { package_id = "pale.engineering", resource_id = "repo-scan" }
+[operation_bindings.binding.selection]
+kind = "model_or_user"
+
+[[operation_bindings]]
+operation = { package_id = "pale.engineering", resource_id = "verify-project" }
+[operation_bindings.binding.selection]
+kind = "internal"
+
+[capability_bindings.local-inspection]
+effect_class = "read"
+approval = "none"
+[capability_bindings.local-inspection.implementation]
+kind = "host_native"
+[[capability_bindings.local-inspection.implementation.provider_tools]]
+provider_binding = { provider_binding_id = "provider-binding-claude-code", provider_binding_identity = { provider_binding_sha256 = "b58a26f28fb233f99a718a40ae76d2f7f71cb2c53d2e7f5b2dc0d815e92156e3" } }
+tools = [
+  { name = "Read", observability = "pre_tool_observable" },
+  { name = "Glob", observability = "pre_tool_observable" },
+  { name = "Grep", observability = "pre_tool_observable" },
+]
+[[capability_bindings.local-inspection.implementation.provider_tools]]
+provider_binding = { provider_binding_id = "provider-binding-codex", provider_binding_identity = { provider_binding_sha256 = "7977566c3e2c4223716419eb9fd5076ed3de3b34cdb94a2e3114c9aa484ada20" } }
+tools = [
+  { name = "Bash", observability = "pre_tool_observable", commands = [
+    { executable = "rg", argv_prefix = ["--no-config"], allow_trailing_args = true },
+    { executable = "git", argv_prefix = ["--no-optional-locks", "status"], allow_trailing_args = true },
+  ] },
+]
+
+[capability_bindings.project-test]
+effect_class = "execute"
+approval = "none"
+tool_contract = "repository-verifier.v1"
+[capability_bindings.project-test.implementation]
+kind = "host_native"
+[[capability_bindings.project-test.implementation.provider_tools]]
+provider_binding = { provider_binding_id = "provider-binding-claude-code", provider_binding_identity = { provider_binding_sha256 = "b58a26f28fb233f99a718a40ae76d2f7f71cb2c53d2e7f5b2dc0d815e92156e3" } }
+tools = [{ name = "Bash", observability = "pre_tool_observable", command_source = "repository_capability_commands" }]
+[[capability_bindings.project-test.implementation.provider_tools]]
+provider_binding = { provider_binding_id = "provider-binding-codex", provider_binding_identity = { provider_binding_sha256 = "7977566c3e2c4223716419eb9fd5076ed3de3b34cdb94a2e3114c9aa484ada20" } }
+tools = [{ name = "Bash", observability = "pre_tool_observable", command_source = "repository_capability_commands" }]
+
+[lifecycle]
+[[lifecycle.behaviour]]
+id = "block-destructive-shell"
+description = "Test-only destructive-shell guard."
+guidance = "lifecycle/destructive-shell.md"
+event = "pre-tool-use"
+predicate_kind = "destructive_shell"
+action = "deny"
+failure_posture = "fail_closed"
+
+[[lifecycle.behaviour]]
+id = "first-touch-gate"
+description = "Test-only first-touch guidance."
+guidance = "lifecycle/first-touch.md"
+event = "pre-tool-use"
+predicate_kind = "first_touch"
+action = "guide"
+failure_posture = "fail_open"
+state_scope = "session"
+
+[[lifecycle.behaviour]]
+id = "active-mode-context"
+description = "Test-only active-mode context projection."
+event = "user-prompt-submit"
+predicate_kind = "mode_changed"
+action = "inject_modes"
+failure_posture = "fail_open"
+state_scope = "session"
+
+[[lifecycle.behaviour]]
+id = "active-mode-expansion-context"
+description = "Test-only project-command mode projection."
+event = "user-prompt-expansion"
+predicate_kind = "mode_changed"
+action = "inject_modes"
+failure_posture = "fail_open"
+state_scope = "session"
+
+[[lifecycle.behaviour]]
+id = "session-start-inject"
+description = "Test-only project-context injection at session start."
+event = "session-start"
+predicate_kind = "always"
+action = "inject"
+failure_posture = "fail_open"
+
+[[lifecycle.behaviour]]
+id = "modes"
+description = "Test-only active-mode projection at session start."
+event = "session-start"
+predicate_kind = "always"
+action = "inject_modes"
+failure_posture = "fail_open"
+
+[[lifecycle.behaviour]]
+id = "config-protection"
+description = "Test-only protected-write gate with repository-verification debt."
+event = "pre-tool-use"
+predicate_kind = "path_match"
+matchers = [
+  "*.eslintrc",
+  "*.eslintrc.*",
+  "*eslint.config.*",
+  "*.prettierrc",
+  "*.prettierrc.*",
+  "*prettier.config.*",
+  "*biome.json",
+  "*biome.jsonc",
+  "*.ruff.toml",
+  "*ruff.toml",
+  "*.shellcheckrc",
+  "*.stylelintrc",
+  "*.stylelintrc.*",
+  "*.markdownlint.json",
+  "*.markdownlint.yaml",
+  "*.markdownlintrc",
+]
+case_insensitive = true
+existing_targets_only = true
+allow_admitted_operation = true
+action = "deny"
+failure_posture = "fail_closed"
+
+[[lifecycle.behaviour]]
+id = "block-git-hook-bypass"
+description = "Test-only denial of Git invocations that bypass repository hooks."
+event = "pre-tool-use"
+predicate_kind = "git_hook_bypass"
+action = "deny"
+failure_posture = "fail_closed"
+
+[[lifecycle.behaviour]]
+id = "session-summary"
+description = "Test-only session-end carrier with no direct action."
+event = "session-end"
+predicate_kind = "always"
+action = "no_op"
+failure_posture = "fail_open"
+
+[[lifecycle.behaviour]]
+id = "completion-notify"
+description = "Test-only semantically inert completion record."
+event = "post-tool-use"
+predicate_kind = "never"
+action = "no_op"
+failure_posture = "fail_open"
+
+[[lifecycle.behaviour]]
+id = "post-compaction-rebaseline"
+description = "Test-only inert rebaseline record."
+event = "post-compact"
+predicate_kind = "never"
+action = "no_op"
+failure_posture = "fail_open"
+
+[[lifecycle.behaviour]]
+id = "post-compaction-context"
+description = "Test-only inert context record."
+event = "post-compact"
+predicate_kind = "never"
+action = "no_op"
+failure_posture = "fail_open"
+
+[[lifecycle.behaviour]]
+id = "post-compaction-mode-context"
+description = "Test-only inert mode-context record."
+event = "post-compact"
+predicate_kind = "never"
+action = "no_op"
+failure_posture = "fail_open"

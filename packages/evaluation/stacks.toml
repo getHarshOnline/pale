@@ -1,0 +1,38 @@
+[stacks]
+schema_version = 1
+
+[[stacks.stack]]
+id = "langfuse"
+description = "Use Langfuse for the selected tracing or evaluation task, with official guidance, available tools and checks on traces and datasets."
+doctrine_refs = [{ scope = "local", resource_id = "langfuse-practice" }, { scope = "local", resource_id = "langfuse-tooling" }]
+[[stacks.stack.official_sources]]
+label = "Langfuse official agent skill"
+url = "https://github.com/langfuse/skills/tree/f0bcb13088b490c04b3f4870bace17f6d57b199c/skills/langfuse"
+[[stacks.stack.official_sources]]
+label = "Langfuse native CLI"
+url = "https://langfuse.com/docs/api-and-data-platform/features/cli"
+[[stacks.stack.official_sources]]
+label = "langfuse native documentation"
+url = "https://langfuse.com/docs/evaluation/experiments/datasets"
+[[stacks.stack.official_sources]]
+label = "langfuse code evaluator runtime"
+url = "https://langfuse.com/docs/evaluation/evaluation-methods/code-evaluators"
+[[stacks.stack.official_sources]]
+label = "langfuse model judge execution"
+url = "https://langfuse.com/docs/evaluation/evaluation-methods/llm-as-a-judge"
+
+[[stacks.stack]]
+id = "jupyter"
+description = "Check notebook execution and exported results."
+doctrine_refs = [{ scope = "local", resource_id = "jupyter-practice" }]
+[[stacks.stack.official_sources]]
+label = "jupyter native documentation"
+url = "https://nbclient.readthedocs.io/en/latest/client.html"
+
+[[stacks.stack]]
+id = "typesafe-decision"
+description = "Check how the selected provider returns decisions and confidence."
+doctrine_refs = [{ scope = "local", resource_id = "typesafe-decision-practice" }]
+[[stacks.stack.official_sources]]
+label = "typesafe-decision native documentation"
+url = "https://docs.typesafe.ai/confidence"

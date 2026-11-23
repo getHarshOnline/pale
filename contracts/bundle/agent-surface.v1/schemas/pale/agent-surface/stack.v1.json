@@ -1,0 +1,149 @@
+{
+  "$defs": {
+    "PackageIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[./][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceLinkV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "resource_id": {
+              "$ref": "#/$defs/PackageResourceIdV1"
+            },
+            "scope": {
+              "const": "local",
+              "type": "string"
+            }
+          },
+          "required": [
+            "scope",
+            "resource_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "resource": {
+              "$ref": "#/$defs/PackageResourceRefV1"
+            },
+            "scope": {
+              "const": "external",
+              "type": "string"
+            }
+          },
+          "required": [
+            "scope",
+            "resource"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "PackageResourceRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "package_id": {
+          "$ref": "#/$defs/PackageIdV1"
+        },
+        "resource_id": {
+          "$ref": "#/$defs/PackageResourceIdV1"
+        }
+      },
+      "required": [
+        "package_id",
+        "resource_id"
+      ],
+      "type": "object"
+    },
+    "Stack": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "doctrine_refs": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceLinkV1"
+          },
+          "type": "array"
+        },
+        "extends": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceLinkV1"
+          },
+          "type": "array"
+        },
+        "id": {
+          "$ref": "#/$defs/PackageResourceIdV1"
+        },
+        "official_sources": {
+          "default": [],
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/official-reference.v1.json"
+          },
+          "type": "array"
+        },
+        "role_doctrine_refs": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceLinkV1"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "description"
+      ],
+      "type": "object"
+    },
+    "StackCatalog": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": 1,
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "stack": {
+          "items": {
+            "$ref": "#/$defs/Stack"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "stack"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/stack.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "stacks": {
+      "$ref": "#/$defs/StackCatalog"
+    }
+  },
+  "required": [
+    "stacks"
+  ],
+  "title": "stack.v1",
+  "type": "object"
+}

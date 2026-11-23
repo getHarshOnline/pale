@@ -1,0 +1,4 @@
+id = "engineering.verification"
+title = "Choose checks that can catch the failure"
+purpose = "Choose and run the project checks that can catch the claimed failure, including affected users and a fresh host session when checking generated agent guidance."
+body = "families/verification/body.md"

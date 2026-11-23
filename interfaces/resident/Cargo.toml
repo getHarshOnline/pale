@@ -1,0 +1,54 @@
+[package]
+name = "pale-resident"
+version = "0.0.1"
+edition = "2021"
+rust-version = "1.94"
+authors = ["Harsh Joshi"]
+license = "AGPL-3.0-or-later"
+readme = "README.md"
+repository = "https://github.com/getHarshOnline/pale"
+description = "Bounded native listener composition for the Pale resident service."
+publish = false
+
+[workspace]
+resolver = "2"
+
+[lints.rust]
+missing_docs = "deny"
+unsafe_code = "deny"
+unreachable_pub = "deny"
+
+[lints.clippy]
+doc_markdown = "deny"
+missing_errors_doc = "deny"
+missing_panics_doc = "deny"
+
+[lints.rustdoc]
+bare_urls = "deny"
+broken_intra_doc_links = "deny"
+invalid_codeblock_attributes = "deny"
+invalid_html_tags = "deny"
+private_intra_doc_links = "deny"
+
+[dependencies]
+pale-application = { path = "../../crates/pale-application" }
+pale-adapter-uds = { path = "../../adapters/uds" }
+pale-ports = { path = "../../crates/pale-ports" }
+thiserror = "=2.0.18"
+
+[dev-dependencies]
+ed25519-dalek = { version = "=2.2.0", default-features = false, features = ["std", "zeroize"] }
+getrandom = "=0.3.4"
+pale-application = { path = "../../crates/pale-application", features = ["interface-test-support"] }
+serde_json = "=1.0.149"
+tempfile = "=3.24.0"
+
+[profile.dev.package."*"]
+opt-level = 2
+
+[profile.test]
+debug = "line-tables-only"
+
+[profile.test.package."*"]
+opt-level = 2
+debug = false

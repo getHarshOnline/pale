@@ -1,0 +1,66 @@
+[package]
+name = "pale-lsp"
+version = "0.0.1"
+edition = "2021"
+rust-version = "1.94"
+authors = ["Harsh Joshi"]
+license = "AGPL-3.0-or-later"
+readme = "README.md"
+repository = "https://github.com/getHarshOnline/pale"
+description = "Language server that gives editors diagnostics, completion and hover for Pale Workspace files."
+publish = false
+
+[workspace]
+resolver = "2"
+
+[lints.rust]
+missing_docs = "deny"
+unsafe_code = "deny"
+unreachable_pub = "deny"
+
+[lints.clippy]
+doc_markdown = "deny"
+missing_errors_doc = "deny"
+missing_panics_doc = "deny"
+
+[lints.rustdoc]
+bare_urls = "deny"
+broken_intra_doc_links = "deny"
+invalid_codeblock_attributes = "deny"
+invalid_html_tags = "deny"
+private_intra_doc_links = "deny"
+
+# Editor-pipeline characterization is deliberately outside the default gate.
+# It exercises private transport mechanics and cannot select an LSP policy.
+[features]
+# Development-only private wire-shape export; absent from the default server.
+protocol-codegen = ["dep:schemars", "pale-sdk/wire-schema"]
+bench = []
+# Benchmark-binary instrumentation only; never selected by the default server.
+bench-memory = ["bench", "dep:allocation-counter", "dep:nix"]
+
+[[bench]]
+name = "editor_pipeline"
+harness = false
+required-features = ["bench"]
+
+[[example]]
+name = "export_protocol"
+required-features = ["protocol-codegen"]
+
+[dependencies]
+schemars = { version = "=1.2.2", default-features = false, features = ["derive", "std"], optional = true }
+pale-sdk = "=0.0.1"
+crossbeam-channel = "=0.5.15"
+lsp-server = "=0.10.0"
+lsp-types = "=0.97.0"
+ropey = { version = "=1.6.1", default-features = false, features = ["simd"] }
+serde = { version = "=1.0.228", features = ["derive"] }
+serde_json = "=1.0.149"
+sha2 = "=0.10.9"
+thiserror = "=2.0.18"
+toml_parser = { version = "=1.0.6", default-features = false, features = ["std"] }
+allocation-counter = { version = "=0.8.1", optional = true }
+
+[target.'cfg(unix)'.dependencies]
+nix = { version = "=0.31.3", default-features = false, features = ["resource"], optional = true }

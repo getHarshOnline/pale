@@ -1,0 +1,138 @@
+{
+  "$defs": {
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "DeploymentAcceptanceDecisionV1": {
+      "oneOf": [
+        {
+          "const": "accepted",
+          "type": "string"
+        }
+      ]
+    },
+    "DeploymentAcceptanceIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "SigningKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/deployment-acceptance.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "acceptance_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "acceptance_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "acceptance_evidence_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "acceptance_evidence_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "accepted_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "binding_valid_until": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "canonical_acceptance_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "decision": {
+      "$ref": "#/$defs/DeploymentAcceptanceDecisionV1"
+    },
+    "deployment_acceptance_id": {
+      "$ref": "#/$defs/DeploymentAcceptanceIdV1"
+    },
+    "deployment_proposal_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "deployment_proposal_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "deployment_terms_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "issuer_key_epoch": {
+      "$ref": "#/$defs/SigningKeyEpochV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "issuer_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "permitted_binding_issuer_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/deployment-acceptance.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "deployment_acceptance_id",
+    "deployment_proposal_ref",
+    "deployment_proposal_sha256",
+    "deployment_terms_sha256",
+    "acceptance_authority_ref",
+    "acceptance_authority_sha256",
+    "acceptance_evidence_ref",
+    "acceptance_evidence_sha256",
+    "decision",
+    "accepted_at",
+    "binding_valid_until",
+    "permitted_binding_issuer_principal_id",
+    "issuer_principal_id",
+    "issuer_key_id",
+    "issuer_key_epoch",
+    "canonical_acceptance_sha256",
+    "signature"
+  ],
+  "title": "deployment-acceptance.v1",
+  "type": "object"
+}

@@ -1,0 +1,10 @@
+pale-acp
+Copyright © 2026 RawThoughts Enterprises Private Limited.
+Author and originator: Harsh Joshi.
+Distributed under AGPL-3.0-or-later; see LICENSE.
+
+Uses agent-client-protocol 2.0.0, the Agent Client Protocol Rust SDK,
+under Apache-2.0. The runtime also uses futures; async-io and serde_json
+serve conformance tests. Cargo.lock records their versions and transitive
+dependencies. Their licences and notices remain applicable to the files
+included in a distribution.

@@ -1,0 +1,293 @@
+{
+  "$defs": {
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "CapabilityIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "OperationClassV1": {
+      "oneOf": [
+        {
+          "const": "invoke",
+          "type": "string"
+        },
+        {
+          "const": "consult",
+          "type": "string"
+        },
+        {
+          "const": "delegate",
+          "type": "string"
+        }
+      ]
+    },
+    "OperationHandleIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ParentOperationReferenceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "operation_handle_id": {
+          "$ref": "#/$defs/OperationHandleIdV1"
+        },
+        "operation_handle_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "operation_handle_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "operation_handle_id",
+        "operation_handle_ref",
+        "operation_handle_sha256"
+      ],
+      "type": "object"
+    },
+    "RequestBindingV1": {
+      "additionalProperties": false,
+      "dependentRequired": {
+        "execution_owner_fence_ref": [
+          "execution_owner_fence_sha256"
+        ],
+        "execution_owner_fence_sha256": [
+          "execution_owner_fence_ref"
+        ],
+        "federation_request_admission_ref": [
+          "federation_request_admission_sha256"
+        ],
+        "federation_request_admission_sha256": [
+          "federation_request_admission_ref"
+        ]
+      },
+      "properties": {
+        "canonical_request_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "capability_id": {
+          "$ref": "#/$defs/CapabilityIdV1"
+        },
+        "contract_set_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "contract_set_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "correlation_id": {
+          "$ref": "#/$defs/ResidentCorrelationIdV1"
+        },
+        "deployment_binding_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "deployment_binding_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "execution_owner_fence_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "execution_owner_fence_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "federation_request_admission_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "federation_request_admission_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "request_id": {
+          "$ref": "#/$defs/ResidentRequestIdV1"
+        },
+        "route_binding_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "route_binding_schema_id": {
+          "$ref": "#/$defs/SchemaId"
+        },
+        "route_binding_schema_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "route_binding_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "route_generation": {
+          "$ref": "#/$defs/RouteGenerationV1"
+        },
+        "session_grant_id": {
+          "$ref": "#/$defs/SessionGrantIdV1"
+        },
+        "session_grant_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "request_id",
+        "correlation_id",
+        "capability_id",
+        "canonical_request_sha256",
+        "session_grant_id",
+        "session_grant_sha256",
+        "deployment_binding_ref",
+        "deployment_binding_sha256",
+        "route_binding_schema_id",
+        "route_binding_schema_sha256",
+        "route_binding_ref",
+        "route_binding_sha256",
+        "route_generation",
+        "contract_set_ref",
+        "contract_set_sha256"
+      ],
+      "type": "object"
+    },
+    "ResidentCorrelationIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRequestIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "RouteGenerationV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "SessionGrantIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SigningKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/operation-handle.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "activation_fence_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "canonical_operation_handle_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "compiled_generation_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "created_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "deployment_runtime_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "deployment_runtime_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "expires_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "instance_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "issuer_key_epoch": {
+      "$ref": "#/$defs/SigningKeyEpochV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "issuer_principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "operation_class": {
+      "$ref": "#/$defs/OperationClassV1"
+    },
+    "operation_handle_id": {
+      "$ref": "#/$defs/OperationHandleIdV1"
+    },
+    "operation_lease_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "operation_lease_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "parent_operation": {
+      "$ref": "#/$defs/ParentOperationReferenceV1"
+    },
+    "request_binding": {
+      "$ref": "#/$defs/RequestBindingV1"
+    },
+    "retain_until": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/operation-handle.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "operation_handle_id",
+    "operation_class",
+    "request_binding",
+    "operation_lease_ref",
+    "operation_lease_sha256",
+    "compiled_generation_sha256",
+    "activation_fence_sha256",
+    "instance_sha256",
+    "created_at",
+    "expires_at",
+    "retain_until",
+    "deployment_runtime_authority_ref",
+    "deployment_runtime_authority_sha256",
+    "issuer_principal_id",
+    "issuer_key_id",
+    "issuer_key_epoch",
+    "canonical_operation_handle_sha256",
+    "signature"
+  ],
+  "title": "operation-handle.v1",
+  "type": "object"
+}

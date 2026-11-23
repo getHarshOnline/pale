@@ -1,0 +1,158 @@
+{
+  "aggregate_sha256": "f97139d2cfbad657993a941cfa4d835b7cee91d223cc067fafdf3b4dbaed6a4a",
+  "member_count": 18,
+  "members": [
+    {
+      "path": "empty-adopter/pale-workspace.toml",
+      "sha256": "7f034c80038a143f99c22af185f796529e10ed0c5429e6d1c06105b6e576a39f",
+      "size": 564
+    },
+    {
+      "path": "empty-adopter/resolution.lock.toml",
+      "sha256": "181d1d222630ddb5c1f8d93b3ae7c266b98a3647aa67a2793a1041ede3eee9a2",
+      "size": 165
+    },
+    {
+      "path": "empty-adopter/universe.lock.toml",
+      "sha256": "a8addf83690253b8a3657f85b972c865bab6c8ce34a062d3dbd952aafbb0a91a",
+      "size": 287
+    },
+    {
+      "path": "populated/alpha-handwritten.toml",
+      "sha256": "567b562a6d357a903c9478b37da89f638cc24996c0c031bebe733bb5d1096f7b",
+      "size": 387
+    },
+    {
+      "path": "populated/alpha.toml",
+      "sha256": "582c29c5940d76977e7496847ce53f20fd6dbb2a2cf3cfb037b2f2f384ee337b",
+      "size": 319
+    },
+    {
+      "path": "populated/beta.toml",
+      "sha256": "c2173a739604ea710091f450e3b7cef88e5e0886b31f159a84ab2eef35933e12",
+      "size": 318
+    },
+    {
+      "path": "populated/module-candidate.json",
+      "sha256": "d44f22615a0c91b3dc1e59092ccc7c19d874983fc1905a2c273f4a1ca56b7263",
+      "size": 2841
+    },
+    {
+      "path": "populated/module.toml",
+      "sha256": "fdb82b13535a68de017b6f9da2cec9df12d64e642329a953357006da8d272eff",
+      "size": 2065
+    },
+    {
+      "path": "populated/pale-workspace.toml",
+      "sha256": "910431b4853ce002c469518a594e7a5e7fcc23c6aea18ea500a8cb9b7771f144",
+      "size": 599
+    },
+    {
+      "path": "populated/resolution.lock.toml",
+      "sha256": "13f4e22b6139989d425e72f6fa6aa81ccec979f8d566734594f6083f5c235594",
+      "size": 537
+    },
+    {
+      "path": "populated/universe.lock.toml",
+      "sha256": "48f5c0616aaedf57680d51f93b46f794bf30930f04564ae6dda1215d31e32d4e",
+      "size": 415
+    },
+    {
+      "path": "release-candidate/resolution.lock.toml",
+      "sha256": "aa4f8c43fb2a45c9233ac6a6bd31ade770ebd6920746b632eeefd3a4faf88d52",
+      "size": 537
+    },
+    {
+      "path": "release-candidate/universe.lock.toml",
+      "sha256": "7f8bb47e166a042efe2da5d22a193a2521ca33ddde58142d5090c7edd7928edf",
+      "size": 415
+    },
+    {
+      "path": "source-incomplete/module.toml",
+      "sha256": "65e94d0d37b60c25c76bb683636837e5aa7b2f6bf974127fd7b28c8a7edbded1",
+      "size": 2062
+    },
+    {
+      "path": "source-incomplete/pale-workspace.toml",
+      "sha256": "c002c2759cbb09cb24cbb905d800404aa8b6beb54795205b6d3ec4b926d201df",
+      "size": 573
+    },
+    {
+      "path": "source-incomplete/resolution.lock.toml",
+      "sha256": "9eb97364c809a1d8fc6bb652720ea6d3c3004ba49c405fe2aec84133568ccb0c",
+      "size": 537
+    },
+    {
+      "path": "source-incomplete/universe.lock.toml",
+      "sha256": "bcdf1a1130486201b5f14f21b9752ca069a81b054bcbaaed7b9d78e50c70594e",
+      "size": 415
+    },
+    {
+      "path": "unadopted/universe.lock.toml",
+      "sha256": "995971cb94117a71ec03e4bf36ffb60dad665506b82bbaad1631ae53417fc4af",
+      "size": 283
+    }
+  ],
+  "projections": [
+    {
+      "members": [
+        "empty-adopter/pale-workspace.toml",
+        "empty-adopter/resolution.lock.toml",
+        "empty-adopter/universe.lock.toml",
+        "populated/alpha-handwritten.toml",
+        "populated/alpha.toml",
+        "populated/beta.toml",
+        "populated/module-candidate.json",
+        "populated/module.toml",
+        "populated/pale-workspace.toml",
+        "populated/resolution.lock.toml",
+        "populated/universe.lock.toml",
+        "release-candidate/resolution.lock.toml",
+        "release-candidate/universe.lock.toml",
+        "source-incomplete/module.toml",
+        "source-incomplete/pale-workspace.toml",
+        "source-incomplete/resolution.lock.toml",
+        "source-incomplete/universe.lock.toml",
+        "unadopted/universe.lock.toml"
+      ],
+      "root": "crates/pale-application/tests/fixtures/workspace-language"
+    },
+    {
+      "members": [
+        "empty-adopter/pale-workspace.toml",
+        "empty-adopter/resolution.lock.toml",
+        "empty-adopter/universe.lock.toml",
+        "populated/alpha-handwritten.toml",
+        "populated/alpha.toml",
+        "populated/beta.toml",
+        "populated/module-candidate.json",
+        "populated/module.toml",
+        "populated/pale-workspace.toml",
+        "populated/resolution.lock.toml",
+        "populated/universe.lock.toml",
+        "release-candidate/resolution.lock.toml",
+        "release-candidate/universe.lock.toml",
+        "source-incomplete/module.toml",
+        "source-incomplete/pale-workspace.toml",
+        "source-incomplete/resolution.lock.toml",
+        "source-incomplete/universe.lock.toml",
+        "unadopted/universe.lock.toml"
+      ],
+      "root": "sdk/rust/tests/fixtures/workspace-language"
+    },
+    {
+      "members": [
+        "populated/pale-workspace.toml",
+        "populated/module.toml",
+        "populated/alpha.toml",
+        "populated/beta.toml",
+        "populated/resolution.lock.toml",
+        "populated/universe.lock.toml",
+        "unadopted/universe.lock.toml"
+      ],
+      "root": "interfaces/lsp/tests/fixtures/workspace-language"
+    }
+  ],
+  "schema": "pale.workspace-language-conformance-manifest.v1",
+  "version": 1
+}

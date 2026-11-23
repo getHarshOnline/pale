@@ -1,0 +1,6 @@
+schema = "pale/workspace-universe-lock.v1"
+schema_version = 1
+workspace_id = "repository-guidance"
+resolution_digest = "945db2ec1686d74bc476a920c073a6d9bbb69ea34ab78cda178d6177ce2b855c"
+adopted_releases = []
+universe_digest = "d410d2c20812a7354db1f250324315dd29e3d8aa2cd9ebfa7af8c99203df622c"

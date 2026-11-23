@@ -1,0 +1,90 @@
+Pale Package corpus
+Copyright © 2026 RawThoughts Enterprises Private Limited.
+
+Authored and originated by Harsh Joshi. Distributed under
+AGPL-3.0-or-later; see LICENSE. Alternative commercial licensing changes
+licensing obligations only and requires a separate written agreement with
+RawThoughts Enterprises Private Limited.
+
+Third-party source conditions remain with their respective material.
+Engineering's review and handoff, Agent Work's unattended work and observation,
+Architecture's repository strategy and review comments, and Automation's
+workflow completion guidance adapt t3dotgg/tstack
+at commit 11e37a74d0a6868c121cd0910ab2b3bd9873b92a:
+https://github.com/t3dotgg/tstack/tree/11e37a74d0a6868c121cd0910ab2b3bd9873b92a
+Copyright (c) 2026 Theo Browne.
+SPDX-License-Identifier: MIT
+The MIT permission notice and warranty disclaimer reproduced below apply to
+these portions. Pale uses the consumer's permissions, available reviewers and
+code-host requirements. No upstream scripts are included or endorsement implied.
+
+Engineering's review method adapts the finding checks and false-positive
+examples from affaan-m/ECC at commit
+591ab5cbd3f2f65860ea91c226e410b1502c8e2e:
+https://github.com/affaan-m/ECC/blob/591ab5cbd3f2f65860ea91c226e410b1502c8e2e/agents/code-reviewer.md
+Design's record-a-demo method also adapts discovery, rehearsal and recording
+from ECC's skills/ui-demo/SKILL.md at that same commit:
+https://github.com/affaan-m/ECC/blob/591ab5cbd3f2f65860ea91c226e410b1502c8e2e/skills/ui-demo/SKILL.md
+Copyright (c) 2026 Affaan Mustafa.
+These portions carry the MIT License; the permission notice and warranty
+disclaimer reproduced below apply to them. Pale supplies its own project
+permissions and severity policy. No upstream endorsement is implied.
+
+The Design colour resource selects and rewrites meodai/skill.color-expert at commit
+28e49f7457d7aa92010688e69975c16d2ffe4b01:
+https://github.com/meodai/skill.color-expert/tree/28e49f7457d7aa92010688e69975c16d2ffe4b01/
+Original material: Creative Commons Attribution 4.0 International,
+https://creativecommons.org/licenses/by/4.0/legalcode.en, including its
+disclaimer of warranties. Pale selected, rewrote and extended it, generalizes the method and separates native policy, values and provider syntax.
+This attribution grants no endorsement. Alternative licensing of RTEPL's
+contributions does not replace third-party terms.
+
+The Design assets/prepare-a-model guide generalizes freshtechbro/claudedesignskills, commit
+1da73febff0c3e1dfefc07f8a5ef8f7d1dfdb6cd, .claude/skills/blender-web-pipeline:
+https://github.com/freshtechbro/claudedesignskills/tree/1da73febff0c3e1dfefc07f8a5ef8f7d1dfdb6cd/
+Copyright (c) 2025 ClaudeSkillsProject.
+
+Design generate selects reference/control and comparison reasoning
+from justinperea/midjourney-cc-skill, commit
+5c3f54fe4d9ecf24b4968a0c00d2bf50b7273c15:
+https://github.com/justinperea/midjourney-cc-skill/tree/5c3f54fe4d9ecf24b4968a0c00d2bf50b7273c15/
+Copyright (c) 2026 Justin Perea.
+Pale rewrites these methods for provider-independent use. It does not copy their
+scripts or impose the upstream's native bindings, request schema or defaults.
+Both sources carry the MIT License, whose conditions apply to their portions:
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Design web selects and generalizes the modern-web-design, animated-component-libraries and barba-js skills at
+freshtechbro/claudedesignskills commit
+1da73febff0c3e1dfefc07f8a5ef8f7d1dfdb6cd:
+https://github.com/freshtechbro/claudedesignskills/tree/1da73febff0c3e1dfefc07f8a5ef8f7d1dfdb6cd/.claude/skills/
+Copyright (c) 2025 Claude Skills Project.
+These portions carry the MIT License reproduced above. Pale separates native
+profiles and project policy from reusable template, dependency and delivery
+judgment; native commands and API manuals are not copied.
+
+Evaluation langfuse-tooling adapts the discovery and workflow selection of
+langfuse/skills, commit f0bcb13088b490c04b3f4870bace17f6d57b199c:
+https://github.com/langfuse/skills/tree/f0bcb13088b490c04b3f4870bace17f6d57b199c/skills/langfuse
+Copyright (c) 2026 Langfuse GmbH.
+The upstream skill is MIT-licensed; the permission notice and warranty
+disclaimer reproduced above apply to these portions. Pale separates the
+provider's execution references from project authority, task selection and
+native installation. No upstream endorsement is implied.

@@ -1,0 +1,161 @@
+[doctrine]
+schema_version = 1
+
+[[doctrine.entry]]
+id = "context-handoff-doctrine"
+description = "Give the next worker the goal, sources, current state, settled corrections, existing permission and checks needed to continue."
+doctrine = "context-handoff.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "native-execution-evidence"
+description = "Connect a claim to the actual command, inputs and structured result, including child tasks, restoration and cleanup."
+doctrine = "procedures/native-execution-evidence.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "error-handling"
+description = "Keep failures distinguishable, recover partial changes, retry safely and stop cancelled work without confusing local cancellation with a remote outcome."
+doctrine = "judgment/error-handling.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "tdd-workflow"
+description = "Pin down a required behaviour with a failing test, implement it and improve the structure while the checks pass."
+doctrine = "judgment/tdd-workflow.md"
+placement = "operation_procedure"
+requires = [{ scope = "local", resource_id = "common" }]
+
+[[doctrine.entry]]
+id = "security-review"
+description = "Trace untrusted input to protected data and actions; check permission, secrets, exports, browser output and the actual failure path."
+doctrine = "judgment/security-review.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "latency-critical-systems"
+description = "Measure response-time distributions and data age under realistic load, then improve the dominant cost while keeping overload and recovery safe."
+doctrine = "judgment/latency-critical-systems.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "benchmark-optimization-loop"
+description = "Compare a performance change under fixed conditions, explain measurement noise and shifted costs, and keep only useful improvements that preserve correctness."
+doctrine = "judgment/benchmark-optimization-loop.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "common"
+description = "Fit a change to its callers with cohesive modules, clear comments, portable inputs and tests that catch meaningful failures."
+doctrine = "judgment/common.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "local", resource_id = "error-handling" }, { scope = "local", resource_id = "latency-critical-systems" }, { scope = "local", resource_id = "security-review" }]
+
+[[doctrine.entry]]
+id = "rust-judgment"
+description = "Write Rust with clear ownership, typed failures, small module interfaces and reliable tests."
+doctrine = "stack-guidance/rust-judgment.md"
+placement = "standalone_judgment"
+extends = [{ scope = "local", resource_id = "common" }]
+
+[[doctrine.entry]]
+id = "zola-site-patterns-judgment"
+description = "Check Zola template precedence, content ownership, escaping and generated pages against the selected site."
+doctrine = "stack-guidance/zola-site-patterns-judgment.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "golang-judgment"
+description = "Write Go with small consumer interfaces, clear error handling and concurrent work that stops when cancelled."
+doctrine = "stack-guidance/golang-judgment.md"
+placement = "standalone_judgment"
+extends = [{ scope = "local", resource_id = "common" }]
+
+[[doctrine.entry]]
+id = "web-judgment"
+description = "Build accessible browser interfaces with stable layouts, safe content and checked interaction paths."
+doctrine = "stack-guidance/web-judgment.md"
+placement = "standalone_judgment"
+extends = [{ scope = "local", resource_id = "common" }]
+
+[[doctrine.entry]]
+id = "python-judgment"
+description = "Write Python with typed inputs, explicit resource cleanup and tests of real caller behaviour."
+doctrine = "stack-guidance/python-judgment.md"
+placement = "standalone_judgment"
+extends = [{ scope = "local", resource_id = "common" }]
+
+[[doctrine.entry]]
+id = "cpp-judgment"
+description = "Keep C++ ownership, lifetimes, copy and move behaviour clear, and check memory and concurrency risks."
+doctrine = "stack-guidance/cpp-judgment.md"
+placement = "standalone_judgment"
+extends = [{ scope = "local", resource_id = "common" }]
+
+[[doctrine.entry]]
+id = "java-judgment"
+description = "Model Java states and dependencies explicitly, preserve useful failures and check real integration behaviour."
+doctrine = "stack-guidance/java-judgment.md"
+placement = "standalone_judgment"
+extends = [{ scope = "local", resource_id = "common" }]
+
+[[doctrine.entry]]
+id = "typescript-judgment"
+description = "Check TypeScript types against runtime data, with explicit promise ownership and validation of outside inputs."
+doctrine = "stack-guidance/typescript-judgment.md"
+placement = "standalone_judgment"
+extends = [{ scope = "local", resource_id = "common" }]
+
+[[doctrine.entry]]
+id = "react-judgment"
+description = "Give React state, effects and async work clear owners, and test the rendered behaviour."
+doctrine = "stack-guidance/react-judgment.md"
+placement = "standalone_judgment"
+extends = [{ scope = "local", resource_id = "web-judgment" }]
+
+[[doctrine.entry]]
+id = "vue-judgment"
+description = "Keep Vue reactivity and component ownership clear through lifecycle, async and server-rendering changes."
+doctrine = "stack-guidance/vue-judgment.md"
+placement = "standalone_judgment"
+extends = [{ scope = "local", resource_id = "web-judgment" }]
+
+[[doctrine.entry]]
+id = "pytorch-patterns-judgment"
+description = "Check PyTorch tensors, gradients, reproducible runs, resumable checkpoints and measured performance."
+doctrine = "stack-guidance/pytorch-patterns-judgment.md"
+placement = "standalone_judgment"
+extends = [{ scope = "local", resource_id = "python-judgment" }]
+
+[[doctrine.entry]]
+id = "input-preparation"
+description = "Compare optional input conversions with their originals, preserving required quality, integrity, privacy, fallback and cancellation."
+doctrine = "judgment/input-preparation.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "spring-judgment"
+description = "Follow the Spring service that runs: effective beans and properties, validation, proxy calls and transactions."
+doctrine = "stack-guidance/spring-judgment.md"
+placement = "standalone_judgment"
+extends = [{ scope = "local", resource_id = "java-judgment" }]
+[[doctrine.entry]]
+id = "spring-data-jpa-judgment"
+description = "Check actual JPA queries, transaction ownership, managed state, bulk changes and test cleanup."
+doctrine = "stack-guidance/spring-data-jpa-judgment.md"
+placement = "standalone_judgment"
+extends = [{ scope = "local", resource_id = "spring-judgment" }]
+
+[[doctrine.entry]]
+id = "spring-statemachine-judgment"
+description = "Check built state-machine graphs, event acceptance, completed actions, diagnostics and recovery."
+doctrine = "stack-guidance/spring-statemachine-judgment.md"
+placement = "standalone_judgment"
+extends = [{ scope = "local", resource_id = "spring-judgment" }]
+
+
+[[doctrine.entry]]
+id = "review-method"
+description = "Review a finished change and establish each finding from its location, failure case, surrounding protections and consequence."
+doctrine = "judgment/review.md"
+placement = "standalone_judgment"

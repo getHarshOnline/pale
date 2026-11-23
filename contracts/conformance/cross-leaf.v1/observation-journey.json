@@ -1,0 +1,267 @@
+{
+  "causalPath": {
+    "kind": "ready",
+    "path": {
+      "generation": {
+        "compositionPlanDigest": "eadef78cf1496caa1f231180e82fee72b88f906c77d6af248e232c6eaca9d400",
+        "instanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+        "kind": "effective-profile",
+        "profileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c"
+      },
+      "steps": [
+        {
+          "contractId": "origin-receipt",
+          "kind": "origin-receipt"
+        },
+        {
+          "contractId": "entry-contract",
+          "kind": "entry-contract"
+        },
+        {
+          "contractId": "responsibility-entry",
+          "kind": "responsibility-contract"
+        },
+        {
+          "contractId": "responsibility-terminal",
+          "kind": "responsibility-contract"
+        },
+        {
+          "bindingId": "provider-binding-claude-code",
+          "kind": "provider-binding"
+        },
+        {
+          "edgeId": "delegation-entry-worker",
+          "kind": "delegation-edge"
+        },
+        {
+          "contractId": "termination-worker",
+          "kind": "termination-contract"
+        },
+        {
+          "contractId": "settlement-worker",
+          "kind": "settlement-contract"
+        },
+        {
+          "contractId": "continuity-entry",
+          "kind": "continuity-contract"
+        }
+      ],
+      "subject": {
+        "executionPathId": "direct-claude",
+        "kind": "execution-path"
+      }
+    }
+  },
+  "continuationMismatch": {
+    "kind": "resynchronize",
+    "resynchronization": {
+      "current": {
+        "generation": {
+          "compositionPlanDigest": "eadef78cf1496caa1f231180e82fee72b88f906c77d6af248e232c6eaca9d400",
+          "instanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+          "kind": "effective-profile",
+          "profileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c"
+        },
+        "revision": {
+          "kind": "static"
+        }
+      },
+      "reason": {
+        "kind": "continuation-mismatch"
+      }
+    }
+  },
+  "lens": {
+    "kind": "ready",
+    "lens": {
+      "causalPathLookups": 1,
+      "causalPaths": [
+        {
+          "generation": {
+            "compositionPlanDigest": "eadef78cf1496caa1f231180e82fee72b88f906c77d6af248e232c6eaca9d400",
+            "instanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+            "kind": "effective-profile",
+            "profileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c"
+          },
+          "steps": [
+            {
+              "contractId": "origin-receipt",
+              "kind": "origin-receipt"
+            },
+            {
+              "contractId": "entry-contract",
+              "kind": "entry-contract"
+            },
+            {
+              "contractId": "responsibility-entry",
+              "kind": "responsibility-contract"
+            },
+            {
+              "contractId": "responsibility-terminal",
+              "kind": "responsibility-contract"
+            },
+            {
+              "bindingId": "provider-binding-claude-code",
+              "kind": "provider-binding"
+            },
+            {
+              "edgeId": "delegation-entry-worker",
+              "kind": "delegation-edge"
+            },
+            {
+              "contractId": "termination-worker",
+              "kind": "termination-contract"
+            },
+            {
+              "contractId": "settlement-worker",
+              "kind": "settlement-contract"
+            },
+            {
+              "contractId": "continuity-entry",
+              "kind": "continuity-contract"
+            }
+          ],
+          "subject": {
+            "executionPathId": "direct-claude",
+            "kind": "execution-path"
+          }
+        }
+      ],
+      "causalSteps": 9,
+      "completion": {
+        "kind": "stopped",
+        "limit": {
+          "kind": "returned"
+        }
+      },
+      "continuation": {
+        "inspectedPosition": 4,
+        "snapshot": {
+          "generation": {
+            "compositionPlanDigest": "eadef78cf1496caa1f231180e82fee72b88f906c77d6af248e232c6eaca9d400",
+            "instanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+            "kind": "effective-profile",
+            "profileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c"
+          },
+          "revision": {
+            "kind": "static"
+          }
+        }
+      },
+      "copiedStringBytes": 404,
+      "cursor": {
+        "generation": {
+          "compositionPlanDigest": "eadef78cf1496caa1f231180e82fee72b88f906c77d6af248e232c6eaca9d400",
+          "instanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+          "kind": "effective-profile",
+          "profileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c"
+        },
+        "revision": {
+          "kind": "static"
+        }
+      },
+      "inspectedSubjects": 4,
+      "nodes": [
+        {
+          "facts": [
+            {
+              "category": "readiness",
+              "freshness": {
+                "kind": "unknown"
+              },
+              "state": "unproven",
+              "subject": {
+                "executionPathId": "direct-claude",
+                "kind": "execution-path"
+              }
+            }
+          ],
+          "subject": {
+            "executionPathId": "direct-claude",
+            "kind": "execution-path"
+          }
+        }
+      ],
+      "snapshotOmittedCount": 0
+    }
+  },
+  "lensLimits": {
+    "maximumCausalPathLookups": 1,
+    "maximumCausalSteps": 256,
+    "maximumCopiedStringBytes": 4096,
+    "maximumInspected": 256,
+    "maximumNodes": 1
+  },
+  "page": {
+    "kind": "ready",
+    "page": {
+      "completion": {
+        "kind": "stopped",
+        "limit": {
+          "kind": "returned"
+        }
+      },
+      "continuation": {
+        "inspectedPosition": 2,
+        "snapshot": {
+          "generation": {
+            "compositionPlanDigest": "eadef78cf1496caa1f231180e82fee72b88f906c77d6af248e232c6eaca9d400",
+            "instanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+            "kind": "effective-profile",
+            "profileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c"
+          },
+          "revision": {
+            "kind": "static"
+          }
+        }
+      },
+      "copiedStringBytes": 64,
+      "cursor": {
+        "generation": {
+          "compositionPlanDigest": "eadef78cf1496caa1f231180e82fee72b88f906c77d6af248e232c6eaca9d400",
+          "instanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+          "kind": "effective-profile",
+          "profileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c"
+        },
+        "revision": {
+          "kind": "static"
+        }
+      },
+      "facts": [
+        {
+          "category": "readiness",
+          "freshness": {
+            "kind": "fresh"
+          },
+          "state": "ready",
+          "subject": {
+            "kind": "effective-profile",
+            "profileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c"
+          }
+        }
+      ],
+      "inspected": 2,
+      "snapshotOmittedCount": 0
+    }
+  },
+  "pageLimits": {
+    "maximumCopiedStringBytes": 4096,
+    "maximumInspected": 16,
+    "maximumReturned": 1
+  },
+  "snapshot": {
+    "cursor": {
+      "generation": {
+        "compositionPlanDigest": "eadef78cf1496caa1f231180e82fee72b88f906c77d6af248e232c6eaca9d400",
+        "instanceDigest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+        "kind": "effective-profile",
+        "profileDigest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c"
+      },
+      "revision": {
+        "kind": "static"
+      }
+    },
+    "factCount": 6,
+    "omittedFactCount": 0
+  }
+}

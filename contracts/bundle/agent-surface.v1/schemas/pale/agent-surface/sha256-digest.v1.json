@@ -1,0 +1,7 @@
+{
+  "$id": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "pattern": "^[0-9a-f]{64}$",
+  "title": "sha256-digest.v1",
+  "type": "string"
+}

@@ -1,0 +1,99 @@
+[doctrine]
+schema_version = 1
+
+[[doctrine.entry]]
+id = "agentic-engineering"
+description = "Decide when an agent helps, how to divide its work, which tools it needs and how to check the result."
+doctrine = "agent-engineering.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "local", resource_id = "agent-harness-construction" }, { scope = "local", resource_id = "ai-regression-testing" }, { scope = "local", resource_id = "blueprint" }]
+
+[[doctrine.entry]]
+id = "enterprise-agent-ops"
+description = "Operate an agent over time with clear ownership, permissions, observations, change checks and incident recovery."
+doctrine = "operations-judgment.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "agent-harness-construction"
+description = "Design what an agent can observe and do, with tools that enforce permissions, limits and recovery."
+doctrine = "harness-boundaries.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "agent-introspection-debugging"
+description = "Trace an agent run from request to result, find its first unsupported step and propose recovery within the available evidence and permissions."
+doctrine = "run-diagnosis.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "agent-self-evaluation"
+description = "Review your own result for correctness, completeness, clarity and unsupported claims before handing it back."
+doctrine = "self-evaluation.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "dynamic-workflow-mode"
+description = "Decide whether repeated steps need a temporary workflow, define its limits and finish or propose reuse."
+doctrine = "workflow-scaffolding.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "team-agent-orchestration"
+description = "Split work into useful parts, brief each worker with the request and approvals, and check the combined result."
+doctrine = "delegation.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "prompt-optimizer"
+description = "Write a self-contained instruction with the outcome, sources, permissions and a clear finish; return the improved draft."
+doctrine = "prompt-method.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "autonomous-agent-harness"
+description = "Decide whether work can run unattended by checking its objective, tools, permissions, budgets, stopping conditions and recovery."
+doctrine = "autonomous-design.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "agent-persona-design"
+description = "Design an agent's character from its relationship with users, voice, limits and responses under pressure."
+doctrine = "persona-method.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "ai-regression-testing"
+description = "Check recurring behaviour after an AI-assisted change, allowing harmless variation while testing state, tool actions, cost and latency."
+doctrine = "agent-regression.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "loop-design-check"
+description = "Decide whether an agent's work should repeat, how to measure progress and when it must stop."
+doctrine = "loop-judgment.md"
+placement = "standalone_judgment"
+
+[[doctrine.entry]]
+id = "learning-candidate-distillation"
+description = "Find a reusable lesson in completed work and propose its home, scope and checks before adoption."
+doctrine = "learning-distillation.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "context-budget"
+description = "Find why an instruction was missed or context became costly, keeping required sources and completion criteria reachable."
+doctrine = "context-budget.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "blueprint"
+description = "Plan work that can continue across sessions, with ordered inputs, permitted changes, owners, checks and restart points."
+doctrine = "work-packets.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "required-context-inputs"
+description = "Check that required context reaches each recipient with current permission, including delayed handoffs and permitted reduced tasks."
+doctrine = "required-context.md"
+placement = "operation_procedure"

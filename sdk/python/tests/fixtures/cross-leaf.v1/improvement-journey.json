@@ -1,0 +1,115 @@
+{
+  "candidate_machine_root": "/captured/repository-candidate",
+  "candidate_repository_access": "read",
+  "capability_id": "workspace.configuration-improvement",
+  "comparison": {
+    "affected_count": 5,
+    "change_root_count": 1,
+    "current_principal_universe_digest": "d57f1d0e46584922ad14b427df536c5f2aa10a0d525819a960b777b7fd2fa585",
+    "current_semantic_ir_digest": "d4c4f72f551db16482f784af572569dc903f7c456fa08867892676e4cbbf039a",
+    "prior_principal_universe_digest": "d57f1d0e46584922ad14b427df536c5f2aa10a0d525819a960b777b7fd2fa585",
+    "prior_semantic_ir_digest": "d4c4f72f551db16482f784af572569dc903f7c456fa08867892676e4cbbf039a",
+    "receipt_digest": "2815f4dc8b84c2ea72bd0362be4a42dd4b3af98a05c54bc60233a02abb344609",
+    "unaffected_count": 5
+  },
+  "diagnostics": {
+    "context_mismatch": {
+      "code": "configuration_improvement_candidate_context_mismatch",
+      "disposition": "invalid_input",
+      "effect": "not_applicable",
+      "help": [
+        "Restart inspection from the current admitted workspace and profile handles."
+      ],
+      "notes": [
+        "The review stopped before preview and no source or native effect was attempted."
+      ],
+      "retry": "after_correction",
+      "schema": "pale/diagnostic.v1",
+      "schema_sha256": "5ac9e7778f1d452f985422347e5f8f4015a7711ab12fcb9e39d188d2b5e9e759",
+      "schema_version": 1,
+      "severity": "error",
+      "stage": "semantic_admission",
+      "summary": "configuration improvement does not share one admitted owner frontier",
+      "truncation": {
+        "omitted_causes": 1,
+        "omitted_facts": 0,
+        "omitted_help": 0,
+        "omitted_notes": 0,
+        "shortened_fields": 0
+      }
+    },
+    "preparation_owner_mismatch": {
+      "code": "configuration_improvement_preparation_owner_mismatch",
+      "disposition": "invalid_input",
+      "effect": "not_applicable",
+      "help": [
+        "Restart inspection from the current admitted workspace and profile handles."
+      ],
+      "notes": [
+        "The review stopped before preview and no source or native effect was attempted."
+      ],
+      "retry": "after_correction",
+      "schema": "pale/diagnostic.v1",
+      "schema_sha256": "5ac9e7778f1d452f985422347e5f8f4015a7711ab12fcb9e39d188d2b5e9e759",
+      "schema_version": 1,
+      "severity": "error",
+      "stage": "semantic_admission",
+      "summary": "configuration improvement does not share one admitted owner frontier",
+      "truncation": {
+        "omitted_causes": 1,
+        "omitted_facts": 0,
+        "omitted_help": 0,
+        "omitted_notes": 0,
+        "shortened_fields": 0
+      }
+    }
+  },
+  "summary": {
+    "affected_count": 5,
+    "baseline_principal_universe_digest": "d57f1d0e46584922ad14b427df536c5f2aa10a0d525819a960b777b7fd2fa585",
+    "baseline_workspace_admission_evidence_digest": "7c085718ea04d8c5f4725338ad56a54fd4809ce99ba8703fd75148580223fb35",
+    "baseline_workspace_semantic_ir_digest": "d4c4f72f551db16482f784af572569dc903f7c456fa08867892676e4cbbf039a",
+    "candidate_composition_plan_digest": "eadef78cf1496caa1f231180e82fee72b88f906c77d6af248e232c6eaca9d400",
+    "candidate_instance_digest": "87af2b48f766a571298851ef1a9842ce652326291b7f8c47ee4f2375dbd273f7",
+    "candidate_package_semantic_ir_digest": "5a46037b02e7ac4b889786cf3b6af43af49df5a5f384ac6b616179ae6885c609",
+    "candidate_principal_universe_digest": "d57f1d0e46584922ad14b427df536c5f2aa10a0d525819a960b777b7fd2fa585",
+    "candidate_profile_digest": "32a2790c31fd7ee0b65d6611a37414b47338dfd83a1fdfeb22518e53bc092819",
+    "candidate_selected_topology_digest": "a80127ae22940afb030453eca53c0c2d000bf3975effccd298801008cade4e4a",
+    "candidate_workspace_admission_evidence_digest": "7c085718ea04d8c5f4725338ad56a54fd4809ce99ba8703fd75148580223fb35",
+    "candidate_workspace_semantic_ir_digest": "d4c4f72f551db16482f784af572569dc903f7c456fa08867892676e4cbbf039a",
+    "change_root_count": 1,
+    "composition_plan_change": {
+      "digest": "eadef78cf1496caa1f231180e82fee72b88f906c77d6af248e232c6eaca9d400",
+      "state": "unchanged"
+    },
+    "composition_plan_digest": "eadef78cf1496caa1f231180e82fee72b88f906c77d6af248e232c6eaca9d400",
+    "derivation_receipt_digest": "2815f4dc8b84c2ea72bd0362be4a42dd4b3af98a05c54bc60233a02abb344609",
+    "execution_workspace_id": "default",
+    "instance_change": {
+      "candidate_digest": "87af2b48f766a571298851ef1a9842ce652326291b7f8c47ee4f2375dbd273f7",
+      "prior_digest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+      "state": "changed"
+    },
+    "instance_digest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+    "package_semantic_ir_change": {
+      "digest": "5a46037b02e7ac4b889786cf3b6af43af49df5a5f384ac6b616179ae6885c609",
+      "state": "unchanged"
+    },
+    "package_semantic_ir_digest": "5a46037b02e7ac4b889786cf3b6af43af49df5a5f384ac6b616179ae6885c609",
+    "profile_change": {
+      "candidate_digest": "32a2790c31fd7ee0b65d6611a37414b47338dfd83a1fdfeb22518e53bc092819",
+      "prior_digest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c",
+      "state": "changed"
+    },
+    "profile_digest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c",
+    "project_id": "demo",
+    "selected_topology_change": {
+      "candidate_digest": "a80127ae22940afb030453eca53c0c2d000bf3975effccd298801008cade4e4a",
+      "prior_digest": "1d1b7fb45689c3cbdc3dc27de8bcca278c969fa6af48d06db4d9512943bcbfd8",
+      "state": "changed"
+    },
+    "selected_topology_digest": "1d1b7fb45689c3cbdc3dc27de8bcca278c969fa6af48d06db4d9512943bcbfd8",
+    "unaffected_count": 5,
+    "workspace_id": "act-ws"
+  }
+}

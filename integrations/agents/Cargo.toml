@@ -1,0 +1,50 @@
+[package]
+name = "pale-agent-host"
+version = "0.0.1"
+edition = "2021"
+rust-version = "1.94"
+authors = ["Harsh Joshi"]
+license = "AGPL-3.0-or-later"
+repository = "https://github.com/getHarshOnline/pale"
+readme = "README.md"
+description = "Shared native connection for Pale's agent host integrations."
+publish = false
+
+[workspace]
+resolver = "2"
+
+[lints.rust]
+missing_docs = "deny"
+unsafe_code = "deny"
+unreachable_pub = "deny"
+
+[lints.clippy]
+doc_markdown = "deny"
+missing_errors_doc = "deny"
+missing_panics_doc = "deny"
+
+[lints.rustdoc]
+broken_intra_doc_links = "deny"
+private_intra_doc_links = "deny"
+
+[target.'cfg(any(target_os = "linux", target_os = "macos"))'.dependencies]
+pale-sdk = { path = "../../sdk/rust", features = ["native-local"] }
+
+[target.'cfg(any(target_os = "linux", target_os = "macos"))'.dev-dependencies]
+pale-adapter-uds = { path = "../../adapters/uds" }
+pale-ports = { path = "../../crates/pale-ports" }
+
+[dev-dependencies]
+ed25519-dalek = { version = "=2.2.0", default-features = false, features = ["std", "zeroize"] }
+getrandom = "=0.3.4"
+serde_json = "=1.0.149"
+tempfile = "=3.24.0"
+pale-application = { path = "../../crates/pale-application", features = ["interface-test-support"] }
+pale-resident = { path = "../../interfaces/resident" }
+
+[profile.test]
+debug = "line-tables-only"
+
+[profile.test.package."*"]
+opt-level = 2
+debug = false

@@ -1,0 +1,13 @@
+kind = "tool_recipe"
+
+[recipe]
+description = "Check the question's declaration, captured snapshot and selected Packs, and report what would stop a run."
+capability = "calculation-check"
+tool_contract = "calculation-engine.v1"
+tool_operation = "check"
+effect_class = "read"
+input_mapping.workspace = "$.workspace"
+input_mapping.question = "$.question"
+input_mapping.observation_date = "$.observation_date"
+evidence.required_fields = ["/outcome", "/engine_release", "/declaration_digest", "/snapshot_digest", "/pack_hashes"]
+evidence.proof_ceiling = "calculation-run-record"

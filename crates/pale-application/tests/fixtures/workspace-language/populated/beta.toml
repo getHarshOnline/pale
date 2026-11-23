@@ -1,0 +1,16 @@
+schema = "pale/workspace-language-primitives.v1"
+schema_version = 1
+component_id = "beta-source"
+module_id = "candidate"
+
+[[declarations]]
+kind = "trait"
+id = "common"
+namespace = "beta"
+
+[[declarations.dependencies]]
+kind = "positive"
+
+[declarations.dependencies.target]
+namespace = "alpha"
+declaration_id = "common"

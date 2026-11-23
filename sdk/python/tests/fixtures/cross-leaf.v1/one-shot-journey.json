@@ -1,0 +1,49 @@
+{
+  "capability_ids": [
+    "one-shot.compilation",
+    "one-shot.compilation-summary",
+    "one-shot.observation-targets",
+    "one-shot.planning"
+  ],
+  "observation_targets": [
+    ".claude/agents/pale-role-example-engine-engine.md",
+    ".pale/capabilities.md",
+    ".pale/capability-bindings.json",
+    ".pale/execution-paths/direct-claude/hook-context.json",
+    ".pale/execution-paths/direct-claude/operation-binding.json",
+    ".pale/provider-bindings/b58a26f28fb233f99a718a40ae76d2f7f71cb2c53d2e7f5b2dc0d815e92156e3/injection.md",
+    ".pale/provider-bindings/b58a26f28fb233f99a718a40ae76d2f7f71cb2c53d2e7f5b2dc0d815e92156e3/operation-catalog.json",
+    ".pale/provider-bindings/b58a26f28fb233f99a718a40ae76d2f7f71cb2c53d2e7f5b2dc0d815e92156e3/projection-manifest.json",
+    ".pale/semantic-index.md",
+    "AGENTS.md"
+  ],
+  "plan": {
+    "canonical_length": 8549,
+    "canonical_sha256": "9a23d6ed455a369ce7bdebe7209c7d6a80fd96ff3a7b996cf5f8c5070bd8c7b7",
+    "deferred_effect_count": 0,
+    "one_shot_compilation_digest": "315e517cbc4f1acb5f152d26dcb6ed3f79f396e8c43e32b630d7a47d28c1d5cf",
+    "operation_count": 10,
+    "plan_digest": "900b936a12cf6a0121b73be130266087c51c53e0696e731f8cd68a2a82ac9599",
+    "repository_id": "engine"
+  },
+  "selectors": {
+    "execution_workspace_id": "default",
+    "machine_id": "machine",
+    "project_id": "demo",
+    "repository_id": "engine"
+  },
+  "summary": {
+    "canonical_length": 4197,
+    "canonical_sha256": "a950370daafc20632bc401e584bd3f9d81146a214fef584a209c6d66b5cd130a",
+    "execution_workspace_id": "default",
+    "instance_digest": "196d5ee5fdd27aad46ad7dfe67369026976cc164afedd1c2a84433b6e241dfcb",
+    "one_shot_compilation_digest": "315e517cbc4f1acb5f152d26dcb6ed3f79f396e8c43e32b630d7a47d28c1d5cf",
+    "profile_digest": "b5235a3e821b09d4a2545132b4b86fda4f522e82ac765e80fac24fd0f85af29c",
+    "project_id": "demo",
+    "repository_ids": [
+      "engine"
+    ],
+    "schema_manifest_sha256": "eb9b67b2d4d31f433bd805d20b490e139d98e313074a5082cdcbf0a5754894e8",
+    "schema_set_sha256": "7c43ad4a005b041ec6e233f99ba5246a32a9a1dd90bfc4c1449839e400b8d3f0"
+  }
+}

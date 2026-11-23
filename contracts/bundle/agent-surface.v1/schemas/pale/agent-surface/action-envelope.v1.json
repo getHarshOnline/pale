@@ -1,0 +1,136 @@
+{
+  "$defs": {
+    "ActionIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ActionOperationV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ActionTargetIdentityV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ActionTargetSystemV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "BusinessIdempotencyKeyV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ImmutableActionPayloadRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "payload_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "payload_ref_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "payload_ref",
+        "payload_ref_sha256"
+      ],
+      "type": "object"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/action-envelope.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "action_id": {
+      "$ref": "#/$defs/ActionIdV1"
+    },
+    "business_idempotency_key": {
+      "$ref": "#/$defs/BusinessIdempotencyKeyV1"
+    },
+    "conflict_resource_key": {},
+    "conflict_resource_key_schema_id": {
+      "$ref": "#/$defs/SchemaId"
+    },
+    "conflict_resource_key_schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "effect_policy": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "expected_precondition_digest": {
+      "anyOf": [
+        {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/typed-digest.v1.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "immutable_payload_ref": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ImmutableActionPayloadRefV1"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "inline_payload": {},
+    "operation": {
+      "$ref": "#/$defs/ActionOperationV1"
+    },
+    "payload_hash": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "payload_schema_id": {
+      "$ref": "#/$defs/SchemaId"
+    },
+    "payload_schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "reconciliation_policy": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "target_identity": {
+      "$ref": "#/$defs/ActionTargetIdentityV1"
+    },
+    "target_system": {
+      "$ref": "#/$defs/ActionTargetSystemV1"
+    }
+  },
+  "required": [
+    "action_id",
+    "target_system",
+    "target_identity",
+    "conflict_resource_key_schema_id",
+    "conflict_resource_key_schema_sha256",
+    "conflict_resource_key",
+    "operation",
+    "business_idempotency_key",
+    "payload_schema_id",
+    "payload_schema_sha256",
+    "payload_hash",
+    "effect_policy",
+    "reconciliation_policy"
+  ],
+  "title": "action-envelope.v1",
+  "type": "object"
+}

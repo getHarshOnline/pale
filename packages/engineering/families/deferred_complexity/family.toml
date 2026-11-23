@@ -1,0 +1,4 @@
+id = "engineering.deferred_complexity"
+title = "Make unfinished work and accepted limits explicit"
+purpose = "Put unfinished work and accepted limits on the owning work list, with the responsible owner, checks and an observable reason to revisit them."
+body = "families/deferred_complexity/body.md"

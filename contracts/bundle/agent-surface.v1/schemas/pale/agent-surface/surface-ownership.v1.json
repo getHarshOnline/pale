@@ -1,0 +1,15 @@
+{
+  "$id": "https://www.rawthoughts.in/pale/schemas/surface-ownership.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "const": "managed_block",
+      "type": "string"
+    },
+    {
+      "const": "whole_file",
+      "type": "string"
+    }
+  ],
+  "title": "surface-ownership.v1"
+}

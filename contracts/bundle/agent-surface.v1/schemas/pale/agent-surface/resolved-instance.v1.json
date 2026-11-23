@@ -1,0 +1,244 @@
+{
+  "$defs": {
+    "DurableEvidenceBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "retention_seconds": {
+          "$ref": "#/$defs/EvidenceRetentionSeconds"
+        },
+        "root": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "root",
+        "retention_seconds"
+      ],
+      "type": "object"
+    },
+    "EvidenceRetentionSeconds": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "LogicalRepositoryIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "MaterializationLineageBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "max_route_records_per_collection": {
+          "$ref": "#/$defs/RouteRecordLimit"
+        },
+        "root": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "root",
+        "max_route_records_per_collection"
+      ],
+      "type": "object"
+    },
+    "PackageIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[./][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "package_id": {
+          "$ref": "#/$defs/PackageIdV1"
+        },
+        "resource_id": {
+          "$ref": "#/$defs/PackageResourceIdV1"
+        }
+      },
+      "required": [
+        "package_id",
+        "resource_id"
+      ],
+      "type": "object"
+    },
+    "ProviderRepositoryProjectionV1": {
+      "additionalProperties": false,
+      "properties": {
+        "native_repository_coordinate": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "provider_binding_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "repository_id": {
+          "$ref": "#/$defs/LogicalRepositoryIdV1"
+        }
+      },
+      "required": [
+        "repository_id",
+        "provider_binding_id",
+        "native_repository_coordinate"
+      ],
+      "type": "object"
+    },
+    "RouteRecordLimit": {
+      "format": "uint32",
+      "maximum": 65536,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "SessionStateBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "root": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "ttl_seconds": {
+          "$ref": "#/$defs/SessionTtlSeconds"
+        }
+      },
+      "required": [
+        "root",
+        "ttl_seconds"
+      ],
+      "type": "object"
+    },
+    "SessionTtlSeconds": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/resolved-instance.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "authority_roots": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "durable_evidence": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/DurableEvidenceBinding"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "git_metadata_roots": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "instance_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "machine_id": {
+      "type": "string"
+    },
+    "materialization_lineage": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/MaterializationLineageBinding"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "native_harnesses": {
+      "items": {
+        "$ref": "https://www.rawthoughts.in/pale/schemas/native-harness-binding.v1.json"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "profile_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "provider_repositories": {
+      "items": {
+        "$ref": "#/$defs/ProviderRepositoryProjectionV1"
+      },
+      "type": "array"
+    },
+    "repositories": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "schema": {
+      "const": "pale.agent-surface.resolved-instance.v1",
+      "type": "string"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "session_state": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/SessionStateBinding"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "surface_executable": {
+      "anyOf": [
+        {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/surface-executable-binding.v1.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "user_mode_defaults": {
+      "additionalProperties": {
+        "$ref": "#/$defs/PackageResourceRefV1"
+      },
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_sha256",
+    "profile_digest",
+    "machine_id",
+    "repositories",
+    "authority_roots",
+    "instance_digest"
+  ],
+  "title": "resolved-instance.v1",
+  "type": "object"
+}

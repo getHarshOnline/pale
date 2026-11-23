@@ -1,0 +1,27 @@
+{
+  "$id": "https://www.rawthoughts.in/pale/schemas/deferred-effect.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "host": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "note": {
+      "type": "string"
+    },
+    "target": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "host",
+    "kind",
+    "target",
+    "note"
+  ],
+  "title": "deferred-effect.v1",
+  "type": "object"
+}

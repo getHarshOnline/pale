@@ -1,0 +1,24 @@
+[operations]
+schema_version = 1
+
+[[operations.operation]]
+id = "assess-product-need"
+description = "Assess whether a product request addresses a real need."
+doctrine = "assess-need.md"
+outputs = ["In the reply: the problem, evidence, alternatives and recommendation, with what could change it.", "Unanswered questions and who can settle them."]
+doctrine_refs = [{ scope = "local", resource_id = "product-lens" }, { scope = "external", resource = { package_id = "pale.research", resource_id = "evidence-led-research" } }]
+
+[[operations.operation]]
+id = "define-product-capability"
+description = "Turn an accepted need into a capability proposal for the product owner."
+doctrine = "define-capability.md"
+outputs = ["A capability proposal for the product owner: outcomes, constraints, interfaces, failures and how to check success.", "Supported scope, dependencies and open decisions."]
+doctrine_refs = [{ scope = "local", resource_id = "product-capability" }]
+
+[[operations.operation]]
+id = "review-positioning"
+description = "Check the claims in an offer against its audience and evidence."
+doctrine = "review-positioning.md"
+doctrine_refs = [{ scope = "external", resource = { package_id = "pale.research", resource_id = "audience-discovery" } }]
+outputs = ["In the reply: a supported message for the stated audience, or the claims still missing evidence.", "Tests or owner decisions needed before using the copy."]
+roles = [{ scope = "local", resource_id = "marketing-agent" }]

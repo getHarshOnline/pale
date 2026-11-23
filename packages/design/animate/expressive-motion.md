@@ -1,0 +1,93 @@
++++
+description = "Use it when motion should draw attention to a relationship, give a material character or set a rhythm, while ordinary controls stay easy to use."
+uses = [{ scope = "local", resource_id = "animate" }]
+see_also = [{ scope = "local", resource_id = "films" }, { scope = "local", resource_id = "animate/productive-motion" }, { scope = "local", resource_id = "art-direction" }, { scope = "local", resource_id = "surfaces" }, { scope = "local", resource_id = "figures" }, { scope = "local", resource_id = "animate/motion-implementation" }, { scope = "local", resource_id = "inspect" }, { scope = "local", resource_id = "animate/interruption-reversal" }, { scope = "local", resource_id = "animate/temporal-hierarchy" }, { scope = "local", resource_id = "animate/time-models" }]
+
+[guide]
+exposure = "internal"
++++
+
+# Give expressive motion a purpose
+
+Use expressive motion to draw attention to a relationship, give a material character or establish a rhythm. A surface can flex when it takes on weight, a layer can come forward when it becomes the subject, and an ambient field can move as part of the atmosphere. Keep ordinary controls easy to use while that happens. Use [Give control motion a clear job](productive-motion.md) for the controls and [Compose a sequence people can follow](../films.md) for a film’s edit.
+
+A design system may set the strongest moment a page can carry. The worked approach below calls this its peak. Use [Choose a visual direction from the actual brief](../art-direction.md) to decide whether to introduce a visible change or hold a composed still.
+
+## Contents
+
+- What it may express
+- The material event contract
+- Earned by meaning
+- Keep the effect in its region
+- Opportunity sweep
+- Distinguishing worlds
+- Review questions
+
+## What it may express
+
+| Axis | Examples of meaning it can carry |
+| --- | --- |
+| Depth | A layer coming forward because it now holds the subject; a plane receding because it is context |
+| Spacing | A field opening to make room for a revealed relation; compression before a release |
+| Material | A surface flexing, settling or catching light in a way its material would |
+| Illumination | State-bearing light rising when computation holds state; atmospheric light following the material in the brief and time model (see [Choose what material and light communicate](../surfaces.md)) |
+| Compression and release | Tension before an important arrival; release when it lands |
+| Visual fields | A generative field responding to a real value or relation (see [Compose and check a live visual region](../figures.md)) |
+
+Choose the arrival for its material and purpose: opacity, masking, depth and transformation are available; a fade can be the right quiet transition. What changes together is [Choose what material and light communicate](../surfaces.md); this file decides only when and how fast.
+
+A design system can give each visual identity its own choices: its curve family, its range of durations around the expressive token roles, and its character (for example precise, latched into steps, damped, linear, or elastic with a small overshoot). Record that choice with the design that owns it. An example token scheme uses (`world.motion.expressive-easing`, `world.motion.expressive-spring.*`, `world.motion.expressive-scale`, `world.motion.decay`, and for the reduced state `world.motion.reduced.*`), to bring the design into code. See [Implement motion from the shared design](motion-implementation.md). A world may never use motion to change a control's size, a focus indicator, a keyboard behaviour or the reading measure.
+
+## The material event contract
+
+The expressive material event is the counterpart of the productive roles and declares the same four things:
+
+| Trigger | What moves | Interrupt and focus | Reduced form |
+| --- | --- | --- | --- |
+| A meaningful moment the user caused or reached, or the clock of an explicitly selected ambient treatment | The region's material, depth, light or field, inside its bounds | Interruption follows its time model: retarget an input transition, pause ambient playback; never take focus or delay use | The same moment without travel: light changes or material clears in place on the world's reduced expressive tokens, settling on the composed still of the resolved state |
+
+Decay of state-bearing light (emission settling back to rest when state is released) is part of this event. Its duration is a world token, not a universal constant.
+
+## Earned by meaning
+
+- **Name the meaning first.** Detect an expressive motion whose explanation is "it feels alive" or "it adds polish" without a more specific purpose; identify the intended effect first. Reorientation, material character, rhythm and sustained atmosphere can each justify motion. Do not require a new fact on every frame or assume animation necessarily teaches better than a still.
+- **Tie it to content.** An expressive moment is generated by what the page says (a peak, a relation, a completion), never attached to a template position.
+- **Never invent data.** An evidential field follows real values. An illustrative procedural field can use authored or seeded variation, but never present it as measured signal.
+
+## Keep the effect in its region
+
+- **Local, not global.** Expressive motion applies to a region or a moment. Detect the same expressive entrance on every section, card or list; that is decoration at scale (the fade-and-slide-up on every section in [Inspect an interface in its rendered context](../inspect.md)).
+- **An example strength scale.** In a design system that uses this scale, expressive motion on a state change needs level 2; on reach or entry, level 3; the page arriving on load is entry ([Choose a visual direction from the actual brief](../art-direction.md)). Reading pages sit low. Place the expressive sequence where meaning peaks; how many peaks a page carries is [Choose a visual direction from the actual brief](../art-direction.md).
+- **Rare.** Detect expressive motion on utility actions (menus, toggles, form fields, command surfaces); those are productive.
+- **Check for a missed opportunity.** Where the design allows expression and the content calls for it, a page whose motion never shows its character is too timid (a missed expressive opportunity); restraint is not answered with more restraint. Run the opportunity sweep below.
+- **Never blocks.** Page expression preserves productive access and stable targets: the destination is usable immediately. Interruption follows the clock you chose in [Choose what advances the motion](time-models.md); a state change retargets, while ambient playback can pause.
+- **Same physics underneath.** Expressive motion may change character between worlds; it may not change what happens, in what order, or what the user can do.
+
+## Opportunity sweep
+
+When the task calls for expressive design, look for what motion could add as well as what should stay quiet. Follow the actual visit: rest, focus or hover on a relation, a crossing, an opened command surface or tool, the significant figure and the return to reading. Consider the parts the page really has; a local repair need not invent the whole ladder.
+
+For each meaningful opportunity, identify what the reader gains, whether it is ordinary feedback or expression, how often it occurs and whether it fits the accepted range and pacing. Compare a composed still where that might serve as well. Prototype the useful candidates at the intended speed and keep only the decisions and rejected alternatives that help explain the chosen treatment in the existing plan.
+
+A project with a numeric range can use it to distinguish a minimum presence from a permitted ceiling. For example, a system may allow state changes at one level and entry motion at a higher one. Those values belong to that system. Check both failures: unnecessary competition and an accepted character that never became visible. “Keep it calm” alone does not explain either decision. Stop when the relevant opportunities have been considered and the chosen treatment serves the brief, rather than manufacturing a candidate or record for every possible event.
+
+## Distinguishing worlds
+
+- Worlds differ in expressive curve family, amplitude range and which axes they use, never only in duration. Detect worlds whose motion differs by a multiplier alone.
+- Verify that each world's expressive tokens are actually consumed by the implementation; prose-only per-world motion is not done (the tokens have no effect).
+
+## Worked example: show a relationship
+
+An exhibit compares two surfaces that warm at different rates. The figure brings the measured surface forward and keeps its comparison in place. Motion follows the reported measurements. A reduced version puts both curves and their labels in the final frame, then uses a small change in light to show which is active. The surrounding navigation, focus indicator and reading column stay still. The same animation on every exhibit card would draw attention before the comparison needs it.
+
+## Check what the moment contributes
+
+State the moment’s meaning in one sentence from the content, then compare the result without motion. Identify what would be lost: relation, orientation, rhythm or atmosphere. Check that timing and repetition suit the intended moment or ambient treatment without competing with the task. Explain useful choices and rejected alternatives from the relevant opportunities in the existing plan. Verify that the implementation reads the world’s expressive tokens instead of hardcoding them.
+
+## Sources
+
+- [Carbon Design System: Motion](https://carbondesignsystem.com/elements/motion/overview/): expressive motion reserved for occasional, important moments as a rhythmic break from productive work.
+- [Material Design 3: How motion works](https://m3.material.io/styles/motion/overview/how-it-works): a first-party motion system with expressive and standard schemes built on springs, for how character is parameterised rather than hand-tuned.
+- [Fluent 2: Motion](https://fluent2.microsoft.design/motion): natural motion following inertia, weight and velocity, and appealing moments kept purposeful.
+- [Tversky, Morrison and Betrancourt (2002): Animation: can it facilitate?](https://doi.org/10.1006/ijhc.2002.1017): the evidence that animation rarely explains better than an equivalent still, the basis for "earned by meaning".
+- [Apple HIG: Motion](https://developer.apple.com/design/human-interface-guidelines/motion): expressive motion that stays optional, brief and never delays people.

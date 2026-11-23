@@ -1,0 +1,342 @@
+{
+  "$defs": {
+    "ExecutionPathSelectionIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "ExecutionPathSelectionV1": {
+      "additionalProperties": false,
+      "properties": {
+        "experience_path_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "id": {
+          "$ref": "#/$defs/ExecutionPathSelectionIdV1"
+        }
+      },
+      "required": [
+        "id",
+        "experience_path_id"
+      ],
+      "type": "object"
+    },
+    "LogicalRepositoryIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "NormativePackAttestorV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "NormativePackIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "NormativePackReleaseV1": {
+      "additionalProperties": false,
+      "properties": {
+        "attestor": {
+          "$ref": "#/$defs/NormativePackAttestorV1"
+        },
+        "content_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "id": {
+          "$ref": "#/$defs/NormativePackIdV1"
+        },
+        "version": {
+          "$ref": "#/$defs/NormativePackVersionV1"
+        }
+      },
+      "required": [
+        "id",
+        "attestor",
+        "version",
+        "content_digest"
+      ],
+      "type": "object"
+    },
+    "NormativePackVersionV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$",
+      "type": "string"
+    },
+    "PackageIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageReleaseV1": {
+      "additionalProperties": false,
+      "properties": {
+        "content_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "id": {
+          "$ref": "#/$defs/PackageIdV1"
+        },
+        "version": {
+          "$ref": "#/$defs/PackageVersionV1"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "content_digest"
+      ],
+      "type": "object"
+    },
+    "PackageVersionV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$",
+      "type": "string"
+    },
+    "RepositoryRevisionV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "RepositorySourceFrontierV1": {
+      "additionalProperties": false,
+      "properties": {
+        "base_revision": {
+          "$ref": "#/$defs/RepositoryRevisionV1"
+        },
+        "dependency_frontier_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "repository_id": {
+          "$ref": "#/$defs/LogicalRepositoryIdV1"
+        },
+        "tracked_delta_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "untracked_inventory_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "repository_id",
+        "base_revision",
+        "tracked_delta_sha256",
+        "untracked_inventory_sha256",
+        "dependency_frontier_sha256"
+      ],
+      "type": "object"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "WorkspaceAdoptedReleaseV1": {
+      "additionalProperties": false,
+      "properties": {
+        "module_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "module_id": {
+          "$ref": "#/$defs/WorkspaceModuleId"
+        },
+        "release_id": {
+          "$ref": "#/$defs/WorkspaceReleaseId"
+        }
+      },
+      "required": [
+        "module_id",
+        "release_id",
+        "module_digest"
+      ],
+      "type": "object"
+    },
+    "WorkspaceModuleId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceReleaseId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/compiled-generation.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "compilation_input_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "compiled_generation_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "distribution_lock_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "executable_identity_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "execution_paths": {
+      "items": {
+        "$ref": "#/$defs/ExecutionPathSelectionV1"
+      },
+      "type": "array"
+    },
+    "experience_composition_plan_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "experience_composition_source_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "instance_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "machine_overlay_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "materialization_closure_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "one_shot_compilation_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "organizational_translation_closure_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "package_semantic_ir_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "principal_admitted_universe_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "profile_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "profile_normative_pack_release_closure": {
+      "items": {
+        "$ref": "#/$defs/NormativePackReleaseV1"
+      },
+      "type": "array"
+    },
+    "profile_package_release_closure": {
+      "items": {
+        "$ref": "#/$defs/PackageReleaseV1"
+      },
+      "type": "array"
+    },
+    "provider_binding_closure_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "repository_source_frontiers": {
+      "items": {
+        "$ref": "#/$defs/RepositorySourceFrontierV1"
+      },
+      "type": "array"
+    },
+    "responsibility_derivation_closure_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/compiled-generation.v1"
+    },
+    "schema_manifest_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_set_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "workspace_admission_evidence_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "workspace_module_release_closure": {
+      "items": {
+        "$ref": "#/$defs/WorkspaceAdoptedReleaseV1"
+      },
+      "type": "array"
+    },
+    "workspace_normative_pack_release_closure": {
+      "items": {
+        "$ref": "#/$defs/NormativePackReleaseV1"
+      },
+      "type": "array"
+    },
+    "workspace_package_release_closure": {
+      "items": {
+        "$ref": "#/$defs/PackageReleaseV1"
+      },
+      "type": "array"
+    },
+    "workspace_resolution_lock_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "workspace_semantic_ir_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "workspace_universe_lock_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_sha256",
+    "schema_version",
+    "distribution_lock_digest",
+    "profile_digest",
+    "instance_digest",
+    "package_semantic_ir_digest",
+    "profile_package_release_closure",
+    "profile_normative_pack_release_closure",
+    "schema_manifest_digest",
+    "schema_set_digest",
+    "workspace_semantic_ir_digest",
+    "workspace_admission_evidence_digest",
+    "principal_admitted_universe_digest",
+    "workspace_module_release_closure",
+    "workspace_package_release_closure",
+    "workspace_normative_pack_release_closure",
+    "workspace_resolution_lock_digest",
+    "workspace_universe_lock_digest",
+    "responsibility_derivation_closure_digest",
+    "organizational_translation_closure_digest",
+    "experience_composition_source_digest",
+    "provider_binding_closure_digest",
+    "experience_composition_plan_digest",
+    "execution_paths",
+    "materialization_closure_digest",
+    "machine_overlay_digest",
+    "executable_identity_digest",
+    "compilation_input_digest",
+    "one_shot_compilation_digest",
+    "repository_source_frontiers",
+    "compiled_generation_digest"
+  ],
+  "title": "compiled-generation.v1",
+  "type": "object"
+}

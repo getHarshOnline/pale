@@ -1,0 +1,74 @@
+[package]
+name = "pale-sdk"
+version = "0.0.1"
+edition = "2021"
+rust-version = "1.94"
+authors = ["Harsh Joshi"]
+license = "AGPL-3.0-or-later"
+readme = "README.md"
+repository = "https://github.com/getHarshOnline/pale"
+description = "Compile, inspect and review Pale configuration from a Rust application."
+publish = false
+
+[workspace]
+resolver = "2"
+
+[lints.rust]
+missing_docs = "deny"
+unsafe_code = "deny"
+unreachable_pub = "deny"
+
+[lints.clippy]
+doc_markdown = "deny"
+missing_errors_doc = "deny"
+missing_panics_doc = "deny"
+
+[lints.rustdoc]
+bare_urls = "deny"
+broken_intra_doc_links = "deny"
+invalid_codeblock_attributes = "deny"
+invalid_html_tags = "deny"
+private_intra_doc_links = "deny"
+
+[features]
+default = []
+# Schema metadata for development-time transport generation; no runtime validation.
+wire-schema = ["dep:schemars"]
+native-local = [
+    "dep:pale-adapter-control-storage",
+    "dep:pale-adapter-fs",
+    "dep:pale-adapter-process",
+    "dep:pale-adapter-uds",
+]
+# Complete local-pipeline characterization is opt-in and carries no runtime policy.
+bench-local = ["native-local"]
+# Used only by the ignored inspection allocation test; latency omits this feature.
+bench-memory = ["dep:allocation-counter"]
+
+[[bench]]
+name = "local_materialization"
+harness = false
+required-features = ["bench-local"]
+
+[dependencies]
+schemars = { version = "=1.2.2", default-features = false, features = ["derive", "std"], optional = true }
+allocation-counter = { version = "=0.8.1", optional = true }
+pale-core = "=0.0.1"
+pale-contracts = "=0.0.1"
+pale-application = "=0.0.1"
+pale-ports = "=0.0.1"
+pale-adapter-control-storage = { version = "=0.0.1", optional = true }
+pale-adapter-fs = { version = "=0.0.1", optional = true }
+pale-adapter-process = { version = "=0.0.1", optional = true }
+serde = { version = "=1.0.228", features = ["derive"] }
+serde_json = "=1.0.149"
+thiserror = "=2.0.18"
+
+[target.'cfg(any(target_os = "linux", target_os = "macos"))'.dependencies]
+pale-adapter-uds = { version = "=0.0.1", optional = true }
+
+[dev-dependencies]
+sha2 = "=0.10.9"
+syn = { version = "=2.0.117", default-features = false, features = ["full", "parsing", "visit"] }
+tempfile = "=3.24.0"
+toml = "=0.9.11"

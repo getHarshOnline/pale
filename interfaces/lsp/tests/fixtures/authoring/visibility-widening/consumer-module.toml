@@ -1,0 +1,55 @@
+schema = "pale/workspace-module.v1"
+schema_version = 1
+module_digest = "9e24aca2c1e1403bbbca59d4381dbcc0f4ba170188d9ab58955b454d422a5815"
+
+[module]
+module_id = "consumer"
+release_id = "release-1"
+exports = []
+extensions = []
+resources = []
+
+[module.publisher]
+publisher_id = "consumer-publisher"
+root_key_id = "consumer-publisher-root"
+recovery_authority_id = "consumer-publisher-recovery"
+delegated_release_key_id = "consumer-publisher-release"
+
+[[module.source_components]]
+component_id = "consumer-source"
+component_digest = "e19c67de8e3604294263156568fed897b90a032db53a9f2a9fb2f2d50038a25f"
+
+[[module.imports]]
+module_id = "candidate"
+release_id = "release-1"
+module_digest = "0ac6918ee06ebc8218caf84f6e39ac77e714fc14e7c0b73b3052cd729b788bd6"
+protected_delivery_authority = "delivery-authority"
+visibility_ceiling = "public"
+propagation = "transitive"
+adoption_policy = "manual"
+
+[module.imports.publisher]
+publisher_id = "candidate-publisher"
+root_key_id = "candidate-publisher-root"
+recovery_authority_id = "candidate-publisher-recovery"
+delegated_release_key_id = "candidate-publisher-release"
+
+[[module.imports.paths]]
+export_id = "public-api"
+source_namespace = "alpha"
+local_namespace = "upstream"
+
+[module.imports.edge_policy]
+disclosure = "public"
+effect = "read"
+model_use_permitted = false
+retention_seconds = 3600
+
+[module.imports.edge_policy.rights]
+permitted = ["read"]
+
+[module.imports.edge_policy.controllers]
+permitted = ["principal"]
+
+[module.imports.edge_policy.authorities]
+permitted = ["principal"]

@@ -1,0 +1,5 @@
+permitted_capabilities = ["read"]
+forbidden_capabilities = []
+permitted_effects = ["compute"]
+forbidden_effects = []
+

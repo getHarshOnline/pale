@@ -1,0 +1,242 @@
+{
+  "$defs": {
+    "CapabilityIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "EffectClass": {
+      "oneOf": [
+        {
+          "const": "compute",
+          "type": "string"
+        },
+        {
+          "const": "read",
+          "type": "string"
+        },
+        {
+          "const": "execute",
+          "type": "string"
+        },
+        {
+          "const": "write",
+          "type": "string"
+        },
+        {
+          "const": "network",
+          "type": "string"
+        },
+        {
+          "const": "publish",
+          "type": "string"
+        }
+      ]
+    },
+    "InvocationCorrelationIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "InvocationCorrelationV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "invocation_correlation_id": {
+              "$ref": "#/$defs/InvocationCorrelationIdV1"
+            },
+            "native_invocation_id": {
+              "$ref": "#/$defs/NativeInvocationIdV1"
+            },
+            "visibility": {
+              "const": "observed",
+              "type": "string"
+            }
+          },
+          "required": [
+            "visibility",
+            "invocation_correlation_id",
+            "native_invocation_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "reason": {
+              "$ref": "#/$defs/ResidentReasonV1"
+            },
+            "visibility": {
+              "const": "unobserved",
+              "type": "string"
+            }
+          },
+          "required": [
+            "visibility",
+            "reason"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "LeaseBudgetUnitsV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "LeaseTimeoutMillisV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "NativeInvocationIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "OperationLeaseIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "PackageIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[./][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "package_id": {
+          "$ref": "#/$defs/PackageIdV1"
+        },
+        "resource_id": {
+          "$ref": "#/$defs/PackageResourceIdV1"
+        }
+      },
+      "required": [
+        "package_id",
+        "resource_id"
+      ],
+      "type": "object"
+    },
+    "ResidentReasonV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SessionAdmissionIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/operation-lease.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "budget_units": {
+      "$ref": "#/$defs/LeaseBudgetUnitsV1"
+    },
+    "capabilities": {
+      "items": {
+        "$ref": "#/$defs/CapabilityIdV1"
+      },
+      "type": "array"
+    },
+    "effects": {
+      "items": {
+        "$ref": "#/$defs/EffectClass"
+      },
+      "type": "array"
+    },
+    "evidence_obligations": {
+      "items": {
+        "$ref": "#/$defs/ResidentRecordRefV1"
+      },
+      "type": "array"
+    },
+    "expires_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "invocation_correlation": {
+      "$ref": "#/$defs/InvocationCorrelationV1"
+    },
+    "operation": {
+      "$ref": "#/$defs/PackageResourceRefV1"
+    },
+    "operation_lease_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "operation_lease_id": {
+      "$ref": "#/$defs/OperationLeaseIdV1"
+    },
+    "read_set": {
+      "items": {
+        "$ref": "#/$defs/ResidentRecordRefV1"
+      },
+      "type": "array"
+    },
+    "schema": {
+      "const": "pale/operation-lease.v1",
+      "type": "string"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "session_admission_id": {
+      "$ref": "#/$defs/SessionAdmissionIdV1"
+    },
+    "session_admission_lease_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "timeout_millis": {
+      "$ref": "#/$defs/LeaseTimeoutMillisV1"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_sha256",
+    "schema_version",
+    "operation_lease_id",
+    "session_admission_id",
+    "session_admission_lease_digest",
+    "operation",
+    "capabilities",
+    "effects",
+    "read_set",
+    "evidence_obligations",
+    "budget_units",
+    "timeout_millis",
+    "expires_at",
+    "invocation_correlation",
+    "operation_lease_digest"
+  ],
+  "title": "operation-lease.v1",
+  "type": "object"
+}

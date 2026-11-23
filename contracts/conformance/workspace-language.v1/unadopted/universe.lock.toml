@@ -1,0 +1,6 @@
+schema = "pale/workspace-universe-lock.v1"
+schema_version = 1
+workspace_id = "synthetic"
+resolution_digest = "2f80465f2dbc936abe5c935e46f4610e30597723b17aa7c8f2f46f707b31f75e"
+adopted_releases = []
+universe_digest = "721aeafebf93535debafaac8f1f7176ca2f30b660f4d577156f0f52675aa3881"

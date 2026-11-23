@@ -1,0 +1,14 @@
+[workspace]
+schema_version = 1
+workspace_id = "act-ws"
+distribution_lock = "distribution-lock.toml"
+machine_binding_root = "machines"
+desired_topology = { projects = [{ id = "demo", title = "Synthetic compile", run_policy = "standard", package_seeds = ["example.engine"], authority_root_ids = ["authority"], capabilities_file = "capabilities.toml" }], execution_workspaces = [{ id = "default", title = "Default execution workspace", execution_path_ids = ["direct-claude"] }], repositories = [{ id = "engine", title = "Engine" }], execution_paths = [{ id = "direct-claude", experience_path_id = "direct-claude-code" }], project_repositories = [{ project_id = "demo", repository_id = "engine", role = { package_id = "example.engine", resource_id = "engine" }, stacks = [], families = [], materialization_order = 0 }], project_execution_workspaces = [{ project_id = "demo", execution_workspace_id = "default" }], execution_workspace_repositories = [{ execution_workspace_id = "default", repository_id = "engine", access = "mutate" }] }
+module_manifests = []
+source_components = []
+responsibility_derivations = []
+organizational_translations = []
+experience_compositions = ["composition.toml"]
+resolution_lock = "workspace-resolution.lock.toml"
+universe_lock = "workspace-universe.lock.toml"
+

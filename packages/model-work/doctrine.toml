@@ -1,0 +1,52 @@
+[doctrine]
+schema_version = 1
+
+[[doctrine.entry]]
+id = "representation-comparison"
+description = "Compare paired activations, sparse reconstruction and feature stability for claims about internal representations."
+doctrine = "representation-method.md"
+placement = "operation_procedure"
+requires = [{ scope = "external", resource = { package_id = "pale.evaluation", resource_id = "numerical-conformance" } }, { scope = "external", resource = { package_id = "pale.evaluation", resource_id = "candidate-comparison" } }]
+
+[[doctrine.entry]]
+id = "cost-aware-llm-pipeline"
+description = "Choose a model route that meets the task’s quality and budget, including context, retries, caches and repeated calls."
+doctrine = "cost-method.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "external", resource = { package_id = "pale.evaluation", resource_id = "analytical-grain" } }]
+
+[[doctrine.entry]]
+id = "ml-adoption-playbook"
+description = "Decide whether machine learning improves a product enough to justify its data needs, operating cost and risk."
+doctrine = "adoption-method.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "mle-workflow"
+description = "Build, evaluate, release and monitor a reproducible model with clear requirements for promotion and rollback."
+doctrine = "lifecycle-method.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "on-target-model-comparison"
+description = "Compare quality, latency, memory and failure behaviour for the full model runtime on its intended hardware."
+doctrine = "runtime-method.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "resource-matched-model-comparison"
+description = "Compare model routes using the same resource budget, required capabilities and controls."
+doctrine = "resource-comparison-method.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "model-artifact-evidence"
+description = "Check the revision, files, access and use permissions behind a proposed model or dataset."
+doctrine = "artifact-method.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "hugging-face-practice"
+description = "Inspect the required Hugging Face metadata at the intended repository revision."
+doctrine = "hugging-face-practice.md"
+placement = "standalone_judgment"

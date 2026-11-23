@@ -1,0 +1,8 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/pale-core",
+    "crates/pale-contract-codegen",
+    "crates/pale-contracts",
+]
+

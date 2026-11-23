@@ -1,0 +1,18 @@
+[stacks]
+schema_version = 1
+
+[[stacks.stack]]
+id = "n8n"
+description = "Check an n8n workflow before deployment and after failure."
+doctrine_refs = [{ scope = "local", resource_id = "n8n-practice" }]
+[[stacks.stack.official_sources]]
+label = "n8n native documentation"
+url = "https://docs.n8n.io/deploy/host-n8n/configure-n8n/scaling/enable-queue-mode/"
+
+[[stacks.stack]]
+id = "appsmith"
+description = "Check an Appsmith application and its operator journey."
+doctrine_refs = [{ scope = "local", resource_id = "appsmith-practice" }]
+[[stacks.stack.official_sources]]
+label = "appsmith native documentation"
+url = "https://docs.appsmith.com/advanced-concepts/version-control-with-git"

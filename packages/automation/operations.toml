@@ -1,0 +1,28 @@
+[operations]
+schema_version = 1
+archetype = []
+
+[[operations.operation]]
+id = "qualify-workflow"
+description = "Check that a workflow change does what it should, including when things go wrong, before it goes live."
+doctrine = "qualify.md"
+doctrine_refs = [{ scope = "local", resource_id = "workflow-effects" }, { scope = "local", resource_id = "operator-review" }]
+outputs = ["In the reply: what the workflow changes and who owns each change", "The version checked, where it runs, what each case showed and what was not checked", "How to undo it and which cases are safe to replay"]
+
+[[operations.operation]]
+id = "qualify-delegated-outcomes"
+description = "Check dispatch prerequisites and each owner’s result in a delegated workflow."
+doctrine = "delegated-outcomes.md"
+doctrine_refs = [{ scope = "local", resource_id = "workflow-effects" }]
+outputs = ["The exact handoff and required order of owner decisions", "Intermediate and final results read from each owner, replay results and unresolved outcomes"]
+
+[[operations.operation]]
+id = "compare-automation-exports"
+description = "Compare saved n8n workflows, Appsmith unpublished exports or saved-import receipts with the configured verifier."
+doctrine = "compare-exports.md"
+doctrine_refs = [{ scope = "external", resource = { package_id = "pale.engineering", resource_id = "execution" } }]
+outputs = ["Exact artifact digests, what the comparison covers and the differences found"]
+capability_policy = { scope = "local", resource_id = "export-verifier-policy" }
+capability_requirements = [
+  { id = "compare-retained-artifacts", description = "Compare the exact retained artifacts and report differences.", capability = "automation-export-verification", recipe = { scope = "local", resource_id = "export-verifier" }, effect_class = "execute", policy = { kind = "required_block" }, failure_posture = "fail_closed" },
+]

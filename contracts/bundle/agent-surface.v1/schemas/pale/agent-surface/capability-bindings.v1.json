@@ -1,0 +1,568 @@
+{
+  "$defs": {
+    "Approval": {
+      "oneOf": [
+        {
+          "const": "none",
+          "type": "string"
+        },
+        {
+          "const": "ask",
+          "type": "string"
+        },
+        {
+          "const": "gated",
+          "type": "string"
+        }
+      ]
+    },
+    "CapabilityIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "CapabilityProviderBinding": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "host_native",
+              "type": "string"
+            },
+            "provider_tools": {
+              "items": {
+                "$ref": "#/$defs/ProviderToolBindingV1"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "kind",
+            "provider_tools"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "native_rust",
+              "type": "string"
+            },
+            "target": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "target"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "connector",
+              "type": "string"
+            },
+            "provider_tools": {
+              "items": {
+                "$ref": "#/$defs/ProviderToolBindingV1"
+              },
+              "type": "array"
+            },
+            "target": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "target"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "CapabilityRequirementIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "CapabilityUseKind": {
+      "oneOf": [
+        {
+          "const": "operation_requirement",
+          "type": "string"
+        }
+      ]
+    },
+    "DegradedOutcomeIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "EffectClass": {
+      "oneOf": [
+        {
+          "const": "compute",
+          "type": "string"
+        },
+        {
+          "const": "read",
+          "type": "string"
+        },
+        {
+          "const": "execute",
+          "type": "string"
+        },
+        {
+          "const": "write",
+          "type": "string"
+        },
+        {
+          "const": "network",
+          "type": "string"
+        },
+        {
+          "const": "publish",
+          "type": "string"
+        }
+      ]
+    },
+    "FailurePosture": {
+      "oneOf": [
+        {
+          "const": "fail_closed",
+          "type": "string"
+        },
+        {
+          "const": "fail_open",
+          "type": "string"
+        },
+        {
+          "const": "retry",
+          "type": "string"
+        },
+        {
+          "const": "steer",
+          "type": "string"
+        },
+        {
+          "const": "escalate",
+          "type": "string"
+        }
+      ]
+    },
+    "HostCommandConstraint": {
+      "additionalProperties": false,
+      "properties": {
+        "allow_trailing_args": {
+          "default": false,
+          "type": "boolean"
+        },
+        "argv_prefix": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "executable": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "executable"
+      ],
+      "type": "object"
+    },
+    "HostCommandSource": {
+      "oneOf": [
+        {
+          "const": "repository_capability_commands",
+          "type": "string"
+        }
+      ]
+    },
+    "HostToolBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "command_source": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/HostCommandSource"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "commands": {
+          "items": {
+            "$ref": "#/$defs/HostCommandConstraint"
+          },
+          "type": "array"
+        },
+        "input_equals": {
+          "additionalProperties": false,
+          "patternProperties": {
+            "^/(?:[^~\\u0000-\\u001F\\u007F-\\u009F]|~[01])+$": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "model_name": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "observability": {
+          "$ref": "#/$defs/ToolObservability"
+        }
+      },
+      "required": [
+        "name",
+        "observability"
+      ],
+      "type": "object"
+    },
+    "PackageIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[./][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "package_id": {
+          "$ref": "#/$defs/PackageIdV1"
+        },
+        "resource_id": {
+          "$ref": "#/$defs/PackageResourceIdV1"
+        }
+      },
+      "required": [
+        "package_id",
+        "resource_id"
+      ],
+      "type": "object"
+    },
+    "ProviderBindingIdentityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_binding_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "provider_binding_sha256"
+      ],
+      "type": "object"
+    },
+    "ProviderBindingRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_binding_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "provider_binding_identity": {
+          "$ref": "#/$defs/ProviderBindingIdentityV1"
+        }
+      },
+      "required": [
+        "provider_binding_id",
+        "provider_binding_identity"
+      ],
+      "type": "object"
+    },
+    "ProviderToolBindingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_binding": {
+          "$ref": "#/$defs/ProviderBindingRefV1"
+        },
+        "tools": {
+          "items": {
+            "$ref": "#/$defs/HostToolBinding"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "provider_binding",
+        "tools"
+      ],
+      "type": "object"
+    },
+    "ResolvedCapabilityFallbackV1": {
+      "additionalProperties": false,
+      "properties": {
+        "guidance": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "recipe": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PackageResourceRefV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "guidance"
+      ],
+      "type": "object"
+    },
+    "ResolvedCapabilityProviderV1": {
+      "additionalProperties": false,
+      "properties": {
+        "approval": {
+          "$ref": "#/$defs/Approval"
+        },
+        "capability_id": {
+          "$ref": "#/$defs/CapabilityIdV1"
+        },
+        "effect_class": {
+          "$ref": "#/$defs/EffectClass"
+        },
+        "implementation": {
+          "$ref": "#/$defs/CapabilityProviderBinding"
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tool_contract": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ToolContractIdV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "capability_id",
+        "effect_class",
+        "approval",
+        "implementation"
+      ],
+      "type": "object"
+    },
+    "ResolvedCapabilityRequirementPolicyV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "required_block",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "degraded_outcome": {
+              "$ref": "#/$defs/DegradedOutcomeIdV1"
+            },
+            "fallback": {
+              "$ref": "#/$defs/ResolvedCapabilityFallbackV1"
+            },
+            "kind": {
+              "const": "required_degrade",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "fallback",
+            "degraded_outcome"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "fallback": {
+              "$ref": "#/$defs/ResolvedCapabilityFallbackV1"
+            },
+            "kind": {
+              "const": "optional",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "fallback"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "ResolvedCapabilityUseV1": {
+      "additionalProperties": false,
+      "properties": {
+        "capability_id": {
+          "$ref": "#/$defs/CapabilityIdV1"
+        },
+        "effect_class": {
+          "$ref": "#/$defs/EffectClass"
+        },
+        "failure_posture": {
+          "$ref": "#/$defs/FailurePosture"
+        },
+        "kind": {
+          "$ref": "#/$defs/CapabilityUseKind"
+        },
+        "owner": {
+          "$ref": "#/$defs/PackageResourceRefV1"
+        },
+        "policy": {
+          "$ref": "#/$defs/ResolvedCapabilityRequirementPolicyV1"
+        },
+        "recipe": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PackageResourceRefV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "requirement_id": {
+          "$ref": "#/$defs/CapabilityRequirementIdV1"
+        }
+      },
+      "required": [
+        "kind",
+        "owner",
+        "requirement_id",
+        "capability_id",
+        "effect_class",
+        "policy",
+        "failure_posture"
+      ],
+      "type": "object"
+    },
+    "ResolvedToolRecipeV1": {
+      "additionalProperties": false,
+      "properties": {
+        "procedure": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/capability-procedure.v1.json#/$defs/ToolRecipe"
+        },
+        "resource": {
+          "$ref": "#/$defs/PackageResourceRefV1"
+        }
+      },
+      "required": [
+        "resource",
+        "procedure"
+      ],
+      "type": "object"
+    },
+    "ToolContractIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "ToolObservability": {
+      "oneOf": [
+        {
+          "const": "pre_tool_observable",
+          "type": "string"
+        },
+        {
+          "const": "permission_only",
+          "type": "string"
+        },
+        {
+          "const": "unobservable",
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/capability-bindings.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "profile_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "providers": {
+      "items": {
+        "$ref": "#/$defs/ResolvedCapabilityProviderV1"
+      },
+      "type": "array"
+    },
+    "recipes": {
+      "items": {
+        "$ref": "#/$defs/ResolvedToolRecipeV1"
+      },
+      "type": "array"
+    },
+    "requirements": {
+      "items": {
+        "$ref": "#/$defs/ResolvedCapabilityUseV1"
+      },
+      "type": "array"
+    },
+    "schema": {
+      "const": "pale.agent-surface.capability-bindings.v1",
+      "type": "string"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_sha256",
+    "schema_version",
+    "profile_digest",
+    "providers",
+    "requirements"
+  ],
+  "title": "capability-bindings.v1",
+  "type": "object"
+}

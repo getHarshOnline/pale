@@ -1,0 +1,1047 @@
+{
+  "$defs": {
+    "OwnedConfinedRelativePath": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "type": "string"
+    },
+    "WorkspaceComponentId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceDeclarationId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceDeclarationRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "declaration_id": {
+          "$ref": "#/$defs/WorkspaceDeclarationId"
+        },
+        "namespace": {
+          "$ref": "#/$defs/WorkspaceNamespaceId"
+        }
+      },
+      "required": [
+        "namespace",
+        "declaration_id"
+      ],
+      "type": "object"
+    },
+    "WorkspaceDerivationImpactV1": {
+      "oneOf": [
+        {
+          "properties": {
+            "impact": {
+              "const": "affected",
+              "type": "string"
+            },
+            "root_digests": {
+              "items": {
+                "$ref": "#/$defs/WorkspaceDerivationRootDigest"
+              },
+              "maxItems": 6154,
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "impact",
+            "root_digests"
+          ],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "impact": {
+              "const": "unaffected",
+              "type": "string"
+            }
+          },
+          "required": [
+            "impact"
+          ],
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "subject": {
+          "$ref": "#/$defs/WorkspaceDerivationSubjectV1"
+        }
+      },
+      "required": [
+        "subject"
+      ],
+      "type": "object",
+      "unevaluatedProperties": false
+    },
+    "WorkspaceDerivationNodeDigest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "WorkspaceDerivationNodeV1": {
+      "additionalProperties": false,
+      "properties": {
+        "inputs": {
+          "items": {
+            "$ref": "#/$defs/WorkspaceDerivationNodeDigest"
+          },
+          "maxItems": 5124,
+          "minItems": 0,
+          "type": "array"
+        },
+        "node_digest": {
+          "$ref": "#/$defs/WorkspaceDerivationNodeDigest"
+        },
+        "origin": {
+          "$ref": "#/$defs/WorkspaceDerivationOriginV1"
+        },
+        "output": {
+          "$ref": "#/$defs/WorkspaceDerivationOutputV1"
+        },
+        "rule": {
+          "$ref": "#/$defs/WorkspaceDerivationRuleV1"
+        },
+        "subject": {
+          "$ref": "#/$defs/WorkspaceDerivationSubjectV1"
+        }
+      },
+      "required": [
+        "node_digest",
+        "origin",
+        "rule",
+        "subject",
+        "output",
+        "inputs"
+      ],
+      "type": "object"
+    },
+    "WorkspaceDerivationOriginV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "origin": {
+              "const": "source",
+              "type": "string"
+            },
+            "source_id": {
+              "$ref": "#/$defs/WorkspaceDerivationSourceId"
+            }
+          },
+          "required": [
+            "origin",
+            "source_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "module_digest": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "module_id": {
+              "$ref": "#/$defs/WorkspaceModuleId"
+            },
+            "origin": {
+              "const": "module_release",
+              "type": "string"
+            },
+            "release_id": {
+              "$ref": "#/$defs/WorkspaceReleaseId"
+            }
+          },
+          "required": [
+            "origin",
+            "module_id",
+            "release_id",
+            "module_digest"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "export_id": {
+              "$ref": "#/$defs/WorkspaceExportId"
+            },
+            "importer_module": {
+              "$ref": "#/$defs/WorkspaceModuleId"
+            },
+            "local_namespace": {
+              "$ref": "#/$defs/WorkspaceNamespaceId"
+            },
+            "origin": {
+              "const": "import",
+              "type": "string"
+            },
+            "source_namespace": {
+              "$ref": "#/$defs/WorkspaceNamespaceId"
+            },
+            "upstream_module": {
+              "$ref": "#/$defs/WorkspaceModuleId"
+            },
+            "upstream_release": {
+              "$ref": "#/$defs/WorkspaceReleaseId"
+            }
+          },
+          "required": [
+            "origin",
+            "importer_module",
+            "upstream_module",
+            "upstream_release",
+            "export_id",
+            "source_namespace",
+            "local_namespace"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "namespace": {
+              "$ref": "#/$defs/WorkspaceNamespaceId"
+            },
+            "origin": {
+              "const": "extension",
+              "type": "string"
+            },
+            "owner_module": {
+              "$ref": "#/$defs/WorkspaceModuleId"
+            },
+            "target": {
+              "$ref": "#/$defs/WorkspaceDeclarationRefV1"
+            }
+          },
+          "required": [
+            "origin",
+            "owner_module",
+            "namespace",
+            "target"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "origin": {
+              "const": "compilation",
+              "type": "string"
+            }
+          },
+          "required": [
+            "origin"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "WorkspaceDerivationOutputV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "byte_len": {
+              "format": "uint32",
+              "minimum": 0,
+              "type": "integer"
+            },
+            "output": {
+              "const": "source_content",
+              "type": "string"
+            },
+            "source_digest": {
+              "$ref": "#/$defs/WorkspaceSourceContentDigest"
+            },
+            "source_path": {
+              "$ref": "#/$defs/OwnedConfinedRelativePath"
+            }
+          },
+          "required": [
+            "output",
+            "source_path",
+            "source_digest",
+            "byte_len"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "component_digest": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "output": {
+              "const": "component",
+              "type": "string"
+            }
+          },
+          "required": [
+            "output",
+            "component_digest"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "module_digest": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "output": {
+              "const": "module",
+              "type": "string"
+            }
+          },
+          "required": [
+            "output",
+            "module_digest"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "output": {
+              "const": "declaration",
+              "type": "string"
+            },
+            "value_digest": {
+              "$ref": "#/$defs/WorkspaceDerivationValueDigest"
+            }
+          },
+          "required": [
+            "output",
+            "value_digest"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "output": {
+              "const": "import_surface",
+              "type": "string"
+            },
+            "surface_digest": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            }
+          },
+          "required": [
+            "output",
+            "surface_digest"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "output": {
+              "const": "extension",
+              "type": "string"
+            },
+            "value_digest": {
+              "$ref": "#/$defs/WorkspaceDerivationValueDigest"
+            }
+          },
+          "required": [
+            "output",
+            "value_digest"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "output": {
+              "const": "effective_policy",
+              "type": "string"
+            },
+            "value_digest": {
+              "$ref": "#/$defs/WorkspaceDerivationValueDigest"
+            }
+          },
+          "required": [
+            "output",
+            "value_digest"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "closure_digest": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "output": {
+              "const": "responsibility_closure",
+              "type": "string"
+            }
+          },
+          "required": [
+            "output",
+            "closure_digest"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "closure_digest": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "output": {
+              "const": "organizational_translation_closure",
+              "type": "string"
+            }
+          },
+          "required": [
+            "output",
+            "closure_digest"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "output": {
+              "const": "experience_composition",
+              "type": "string"
+            },
+            "source_digest": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            }
+          },
+          "required": [
+            "output",
+            "source_digest"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "output": {
+              "const": "resource",
+              "type": "string"
+            },
+            "value_digest": {
+              "$ref": "#/$defs/WorkspaceDerivationValueDigest"
+            }
+          },
+          "required": [
+            "output",
+            "value_digest"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "output": {
+              "const": "resolution_lock",
+              "type": "string"
+            },
+            "resolution_digest": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            }
+          },
+          "required": [
+            "output",
+            "resolution_digest"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "output": {
+              "const": "universe_lock",
+              "type": "string"
+            },
+            "universe_digest": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            }
+          },
+          "required": [
+            "output",
+            "universe_digest"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "output": {
+              "const": "semantic_ir",
+              "type": "string"
+            },
+            "workspace_semantic_ir_digest": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            }
+          },
+          "required": [
+            "output",
+            "workspace_semantic_ir_digest"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "WorkspaceDerivationRootDigest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "WorkspaceDerivationRootV1": {
+      "oneOf": [
+        {
+          "properties": {
+            "change": {
+              "const": "added",
+              "type": "string"
+            },
+            "current_node": {
+              "$ref": "#/$defs/WorkspaceDerivationNodeDigest"
+            }
+          },
+          "required": [
+            "change",
+            "current_node"
+          ],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "change": {
+              "const": "modified",
+              "type": "string"
+            },
+            "current_node": {
+              "$ref": "#/$defs/WorkspaceDerivationNodeDigest"
+            },
+            "prior_output": {
+              "$ref": "#/$defs/WorkspaceDerivationOutputV1"
+            }
+          },
+          "required": [
+            "change",
+            "prior_output",
+            "current_node"
+          ],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "change": {
+              "const": "removed",
+              "type": "string"
+            },
+            "prior_output": {
+              "$ref": "#/$defs/WorkspaceDerivationOutputV1"
+            }
+          },
+          "required": [
+            "change",
+            "prior_output"
+          ],
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "root_digest": {
+          "$ref": "#/$defs/WorkspaceDerivationRootDigest"
+        },
+        "subject": {
+          "$ref": "#/$defs/WorkspaceDerivationSubjectV1"
+        }
+      },
+      "required": [
+        "root_digest",
+        "subject"
+      ],
+      "type": "object",
+      "unevaluatedProperties": false
+    },
+    "WorkspaceDerivationRuleV1": {
+      "oneOf": [
+        {
+          "const": "source_admission",
+          "type": "string"
+        },
+        {
+          "const": "component_admission",
+          "type": "string"
+        },
+        {
+          "const": "module_sealing",
+          "type": "string"
+        },
+        {
+          "const": "declaration_linking",
+          "type": "string"
+        },
+        {
+          "const": "import_linking",
+          "type": "string"
+        },
+        {
+          "const": "extension_application",
+          "type": "string"
+        },
+        {
+          "const": "policy_composition",
+          "type": "string"
+        },
+        {
+          "const": "responsibility_lowering",
+          "type": "string"
+        },
+        {
+          "const": "organizational_translation",
+          "type": "string"
+        },
+        {
+          "const": "experience_composition",
+          "type": "string"
+        },
+        {
+          "const": "resource_selection",
+          "type": "string"
+        },
+        {
+          "const": "resolution_locking",
+          "type": "string"
+        },
+        {
+          "const": "universe_locking",
+          "type": "string"
+        },
+        {
+          "const": "semantic_ir_sealing",
+          "type": "string"
+        }
+      ]
+    },
+    "WorkspaceDerivationSourceId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceDerivationSourceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "byte_len": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "source_digest": {
+          "$ref": "#/$defs/WorkspaceSourceContentDigest"
+        },
+        "source_id": {
+          "$ref": "#/$defs/WorkspaceDerivationSourceId"
+        },
+        "source_path": {
+          "$ref": "#/$defs/OwnedConfinedRelativePath"
+        }
+      },
+      "required": [
+        "source_id",
+        "source_path",
+        "source_digest",
+        "byte_len"
+      ],
+      "type": "object"
+    },
+    "WorkspaceDerivationSubjectV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "source_id": {
+              "$ref": "#/$defs/WorkspaceDerivationSourceId"
+            },
+            "subject": {
+              "const": "source",
+              "type": "string"
+            }
+          },
+          "required": [
+            "subject",
+            "source_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "component_id": {
+              "$ref": "#/$defs/WorkspaceComponentId"
+            },
+            "subject": {
+              "const": "component",
+              "type": "string"
+            }
+          },
+          "required": [
+            "subject",
+            "component_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "module_id": {
+              "$ref": "#/$defs/WorkspaceModuleId"
+            },
+            "subject": {
+              "const": "module",
+              "type": "string"
+            }
+          },
+          "required": [
+            "subject",
+            "module_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "declaration": {
+              "$ref": "#/$defs/WorkspaceDeclarationRefV1"
+            },
+            "owner_module": {
+              "$ref": "#/$defs/WorkspaceModuleId"
+            },
+            "subject": {
+              "const": "declaration",
+              "type": "string"
+            }
+          },
+          "required": [
+            "subject",
+            "owner_module",
+            "declaration"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "export_id": {
+              "$ref": "#/$defs/WorkspaceExportId"
+            },
+            "importer_module": {
+              "$ref": "#/$defs/WorkspaceModuleId"
+            },
+            "local_namespace": {
+              "$ref": "#/$defs/WorkspaceNamespaceId"
+            },
+            "source_namespace": {
+              "$ref": "#/$defs/WorkspaceNamespaceId"
+            },
+            "subject": {
+              "const": "import",
+              "type": "string"
+            },
+            "upstream_module": {
+              "$ref": "#/$defs/WorkspaceModuleId"
+            },
+            "upstream_release": {
+              "$ref": "#/$defs/WorkspaceReleaseId"
+            }
+          },
+          "required": [
+            "subject",
+            "importer_module",
+            "upstream_module",
+            "upstream_release",
+            "export_id",
+            "source_namespace",
+            "local_namespace"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "namespace": {
+              "$ref": "#/$defs/WorkspaceNamespaceId"
+            },
+            "owner_module": {
+              "$ref": "#/$defs/WorkspaceModuleId"
+            },
+            "subject": {
+              "const": "extension",
+              "type": "string"
+            },
+            "target": {
+              "$ref": "#/$defs/WorkspaceDeclarationRefV1"
+            }
+          },
+          "required": [
+            "subject",
+            "owner_module",
+            "namespace",
+            "target"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "declaration": {
+              "$ref": "#/$defs/WorkspaceDeclarationRefV1"
+            },
+            "owner_module": {
+              "$ref": "#/$defs/WorkspaceModuleId"
+            },
+            "subject": {
+              "const": "policy",
+              "type": "string"
+            }
+          },
+          "required": [
+            "subject",
+            "owner_module",
+            "declaration"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "subject": {
+              "const": "responsibility_closure",
+              "type": "string"
+            }
+          },
+          "required": [
+            "subject"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "subject": {
+              "const": "organizational_translation_closure",
+              "type": "string"
+            }
+          },
+          "required": [
+            "subject"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "subject": {
+              "const": "experience_composition",
+              "type": "string"
+            }
+          },
+          "required": [
+            "subject"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "owner_module": {
+              "$ref": "#/$defs/WorkspaceModuleId"
+            },
+            "resource_id": {
+              "$ref": "#/$defs/WorkspaceResourceId"
+            },
+            "subject": {
+              "const": "resource",
+              "type": "string"
+            }
+          },
+          "required": [
+            "subject",
+            "owner_module",
+            "resource_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "subject": {
+              "const": "resolution_lock",
+              "type": "string"
+            }
+          },
+          "required": [
+            "subject"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "subject": {
+              "const": "universe_lock",
+              "type": "string"
+            }
+          },
+          "required": [
+            "subject"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "subject": {
+              "const": "workspace",
+              "type": "string"
+            },
+            "workspace_id": {
+              "$ref": "#/$defs/WorkspaceId"
+            }
+          },
+          "required": [
+            "subject",
+            "workspace_id"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "WorkspaceDerivationValueDigest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "WorkspaceExportId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceModuleId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceNamespaceId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceReleaseId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceResourceId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "WorkspaceSourceContentDigest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/workspace-derivation-receipt.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "current_resolution_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "current_universe_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "impacts": {
+      "items": {
+        "$ref": "#/$defs/WorkspaceDerivationImpactV1"
+      },
+      "maxItems": 10251,
+      "minItems": 0,
+      "type": "array"
+    },
+    "nodes": {
+      "items": {
+        "$ref": "#/$defs/WorkspaceDerivationNodeV1"
+      },
+      "maxItems": 10251,
+      "minItems": 0,
+      "type": "array"
+    },
+    "prior_resolution_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "prior_universe_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "receipt_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "roots": {
+      "items": {
+        "$ref": "#/$defs/WorkspaceDerivationRootV1"
+      },
+      "maxItems": 6154,
+      "minItems": 0,
+      "type": "array"
+    },
+    "schema": {
+      "const": "pale/workspace-derivation-receipt.v1",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/WorkspaceDerivationSourceV1"
+      },
+      "maxItems": 3077,
+      "minItems": 0,
+      "type": "array"
+    },
+    "workspace_semantic_ir_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_version",
+    "prior_resolution_digest",
+    "current_resolution_digest",
+    "prior_universe_digest",
+    "current_universe_digest",
+    "workspace_semantic_ir_digest",
+    "sources",
+    "nodes",
+    "roots",
+    "impacts",
+    "receipt_digest"
+  ],
+  "title": "workspace-derivation-receipt.v1",
+  "type": "object"
+}

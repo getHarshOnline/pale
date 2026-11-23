@@ -1,0 +1,14 @@
+{
+  "canonicalization": "rfc8785_json",
+  "content_binding": {
+    "inline_json": {
+      "state": "ready"
+    },
+    "kind": "inline_json"
+  },
+  "content_schema_id": "example/state.v1",
+  "content_schema_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+  "digest": "0000000000000000000000000000000000000000000000000000000000000000",
+  "digest_algorithm": "sha256",
+  "kind": "expected_state"
+}

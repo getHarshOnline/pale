@@ -1,0 +1,4 @@
+permitted_capabilities = ["automation-export-verification"]
+permitted_effects = ["execute"]
+forbidden_capabilities = []
+forbidden_effects = []

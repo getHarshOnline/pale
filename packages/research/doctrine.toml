@@ -1,0 +1,72 @@
+[doctrine]
+schema_version = 1
+
+[[doctrine.entry]]
+id = "evidence-led-research"
+description = "Judge what sources support, reconcile disagreement and explain uncertainty in a decision brief."
+doctrine = "evidence-judgment.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "iterative-retrieval"
+description = "Find the evidence a question still needs, letting each material gap guide the next search."
+doctrine = "retrieval.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "structured-text-extraction-routing"
+description = "Choose parsing or model interpretation from input regularity, error cost and how reliably the output can be checked."
+doctrine = "extraction-routing.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "local", resource_id = "iterative-retrieval" }]
+
+[[doctrine.entry]]
+id = "literature-method"
+description = "Review the literature with reproducible search, inclusion rules, appraisal, synthesis and citations checked against claims."
+doctrine = "literature-method.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "established-method-comparison"
+description = "Test whether an established method already covers a proposed contribution and identify any demonstrated difference."
+doctrine = "established-method.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "scholar-evaluation"
+description = "Evaluate a scholarly work’s claims, methods, evidence, citations and reproducibility, with concrete feedback."
+doctrine = "scholar-evaluation.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "local", resource_id = "literature-method" }, { scope = "local", resource_id = "established-method-comparison" }]
+
+[[doctrine.entry]]
+id = "source-expression"
+description = "Review a draft’s dependence on source wording, structure and examples, and identify its independent contribution."
+doctrine = "expression-assessment.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "local", resource_id = "source-rights" }]
+
+[[doctrine.entry]]
+id = "source-rights"
+description = "Check whether supplied permissions cover each proposed use of each source or component, preserving obligations and gaps."
+doctrine = "rights-assessment.md"
+placement = "standalone_judgment"
+see_also = [{ scope = "local", resource_id = "source-expression" }]
+
+[[doctrine.entry]]
+id = "decision-oriented-market-research"
+description = "Research a market choice through demand, supply, comparable estimates, rival explanations and uncertainty."
+doctrine = "market-method.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "audience-discovery"
+description = "Form an audience and message hypothesis from a defined sample of discovery evidence."
+doctrine = "audience-discovery.md"
+placement = "operation_procedure"
+
+[[doctrine.entry]]
+id = "evidence-update-method"
+description = "Compare new evidence with an accepted claim and the owner’s criteria for a material change."
+doctrine = "update-method.md"
+placement = "operation_procedure"

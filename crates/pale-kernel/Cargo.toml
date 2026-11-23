@@ -1,0 +1,35 @@
+[package]
+name = "pale-kernel"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "In-memory graph and set structures that hold one running Pale configuration and show which parts a change reaches."
+publish = false
+
+[lints]
+workspace = true
+
+# Synthetic kernel characterization is deliberately outside the default gate.
+# It has no Package-corpus authority and cannot select a resident policy.
+[features]
+bench = []
+graphblas = ["dep:issundb-graphblas"]
+
+[[bench]]
+name = "resident_kernel"
+harness = false
+required-features = ["bench"]
+
+[dependencies]
+pale-core = { path = "../pale-core" }
+petgraph.workspace = true
+roaring.workspace = true
+thiserror.workspace = true
+
+[target.'cfg(not(target_family = "wasm"))'.dependencies]
+issundb-graphblas = { workspace = true, optional = true }
+
+[dev-dependencies]
+sha2.workspace = true

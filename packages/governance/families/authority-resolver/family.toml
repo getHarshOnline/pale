@@ -1,0 +1,4 @@
+id = "governance.authority-resolver"
+title = "Find who can decide the question"
+purpose = "Find the source that can settle this question, distinguish decisions from observations, and hold only the action whose answer is missing."
+body = "families/authority-resolver/body.md"

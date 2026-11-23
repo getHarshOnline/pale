@@ -1,0 +1,216 @@
+{
+  "$defs": {
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "Ed25519PublicKeyV1": {
+      "pattern": "^[A-Za-z0-9_-]{42}[AEIMQUYcgkosw048]$",
+      "type": "string"
+    },
+    "PrincipalKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "PrincipalRecoveryEligibleSignerV1": {
+      "additionalProperties": false,
+      "properties": {
+        "recovery_key_epoch": {
+          "$ref": "#/$defs/PrincipalKeyEpochV1"
+        },
+        "recovery_key_id": {
+          "$ref": "#/$defs/ResidentKeyIdV1"
+        },
+        "recovery_principal_id": {
+          "$ref": "#/$defs/ResidentPrincipalIdV1"
+        },
+        "recovery_public_key": {
+          "$ref": "#/$defs/Ed25519PublicKeyV1"
+        }
+      },
+      "required": [
+        "recovery_principal_id",
+        "recovery_key_id",
+        "recovery_public_key",
+        "recovery_key_epoch"
+      ],
+      "type": "object"
+    },
+    "PrincipalRecoveryPolicyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "PrincipalRecoveryPolicyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "PrincipalRecoveryReplayScopeV1": {
+      "oneOf": [
+        {
+          "const": "principal_key_recovery_proof",
+          "type": "string"
+        }
+      ]
+    },
+    "RecoveryProofValiditySecondsV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/principal-recovery-policy.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "dependentRequired": {
+    "previous_policy_ref": [
+      "previous_policy_sha256"
+    ],
+    "previous_policy_sha256": [
+      "previous_policy_ref"
+    ]
+  },
+  "oneOf": [
+    {
+      "not": {
+        "anyOf": [
+          {
+            "required": [
+              "previous_policy_ref"
+            ]
+          },
+          {
+            "required": [
+              "previous_policy_sha256"
+            ]
+          }
+        ]
+      },
+      "properties": {
+        "policy_epoch": {
+          "const": 1
+        }
+      }
+    },
+    {
+      "properties": {
+        "policy_epoch": {
+          "minimum": 2
+        }
+      },
+      "required": [
+        "previous_policy_ref",
+        "previous_policy_sha256"
+      ]
+    }
+  ],
+  "properties": {
+    "canonical_record_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "eligible_signers": {
+      "items": {
+        "$ref": "#/$defs/PrincipalRecoveryEligibleSignerV1"
+      },
+      "maxItems": 1024,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "expires_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "issued_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "issuer_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "issuer_principal_key_epoch": {
+      "$ref": "#/$defs/PrincipalKeyEpochV1"
+    },
+    "policy_epoch": {
+      "$ref": "#/$defs/PrincipalRecoveryPolicyEpochV1"
+    },
+    "previous_policy_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "previous_policy_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "proof_validity_seconds": {
+      "$ref": "#/$defs/RecoveryProofValiditySecondsV1"
+    },
+    "recovery_policy_id": {
+      "$ref": "#/$defs/PrincipalRecoveryPolicyIdV1"
+    },
+    "replay_scope": {
+      "$ref": "#/$defs/PrincipalRecoveryReplayScopeV1"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/principal-recovery-policy.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    },
+    "threshold": {
+      "format": "uint16",
+      "maximum": 65535,
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "recovery_policy_id",
+    "principal_id",
+    "policy_epoch",
+    "eligible_signers",
+    "threshold",
+    "proof_validity_seconds",
+    "replay_scope",
+    "issued_at",
+    "issuer_key_id",
+    "issuer_principal_key_epoch",
+    "canonical_record_sha256",
+    "signature"
+  ],
+  "title": "principal-recovery-policy.v1",
+  "type": "object"
+}

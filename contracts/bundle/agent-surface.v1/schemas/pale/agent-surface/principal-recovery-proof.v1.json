@@ -1,0 +1,161 @@
+{
+  "$defs": {
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "Ed25519PublicKeyV1": {
+      "pattern": "^[A-Za-z0-9_-]{42}[AEIMQUYcgkosw048]$",
+      "type": "string"
+    },
+    "PrincipalKeyEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "PrincipalRecoveryNonceV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "PrincipalRecoveryProofIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "PrincipalRecoverySignatureV1": {
+      "additionalProperties": false,
+      "properties": {
+        "signature": {
+          "$ref": "#/$defs/CanonicalSignatureV1"
+        },
+        "signed_record_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "signer_key_epoch": {
+          "$ref": "#/$defs/PrincipalKeyEpochV1"
+        },
+        "signer_key_id": {
+          "$ref": "#/$defs/ResidentKeyIdV1"
+        },
+        "signer_principal_id": {
+          "$ref": "#/$defs/ResidentPrincipalIdV1"
+        }
+      },
+      "required": [
+        "signer_principal_id",
+        "signer_key_id",
+        "signer_key_epoch",
+        "signed_record_sha256",
+        "signature"
+      ],
+      "type": "object"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/principal-recovery-proof.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "canonical_record_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "expires_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "issued_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "new_key_epoch": {
+      "$ref": "#/$defs/PrincipalKeyEpochV1"
+    },
+    "new_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "new_public_key": {
+      "$ref": "#/$defs/Ed25519PublicKeyV1"
+    },
+    "nonce": {
+      "$ref": "#/$defs/PrincipalRecoveryNonceV1"
+    },
+    "principal_id": {
+      "$ref": "#/$defs/ResidentPrincipalIdV1"
+    },
+    "prior_principal_record_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "prior_principal_record_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "recovery_policy_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "recovery_policy_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "recovery_proof_id": {
+      "$ref": "#/$defs/PrincipalRecoveryProofIdV1"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/principal-recovery-proof.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signatures": {
+      "items": {
+        "$ref": "#/$defs/PrincipalRecoverySignatureV1"
+      },
+      "maxItems": 1024,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "recovery_proof_id",
+    "principal_id",
+    "prior_principal_record_ref",
+    "prior_principal_record_sha256",
+    "recovery_policy_ref",
+    "recovery_policy_sha256",
+    "new_key_id",
+    "new_public_key",
+    "new_key_epoch",
+    "nonce",
+    "issued_at",
+    "expires_at",
+    "canonical_record_sha256",
+    "signatures"
+  ],
+  "title": "principal-recovery-proof.v1",
+  "type": "object"
+}

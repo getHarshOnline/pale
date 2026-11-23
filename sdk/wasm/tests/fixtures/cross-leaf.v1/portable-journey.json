@@ -1,0 +1,59 @@
+{
+  "capability_ids": [
+    "workspace.portable-compilation",
+    "workspace.portable-comparison",
+    "workspace.portable-change-roots",
+    "workspace.portable-impacts",
+    "workspace.portable-explanation"
+  ],
+  "change_roots": {
+    "entry_count": 0,
+    "next_offset": null
+  },
+  "comparison": {
+    "affected_count": 0,
+    "change_root_count": 0,
+    "current_principal_universe_digest": "4c87b8f107996b2a1e4eaa778962f35aa7b8bb7f28fada16727a7d9c60d491f0",
+    "current_semantic_ir_digest": "ea9f30956097e21ff3a150056cc30ae5fbf050a76d0b341c62dd379d681b499a",
+    "prior_principal_universe_digest": "4c87b8f107996b2a1e4eaa778962f35aa7b8bb7f28fada16727a7d9c60d491f0",
+    "prior_semantic_ir_digest": "ea9f30956097e21ff3a150056cc30ae5fbf050a76d0b341c62dd379d681b499a",
+    "receipt_digest": "ca17a2cd3e431a888b3a0c011a7655cb489e30cf280696c0c0cf35ba7ed2c81f",
+    "unaffected_count": 9
+  },
+  "compilation": {
+    "admission_evidence_count": 0,
+    "admission_evidence_digest": "7c085718ea04d8c5f4725338ad56a54fd4809ce99ba8703fd75148580223fb35",
+    "adopted_release_count": 0,
+    "derivation_node_count": 9,
+    "derivation_source_count": 3,
+    "normative_pack_release_count": 0,
+    "package_release_count": 0,
+    "principal_universe_digest": "4c87b8f107996b2a1e4eaa778962f35aa7b8bb7f28fada16727a7d9c60d491f0",
+    "semantic_ir_digest": "ea9f30956097e21ff3a150056cc30ae5fbf050a76d0b341c62dd379d681b499a",
+    "source_document_count": 3,
+    "workspace_id": "empty-adopter"
+  },
+  "document_labels": [
+    "pale-workspace.toml",
+    "resolution.lock.toml",
+    "universe.lock.toml"
+  ],
+  "explanation": {
+    "frontier": null,
+    "state": "unaffected",
+    "step_count": 0
+  },
+  "first_impact": {
+    "contributing_root_count": 0,
+    "kind": "source",
+    "next_offset": 1,
+    "source_id": "resolution-lock",
+    "state": "unaffected"
+  },
+  "root_manifest": "pale-workspace.toml",
+  "workspace_authoring_limits": {
+    "max_document_bytes": "4194304",
+    "max_documents": 3077,
+    "max_total_bytes": "12905873408"
+  }
+}

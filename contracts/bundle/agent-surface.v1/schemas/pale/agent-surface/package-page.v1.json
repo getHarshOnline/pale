@@ -1,0 +1,356 @@
+{
+  "$defs": {
+    "PackageGuideV1": {
+      "additionalProperties": false,
+      "properties": {
+        "exposure": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PackageResourceExposureV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "PackageIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackagePolicyV1": {
+      "additionalProperties": false,
+      "properties": {
+        "exposure": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PackageResourceExposureV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "PackageResourceExposureV1": {
+      "oneOf": [
+        {
+          "const": "internal",
+          "type": "string"
+        },
+        {
+          "const": "exported",
+          "type": "string"
+        }
+      ]
+    },
+    "PackageResourceIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[./][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "PackageResourceLinkV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "resource_id": {
+              "$ref": "#/$defs/PackageResourceIdV1"
+            },
+            "scope": {
+              "const": "local",
+              "type": "string"
+            }
+          },
+          "required": [
+            "scope",
+            "resource_id"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "resource": {
+              "$ref": "#/$defs/PackageResourceRefV1"
+            },
+            "scope": {
+              "const": "external",
+              "type": "string"
+            }
+          },
+          "required": [
+            "scope",
+            "resource"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "PackageResourceRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "package_id": {
+          "$ref": "#/$defs/PackageIdV1"
+        },
+        "resource_id": {
+          "$ref": "#/$defs/PackageResourceIdV1"
+        }
+      },
+      "required": [
+        "package_id",
+        "resource_id"
+      ],
+      "type": "object"
+    },
+    "PackageRoleV1": {
+      "additionalProperties": false,
+      "properties": {
+        "applies_to": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceLinkV1"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "exposure": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PackageResourceExposureV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "extends": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceLinkV1"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "uses": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceLinkV1"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "type": "object"
+    },
+    "PackageStackV1": {
+      "additionalProperties": false,
+      "properties": {
+        "exposure": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PackageResourceExposureV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "extends": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceLinkV1"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "role_uses": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceLinkV1"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "uses": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceLinkV1"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "type": "object"
+    },
+    "PackageTaskV1": {
+      "additionalProperties": false,
+      "properties": {
+        "capability_policy": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PackageResourceLinkV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "capability_requirements": {
+          "default": [],
+          "items": {
+            "$ref": "https://www.rawthoughts.in/pale/schemas/capability-procedure.v1.json#/$defs/OperationCapabilityRequirement"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "exposure": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PackageResourceExposureV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "outputs": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "roles": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceLinkV1"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "uses": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PackageResourceLinkV1"
+          },
+          "maxItems": 1024,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/package-page.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "description": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "type": "string"
+    },
+    "exposure": {
+      "$ref": "#/$defs/PackageResourceExposureV1",
+      "default": "exported"
+    },
+    "guide": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PackageGuideV1"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "official_sources": {
+      "default": [],
+      "items": {
+        "$ref": "https://www.rawthoughts.in/pale/schemas/official-reference.v1.json"
+      },
+      "maxItems": 1024,
+      "type": "array"
+    },
+    "policy": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PackagePolicyV1"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "role": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PackageRoleV1"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "see_also": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/PackageResourceLinkV1"
+      },
+      "maxItems": 1024,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "stack": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PackageStackV1"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "task": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PackageTaskV1"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "uses": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/PackageResourceLinkV1"
+      },
+      "maxItems": 1024,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "description"
+  ],
+  "title": "package-page.v1",
+  "type": "object"
+}

@@ -1,0 +1,51 @@
+{
+  "$defs": {
+    "ContinuityIdentityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "continuity_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "continuity_sha256"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/continuity-contract.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._/-]+$",
+      "type": "string"
+    },
+    "identity": {
+      "$ref": "#/$defs/ContinuityIdentityV1"
+    },
+    "obligations": {
+      "items": {
+        "maxLength": 1024,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 256,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "owner": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/composition-primitives.v1.json#/$defs/ParticipantRefV1"
+    }
+  },
+  "required": [
+    "id",
+    "owner",
+    "obligations",
+    "identity"
+  ],
+  "title": "continuity-contract.v1",
+  "type": "object"
+}

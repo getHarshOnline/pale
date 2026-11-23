@@ -1,0 +1,49 @@
+[operations]
+schema_version = 1
+
+[[operations.operation]]
+id = "finance-compliance-research"
+description = "Research which rules apply to one finance or compliance question."
+doctrine = "finance-research.md"
+doctrine_refs = [{ scope = "external", resource = { package_id = "pale.research", resource_id = "evidence" } }, { scope = "local", resource_id = "normative-applicability" }]
+outputs = ["Applicability findings and exact sources used.", "Unresolved conditions and the owners who can settle them."]
+
+[[operations.operation]]
+id = "verify-normative-proposal"
+description = "Review proposed rules and their evidence before the owner's attestation."
+doctrine = "proposal-review.md"
+doctrine_refs = [{ scope = "local", resource_id = "normative-proposal" }]
+outputs = ["Evidence for each assertion and unresolved contradictions.", "Candidate ready for owner review, or reasons it is not ready."]
+
+[[operations.operation]]
+id = "finance-preflight"
+description = "Check the prerequisites for one proposed evaluation by a calculation engine."
+doctrine = "preflight.md"
+doctrine_refs = [{ scope = "local", resource_id = "finance-invocation" }]
+outputs = ["Exact scope and unmet requirements in the owning system.", "Handoff or stop result."]
+
+[[operations.operation]]
+id = "website-data-use-review"
+description = "Assess a proposed website data flow against the supplied authority and purpose."
+doctrine = "website-review.md"
+doctrine_refs = [{ scope = "external", resource = { package_id = "pale.research", resource_id = "evidence" } }, { scope = "local", resource_id = "normative-applicability" }, { scope = "local", resource_id = "personal-data-operation" }]
+outputs = ["Data-operation assessment and missing evidence.", "Supported scope and separate approvals still required."]
+
+[[operations.operation]]
+id = "review-consent"
+description = "Check the supplied consent or permission evidence for one proposed act."
+doctrine = "consent-review.md"
+doctrine_refs = [{ scope = "local", resource_id = "consent-and-withdrawal" }]
+outputs = ["Exact permission scope and evidence state.", "Gaps in withdrawal propagation and application by the owning systems."]
+
+[[operations.operation]]
+id = "reconcile-governed-register"
+description = "Reconcile dated register claims and movements with their controlling records."
+doctrine = "register-reconciliation.md"
+outputs = ["Dated event ledger and reconciliation.", "Open differences, responsible custodians and decisions that must wait."]
+
+[[operations.operation]]
+id = "review-governance-evidence"
+description = "Check approval, execution and filing claims separately against their original records."
+doctrine = "governance-evidence.md"
+outputs = ["Evidence for each claim, party and period.", "Unmet requirements, responsible custodians and actions that must wait."]

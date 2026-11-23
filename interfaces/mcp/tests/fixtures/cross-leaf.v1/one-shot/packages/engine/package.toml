@@ -1,0 +1,9 @@
+[package]
+id = 'example.engine'
+version = '1.0.0'
+schema_version = 1
+title = 'Synthetic'
+description = 'Synthetic Package'
+compatible_compilers = ['pale-surface@1']
+sources = [{ path = 'roles.toml', role = 'declaration' }, { path = 'role.md', role = 'body' }]
+resources = [{ id = 'engine', kind = 'role', definition_source = 'roles.toml', exposure = 'exported' }]

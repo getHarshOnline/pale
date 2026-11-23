@@ -1,0 +1,115 @@
+{
+  "action_id": "pale.compute.path-inventory",
+  "capability_ids": [
+    "native-action.catalog",
+    "native-action.invocation",
+    "native-action.payload-invocation"
+  ],
+  "descriptor_ids": [
+    "pale.compute.compliance-trace-grade",
+    "pale.compute.config-invariant-scan",
+    "pale.compute.cost-aggregate",
+    "pale.compute.evidence-selection",
+    "pale.compute.loop-status-reduce",
+    "pale.compute.path-inventory",
+    "pale.compute.review-convergence-reduce",
+    "pale.compute.rubric-evaluation",
+    "pale.compute.service-definition-normalize",
+    "pale.compute.skill-health-aggregate",
+    "pale.compute.weighted-ranking"
+  ],
+  "descriptor_projections": [
+    [
+      "pale.compute.compliance-trace-grade",
+      "Grade caller-classified trace events against bounded temporal rules.",
+      "49e6bf2d2d5499fb4af3c715132af8ac303db5366ebf45d3b3810c55a3330405",
+      394,
+      "64450a557b048bb73fbb4ef69b8fcb460f0eee1f9d3b7c79475ce134b529a3ef",
+      2195
+    ],
+    [
+      "pale.compute.config-invariant-scan",
+      "Evaluate bounded lexical invariant leads over caller-supplied configuration text.",
+      "d9f033099db6e72db8b22f6ec72cee9d3b150d494006b0a98445f316a5d34ccb",
+      404,
+      "8c035f362a7be703ee97eaf83de1a8f019b84ac58154ee6916fb1e929384915e",
+      1068
+    ],
+    [
+      "pale.compute.cost-aggregate",
+      "Select latest cumulative session snapshots and aggregate integer micro-USD costs.",
+      "c4a4aa9ebf43cd9b773c35f838c191864145524c32ccad6d6436b9237e6fb284",
+      383,
+      "02e241b46bbad4298d59905262309489c901132b07cab23c467807fae0f3fa77",
+      743
+    ],
+    [
+      "pale.compute.evidence-selection",
+      "Select caller-declared rules from caller-supplied evidence in explicit precedence order.",
+      "d0be08533708dee5f1cadd8c1143f7a85b52d7fe6da19c1270ae889c7d51c68e",
+      402,
+      "639161d893e7d3fb76351de0f98b300f22c78b7330b606126db01dc1bf38daa6",
+      948
+    ],
+    [
+      "pale.compute.loop-status-reduce",
+      "Reduce normalized loop events into deterministic fail-closed intervention signals.",
+      "75556c673aeb13ebd046c908b9c48cdd2233099598d6d9fe4c59337f98ba7cb3",
+      396,
+      "69dfdeeafeff290fc0678c84fdae5f844ef7b30d82c197b6f55a93fe625c4b9a",
+      2219
+    ],
+    [
+      "pale.compute.path-inventory",
+      "Normalize and inventory caller-supplied POSIX paths without filesystem access.",
+      "875234604574b0e5ef4305a768d1bac7344c844ffcfdbea895e2f4fc76430e36",
+      380,
+      "0cf5fe8c063e13ff7e1270b340ab795c3bff6863724b367e990b44bb66653a45",
+      347
+    ],
+    [
+      "pale.compute.review-convergence-reduce",
+      "Deduplicate supplied review findings and converge verifier evidence deterministically.",
+      "86fed1d5b7f10f32db1f759c47d7f81c251b00dd2b8773bbb01885ee32ce8f7d",
+      421,
+      "96be2fb943aa898545fc1981dbb05ad0630314b9ce89f942370ca97ecd1b9de3",
+      1293
+    ],
+    [
+      "pale.compute.rubric-evaluation",
+      "Normalize supplied integer rubric results and rank failures deterministically.",
+      "0f1b6b675bc1dbbc87bf379fee201e14a85fb38427c97e28428546f85ca916c4",
+      389,
+      "31ba29e233350902e5f669dd5144d2c1ea856c206a62ed4348e3f23b4e4dfb3c",
+      1090
+    ],
+    [
+      "pale.compute.service-definition-normalize",
+      "Validate and order provider-neutral service definitions without host access.",
+      "1bb1ca97db5e8f394c3d4e9bfe79b41b954096496e700884ab3268ec7e1768f8",
+      420,
+      "c0864b067b923cab0b83f98de725a01b33108a0cb44755f6d30061946db801b5",
+      1084
+    ],
+    [
+      "pale.compute.skill-health-aggregate",
+      "Aggregate supplied skill observations over caller-defined time windows.",
+      "d7575bd4002a35e023484cffec649745ce2d97de1929cc41bb83563dab513dac",
+      397,
+      "26f69ad26592984f9c64521a729218c8256afc6791f0f1fc696bd186021e8775",
+      1280
+    ],
+    [
+      "pale.compute.weighted-ranking",
+      "Rank structured candidates with checked fixed-point arithmetic.",
+      "e92ee0867a2a4aee196f47446b1152e51e3452b945ab183765947596bba5c522",
+      371,
+      "a1f65eb2aac3a828f8f9af732a9064566d84fa4854d938c419cd3825a0ba2bb9",
+      1016
+    ]
+  ],
+  "execution_length": 1528,
+  "execution_sha256": "38cdeb02a58c5c652f184828f4e41459468855056e1188077a76406a4dca0b2c",
+  "payload_input": "{\"style\":\"posix_relative\",\"paths\":[\"src/./lib.rs\"]}",
+  "tagged_input": "{\"kind\":\"path_inventory\",\"payload\":{\"style\":\"posix_relative\",\"paths\":[\"src/./lib.rs\"]}}"
+}

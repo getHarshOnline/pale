@@ -1,0 +1,674 @@
+{
+  "$defs": {
+    "DecisionActivityV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "activity": {
+              "$ref": "#/$defs/HarnessActivityIdentity"
+            },
+            "visibility": {
+              "const": "observed",
+              "type": "string"
+            }
+          },
+          "required": [
+            "visibility",
+            "activity"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "reason": {
+              "$ref": "#/$defs/ResidentReasonV1"
+            },
+            "visibility": {
+              "const": "unobserved",
+              "type": "string"
+            }
+          },
+          "required": [
+            "visibility",
+            "reason"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "DecisionDispositionV1": {
+      "oneOf": [
+        {
+          "const": "deny",
+          "type": "string"
+        },
+        {
+          "const": "request_confirmation",
+          "type": "string"
+        },
+        {
+          "const": "post_effect_steer",
+          "type": "string"
+        },
+        {
+          "const": "completion_steer",
+          "type": "string"
+        },
+        {
+          "const": "notification",
+          "type": "string"
+        }
+      ]
+    },
+    "DecisionEmissionOutcomeV1": {
+      "oneOf": [
+        {
+          "const": "emitted",
+          "type": "string"
+        },
+        {
+          "const": "failed",
+          "type": "string"
+        },
+        {
+          "const": "unknown",
+          "type": "string"
+        }
+      ]
+    },
+    "DecisionEvidenceEntryV1": {
+      "additionalProperties": false,
+      "properties": {
+        "disposition": {
+          "$ref": "#/$defs/DecisionDispositionV1"
+        },
+        "event": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/lifecycle-event.v1.json"
+        },
+        "evidence_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "occurrence": {
+          "$ref": "#/$defs/DecisionOccurrenceV1"
+        },
+        "operation": {
+          "$ref": "#/$defs/DecisionOperationBindingV1"
+        },
+        "previous_digest": {
+          "anyOf": [
+            {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason": {
+          "maxLength": 1024,
+          "type": "string"
+        },
+        "reason_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "sequence": {
+          "maximum": 9007199254740991,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "stage": {
+          "$ref": "#/$defs/DecisionEvidenceStageV1"
+        },
+        "target": {
+          "$ref": "#/$defs/DecisionTargetV1"
+        },
+        "tool": {
+          "maxLength": 256,
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "sequence",
+        "event",
+        "disposition",
+        "occurrence",
+        "target",
+        "operation",
+        "stage",
+        "reason",
+        "reason_sha256",
+        "evidence_digest"
+      ],
+      "type": "object"
+    },
+    "DecisionEvidenceStageV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "policy_selected",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "response_emission",
+              "type": "string"
+            },
+            "outcome": {
+              "$ref": "#/$defs/DecisionEmissionOutcomeV1"
+            },
+            "response_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "selected_entry_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            }
+          },
+          "required": [
+            "kind",
+            "selected_entry_sha256",
+            "response_sha256",
+            "outcome"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "emission_entry_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "kind": {
+              "const": "host_acknowledged",
+              "type": "string"
+            },
+            "outcome": {
+              "$ref": "#/$defs/DecisionHostOutcomeV1"
+            },
+            "witness": {
+              "$ref": "#/$defs/ImmutableRecordReferenceV1"
+            }
+          },
+          "required": [
+            "kind",
+            "emission_entry_sha256",
+            "witness",
+            "outcome"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "DecisionEvidenceTruncationAnchorV1": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_digest": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "sequence": {
+          "maximum": 9007199254740991,
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "sequence",
+        "evidence_digest"
+      ],
+      "type": "object"
+    },
+    "DecisionHostOutcomeV1": {
+      "oneOf": [
+        {
+          "const": "prevented",
+          "type": "string"
+        },
+        {
+          "const": "confirmation_pending",
+          "type": "string"
+        },
+        {
+          "const": "steered",
+          "type": "string"
+        },
+        {
+          "const": "notified",
+          "type": "string"
+        }
+      ]
+    },
+    "DecisionNativeCoordinateV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "visibility": {
+              "const": "observed",
+              "type": "string"
+            }
+          },
+          "required": [
+            "visibility",
+            "sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "reason": {
+              "$ref": "#/$defs/ResidentReasonV1"
+            },
+            "visibility": {
+              "const": "unobserved",
+              "type": "string"
+            }
+          },
+          "required": [
+            "visibility",
+            "reason"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "visibility": {
+              "const": "not_applicable",
+              "type": "string"
+            }
+          },
+          "required": [
+            "visibility"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "DecisionOccurrenceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "native_event_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "provider_binding": {
+          "$ref": "#/$defs/ProviderBindingRefV1"
+        },
+        "tool_use": {
+          "$ref": "#/$defs/DecisionNativeCoordinateV1"
+        },
+        "turn": {
+          "$ref": "#/$defs/DecisionNativeCoordinateV1"
+        }
+      },
+      "required": [
+        "native_event_sha256",
+        "provider_binding",
+        "turn",
+        "tool_use"
+      ],
+      "type": "object"
+    },
+    "DecisionOperationBindingV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "handle_ref": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            "handle_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "kind": {
+              "const": "registered",
+              "type": "string"
+            },
+            "lease_ref": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            },
+            "lease_sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            }
+          },
+          "required": [
+            "kind",
+            "handle_ref",
+            "handle_sha256",
+            "lease_ref",
+            "lease_sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "unbound",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "unresolved",
+              "type": "string"
+            },
+            "reason": {
+              "$ref": "#/$defs/ResidentReasonV1"
+            }
+          },
+          "required": [
+            "kind",
+            "reason"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "DecisionTargetV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "file",
+              "type": "string"
+            },
+            "path": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "repository_id": {
+              "$ref": "#/$defs/LogicalRepositoryIdV1"
+            },
+            "sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            }
+          },
+          "required": [
+            "kind",
+            "repository_id",
+            "path",
+            "sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "command",
+              "type": "string"
+            },
+            "sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "structured_input",
+              "type": "string"
+            },
+            "sha256": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "unobserved",
+              "type": "string"
+            },
+            "reason": {
+              "$ref": "#/$defs/ResidentReasonV1"
+            }
+          },
+          "required": [
+            "kind",
+            "reason"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "not_applicable",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "ExecutionPathSelectionIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "ExecutionPathSelectionV1": {
+      "additionalProperties": false,
+      "properties": {
+        "experience_path_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "id": {
+          "$ref": "#/$defs/ExecutionPathSelectionIdV1"
+        }
+      },
+      "required": [
+        "id",
+        "experience_path_id"
+      ],
+      "type": "object"
+    },
+    "HarnessActivityIdentity": {
+      "oneOf": [
+        {
+          "properties": {
+            "digest": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "kind": {
+              "const": "session",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "digest"
+          ],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "digest": {
+              "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+            },
+            "kind": {
+              "const": "turn",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "digest"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "ImmutableRecordReferenceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "record_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "record_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "record_ref",
+        "record_sha256"
+      ],
+      "type": "object"
+    },
+    "LogicalRepositoryIdV1": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    },
+    "ProviderBindingIdentityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_binding_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "provider_binding_sha256"
+      ],
+      "type": "object"
+    },
+    "ProviderBindingRefV1": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_binding_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "provider_binding_identity": {
+          "$ref": "#/$defs/ProviderBindingIdentityV1"
+        }
+      },
+      "required": [
+        "provider_binding_id",
+        "provider_binding_identity"
+      ],
+      "type": "object"
+    },
+    "ResidentReasonV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/decision-evidence-ledger.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "activity": {
+      "$ref": "#/$defs/DecisionActivityV1"
+    },
+    "compilation_input_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "entries": {
+      "items": {
+        "$ref": "#/$defs/DecisionEvidenceEntryV1"
+      },
+      "maxItems": 64,
+      "type": "array"
+    },
+    "execution_path": {
+      "$ref": "#/$defs/ExecutionPathSelectionV1"
+    },
+    "next_sequence": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "profile_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "repository_id": {
+      "$ref": "#/$defs/LogicalRepositoryIdV1"
+    },
+    "schema": {
+      "const": "pale/decision-evidence-ledger.v1",
+      "type": "string"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "truncation_anchor": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/DecisionEvidenceTruncationAnchorV1"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "schema",
+    "schema_sha256",
+    "compilation_input_digest",
+    "profile_digest",
+    "repository_id",
+    "execution_path",
+    "activity",
+    "next_sequence",
+    "entries"
+  ],
+  "title": "decision-evidence-ledger.v1",
+  "type": "object"
+}

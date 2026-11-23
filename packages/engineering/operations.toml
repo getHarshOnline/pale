@@ -1,0 +1,117 @@
+[operations]
+schema_version = 1
+
+[[operations.operation]]
+id = "context-handoff"
+description = "Prepare a handoff that lets the next worker continue the agreed task with its sources, limits and current state."
+doctrine = "op-handoff-context.md"
+outputs = ["In the requested brief or message: goal, sources, current state, existing permission, unresolved questions, next action and checks."]
+doctrine_refs = [{ scope = "local", resource_id = "context-handoff-doctrine" }]
+
+[[operations.operation]]
+id = "verify-repository"
+description = "Run the project's check, confirm the required stages and assertions ran, and read the result the consumer receives."
+doctrine = "procedures/verify-repository.md"
+extends = [{ scope = "local", resource_id = "behavioral-verification" }]
+doctrine_refs = [{ scope = "local", resource_id = "native-execution-evidence" }]
+outputs = ["In the reply: the claim, source version, command and observed result, with incomplete stages and omitted coverage."]
+capability_policy = { scope = "local", resource_id = "repository-verification-policy" }
+capability_requirements = [{ id = "verify", description = "Run the exact repository-selected check.", capability = "project-test", recipe = { scope = "local", resource_id = "repository-verifier" }, effect_class = "execute", policy = { kind = "required_block" }, failure_posture = "fail_closed" }]
+
+[[operations.operation]]
+id = "review-evidence"
+description = "Review one change and the checks run on it."
+doctrine = "procedures/review-evidence.md"
+extends = [{ scope = "local", resource_id = "evidence-first-review" }]
+outputs = ["In the reply: each problem with the line or test that shows it, or 'no problems found' with what was not checked."]
+
+[[operations.archetype]]
+id = "evidence-first-review"
+description = "Check a specific change against its claimed result and report failures with their locations and supporting checks."
+doctrine = "op-review.md"
+doctrine_refs = [{ scope = "local", resource_id = "review-method" }]
+
+[[operations.archetype]]
+id = "behavioral-verification"
+description = "Verify a behaviour through the project's actual test runner and confirm the relevant assertions ran."
+doctrine = "op-test.md"
+doctrine_refs = [{ scope = "local", resource_id = "common" }]
+
+[[operations.operation]]
+id = "build-fix"
+description = "Find the producing cause of a failed build, correct it within the agreed work and rerun the relevant project checks."
+doctrine = "procedures/build-fix.md"
+doctrine_refs = [{ scope = "local", resource_id = "common" }, { scope = "local", resource_id = "error-handling" }]
+roles = [{ scope = "local", resource_id = "build-error-resolver" }]
+outputs = ["In the reply: the cause and supporting diagnostic, the correction or unapplied proposal, checks run and remaining failures."]
+
+[[operations.operation]]
+id = "refactor-clean"
+description = "Simplify code after tracing its callers, keeping the behaviour and compatibility they need."
+doctrine = "procedures/refactor-clean.md"
+doctrine_refs = [{ scope = "local", resource_id = "common" }]
+outputs = ["In the reply: what was removed, merged, retained or left uncertain, its users, compatibility and the checks run."]
+
+[[operations.operation]]
+id = "performance-optimize"
+description = "Improve a measured bottleneck by changing one cause and comparing correctness, performance and costs under the same conditions."
+doctrine = "procedures/performance-optimize.md"
+doctrine_refs = [{ scope = "local", resource_id = "benchmark-optimization-loop" }, { scope = "local", resource_id = "latency-critical-systems" }]
+outputs = ["In the reply or benchmark report: baseline, hypothesis, changed version, comparable measurements, correctness checks, shifted costs and whether to keep or revert."]
+
+[[operations.operation]]
+id = "code-review"
+description = "Review a local change or pull request using the project’s language, library and risk guidance."
+doctrine = "procedures/code-review.md"
+roles = [{ scope = "local", resource_id = "code-reviewer" }]
+outputs = ["In the reply: findings ordered by consequence, with the supporting code or check and any uncertainty", "Checks run, what was unavailable, and the conclusion supported by this review"]
+extends = [{ scope = "local", resource_id = "evidence-first-review" }]
+
+[[operations.operation]]
+id = "over-engineering-review"
+description = "Check which present requirements justify added layers, concepts and dependencies, and propose simpler ways to keep the required behaviour."
+doctrine = "procedures/over-engineering-review.md"
+outputs = ["In the review: ranked simplifications, the requirements they preserve, the affected code and uncertainty in removing it."]
+extends = [{ scope = "local", resource_id = "evidence-first-review" }]
+
+[[operations.operation]]
+id = "security-audit"
+description = "Review a permitted target for reachable security failures and report safe evidence, impact and the defensive change needed."
+doctrine = "procedures/security-audit.md"
+doctrine_refs = [{ scope = "local", resource_id = "security-review" }]
+roles = [{ scope = "local", resource_id = "security-reviewer" }]
+outputs = ["In the reply: the vulnerable code or interface, safe reproduction evidence, impact, uncertainty and proposed correction."]
+extends = [{ scope = "local", resource_id = "evidence-first-review" }]
+
+[[operations.operation]]
+id = "interaction-flow-audit"
+description = "Trace a journey taken by a person or an agent through competing writes, repeated requests, interrupted replies and permission checks to find races or lost changes."
+doctrine = "procedures/interaction-flow-audit.md"
+roles = [{ scope = "local", resource_id = "code-reviewer" }]
+outputs = ["In the reply: the promise, relevant states and paths, concrete mismatches and what was read or run."]
+extends = [{ scope = "local", resource_id = "evidence-first-review" }]
+
+[[operations.operation]]
+id = "test-design"
+description = "Design a test that reaches a real entry point and would fail when the required behaviour is wrong."
+doctrine = "procedures/test-design.md"
+doctrine_refs = [{ scope = "local", resource_id = "tdd-workflow" }]
+roles = [{ scope = "local", resource_id = "test-evidence-reviewer" }]
+outputs = ["In the reply: the observable requirement, failure cases and test design.", "Results actually run, or the test plan still to run.", "Remaining untested behaviour and why the check stopped."]
+extends = [{ scope = "local", resource_id = "behavioral-verification" }]
+
+[[operations.operation]]
+id = "test-coverage"
+description = "Use coverage to find consequential gaps and strengthen tests that would catch a regression."
+doctrine = "procedures/test-coverage.md"
+doctrine_refs = [{ scope = "local", resource_id = "tdd-workflow" }, { scope = "local", resource_id = "common" }]
+roles = [{ scope = "local", resource_id = "test-evidence-reviewer" }]
+outputs = ["In the reply: prioritised gaps, tests run, remaining unprotected behaviour and why the review is finished."]
+extends = [{ scope = "local", resource_id = "behavioral-verification" }]
+
+[[operations.operation]]
+id = "review-input-preparation"
+description = "Check a transformed input against its original, its consumer and the qualities the task needs preserved."
+doctrine = "procedures/review-input-preparation.md"
+doctrine_refs = [{ scope = "local", resource_id = "input-preparation" }, { scope = "local", resource_id = "error-handling" }]
+outputs = ["In the reply: the original, transformed copy, conversion and consumer checked.", "Findings, cases covered and remaining quality, integrity, cancellation or usage checks."]

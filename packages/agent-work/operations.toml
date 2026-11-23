@@ -1,0 +1,93 @@
+[operations]
+schema_version = 1
+
+[[operations.operation]]
+id = "loop-control-assessment"
+description = "Check whether a loop should start, continue, stop or receive intervention."
+doctrine = "assess-loop.md"
+doctrine_refs = [{ scope = "local", resource_id = "loop-design-check" }]
+outputs = ["In the review: the recommended action, supporting evidence and conditions for resuming."]
+
+[[operations.operation]]
+id = "learn"
+description = "Propose a reusable lesson from a completed case."
+doctrine = "learn.md"
+doctrine_refs = [{ scope = "local", resource_id = "agent-self-evaluation" }, { scope = "local", resource_id = "learning-candidate-distillation" }]
+outputs = ["In the proposal: the lesson, where it applies, counterexamples, sources and proposed owner."]
+
+[[operations.operation]]
+id = "prompt-optimize"
+description = "Refine a draft instruction without executing the task described."
+doctrine = "prompt-optimize.md"
+doctrine_refs = [{ scope = "local", resource_id = "prompt-optimizer" }]
+outputs = ["In the reply: revised instruction, reasons for material changes, open assumptions and component choices checked."]
+
+[[operations.operation]]
+id = "review-instruction-candidate-search"
+description = "Review the inputs, effects, independent evaluation and adoption of a proposed instruction."
+doctrine = "review-instruction-candidate-search.md"
+doctrine_refs = [{ scope = "local", resource_id = "ai-regression-testing" }]
+outputs = ["In the review: search inputs, observed writes and the staged candidate.", "Independent evaluation, adoption checks and unresolved conditions for the owner."]
+
+[[operations.operation]]
+id = "persona-design"
+description = "Develop and test an agent's character for the intended relationship."
+doctrine = "persona-design.md"
+doctrine_refs = [{ scope = "local", resource_id = "agent-persona-design" }]
+outputs = ["In the proposed specification: identity, behavioural limits and contradictions found under stress."]
+
+[[operations.operation]]
+id = "inspect-agent-run"
+description = "Inspect one agent run and find the first step that cannot support the expected result."
+doctrine = "inspect-run.md"
+doctrine_refs = [{ scope = "local", resource_id = "agent-introspection-debugging" }]
+outputs = ["In the diagnosis: the run and events, first unsupported step, competing causes and permitted recovery work."]
+
+[[operations.operation]]
+id = "design-agent-harness"
+description = "Design an agent's working environment using capabilities that have been checked."
+doctrine = "design-harness.md"
+doctrine_refs = [{ scope = "local", resource_id = "agent-harness-construction" }, { scope = "local", resource_id = "autonomous-agent-harness" }, { scope = "local", resource_id = "required-context-inputs" }]
+outputs = ["A reviewable plan naming tools, their owners, limits and checks required before running."]
+
+[[operations.operation]]
+id = "plan-delegation"
+description = "Plan how to share work, brief each recipient and join the results."
+doctrine = "plan-delegation.md"
+doctrine_refs = [{ scope = "local", resource_id = "team-agent-orchestration" }, { scope = "external", resource = { package_id = "pale.engineering", resource_id = "handoff" } }]
+outputs = ["In the reply: who does each part, what each gets, who joins the results and when each part is finished."]
+
+[[operations.operation]]
+id = "assess-workflow-scaffolding"
+description = "Decide whether a temporary workflow improves a recurring task."
+doctrine = "assess-scaffolding.md"
+doctrine_refs = [{ scope = "local", resource_id = "dynamic-workflow-mode" }]
+outputs = ["In the proposal: a reversible workflow, recurrence evidence and conditions for expiry and removal."]
+
+[[operations.operation]]
+id = "audit-context-budget"
+description = "Audit one host’s context burden or diagnose a reported instruction-routing failure."
+doctrine = "audit-context.md"
+doctrine_refs = [{ scope = "local", resource_id = "context-budget" }, { scope = "local", resource_id = "required-context-inputs" }]
+outputs = ["In the reply: why the instruction was missed and the smallest fix, or how much context the host loads and what could go, with what was not checked."]
+
+[[operations.operation]]
+id = "plan-work-packets"
+description = "Plan work with clear prerequisites, owners, checks and restart points."
+doctrine = "plan-work.md"
+doctrine_refs = [{ scope = "local", resource_id = "blueprint" }, { scope = "external", resource = { package_id = "pale.engineering", resource_id = "handoff" } }]
+outputs = ["In the task’s plan or reply: ordered work, inputs, owners, checks, handoffs and conditions for stopping or resuming."]
+
+[[operations.operation]]
+id = "review-workspace-maintenance"
+description = "Review a workspace configuration change and check its actual host behaviour."
+doctrine = "configuration-maintenance.md"
+doctrine_refs = [{ scope = "local", resource_id = "enterprise-agent-ops" }]
+outputs = ["In the review: the configuration and plan examined, ownership conflicts, recovery checks and unresolved owner decisions."]
+
+[[operations.operation]]
+id = "review-session-continuity"
+description = "Check how an agent session resumes, compacts and closes through its actual host."
+doctrine = "session-continuity.md"
+doctrine_refs = [{ scope = "local", resource_id = "required-context-inputs" }]
+outputs = ["In the review: host events, what each can observe or enforce, and who owns each recovery decision.", "Observed continuity results, missing context or state, and unresolved checks."]

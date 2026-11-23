@@ -1,0 +1,9 @@
+.panel { inline-size: 100%; max-inline-size: var(--layout-measure); padding: var(--space-3); }
+.accent { color: var(--color-accent); background: oklch(from var(--color-paper) l c h); }
+.fade { transition: opacity var(--duration-feedback) var(--easing-productive); }
+:root[data-mode="dark"] .panel { color: var(--color-ink); }
+@media (prefers-color-scheme: dark) { :root:not([data-mode]) .panel { color: var(--color-ink); } }
+@media (prefers-reduced-motion: reduce) { .fade { transition-duration: var(--motion-reduced-feedback); } }
+@media (min-width: 48rem) { .rail { inline-size: var(--layout-container-rail); } }
+button:focus { outline: none; }
+button:focus-visible { outline: var(--focus-width) solid var(--color-focus); }

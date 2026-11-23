@@ -1,0 +1,48 @@
+{
+  "name": "@rtepl/pale-contracts",
+  "version": "0.0.1",
+  "private": true,
+  "author": "Harsh Joshi",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/getHarshOnline/pale.git",
+    "directory": "sdk/js/contracts"
+  },
+  "description": "Generated initial-v1 Pale contracts, validators, and pure builders.",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./registry": {
+      "types": "./dist/generated/registry.d.ts",
+      "import": "./dist/generated/registry.js"
+    }
+  },
+  "scripts": {
+    "generate": "node tools/generate.mjs --bundle ../../../contracts/bundle/agent-surface.v1",
+    "check:fresh": "node tools/generate.mjs --check --bundle ../../../contracts/bundle/agent-surface.v1",
+    "build": "node tools/build.mjs",
+    "test": "npm run build && node --test tests/*.test.mjs"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "esbuild": "0.25.9",
+    "json-schema-to-typescript": "15.0.4",
+    "typescript": "5.9.2"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

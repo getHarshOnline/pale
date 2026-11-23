@@ -1,0 +1,388 @@
+schema = "pale/workspace-composition-source.v1"
+schema_version = 1
+
+[[declarations.responsibility_contracts]]
+id = "responsibility-entry"
+authority_ceiling = ["read"]
+
+[declarations.responsibility_contracts.participant]
+kind = "capability"
+capability_id = "entry"
+
+[[declarations.responsibility_contracts.responsibilities]]
+kind = "organizational_work"
+
+[[declarations.responsibility_contracts]]
+id = "responsibility-terminal"
+authority_ceiling = ["read"]
+
+[declarations.responsibility_contracts.participant]
+kind = "terminal_leaf"
+terminal_leaf_id = "terminal-output"
+
+[[declarations.responsibility_contracts.responsibilities]]
+kind = "terminal_harness_execution"
+
+[[declarations.participant_provider_manifests]]
+id = "neutral-participants"
+
+[[declarations.participant_provider_manifests.participants]]
+kind = "capability"
+capability_id = "worker"
+
+[[declarations.participant_provider_manifests.participants]]
+kind = "engine"
+engine_id = "provider-b-participant"
+
+[[declarations.participant_provider_manifests.participants]]
+kind = "capability"
+capability_id = "entry"
+
+[[declarations.participant_provider_manifests.participants]]
+kind = "engine"
+engine_id = "provider-a-participant"
+
+[[declarations.participant_provider_manifests.participants]]
+kind = "terminal_leaf"
+terminal_leaf_id = "terminal-output"
+
+[[declarations.participant_provider_manifests.participants]]
+kind = "interface"
+interface_id = "interface-host"
+
+[[declarations.participant_provider_manifests.participants]]
+kind = "interface"
+interface_id = "interface-embedded"
+
+[[declarations.participant_provider_manifests.participants]]
+kind = "plugin"
+plugin_id = "plugin-owner"
+
+[[declarations.participant_provider_manifests.participants]]
+kind = "plugin"
+plugin_id = "plugin-dependency"
+
+[[declarations.participant_provider_manifests.providers]]
+id = "provider-b"
+capability_ids = ["neutral-capability"]
+compatible_provider_ids = ["provider-a"]
+
+[declarations.participant_provider_manifests.providers.participant]
+kind = "engine"
+engine_id = "provider-b-participant"
+
+[[declarations.participant_provider_manifests.providers]]
+id = "provider-a"
+capability_ids = ["neutral-capability"]
+compatible_provider_ids = ["provider-b"]
+
+[declarations.participant_provider_manifests.providers.participant]
+kind = "engine"
+engine_id = "provider-a-participant"
+
+[[declarations.provider_bindings]]
+id = "provider-binding-claude-code"
+responsibility_contract_ids = ["responsibility-terminal"]
+
+[declarations.provider_bindings.participant]
+kind = "terminal_leaf"
+terminal_leaf_id = "terminal-output"
+
+[declarations.provider_bindings.responsibility]
+kind = "terminal_harness_execution"
+
+[[declarations.provider_bindings.responsibility_schema_identities]]
+schema_id = "responsibility-contract.v1"
+schema_sha256 = "5185933427f63db6b2904d66ada649248ea7f9e315bc14c170e41738349c682d"
+
+[declarations.provider_bindings.communication_actor_handle]
+namespace_id = "provider-a"
+canonical_opaque_handle = "actor-entry"
+equality_scope = "synthetic-fixture"
+display_form = "Entry actor"
+native_authorship_verifier_id = "verify-actor"
+reference_mapping_id = "map-actor-reference"
+lifecycle_evidence_contract_id = "actor-lifecycle"
+succession_evidence_contract_id = "actor-succession"
+
+[declarations.provider_bindings.binding_identity]
+provider_binding_sha256 = "b58a26f28fb233f99a718a40ae76d2f7f71cb2c53d2e7f5b2dc0d815e92156e3"
+
+[declarations.provider_bindings.provider_family]
+provider_family_id = "provider-family-a"
+
+[declarations.provider_bindings.logical_provider_instance]
+logical_provider_instance_id = "logical-provider-a"
+
+[declarations.provider_bindings.native_authority_origin]
+native_authority_origin_id = "native-authority-a"
+
+[declarations.provider_bindings.physical_deployment]
+physical_deployment_id = "deployment-a"
+
+[declarations.provider_bindings.adapter_plugin]
+adapter_plugin_id = "pale.adapter.claude-code.v1"
+
+[declarations.provider_bindings.artifact_coordinates]
+source = "source-a"
+build = "build-a"
+package = "package-a"
+image = "image-a"
+executable = "executable-a"
+
+[declarations.provider_bindings.protocol_coordinates]
+protocol = "protocol-a"
+configuration = "configuration-a"
+extensions = []
+
+[declarations.provider_bindings.mapping_coordinates]
+terminology = "terminology-a"
+entity = "entity-a"
+field = "field-map-a"
+event = "event-map-a"
+
+[declarations.provider_bindings.authority_coordinates]
+field = "field-authority-a"
+native = "native-authority-contract-a"
+
+[declarations.provider_bindings.lifecycle_coordinates]
+lifecycle = "lifecycle-a"
+failure = "failure-a"
+
+[declarations.provider_bindings.exchange_coordinates]
+outbox = "outbox-a"
+cursor = "cursor-a"
+request = "request-a"
+result = "result-a"
+cancel = "cancel-a"
+drain = "drain-a"
+
+[declarations.provider_bindings.behavior_coordinates]
+degraded = "degraded-a"
+removal = "removal-a"
+
+[declarations.provider_bindings.conformance_coordinates]
+conformance = "conformance-a"
+evidence = "evidence-a"
+
+[[declarations.provider_bindings.conformance_coordinates.per_capability_evidence]]
+capability_id = "neutral-capability"
+evidence_contract_id = "capability-evidence-a"
+
+[declarations.provider_bindings.generation_coordinates.deployment_activation_identity]
+deployment_activation_sha256 = "fffc4e1ba984ee7a0555fd32069c2f07edb7a22cfdf6a6fb65b439305c141d4e"
+
+[declarations.provider_bindings.generation_coordinates.native_data_generation_identity]
+native_data_generation_sha256 = "8f59d420045d15215c672031aa7da786fc035bfe9e0715ba73501284bcfb35e3"
+
+[declarations.provider_bindings.generation_coordinates.pale_admission_generation_identity]
+pale_admission_generation_sha256 = "0b9c18277a7e513da9d1f3591030b2d368eae4e3f632ea1ada3f70f3d5b5c250"
+
+[[declarations.entry_contracts]]
+id = "entry-contract"
+responsibility_contract_id = "responsibility-entry"
+
+[declarations.entry_contracts.entry]
+kind = "capability"
+capability_id = "entry"
+
+[declarations.entry_contracts.origin]
+kind = "user"
+user_entry_id = "explicit-user-entry"
+
+[[declarations.request_translations]]
+id = "request-entry-worker"
+input_contract = "neutral-input"
+output_contract = "worker-input"
+preserves_authority = true
+
+[declarations.request_translations.from]
+kind = "capability"
+capability_id = "entry"
+
+[declarations.request_translations.to]
+kind = "capability"
+capability_id = "worker"
+
+[[declarations.result_translations]]
+id = "result-worker-entry"
+input_contract = "worker-result"
+output_contract = "neutral-result"
+preserves_evidence = true
+
+[declarations.result_translations.from]
+kind = "capability"
+capability_id = "worker"
+
+[declarations.result_translations.to]
+kind = "capability"
+capability_id = "entry"
+
+[[declarations.termination_contracts]]
+id = "termination-worker"
+kinds = ["failed", "completed"]
+
+[declarations.termination_contracts.owner]
+kind = "capability"
+capability_id = "worker"
+
+[declarations.termination_contracts.terminal_leaf]
+kind = "terminal_leaf"
+terminal_leaf_id = "terminal-output"
+
+[[declarations.settlement_contracts]]
+id = "settlement-worker"
+disposition = "read_back_required"
+native_receipt_contract = "native-receipt"
+
+[declarations.settlement_contracts.observer]
+kind = "capability"
+capability_id = "worker"
+
+[declarations.settlement_contracts.identity]
+evidence_settlement_sha256 = "e5ebaf9e64f3ebd7706790e9e42a07db6507db45d5b9ca27b9968cb2ce98d212"
+
+[[declarations.continuity_contracts]]
+id = "continuity-entry"
+obligations = ["retain only declared continuity references"]
+
+[declarations.continuity_contracts.owner]
+kind = "capability"
+capability_id = "entry"
+
+[declarations.continuity_contracts.identity]
+continuity_sha256 = "7b0a15c017485a31f65e130186d74d3f27cd6aa8357277d77b2c2293fb22861a"
+
+[[declarations.edge_contracts]]
+kind = "work_delegation"
+id = "delegation-entry-worker"
+responsibility_contract_id = "responsibility-entry"
+request_translation_id = "request-entry-worker"
+result_translation_id = "result-worker-entry"
+authority_ceiling = ["read"]
+
+[declarations.edge_contracts.from]
+kind = "capability"
+capability_id = "entry"
+
+[declarations.edge_contracts.to]
+kind = "capability"
+capability_id = "worker"
+
+[declarations.edge_contracts.budget]
+max_depth = 8
+max_fan_out = 4
+max_time_ms = 10
+max_cost_units = 10
+max_resource_units = 10
+max_effect_count = 1
+max_recursion_iterations = 8
+
+[[declarations.edge_contracts]]
+kind = "terminal_leaf"
+id = "terminal-worker-output"
+termination_contract_id = "termination-worker"
+
+[declarations.edge_contracts.owner]
+kind = "capability"
+capability_id = "worker"
+
+[declarations.edge_contracts.terminal_leaf]
+kind = "terminal_leaf"
+terminal_leaf_id = "terminal-output"
+
+[[declarations.edge_contracts]]
+kind = "observation_settlement"
+id = "observe-entry"
+settlement_contract_id = "settlement-worker"
+
+[declarations.edge_contracts.subject]
+kind = "capability"
+capability_id = "entry"
+
+[declarations.edge_contracts.observer]
+kind = "capability"
+capability_id = "worker"
+
+[[declarations.edge_contracts]]
+kind = "observation_settlement"
+id = "observe-entry-again"
+settlement_contract_id = "settlement-worker"
+
+[declarations.edge_contracts.subject]
+kind = "capability"
+capability_id = "entry"
+
+[declarations.edge_contracts.observer]
+kind = "capability"
+capability_id = "worker"
+
+[[declarations.edge_contracts]]
+kind = "ui_embedding"
+id = "ui-entry-worker"
+
+[declarations.edge_contracts.host]
+kind = "interface"
+interface_id = "interface-host"
+
+[declarations.edge_contracts.embedded]
+kind = "interface"
+interface_id = "interface-embedded"
+
+[[declarations.edge_contracts]]
+kind = "plugin_dependency"
+id = "plugin-worker-entry"
+
+[declarations.edge_contracts.plugin]
+kind = "plugin"
+plugin_id = "plugin-owner"
+
+[declarations.edge_contracts.dependency]
+kind = "plugin"
+plugin_id = "plugin-dependency"
+
+[[declarations.selected_experience_paths]]
+id = "direct-claude-code"
+origin_receipt_contract_id = "origin-receipt"
+entry_contract_id = "entry-contract"
+work_delegation_edge_ids = ["delegation-entry-worker"]
+responsibility_contract_ids = ["responsibility-entry", "responsibility-terminal"]
+provider_binding_ids = ["provider-binding-claude-code"]
+capability_ceiling = ["neutral-capability"]
+effect_ceiling = ["read"]
+native_owner_transitions = []
+native_outcomes = []
+destination_consequences = []
+reconciliation = []
+assurance_subject_id = "assurance-subject"
+evidence_carrier_id = "evidence-carrier"
+retention_policy_id = "retention-policy"
+privacy_policy_id = "privacy-policy"
+termination_contract_id = "termination-worker"
+settlement_contract_id = "settlement-worker"
+continuity_contract_id = "continuity-entry"
+
+[declarations.selected_experience_paths.identity]
+responsibility_path_sha256 = "786b89f6488e0038bce462af1c50f9fabd9b4422115368c8ffc4788b5b7eb8ad"
+
+[[declarations.selected_experience_paths.invocations]]
+edge_id = "terminal-worker-output"
+
+[declarations.selected_experience_paths.invocations.identity]
+invocation_sha256 = "76db447f905d0fa380ef91cb1950f80a7681db320e42a33620250c3d2e77eb8b"
+
+[declarations.selected_experience_paths.compiled_content.compiled_content_identity]
+compiled_content_sha256 = "8ea34c3234b877fe6f870199133e0a92a8221cb7fac141f371bc3d87f329fad4"
+
+[declarations.selected_experience_paths.compiled_content.source_content_identity]
+source_content_sha256 = "2b419910a333fc8bace1c62cb5bcbcc6b8baedb7f0a1d501117fc4cd8f5711d9"
+
+[declarations.selected_experience_paths.budget]
+max_depth = 8
+max_fan_out = 4
+max_time_ms = 100
+max_cost_units = 100
+max_resource_units = 100
+max_effect_count = 8
+max_recursion_iterations = 8
+

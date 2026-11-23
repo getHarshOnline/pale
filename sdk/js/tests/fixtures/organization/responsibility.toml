@@ -1,0 +1,406 @@
+schema = "pale/responsibility-derivation.v1"
+schema_version = 1
+derivation_id = "responsibility.alpha"
+lifecycle = "accepted_target"
+
+[provenance]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[responsibility]
+disposition = "supplied"
+
+[responsibility.value]
+verb = "verb.alpha"
+object = "object.alpha"
+outcome = "outcome.alpha"
+
+[responsibility.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[native_owner]
+disposition = "supplied"
+
+[native_owner.value]
+owner = "native-owner.alpha"
+owner_class = "native_application"
+authority_resolver = "resolver.alpha"
+
+[native_owner.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[trigger]
+disposition = "supplied"
+
+[trigger.value]
+kind = "bounded_request"
+request_contract = "request.alpha"
+
+[trigger.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[placement]
+disposition = "supplied"
+
+[placement.value]
+kind = "directional_service"
+
+[placement.value.service_contract]
+namespace = "alpha"
+contract_id = "service.shared"
+
+[placement.value.service_contract.provider_scope]
+namespace = "alpha"
+scope_id = "scope"
+
+[placement.value.service_contract.consumer_scope]
+namespace = "beta"
+scope_id = "scope"
+
+[placement.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[[structural_objects]]
+kind = "logical_organization"
+
+[structural_objects.selection]
+disposition = "omitted"
+reason = "not-required.alpha"
+
+[structural_objects.selection.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[[structural_objects]]
+kind = "stable_role"
+
+[structural_objects.selection]
+disposition = "supplied"
+value = "resource.alpha.stable_role"
+
+[structural_objects.selection.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[[structural_objects]]
+kind = "occupant_provider"
+
+[structural_objects.selection]
+disposition = "omitted"
+reason = "not-required.alpha"
+
+[structural_objects.selection.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[[structural_objects]]
+kind = "directional_service_contract"
+
+[structural_objects.selection]
+disposition = "supplied"
+value = "alpha:service.shared:alpha:scope:beta:scope"
+
+[structural_objects.selection.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[[structural_objects]]
+kind = "accountable_work_projection"
+
+[structural_objects.selection]
+disposition = "omitted"
+reason = "not-required.alpha"
+
+[structural_objects.selection.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[[structural_objects]]
+kind = "communication_projection"
+
+[structural_objects.selection]
+disposition = "omitted"
+reason = "not-required.alpha"
+
+[structural_objects.selection.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[[structural_objects]]
+kind = "relationship_projection"
+
+[structural_objects.selection]
+disposition = "omitted"
+reason = "not-required.alpha"
+
+[structural_objects.selection.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[[structural_objects]]
+kind = "native_application"
+
+[structural_objects.selection]
+disposition = "supplied"
+value = "resource.alpha.native_application"
+
+[structural_objects.selection.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[[structural_objects]]
+kind = "package"
+
+[structural_objects.selection]
+disposition = "omitted"
+reason = "not-required.alpha"
+
+[structural_objects.selection.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[[structural_objects]]
+kind = "normative_pack"
+
+[structural_objects.selection]
+disposition = "omitted"
+reason = "not-required.alpha"
+
+[structural_objects.selection.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[[structural_objects]]
+kind = "reference_only"
+
+[structural_objects.selection]
+disposition = "supplied"
+value = "resource.alpha.reference_only"
+
+[structural_objects.selection.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[request_framer]
+disposition = "supplied"
+
+[request_framer.value]
+actor = "actor.alpha"
+owner = "framer-owner.alpha"
+authority_scope = "framing-authority.alpha"
+
+[request_framer.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[provider_completion]
+disposition = "supplied"
+
+[provider_completion.value.requirement]
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha.provider-completion"
+
+[provider_completion.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[provider_acceptance]
+disposition = "supplied"
+
+[provider_acceptance.value.requirement]
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha.provider-acceptance"
+
+[provider_acceptance.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[consumer_acceptance]
+disposition = "supplied"
+
+[consumer_acceptance.value.requirement]
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha.consumer-acceptance"
+
+[consumer_acceptance.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[native_result]
+disposition = "supplied"
+
+[native_result.value.requirement]
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha.native-read-back"
+
+[native_result.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[pale_settlement]
+disposition = "supplied"
+
+[pale_settlement.value.requirement]
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha.pale-settlement"
+
+[pale_settlement.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[lawful_silence]
+disposition = "supplied"
+
+[lawful_silence.value]
+silent_surfaces = ["communication"]
+
+[lawful_silence.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[publisher_module]
+disposition = "omitted"
+reason = "not-required.local-publisher"
+
+[publisher_module.attribution]
+source_id = "source.local-publisher"
+owner = "owner.local-publisher"
+evidence_ref = "evidence.local-publisher"
+
+[adopter_module]
+disposition = "omitted"
+reason = "not-required.local-adopter"
+
+[adopter_module.attribution]
+source_id = "source.local-adopter"
+owner = "owner.local-adopter"
+evidence_ref = "evidence.local-adopter"
+
+[ceilings]
+disposition = "supplied"
+
+[ceilings.value]
+resources = ["resource.alpha.one"]
+
+[ceilings.value.policy]
+disclosure = "protected"
+effect = "read"
+model_use_permitted = false
+retention_seconds = 300
+
+[ceilings.value.policy.rights]
+permitted = ["right.alpha"]
+
+[ceilings.value.policy.controllers]
+permitted = ["controller.alpha"]
+
+[ceilings.value.policy.authorities]
+permitted = ["authority.alpha"]
+
+[ceilings.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[incumbent]
+disposition = "supplied"
+
+[incumbent.value]
+mechanism = "incumbent.alpha"
+writer = "writer.alpha"
+retained_evidence = "retained.alpha"
+
+[incumbent.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[readiness]
+disposition = "supplied"
+
+[readiness.value]
+operation_contract = "proof.alpha.operation"
+replay_proof = "proof.alpha.replay"
+failure_proof = "proof.alpha.failure"
+recovery_proof = "proof.alpha.recovery"
+rollback_proof = "proof.alpha.rollback"
+native_read_back_proof = "proof.alpha.read-back"
+
+[readiness.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[safe_failure]
+disposition = "supplied"
+value = "remain_native"
+
+[safe_failure.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[direct_path]
+disposition = "supplied"
+
+[direct_path.value]
+path = "direct.alpha"
+native_owner = "native-owner.alpha"
+availability_policy = "availability.alpha"
+
+[direct_path.attribution]
+source_id = "source.alpha"
+owner = "owner.alpha"
+evidence_ref = "evidence.alpha"
+
+[[residence]]
+class = "native_application"
+resource = "residence.alpha"
+owner = "native-owner.alpha"
+
+[[native_projections]]
+projection_id = "projection.alpha.p0"
+class = "accountable_work"
+native_owner = "native-owner.alpha.p0"
+native_refs = ["native-ref.alpha.p0.a"]
+state = "present"
+
+[[native_projections]]
+projection_id = "projection.alpha.p1"
+class = "communication"
+native_owner = "native-owner.alpha.p1"
+native_refs = ["native-ref.alpha.p1.a"]
+state = "present"
+
+[[genealogy_links]]
+link_id = "genealogy.inspection"
+responsibilities = ["responsibility.alpha"]
+projections = ["projection.alpha.p0", "projection.alpha.p1"]
+occurrences = ["occurrence.request", "occurrence.acceptance"]

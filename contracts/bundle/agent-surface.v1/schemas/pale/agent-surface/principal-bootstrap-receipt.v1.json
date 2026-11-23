@@ -1,0 +1,205 @@
+{
+  "$defs": {
+    "CanonicalSignatureV1": {
+      "pattern": "^[A-Za-z0-9_-]{85}[AQgw]$",
+      "type": "string"
+    },
+    "ControlCheckpointDomainIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ControlDomainEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "ControlDomainSequenceV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "ControlIncarnationIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ControlStoreIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "PrincipalBootstrapIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "PrincipalBootstrapInitialControlCheckpointV1": {
+      "additionalProperties": false,
+      "properties": {
+        "checkpoint_domain_id": {
+          "$ref": "#/$defs/ControlCheckpointDomainIdV1"
+        },
+        "control_checkpoint_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "control_checkpoint_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        },
+        "domain_epoch": {
+          "$ref": "#/$defs/ControlDomainEpochV1"
+        },
+        "domain_sequence": {
+          "$ref": "#/$defs/ControlDomainSequenceV1"
+        }
+      },
+      "required": [
+        "checkpoint_domain_id",
+        "domain_epoch",
+        "domain_sequence",
+        "control_checkpoint_ref",
+        "control_checkpoint_sha256"
+      ],
+      "type": "object"
+    },
+    "PrincipalTrustCheckpointEpochV1": {
+      "maximum": 9007199254740991,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "ResidentKeyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "UnixTimeV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/principal-bootstrap-receipt.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "bootstrap_id": {
+      "$ref": "#/$defs/PrincipalBootstrapIdV1"
+    },
+    "candidate_root_key_id": {
+      "$ref": "#/$defs/ResidentKeyIdV1"
+    },
+    "canonical_bootstrap_receipt_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "committed_at": {
+      "$ref": "#/$defs/UnixTimeV1"
+    },
+    "initial_admin_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "initial_admin_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "initial_control_checkpoints": {
+      "items": {
+        "$ref": "#/$defs/PrincipalBootstrapInitialControlCheckpointV1"
+      },
+      "type": "array"
+    },
+    "initial_producer_incarnation_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "initial_producer_incarnation_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "initial_trust_store_checkpoint_signing_authority_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "initial_trust_store_checkpoint_signing_authority_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "principal_control_incarnation_id": {
+      "$ref": "#/$defs/ControlIncarnationIdV1"
+    },
+    "principal_control_store_id": {
+      "$ref": "#/$defs/ControlStoreIdV1"
+    },
+    "principal_record_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "principal_record_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "recovery_policy_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "recovery_policy_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_id": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/principal-bootstrap-receipt.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "signature": {
+      "$ref": "#/$defs/CanonicalSignatureV1"
+    },
+    "trust_checkpoint_epoch": {
+      "$ref": "#/$defs/PrincipalTrustCheckpointEpochV1"
+    },
+    "trust_checkpoint_ref": {
+      "$ref": "#/$defs/ResidentRecordRefV1"
+    },
+    "trust_checkpoint_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "trust_store_id": {
+      "$ref": "#/$defs/ControlStoreIdV1"
+    },
+    "trust_store_incarnation_id": {
+      "$ref": "#/$defs/ControlIncarnationIdV1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "schema_sha256",
+    "bootstrap_id",
+    "trust_store_id",
+    "trust_store_incarnation_id",
+    "principal_control_store_id",
+    "principal_control_incarnation_id",
+    "principal_record_ref",
+    "principal_record_sha256",
+    "recovery_policy_ref",
+    "recovery_policy_sha256",
+    "initial_admin_authority_ref",
+    "initial_admin_authority_sha256",
+    "initial_producer_incarnation_authority_ref",
+    "initial_producer_incarnation_authority_sha256",
+    "initial_trust_store_checkpoint_signing_authority_ref",
+    "initial_trust_store_checkpoint_signing_authority_sha256",
+    "trust_checkpoint_ref",
+    "trust_checkpoint_sha256",
+    "trust_checkpoint_epoch",
+    "initial_control_checkpoints",
+    "committed_at",
+    "candidate_root_key_id",
+    "canonical_bootstrap_receipt_sha256",
+    "signature"
+  ],
+  "title": "principal-bootstrap-receipt.v1",
+  "type": "object"
+}

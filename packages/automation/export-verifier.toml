@@ -1,0 +1,11 @@
+description = "Compare the selected saved workflow or application artifacts and report coverage and differences."
+capability = "automation-export-verification"
+tool_contract = "automation-export-verifier.v1"
+tool_operation = "compare"
+effect_class = "execute"
+input_mapping.kind = '$.kind'
+input_mapping.expected = '$.expected'
+input_mapping.observed = '$.observed'
+input_mapping.accepted_deployments = '$.accepted_deployments'
+evidence.required_fields = ["/contract", "/coverage", "/inputSha256/expected", "/inputSha256/observed", "/matches", "/findings"]
+evidence.proof_ceiling = "retained-automation-artifacts"

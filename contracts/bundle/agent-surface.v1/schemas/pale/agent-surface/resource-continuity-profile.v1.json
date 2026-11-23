@@ -1,0 +1,923 @@
+{
+  "$defs": {
+    "AuthorityEvidenceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "authority_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "authority_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "authority_ref",
+        "authority_sha256"
+      ],
+      "type": "object"
+    },
+    "ContinuityAuthorityBindingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "authority": {
+          "$ref": "#/$defs/AuthorityEvidenceV1"
+        },
+        "owner_system_id": {
+          "$ref": "#/$defs/OwnerSystemIdV1"
+        }
+      },
+      "required": [
+        "owner_system_id",
+        "authority"
+      ],
+      "type": "object"
+    },
+    "ContinuityControllerBindingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "authority": {
+          "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+        },
+        "controller_id": {
+          "$ref": "#/$defs/ResidentControllerIdV1"
+        }
+      },
+      "required": [
+        "controller_id",
+        "authority"
+      ],
+      "type": "object"
+    },
+    "ContinuityHolderV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "device",
+              "type": "string"
+            },
+            "scope": {
+              "$ref": "#/$defs/ResourceContinuityDeviceScopeIdV1"
+            }
+          },
+          "required": [
+            "kind",
+            "scope"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "machine",
+              "type": "string"
+            },
+            "scope": {
+              "$ref": "#/$defs/ResourceContinuityMachineScopeIdV1"
+            }
+          },
+          "required": [
+            "kind",
+            "scope"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "service",
+              "type": "string"
+            },
+            "scope": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            }
+          },
+          "required": [
+            "kind",
+            "scope"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "location",
+              "type": "string"
+            },
+            "scope": {
+              "$ref": "#/$defs/ResidentRecordRefV1"
+            }
+          },
+          "required": [
+            "kind",
+            "scope"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "ContinuityOptionalContractV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "const": "absent",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "contract": {
+              "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+            },
+            "state": {
+              "const": "bound",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state",
+            "contract"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "ContinuityRecordCoordinateV1": {
+      "additionalProperties": false,
+      "properties": {
+        "record_ref": {
+          "$ref": "#/$defs/ResidentRecordRefV1"
+        },
+        "record_sha256": {
+          "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+        }
+      },
+      "required": [
+        "record_ref",
+        "record_sha256"
+      ],
+      "type": "object"
+    },
+    "OwnerSystemIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "RecoveryPointObjectiveSecondsV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "RecoveryTimeObjectiveSecondsV1": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "ResidentControllerIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentPrincipalIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResidentRecordRefV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResourceContinuityAccessRoleV1": {
+      "oneOf": [
+        {
+          "const": "reader",
+          "type": "string"
+        },
+        {
+          "const": "proposal_writer",
+          "type": "string"
+        },
+        {
+          "const": "effect_writer",
+          "type": "string"
+        }
+      ]
+    },
+    "ResourceContinuityAccessV1": {
+      "additionalProperties": false,
+      "properties": {
+        "authorized_controllers": {
+          "$ref": "#/$defs/ResourceContinuityControllerSetV1"
+        },
+        "authorized_principals": {
+          "$ref": "#/$defs/ResourceContinuityPrincipalSetV1"
+        },
+        "grants": {
+          "$ref": "#/$defs/ResourceContinuityGrantSetV1"
+        }
+      },
+      "required": [
+        "authorized_principals",
+        "authorized_controllers",
+        "grants"
+      ],
+      "type": "object"
+    },
+    "ResourceContinuityAuthorityV1": {
+      "additionalProperties": false,
+      "properties": {
+        "authoritative_source": {
+          "$ref": "#/$defs/ContinuityAuthorityBindingV1"
+        },
+        "authority_model": {
+          "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+        },
+        "controller": {
+          "$ref": "#/$defs/ContinuityControllerBindingV1"
+        },
+        "effect_authority": {
+          "$ref": "#/$defs/ContinuityAuthorityBindingV1"
+        },
+        "native_owner": {
+          "$ref": "#/$defs/OwnerSystemIdV1"
+        }
+      },
+      "required": [
+        "native_owner",
+        "authority_model",
+        "authoritative_source",
+        "controller",
+        "effect_authority"
+      ],
+      "type": "object"
+    },
+    "ResourceContinuityControllerSetV1": {
+      "items": {
+        "$ref": "#/$defs/ResidentControllerIdV1"
+      },
+      "maxItems": 1024,
+      "type": "array"
+    },
+    "ResourceContinuityCopyClassV1": {
+      "oneOf": [
+        {
+          "const": "local_replica",
+          "type": "string"
+        },
+        {
+          "const": "remote_replica",
+          "type": "string"
+        },
+        {
+          "const": "view",
+          "type": "string"
+        },
+        {
+          "const": "cache",
+          "type": "string"
+        },
+        {
+          "const": "archive",
+          "type": "string"
+        }
+      ]
+    },
+    "ResourceContinuityCopyIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResourceContinuityCopyPolicyV1": {
+      "additionalProperties": false,
+      "properties": {
+        "frontier_contract": {
+          "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+        },
+        "retention_contract": {
+          "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+        },
+        "revocation_contract": {
+          "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+        },
+        "scope": {
+          "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+        }
+      },
+      "required": [
+        "scope",
+        "frontier_contract",
+        "retention_contract",
+        "revocation_contract"
+      ],
+      "type": "object"
+    },
+    "ResourceContinuityCopySetV1": {
+      "items": {
+        "$ref": "#/$defs/ResourceContinuityCopyV1"
+      },
+      "maxItems": 1024,
+      "type": "array"
+    },
+    "ResourceContinuityCopyV1": {
+      "additionalProperties": false,
+      "properties": {
+        "class": {
+          "$ref": "#/$defs/ResourceContinuityCopyClassV1"
+        },
+        "copy_id": {
+          "$ref": "#/$defs/ResourceContinuityCopyIdV1"
+        },
+        "custodian": {
+          "$ref": "#/$defs/ContinuityAuthorityBindingV1"
+        },
+        "holder": {
+          "$ref": "#/$defs/ContinuityHolderV1"
+        },
+        "policy": {
+          "$ref": "#/$defs/ResourceContinuityCopyPolicyV1"
+        }
+      },
+      "required": [
+        "copy_id",
+        "class",
+        "holder",
+        "custodian",
+        "policy"
+      ],
+      "type": "object"
+    },
+    "ResourceContinuityCutoverV1": {
+      "additionalProperties": false,
+      "properties": {
+        "cutover_state": {
+          "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+        },
+        "rollback_contract": {
+          "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+        }
+      },
+      "required": [
+        "cutover_state",
+        "rollback_contract"
+      ],
+      "type": "object"
+    },
+    "ResourceContinuityDeviceScopeIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResourceContinuityDeviceScopeSetV1": {
+      "items": {
+        "$ref": "#/$defs/ResourceContinuityDeviceScopeIdV1"
+      },
+      "maxItems": 1024,
+      "type": "array"
+    },
+    "ResourceContinuityEvidenceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_destination": {
+          "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+        },
+        "evidence_owner": {
+          "$ref": "#/$defs/ContinuityAuthorityBindingV1"
+        },
+        "read_back_contract": {
+          "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+        },
+        "read_back_owner": {
+          "$ref": "#/$defs/ContinuityAuthorityBindingV1"
+        }
+      },
+      "required": [
+        "evidence_owner",
+        "read_back_owner",
+        "evidence_destination",
+        "read_back_contract"
+      ],
+      "type": "object"
+    },
+    "ResourceContinuityGovernanceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "deletion_policy": {
+          "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+        },
+        "legal_hold_policy": {
+          "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+        },
+        "privacy_policy": {
+          "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+        },
+        "residency_policy": {
+          "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+        },
+        "retention_policy": {
+          "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+        },
+        "revocation_policy": {
+          "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+        }
+      },
+      "required": [
+        "privacy_policy",
+        "residency_policy",
+        "retention_policy",
+        "revocation_policy",
+        "deletion_policy",
+        "legal_hold_policy"
+      ],
+      "type": "object"
+    },
+    "ResourceContinuityGrantSetV1": {
+      "items": {
+        "$ref": "#/$defs/ResourceContinuityGrantV1"
+      },
+      "maxItems": 1024,
+      "type": "array"
+    },
+    "ResourceContinuityGrantV1": {
+      "additionalProperties": false,
+      "properties": {
+        "authority": {
+          "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+        },
+        "credential": {
+          "$ref": "#/$defs/ContinuityOptionalContractV1"
+        },
+        "role": {
+          "$ref": "#/$defs/ResourceContinuityAccessRoleV1"
+        },
+        "subject": {
+          "$ref": "#/$defs/ResourceContinuitySubjectV1"
+        },
+        "transport": {
+          "$ref": "#/$defs/ContinuityOptionalContractV1"
+        }
+      },
+      "required": [
+        "subject",
+        "role",
+        "authority",
+        "transport",
+        "credential"
+      ],
+      "type": "object"
+    },
+    "ResourceContinuityMachineScopeIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResourceContinuityMachineScopeSetV1": {
+      "items": {
+        "$ref": "#/$defs/ResourceContinuityMachineScopeIdV1"
+      },
+      "maxItems": 1024,
+      "type": "array"
+    },
+    "ResourceContinuityMechanismDispositionV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "const": "forbidden",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "contract": {
+              "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+            },
+            "state": {
+              "const": "governed",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state",
+            "contract"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "ResourceContinuityMechanismKindV1": {
+      "oneOf": [
+        {
+          "const": "sync",
+          "type": "string"
+        },
+        {
+          "const": "replication",
+          "type": "string"
+        },
+        {
+          "const": "transport",
+          "type": "string"
+        },
+        {
+          "const": "export_import",
+          "type": "string"
+        },
+        {
+          "const": "projection_regeneration",
+          "type": "string"
+        },
+        {
+          "const": "backup_restore",
+          "type": "string"
+        },
+        {
+          "const": "checkpoint_replay",
+          "type": "string"
+        },
+        {
+          "const": "archive",
+          "type": "string"
+        },
+        {
+          "const": "migration_cutover",
+          "type": "string"
+        },
+        {
+          "const": "recovery",
+          "type": "string"
+        }
+      ]
+    },
+    "ResourceContinuityMechanismPolicyV1": {
+      "additionalProperties": false,
+      "properties": {
+        "disposition": {
+          "$ref": "#/$defs/ResourceContinuityMechanismDispositionV1"
+        },
+        "kind": {
+          "$ref": "#/$defs/ResourceContinuityMechanismKindV1"
+        }
+      },
+      "required": [
+        "kind",
+        "disposition"
+      ],
+      "type": "object"
+    },
+    "ResourceContinuityMechanismTableV1": {
+      "items": {
+        "$ref": "#/$defs/ResourceContinuityMechanismPolicyV1"
+      },
+      "maxItems": 10,
+      "minItems": 10,
+      "type": "array"
+    },
+    "ResourceContinuityPrincipalSetV1": {
+      "items": {
+        "$ref": "#/$defs/ResidentPrincipalIdV1"
+      },
+      "maxItems": 1024,
+      "type": "array"
+    },
+    "ResourceContinuityProfileIdV1": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "ResourceContinuityRecoveryV1": {
+      "additionalProperties": false,
+      "properties": {
+        "recovery_point_objective_seconds": {
+          "$ref": "#/$defs/RecoveryPointObjectiveSecondsV1"
+        },
+        "recovery_time_objective_seconds": {
+          "$ref": "#/$defs/RecoveryTimeObjectiveSecondsV1"
+        },
+        "verification_contract": {
+          "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+        }
+      },
+      "required": [
+        "recovery_time_objective_seconds",
+        "recovery_point_objective_seconds",
+        "verification_contract"
+      ],
+      "type": "object"
+    },
+    "ResourceContinuityScopeV1": {
+      "additionalProperties": false,
+      "properties": {
+        "bootstrap_verification": {
+          "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+        },
+        "cross_machine_bootstrap": {
+          "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+        },
+        "devices": {
+          "$ref": "#/$defs/ResourceContinuityDeviceScopeSetV1"
+        },
+        "machines": {
+          "$ref": "#/$defs/ResourceContinuityMachineScopeSetV1"
+        }
+      },
+      "required": [
+        "devices",
+        "machines",
+        "cross_machine_bootstrap",
+        "bootstrap_verification"
+      ],
+      "type": "object"
+    },
+    "ResourceContinuitySubjectV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "identity": {
+              "$ref": "#/$defs/ResidentPrincipalIdV1"
+            },
+            "kind": {
+              "const": "principal",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "identity"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "identity": {
+              "$ref": "#/$defs/ResidentControllerIdV1"
+            },
+            "kind": {
+              "const": "controller",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "identity"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "ResourceContinuityWriterV1": {
+      "additionalProperties": false,
+      "properties": {
+        "authority": {
+          "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+        },
+        "subject": {
+          "$ref": "#/$defs/ResourceContinuitySubjectV1"
+        }
+      },
+      "required": [
+        "subject",
+        "authority"
+      ],
+      "type": "object"
+    },
+    "ResourceConvergenceMetadataSetV1": {
+      "items": {
+        "$ref": "#/$defs/ResourceConvergenceMetadataV1"
+      },
+      "maxItems": 7,
+      "minItems": 1,
+      "type": "array"
+    },
+    "ResourceConvergenceMetadataV1": {
+      "oneOf": [
+        {
+          "const": "tombstone",
+          "type": "string"
+        },
+        {
+          "const": "writer_clock",
+          "type": "string"
+        },
+        {
+          "const": "causal_clock",
+          "type": "string"
+        },
+        {
+          "const": "version_vector",
+          "type": "string"
+        },
+        {
+          "const": "merge_ancestry",
+          "type": "string"
+        },
+        {
+          "const": "per_field_origin",
+          "type": "string"
+        },
+        {
+          "const": "conflict_marker",
+          "type": "string"
+        }
+      ]
+    },
+    "ResourceConvergenceV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "mode": {
+              "const": "exclusive_writer",
+              "type": "string"
+            },
+            "writer": {
+              "$ref": "#/$defs/ResourceContinuityWriterV1"
+            }
+          },
+          "required": [
+            "mode",
+            "writer"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "conflict_owner": {
+              "$ref": "#/$defs/ContinuityAuthorityBindingV1"
+            },
+            "durable_metadata": {
+              "$ref": "#/$defs/ResourceConvergenceMetadataSetV1"
+            },
+            "merge_owner": {
+              "$ref": "#/$defs/ContinuityAuthorityBindingV1"
+            },
+            "mode": {
+              "const": "merge_protocol",
+              "type": "string"
+            },
+            "protocol": {
+              "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+            }
+          },
+          "required": [
+            "mode",
+            "protocol",
+            "merge_owner",
+            "conflict_owner",
+            "durable_metadata"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "ResourceSessionContinuityV1": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "const": "unrelated",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "relation_contract": {
+              "$ref": "#/$defs/ContinuityRecordCoordinateV1"
+            },
+            "state": {
+              "const": "bound",
+              "type": "string"
+            }
+          },
+          "required": [
+            "state",
+            "relation_contract"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "SchemaId": {
+      "maxLength": 256,
+      "minLength": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$",
+      "type": "string"
+    },
+    "WorkspaceResourceId": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_-]*(?:[.:/][a-z][a-z0-9_-]*)*$",
+      "type": "string"
+    }
+  },
+  "$id": "https://www.rawthoughts.in/pale/schemas/resource-continuity-profile.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "access": {
+      "$ref": "#/$defs/ResourceContinuityAccessV1"
+    },
+    "authority": {
+      "$ref": "#/$defs/ResourceContinuityAuthorityV1"
+    },
+    "convergence": {
+      "$ref": "#/$defs/ResourceConvergenceV1"
+    },
+    "copies": {
+      "$ref": "#/$defs/ResourceContinuityCopySetV1"
+    },
+    "cutover": {
+      "$ref": "#/$defs/ResourceContinuityCutoverV1"
+    },
+    "evidence": {
+      "$ref": "#/$defs/ResourceContinuityEvidenceV1"
+    },
+    "governance": {
+      "$ref": "#/$defs/ResourceContinuityGovernanceV1"
+    },
+    "mechanisms": {
+      "$ref": "#/$defs/ResourceContinuityMechanismTableV1"
+    },
+    "profile_id": {
+      "$ref": "#/$defs/ResourceContinuityProfileIdV1"
+    },
+    "recovery": {
+      "$ref": "#/$defs/ResourceContinuityRecoveryV1"
+    },
+    "resource_continuity_profile_digest": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "resource_id": {
+      "$ref": "#/$defs/WorkspaceResourceId"
+    },
+    "schema": {
+      "$ref": "#/$defs/SchemaId",
+      "const": "pale/resource-continuity-profile.v1"
+    },
+    "schema_sha256": {
+      "$ref": "https://www.rawthoughts.in/pale/schemas/sha256-digest.v1.json"
+    },
+    "schema_version": {
+      "const": 1,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "scope": {
+      "$ref": "#/$defs/ResourceContinuityScopeV1"
+    },
+    "session_relation": {
+      "$ref": "#/$defs/ResourceSessionContinuityV1"
+    }
+  },
+  "required": [
+    "schema",
+    "schema_sha256",
+    "schema_version",
+    "profile_id",
+    "resource_id",
+    "authority",
+    "access",
+    "copies",
+    "convergence",
+    "mechanisms",
+    "recovery",
+    "governance",
+    "scope",
+    "session_relation",
+    "cutover",
+    "evidence",
+    "resource_continuity_profile_digest"
+  ],
+  "title": "resource-continuity-profile.v1",
+  "type": "object"
+}
